@@ -2498,6 +2498,786 @@
       "aliases": [
         "黃椒"
       ]
+    },
+    {
+      "id": "taiwan-beer",
+      "zh": "台灣啤酒（經典）",
+      "en": "Taiwan Beer (Classic)",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "台啤",
+        "啤酒",
+        "台灣啤酒"
+      ]
+    },
+    {
+      "id": "paolyta-b",
+      "zh": "保力達B",
+      "en": "Paolyta B",
+      "category": "liqueur",
+      "common": false,
+      "aliases": [
+        "保力達"
+      ]
+    },
+    {
+      "id": "millet-wine",
+      "zh": "小米酒",
+      "en": "Millet Wine",
+      "category": "base-spirit",
+      "common": false,
+      "aliases": [
+        "小米"
+      ]
+    },
+    {
+      "id": "seven-up",
+      "zh": "七喜汽水",
+      "en": "7-Up",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "七喜"
+      ]
+    },
+    {
+      "id": "sarsaparilla",
+      "zh": "沙士汽水",
+      "en": "Sarsaparilla",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "沙士"
+      ]
+    },
+    {
+      "id": "calpis",
+      "zh": "可爾必思",
+      "en": "Calpis",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "可爾必思"
+      ]
+    },
+    {
+      "id": "vitali",
+      "zh": "維大力",
+      "en": "Vitali",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "維大力"
+      ]
+    },
+    {
+      "id": "whisbih",
+      "zh": "維士比",
+      "en": "Whisbih",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "維士比"
+      ]
+    },
+    {
+      "id": "oligo",
+      "zh": "奧利多",
+      "en": "Oligo",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "奧利多"
+      ]
+    },
+    {
+      "id": "supau",
+      "zh": "舒跑運動飲料",
+      "en": "Supau Sports Drink",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "舒跑"
+      ]
+    },
+    {
+      "id": "kankyo",
+      "zh": "健酪乳酸菌飲料",
+      "en": "Kankyo",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "健酪"
+      ]
+    },
+    {
+      "id": "mido-nai",
+      "zh": "蜜豆奶（黑豆奶）",
+      "en": "Mi Dou Nai Soy Milk",
+      "category": "dairy",
+      "common": false,
+      "aliases": [
+        "蜜豆奶",
+        "黑豆奶"
+      ]
+    },
+    {
+      "id": "milk-tea",
+      "zh": "奶茶",
+      "en": "Milk Tea",
+      "category": "tea-coffee",
+      "common": false,
+      "aliases": [
+        "珍珠奶茶",
+        "紅茶"
+      ]
+    },
+    {
+      "id": "herbal-tea",
+      "zh": "涼茶（草本）",
+      "en": "Herbal Tea",
+      "category": "tea-coffee",
+      "common": false,
+      "aliases": [
+        "涼茶",
+        "青草茶"
+      ]
+    },
+    {
+      "id": "guava-green-tea",
+      "zh": "芭樂綠茶",
+      "en": "Guava Green Tea",
+      "category": "tea-coffee",
+      "common": false,
+      "aliases": [
+        "芭樂綠茶"
+      ]
+    },
+    {
+      "id": "smoked-plum-juice",
+      "zh": "烏梅汁",
+      "en": "Smoked Plum Juice",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "烏梅汁",
+        "酸梅汁"
+      ]
+    },
+    {
+      "id": "apple-cider",
+      "zh": "蘋果西打（氣泡蘋果汁）",
+      "en": "Apple Cider",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "蘋果西打",
+        "蘋果汽酒"
+      ]
+    },
+    {
+      "id": "starfruit-juice",
+      "zh": "楊桃汁（黑面蔡）",
+      "en": "Starfruit Juice",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "楊桃汁",
+        "黑面蔡"
+      ]
+    },
+    {
+      "id": "asparagus-juice",
+      "zh": "蘆筍汁",
+      "en": "Asparagus Juice",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "蘆筍汁"
+      ]
+    },
+    {
+      "id": "mulberry-juice",
+      "zh": "桑椹汁",
+      "en": "Mulberry Juice",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "桑椹汁"
+      ]
+    },
+    {
+      "id": "guava-juice",
+      "zh": "芭樂汁",
+      "en": "Guava Juice",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "芭樂汁",
+        "番石榴汁"
+      ]
+    },
+    {
+      "id": "grape-juice",
+      "zh": "葡萄汁",
+      "en": "Grape Juice",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "葡萄汁"
+      ]
+    },
+    {
+      "id": "grass-jelly",
+      "zh": "仙草（愛玉凍）",
+      "en": "Grass Jelly",
+      "category": "garnish",
+      "common": false,
+      "aliases": [
+        "仙草",
+        "愛玉"
+      ]
+    },
+    {
+      "id": "kumquat-juice",
+      "zh": "金桔汁",
+      "en": "Kumquat Juice",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "金桔汁",
+        "金桔"
+      ]
+    },
+    {
+      "id": "yakult",
+      "zh": "養樂多",
+      "en": "Yakult",
+      "category": "dairy",
+      "common": false,
+      "aliases": [
+        "養樂多"
+      ]
+    },
+    {
+      "id": "lemon-drink",
+      "zh": "檸檬飲（瓶裝）",
+      "en": "Bottled Lemon Drink",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "檸檬飲"
+      ]
+    },
+    {
+      "id": "passion-fruit-jelly",
+      "zh": "百香果果凍",
+      "en": "Passion Fruit Jelly",
+      "category": "garnish",
+      "common": false,
+      "aliases": [
+        "百香果果凍"
+      ]
+    },
+    {
+      "id": "honey-citron-jam",
+      "zh": "蜂蜜柚子醬",
+      "en": "Honey Citron Tea Jam",
+      "category": "syrup",
+      "common": false,
+      "aliases": [
+        "蜂蜜柚子醬"
+      ]
+    },
+    {
+      "id": "apple",
+      "zh": "蘋果（切片）",
+      "en": "Apple",
+      "category": "garnish",
+      "common": false,
+      "aliases": [
+        "蘋果"
+      ]
+    },
+    {
+      "id": "grapefruit",
+      "zh": "葡萄柚（整顆或切片）",
+      "en": "Grapefruit",
+      "category": "garnish",
+      "common": false,
+      "aliases": [
+        "葡萄柚"
+      ]
+    },
+    {
+      "id": "yuchun-rose-wine",
+      "zh": "玉泉特級玫瑰紅酒",
+      "en": "Yuchun Rose Wine",
+      "category": "fortified-wine",
+      "common": false,
+      "aliases": [
+        "玉泉玫瑰紅"
+      ]
+    },
+    {
+      "id": "yuchun-aikeliang",
+      "zh": "玉泉愛可涼酒",
+      "en": "Yuchun Aikeliang",
+      "category": "liqueur",
+      "common": false,
+      "aliases": [
+        "玉泉愛可涼"
+      ]
+    },
+    {
+      "id": "yuchun-black-plum-wine",
+      "zh": "玉泉特級烏梅酒",
+      "en": "Yuchun Black Plum Wine",
+      "category": "liqueur",
+      "common": false,
+      "aliases": [
+        "玉泉烏梅酒"
+      ]
+    },
+    {
+      "id": "yuchun-red-wine",
+      "zh": "玉泉特級紅葡萄酒",
+      "en": "Yuchun Red Wine",
+      "category": "fortified-wine",
+      "common": false,
+      "aliases": [
+        "玉泉紅葡萄酒"
+      ]
+    },
+    {
+      "id": "yuchun-golden-muscat-wine",
+      "zh": "玉泉金香白葡萄酒",
+      "en": "Yuchun Golden Muscat White Wine",
+      "category": "wine",
+      "common": false,
+      "aliases": [
+        "玉泉金香白"
+      ]
+    },
+    {
+      "id": "yuchun-lychee-wine",
+      "zh": "玉泉荔枝酒",
+      "en": "Yuchun Lychee Wine",
+      "category": "liqueur",
+      "common": false,
+      "aliases": [
+        "玉泉荔枝酒"
+      ]
+    },
+    {
+      "id": "yutai-brandy",
+      "zh": "玉台白蘭地",
+      "en": "Yutai Brandy",
+      "category": "base-spirit",
+      "common": false,
+      "aliases": [
+        "玉台白蘭地"
+      ]
+    },
+    {
+      "id": "yutai-rum",
+      "zh": "玉台蘭姆酒",
+      "en": "Yutai Rum",
+      "category": "base-spirit",
+      "common": false,
+      "aliases": [
+        "玉台蘭姆"
+      ]
+    },
+    {
+      "id": "yushan-bamboo-green-wine",
+      "zh": "玉山竹葉青酒",
+      "en": "Yushan Bamboo Green Wine",
+      "category": "base-spirit",
+      "common": false,
+      "aliases": [
+        "竹葉青"
+      ]
+    },
+    {
+      "id": "pavan-grape-liqueur",
+      "zh": "Pavan 葡萄花香利口酒",
+      "en": "Pavan Grape Liqueur",
+      "category": "liqueur",
+      "common": false,
+      "aliases": [
+        "Pavan"
+      ]
+    },
+    {
+      "id": "hinoki-bitters",
+      "zh": "檜木苦精",
+      "en": "Hinoki Bitters",
+      "category": "bitter",
+      "common": false,
+      "aliases": [
+        "檜木苦精"
+      ]
+    },
+    {
+      "id": "creamer-pod",
+      "zh": "奶油球",
+      "en": "Creamer Pod",
+      "category": "dairy",
+      "common": false,
+      "aliases": [
+        "奶油球"
+      ]
+    },
+    {
+      "id": "ginger-wine",
+      "zh": "薑酒（甜味烈酒）",
+      "en": "Ginger Wine",
+      "category": "liqueur",
+      "common": false,
+      "aliases": [
+        "薑酒",
+        "ginger wine"
+      ]
+    },
+    {
+      "id": "soy-milk",
+      "zh": "豆漿",
+      "en": "Soy Milk",
+      "category": "dairy",
+      "common": false,
+      "aliases": [
+        "豆漿",
+        "soy milk"
+      ]
+    },
+    {
+      "id": "ale",
+      "zh": "英式苦艾啤酒",
+      "en": "Bitter Ale",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "苦艾啤酒",
+        "ale",
+        "英式啤酒"
+      ]
+    },
+    {
+      "id": "metaxa",
+      "zh": "梅塔薩希臘白蘭地",
+      "en": "Metaxa",
+      "category": "base-spirit",
+      "common": false,
+      "aliases": [
+        "Metaxa",
+        "梅塔薩"
+      ]
+    },
+    {
+      "id": "watermelon-liqueur",
+      "zh": "西瓜利口酒",
+      "en": "Watermelon Liqueur",
+      "category": "liqueur",
+      "common": false,
+      "aliases": [
+        "西瓜利口酒"
+      ]
+    },
+    {
+      "id": "mandarin-liqueur",
+      "zh": "柑橘利口酒（橘皮酒）",
+      "en": "Mandarin Liqueur",
+      "category": "liqueur",
+      "common": false,
+      "aliases": [
+        "橘皮酒",
+        "mandarin"
+      ]
+    },
+    {
+      "id": "lemonade",
+      "zh": "西式檸檬水（甜）",
+      "en": "Lemonade (Sweet)",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "lemonade",
+        "檸檬水"
+      ]
+    },
+    {
+      "id": "root-beer",
+      "zh": "根啤汽水",
+      "en": "Root Beer",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "root beer",
+        "根啤"
+      ]
+    },
+    {
+      "id": "grape-soda",
+      "zh": "紫葡萄汽水",
+      "en": "Grape Soda",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "grape soda"
+      ]
+    },
+    {
+      "id": "peach-nectar",
+      "zh": "蜜桃果露（nectar）",
+      "en": "Peach Nectar",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "peach nectar"
+      ]
+    },
+    {
+      "id": "brown-sugar",
+      "zh": "紅糖",
+      "en": "Brown Sugar",
+      "category": "syrup",
+      "common": false,
+      "aliases": [
+        "brown sugar",
+        "紅糖"
+      ]
+    },
+    {
+      "id": "condensed-milk",
+      "zh": "煉乳",
+      "en": "Condensed Milk",
+      "category": "dairy",
+      "common": false,
+      "aliases": [
+        "煉乳"
+      ]
+    },
+    {
+      "id": "cardamom",
+      "zh": "豆蔻",
+      "en": "Cardamom",
+      "category": "garnish",
+      "common": false,
+      "aliases": [
+        "豆蔻"
+      ]
+    },
+    {
+      "id": "chocolate-syrup",
+      "zh": "巧克力糖漿",
+      "en": "Chocolate Syrup",
+      "category": "syrup",
+      "common": false,
+      "aliases": [
+        "巧克力糖漿"
+      ]
+    },
+    {
+      "id": "mint-syrup",
+      "zh": "薄荷糖漿",
+      "en": "Mint Syrup",
+      "category": "syrup",
+      "common": false,
+      "aliases": [
+        "薄荷糖漿"
+      ]
+    },
+    {
+      "id": "banana",
+      "zh": "香蕉",
+      "en": "Banana",
+      "category": "garnish",
+      "common": false,
+      "aliases": [
+        "香蕉"
+      ]
+    },
+    {
+      "id": "berries",
+      "zh": "綜合莓果",
+      "en": "Mixed Berries",
+      "category": "garnish",
+      "common": false,
+      "aliases": [
+        "莓果"
+      ]
+    },
+    {
+      "id": "chocolate",
+      "zh": "巧克力",
+      "en": "Chocolate",
+      "category": "garnish",
+      "common": false,
+      "aliases": [
+        "巧克力"
+      ]
+    },
+    {
+      "id": "vanilla-syrup",
+      "zh": "香草糖漿",
+      "en": "Vanilla Syrup",
+      "category": "syrup",
+      "common": false,
+      "aliases": [
+        "香草糖漿"
+      ]
+    },
+    {
+      "id": "gelatin",
+      "zh": "吉利丁（果凍粉）",
+      "en": "Gelatin",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "jello",
+        "吉利丁"
+      ]
+    },
+    {
+      "id": "goldschlager",
+      "zh": "金箔香草酒（Goldschlager）",
+      "en": "Goldschlager",
+      "category": "liqueur",
+      "common": false,
+      "aliases": [
+        "Goldschlager",
+        "金箔酒"
+      ]
+    },
+    {
+      "id": "jagermeister",
+      "zh": "野格苦草酒（Jägermeister）",
+      "en": "Jägermeister",
+      "category": "liqueur",
+      "common": false,
+      "aliases": [
+        "Jägermeister",
+        "野格"
+      ]
+    },
+    {
+      "id": "crown-royal",
+      "zh": "皇冠威士忌",
+      "en": "Crown Royal",
+      "category": "base-spirit",
+      "common": false,
+      "aliases": [
+        "Crown Royal"
+      ]
+    },
+    {
+      "id": "lychee-liqueur",
+      "zh": "荔枝利口酒",
+      "en": "Lychee Liqueur",
+      "category": "liqueur",
+      "common": false,
+      "aliases": [
+        "荔枝酒",
+        "Lychee"
+      ]
+    },
+    {
+      "id": "pear-liqueur",
+      "zh": "梨子利口酒",
+      "en": "Pear Liqueur",
+      "category": "liqueur",
+      "common": false,
+      "aliases": [
+        "梨酒"
+      ]
+    },
+    {
+      "id": "swedish-punsch",
+      "zh": "瑞典龐希酒",
+      "en": "Swedish Punsch",
+      "category": "liqueur",
+      "common": false,
+      "aliases": [
+        "Punsch",
+        "龐希"
+      ]
+    },
+    {
+      "id": "blackcurrant-juice",
+      "zh": "黑醋栗汁",
+      "en": "Blackcurrant Juice",
+      "category": "mixer",
+      "common": false,
+      "aliases": [
+        "黑醋栗汁"
+      ]
+    },
+    {
+      "id": "becherovka",
+      "zh": "捷克草本苦酒（Becherovka）",
+      "en": "Becherovka",
+      "category": "liqueur",
+      "common": false,
+      "aliases": [
+        "Becherovka"
+      ]
+    },
+    {
+      "id": "ice-cream",
+      "zh": "香草冰淇淋",
+      "en": "Vanilla Ice Cream",
+      "category": "dairy",
+      "common": false,
+      "aliases": [
+        "冰淇淋",
+        "ice cream"
+      ]
+    },
+    {
+      "id": "plum",
+      "zh": "梅子（鮮）",
+      "en": "Fresh Plum",
+      "category": "garnish",
+      "common": false,
+      "aliases": [
+        "梅子",
+        "青梅"
+      ]
+    },
+    {
+      "id": "amaretto-zero",
+      "zh": "零卡杏仁利口酒",
+      "en": "Zero-Proof Amaretto",
+      "category": "liqueur",
+      "common": false,
+      "aliases": [
+        "零卡杏仁酒",
+        "Amaretto Zero"
+      ]
+    },
+    {
+      "id": "black-tea",
+      "zh": "紅茶（茶包）",
+      "en": "Black Tea",
+      "category": "tea-coffee",
+      "common": false,
+      "aliases": [
+        "紅茶",
+        "black tea"
+      ]
+    },
+    {
+      "id": "thai-tea",
+      "zh": "泰式奶茶茶濃縮",
+      "en": "Thai Tea Concentrate",
+      "category": "tea-coffee",
+      "common": false,
+      "aliases": [
+        "泰式奶茶",
+        "thai tea"
+      ]
     }
   ],
   "substitutions": [
