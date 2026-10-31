@@ -6,13 +6,14 @@
   "description": "join 這麼喝：勾選手邊材料，即時算出只差最少材料的調酒推薦",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "npm run build:data && tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.node.json",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "build:data": "node scripts/build-data.mjs",
+    "data:check": "node scripts/build-data.mjs && git diff --exit-code --stat HEAD -- src/data",
     "screenshots": "node scripts/capture-screenshots.mjs",
     "lint": "eslint ."
   },

@@ -158,6 +158,8 @@ const stats = {
   unknownCollectionValues: [],
   /** sourceUrl 非 http(s) 協定而被清空的紀錄。 */
   sourceUrlViolations: [],
+  /** 中文名等同英文名（疑似未翻譯）的配方。 */
+  nameZhEnglish: [],
   warnings: [],
 };
 
@@ -175,6 +177,41 @@ function readJson(filePath, { required }) {
   } catch (error) {
     throw new Error(`解析 JSON 失敗：${path.relative(ROOT_DIR, filePath)}（${error.message}）`);
   }
+}
+
+/** 讀取 JSON 檔案；檔案不存在或解析失敗時回傳 null（用於比對前一次產物）。 */
+function readJsonIfExists(filePath) {
+  if (!fs.existsSync(filePath)) return null;
+  try {
+    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * 決定產物的 generatedAt。
+ *
+ * 只有在配方或食材內容實際變動時才更新時間戳；內容未變則沿用前一次的時間戳。
+ * 理由：時間戳每次都會變，會讓 git diff 出現無意義的雜訊，
+ * 「資料是否同步」的檢查（data:check）便無法分辨真正的內容變動。
+ *
+ * @param {object[]} recipes 本次建置的配方
+ * @param {object} catalog 本次建置的食材目錄
+ * @returns {string} ISO 8601 時間戳
+ */
+function resolveGeneratedAt(recipes, catalog) {
+  const previousDataset = readJsonIfExists(path.join(OUT_DIR, 'cocktails.json'));
+  const previousCatalog = readJsonIfExists(path.join(OUT_DIR, 'ingredients.json'));
+  const unchanged =
+    previousDataset !== null &&
+    previousCatalog !== null &&
+    JSON.stringify(previousDataset.recipes ?? null) === JSON.stringify(recipes) &&
+    JSON.stringify(previousCatalog) === JSON.stringify(catalog);
+  if (unchanged && typeof previousDataset.generatedAt === 'string' && previousDataset.generatedAt) {
+    return previousDataset.generatedAt;
+  }
+  return new Date().toISOString();
 }
 
 /** 去除前後空白並過濾空字串。 */
@@ -589,7 +626,9 @@ function main() {
   }));
 
   // 4. 驗證關卡
+  // 驗證對象是「即將寫出的產物」，目的是在建置期擋下前端才會發現的資料問題。
   const errors = [];
+  const recipes = [...recipeMap.values()];
 
   for (const [id, meta] of Object.entries(baseCategories)) {
     if (!cleanString(meta?.zh)) {
@@ -597,16 +636,27 @@ function main() {
     }
   }
 
-  const seenRecipeIds = new Set();
-  for (const recipe of recipeMap.values()) {
-    if (seenRecipeIds.has(recipe.id)) {
-      errors.push(`配方 id 重複：${recipe.id}`);
+  for (const recipe of recipes) {
+    // 驗證一：用量有值時必須有單位，否則抽屜會顯示裸數字（例如「50」）。
+    for (const item of recipe.ingredients) {
+      if (item.amount !== null && item.unit === null) {
+        errors.push(`配方 ${recipe.id} 的材料「${item.id}」有用量 ${item.amount} 但缺單位`);
+      }
     }
-    seenRecipeIds.add(recipe.id);
 
-    if (!recipe.nameZh) {
-      errors.push(`配方 ${recipe.id} 的 nameZh 為空字串`);
+    // 驗證二：步驟不可為空，否則抽屜會出現有標題無內容的區塊。
+    if (recipe.steps.length === 0) {
+      errors.push(`配方 ${recipe.id} 的 steps 為空`);
     }
+
+    // 驗證三：sourceUrl 只能是 null 或 http(s)。
+    // 正規化階段已依白名單清空非法值，此處檢查最終產出，
+    // 確保沒有任何寫入路徑（例如日後新增的欄位或整併邏輯）繞過該過濾。
+    if (recipe.sourceUrl !== null && !HTTP_URL_PATTERN.test(recipe.sourceUrl)) {
+      errors.push(`配方 ${recipe.id} 的 sourceUrl 非 http(s) 協定：${recipe.sourceUrl}`);
+    }
+
+    // 驗證四：材料與裝飾 id 必須存在於統一對照表。
     for (const item of recipe.ingredients) {
       if (!ingredientMap.has(item.id)) {
         errors.push(`配方 ${recipe.id} 的材料 id「${item.id}」不存在於統一對照表`);
@@ -616,6 +666,11 @@ function main() {
       if (!ingredientMap.has(garnishId)) {
         errors.push(`配方 ${recipe.id} 的裝飾 id「${garnishId}」不存在於統一對照表`);
       }
+    }
+
+    // 警告（非阻斷）：中文名等同英文名代表尚未翻譯，中文站不該直接顯示英文。
+    if (!hasChineseName(recipe)) {
+      stats.nameZhEnglish.push(`${recipe.id}：${recipe.nameZh}`);
     }
   }
 
@@ -637,7 +692,6 @@ function main() {
   }
 
   // 5. 產出
-  const recipes = [...recipeMap.values()];
   stats.recipesTotal = recipes.length;
   for (const recipe of recipes) {
     // 同一杯可同屬多個系列，因此各系列的杯數會大於配方總數
@@ -655,7 +709,7 @@ function main() {
 
   const dataset = {
     version: cleanString(base.version) || '1.0',
-    generatedAt: new Date().toISOString(),
+    generatedAt: resolveGeneratedAt(recipes, catalog),
     recipes,
   };
 
@@ -690,7 +744,10 @@ function main() {
     `食材欄位衝突：${stats.ingredientConflicts.length} 筆（超過 0 筆時列為警告，但不阻斷建置）`,
   );
   console.log(`替代規則：${substitutions.length} 組（人工判定 ${stats.substitutedRelations} 筆、自動推導 ${stats.inferredRelations} 筆）`);
-  console.log(`驗證結果：全部通過（${recipes.length} 杯配方的材料與裝飾 id 皆可解析，id 唯一，nameZh 非空）`);
+  console.log(
+    `驗證結果：全部通過（${recipes.length} 杯配方的用量皆有單位、步驟皆非空、` +
+      `sourceUrl 皆為 http(s) 或空值、材料與裝飾 id 皆可解析）`,
+  );
 
   if (stats.mergedRecipes.length > 0) {
     console.log(
@@ -719,6 +776,12 @@ function main() {
       `\n[警告] sourceUrl 非 http(s) 協定已清空（共 ${stats.sourceUrlViolations.length} 筆）：`,
     );
     for (const item of stats.sourceUrlViolations) console.log('  - ' + item);
+  }
+  if (stats.nameZhEnglish.length > 0) {
+    console.log(
+      `\n[警告] 中文名等同英文名、尚未翻譯（共 ${stats.nameZhEnglish.length} 杯）：`,
+    );
+    for (const item of stats.nameZhEnglish) console.log('  - ' + item);
   }
   if (stats.unknownCollectionValues.length > 0) {
     console.log(`\n無法對應的 collection 值（共 ${stats.unknownCollectionValues.length} 筆）：`);
