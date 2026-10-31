@@ -23,7 +23,7 @@ test.describe('瀏覽模式', () => {
     await expect(page.getByRole('heading', { level: 1, name: '熱門推薦' })).toBeVisible();
     await expect(recipeCards(page).first()).toBeVisible();
     expect(await recipeCards(page).count()).toBeGreaterThan(0);
-    await expect(page.getByText('93 杯', { exact: true })).toBeVisible();
+    await expect(page.getByText('141 杯', { exact: true })).toBeVisible();
   });
 
   test('選取分類後結果數量減少，且剩餘卡片的分類皆相符', async ({ page }) => {
