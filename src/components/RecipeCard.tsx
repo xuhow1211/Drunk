@@ -37,6 +37,7 @@ export function RecipeCard({ recipe, delay = 0 }: RecipeCardProps) {
     <button
       type="button"
       onClick={() => openRecipe(recipe)}
+      data-recipe-id={recipe.id}
       style={{ animationDelay: `${delay}ms` }}
       className="panel panel-hover group block w-full cursor-pointer overflow-hidden text-left animate-rise"
       aria-label={`開啟 ${recipe.nameZh}（${recipe.nameEn}）配方詳情`}

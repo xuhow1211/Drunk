@@ -184,6 +184,7 @@ function MatchCard({
   return (
     <article
       ref={(node) => register(recipe.id, node)}
+      data-recipe-id={recipe.id}
       className="panel p-4 transition-shadow duration-300 hover:shadow-[0_0_28px_-12px_rgba(168,85,247,0.8)]"
     >
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
