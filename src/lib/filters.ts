@@ -6,7 +6,7 @@
  */
 import { getMaterialCount } from './matching';
 import { parseAbv, parseMinutes } from './format';
-import type { Recipe } from './types';
+import type { Collection, Recipe } from './types';
 
 /** 排序方式。 */
 export type SortKey = 'popularity' | 'name' | 'materials' | 'difficulty' | 'abv' | 'time';
@@ -87,6 +87,30 @@ export function collectFacets(recipes: readonly Recipe[]): FilterFacets {
 }
 
 /**
+ * 取得配方所屬的全部系列。
+ *
+ * 一杯酒可能同時屬於多個系列（例如既是 IBA 經典也是票選熱門），
+ * 因此系列篩選必須檢查整個 collections 陣列，不能只看單一 collection。
+ * 相容舊資料：若配方沒有 collections 欄位，退回使用單一 collection。
+ *
+ * @param recipe 待查詢的配方
+ * @returns 配方所屬的全部系列
+ */
+export function getRecipeCollections(recipe: Recipe): readonly Collection[] {
+  return recipe.collections?.length ? recipe.collections : [recipe.collection];
+}
+
+/** 篩選條件的額外限制。 */
+export interface RecipeFilterOptions {
+  /**
+   * 只保留屬於這些系列的配方。
+   *
+   * 未指定或空陣列時不做系列篩選；比對時檢查配方的 collections 陣列。
+   */
+  collections?: readonly Collection[];
+}
+
+/**
  * 依關鍵字比對配方。
  *
  * 比對範圍包含中英文名稱、別名、調酒類型與原料中文名，
@@ -106,19 +130,34 @@ function matchesQuery(recipe: Recipe, keyword: string, ingredientNames: Map<stri
  * 酒精濃度區間的處理：只對「可解析出數值」的配方做區間比對；
  * 無法解析的配方不列入區間篩選，但仍會顯示在結果中（只是不保證落在區間內）。
  *
+ * 系列篩選（options.collections）檢查配方的 collections 陣列，
+ * 因此同時屬於多個系列的酒會出現在對應的每一個頁面。
+ *
  * @param recipes 來源配方
  * @param filters 篩選條件
  * @param ingredientNames 食材 id → 中文名對照，供搜尋使用
+ * @param options 額外限制（目前為系列篩選）
  */
 export function filterRecipes(
   recipes: readonly Recipe[],
   filters: FilterState,
   ingredientNames: Map<string, string>,
+  options: RecipeFilterOptions = {},
 ): Recipe[] {
   const keyword = filters.query.trim().toLowerCase();
   const hasAbvRange = filters.abvMin !== null || filters.abvMax !== null;
+  const scopedCollections = options.collections;
 
   return recipes.filter((recipe) => {
+    if (
+      scopedCollections &&
+      scopedCollections.length > 0 &&
+      !scopedCollections.some((collection) =>
+        getRecipeCollections(recipe).includes(collection),
+      )
+    ) {
+      return false;
+    }
     if (filters.categories.length > 0 && !filters.categories.includes(recipe.category)) {
       return false;
     }

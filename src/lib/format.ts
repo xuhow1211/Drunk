@@ -61,7 +61,7 @@ export const FLAVOR_LABELS: Record<string, string> = {
   nutty: '堅果',
 };
 
-/** 配方系列（recipe.collection）的中文對照。 */
+/** 配方系列（recipe.collections 中各系列）的中文對照。 */
 export const COLLECTION_LABELS: Record<string, string> = {
   classic: 'IBA 經典',
   'new-era': '新時代',

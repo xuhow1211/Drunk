@@ -75,7 +75,13 @@ describe('比對引擎（真實資料）', () => {
     const missingSyrup = result.missing.find((item) => item.id === 'simple-syrup');
     expect(missingSyrup).toBeDefined();
     expect(result.isFullyAvailable).toBe(false);
-    expect(result.missing).toHaveLength(1);
+    // 威士忌酸（跨來源整併後共 7 項材料）缺苦精、豐富糖漿、糖漿與鹽
+    expect(result.missing.map((item) => item.id)).toEqual([
+      'angostura-bitters',
+      'rich-syrup',
+      'simple-syrup',
+      'salt',
+    ]);
 
     // 但有替代建議
     expect(missingSyrup?.substitutes).toEqual([
@@ -99,13 +105,21 @@ describe('比對引擎（真實資料）', () => {
       new Set([...baseOwned, 'honey-syrup']),
     );
 
-    // 沒有替代品時糖漿照原權重 15 分計算
-    expect(withoutSubstitute.score).toBe(15);
-    expect(withoutSubstitute.missing[0]?.substitutes).toHaveLength(0);
+    // 沒有替代品時糖漿照原權重 15 分計算，其餘缺料為苦精 15、豐富糖漿 15、鹽 3
+    expect(withoutSubstitute.score).toBe(48);
+    expect(
+      withoutSubstitute.missing.find((item) => item.id === 'simple-syrup')?.weight,
+    ).toBe(15);
+    expect(
+      withoutSubstitute.missing.find((item) => item.id === 'simple-syrup')?.substitutes,
+    ).toHaveLength(0);
 
-    // 有完全同調性的替代品時折後權重為 15 × 0.3 = 4.5
+    // 有完全同調性的替代品時折後權重為 15 × 0.3 = 4.5，總分降為 37.5
     expect(withSubstitute.score).toBeLessThanOrEqual(withoutSubstitute.score);
-    expect(withSubstitute.score).toBe(4.5);
+    expect(withSubstitute.score).toBe(37.5);
+    expect(
+      withSubstitute.missing.find((item) => item.id === 'simple-syrup')?.weight,
+    ).toBe(4.5);
   });
 
   it('折扣下限：折後權重不低於原權重的 30%', () => {
@@ -127,22 +141,22 @@ describe('比對引擎（真實資料）', () => {
     }
   });
 
-  it('同分時依熱門度排序：瑪格麗特排在同分的大瑪格麗特之前', () => {
+  it('同分時依熱門度排序：熱門度高的血瑪莉啤酒排在同分的蘋果西打啤酒之前', () => {
     const owned = new Set(['orange-liqueur', 'lime-juice', 'lime-peel', 'salt']);
     const results = matchRecipes(recipes, owned);
 
-    const margarita = results.find((item) => item.recipe.id === 'margarita');
-    const grandMargarita = results.find((item) => item.recipe.id === 'grand-margarita');
+    const bloodyMaryBeer = results.find((item) => item.recipe.id === 'bloody-mary-beer');
+    const appleCiderBeer = results.find((item) => item.recipe.id === 'apple-cider-beer');
 
-    expect(margarita?.score).toBe(45);
-    expect(grandMargarita?.score).toBe(45);
-    expect(margarita?.missing.length).toBe(grandMargarita?.missing.length);
-    expect(margarita?.recipe.popularity).toBe(5);
-    expect(grandMargarita?.recipe.popularity).toBe(3);
+    // 分數與缺料數相同時只能靠熱門度分出高下
+    expect(bloodyMaryBeer?.score).toBe(appleCiderBeer?.score);
+    expect(bloodyMaryBeer?.missing.length).toBe(appleCiderBeer?.missing.length);
+    expect(bloodyMaryBeer?.recipe.popularity).toBe(4);
+    expect(appleCiderBeer?.recipe.popularity).toBe(3);
 
-    const margaritaIndex = results.findIndex((item) => item.recipe.id === 'margarita');
-    const grandIndex = results.findIndex((item) => item.recipe.id === 'grand-margarita');
-    expect(margaritaIndex).toBeLessThan(grandIndex);
+    const firstIndex = results.findIndex((item) => item.recipe.id === 'bloody-mary-beer');
+    const secondIndex = results.findIndex((item) => item.recipe.id === 'apple-cider-beer');
+    expect(firstIndex).toBeLessThan(secondIndex);
   });
 
   it('完全同分時以 id 字典序穩定排序', () => {

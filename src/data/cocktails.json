@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-10-31T18:27:46.002Z",
+  "generatedAt": "2026-10-31T20:34:48.161Z",
   "recipes": [
     {
       "id": "alexander",
@@ -10,6 +10,9 @@
         "亞歷山大調酒"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "flip",
       "glass": "coupe",
       "ice": "shaken",
@@ -80,6 +83,10 @@
         "美式苦酒"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "aperitivo",
       "glass": "rocks",
       "ice": "stirred",
@@ -150,6 +157,9 @@
         "Angel Face"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "sweet",
       "glass": "coupe",
       "ice": "shaken",
@@ -216,6 +226,10 @@
         "航空"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -246,6 +260,12 @@
           "amount": 1,
           "unit": "bar-spoon",
           "optional": false
+        },
+        {
+          "id": "soda-water",
+          "amount": 7.5,
+          "unit": "ml",
+          "optional": false
         }
       ],
       "steps": [
@@ -271,14 +291,15 @@
         "派對",
         "浪漫"
       ],
-      "popularity": 3,
+      "popularity": 4,
       "sourceUrl": "https://www.iba-world.com/iba-cocktail/aviation/",
       "sourceSite": "IBA Official Cocktails",
       "ingredientIds": [
         "gin",
         "maraschino",
         "lemon-juice",
-        "violette-liqueur"
+        "violette-liqueur",
+        "soda-water"
       ],
       "garnishIds": [
         "cherry"
@@ -293,6 +314,10 @@
         "蜂膝"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era",
+        "popular"
+      ],
       "category": "sweet",
       "glass": "coupe",
       "ice": "shaken",
@@ -368,6 +393,9 @@
         "Bellini"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "fizzy",
       "glass": "flute",
       "ice": "stirred",
@@ -427,6 +455,9 @@
         "Between the Sheets"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "sweet",
       "glass": "coupe",
       "ice": "shaken",
@@ -498,6 +529,9 @@
         "Black Russian"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "spirit-forward",
       "glass": "rocks",
       "ice": "large-cube",
@@ -554,6 +588,10 @@
         "Bloody Mary"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "highball",
       "ice": "none",
@@ -602,6 +640,24 @@
           "amount": null,
           "unit": null,
           "optional": false
+        },
+        {
+          "id": "yellow-pepper",
+          "amount": 0.5,
+          "unit": "piece",
+          "optional": false
+        },
+        {
+          "id": "sherry",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "rich-syrup",
+          "amount": 7.5,
+          "unit": "ml",
+          "optional": false
         }
       ],
       "steps": [
@@ -639,7 +695,10 @@
         "worcestershire-sauce",
         "tabasco",
         "celery-salt",
-        "black-pepper"
+        "black-pepper",
+        "yellow-pepper",
+        "sherry",
+        "rich-syrup"
       ],
       "garnishIds": [
         "celery",
@@ -654,6 +713,10 @@
         "Boulevardier"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "coupe",
       "ice": "stirred",
@@ -725,6 +788,10 @@
         "黑莓灌木"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era",
+        "popular"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "crushed",
@@ -755,6 +822,12 @@
           "amount": 15,
           "unit": "ml",
           "optional": false
+        },
+        {
+          "id": "rich-syrup",
+          "amount": 12.5,
+          "unit": "ml",
+          "optional": false
         }
       ],
       "steps": [
@@ -781,14 +854,15 @@
         "夏日",
         "派對"
       ],
-      "popularity": 3,
+      "popularity": 4,
       "sourceUrl": "https://www.iba-world.com/iba-cocktail/bramble/",
       "sourceSite": "IBA Official Cocktails",
       "ingredientIds": [
         "gin",
         "lemon-juice",
         "simple-syrup",
-        "blackberry-liqueur"
+        "blackberry-liqueur",
+        "rich-syrup"
       ],
       "garnishIds": [
         "lemon-peel",
@@ -803,6 +877,9 @@
         "Brandy Crusta"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "sweet",
       "glass": "coupe",
       "ice": "stirred",
@@ -895,6 +972,10 @@
         "巴西小酒"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "refreshing",
       "glass": "rocks",
       "ice": "crushed",
@@ -919,6 +1000,18 @@
           "amount": 4,
           "unit": "tsp",
           "optional": false
+        },
+        {
+          "id": "powdered-sugar",
+          "amount": 3,
+          "unit": "bar-spoon",
+          "optional": false
+        },
+        {
+          "id": "soda-water",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
         }
       ],
       "steps": [
@@ -927,7 +1020,9 @@
         "倒入卡莎薩，輕攪使糖分融化。",
         "不另加裝飾，趁新鮮飲用。"
       ],
-      "garnish": [],
+      "garnish": [
+        "lime"
+      ],
       "tags": [
         "巴西",
         "清涼",
@@ -947,9 +1042,13 @@
       "ingredientIds": [
         "cachaca",
         "lime",
-        "sugar-syrup"
+        "sugar-syrup",
+        "powdered-sugar",
+        "soda-water"
       ],
-      "garnishIds": []
+      "garnishIds": [
+        "lime"
+      ]
     },
     {
       "id": "canchanchara",
@@ -959,6 +1058,9 @@
         "Canchanchara"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era"
+      ],
       "category": "refreshing",
       "glass": "highball",
       "ice": "none",
@@ -1034,6 +1136,9 @@
         "Cardinale"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "aperitivo",
       "glass": "coupe",
       "ice": "stirred",
@@ -1102,6 +1207,9 @@
         "Casino"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "shaken",
@@ -1177,6 +1285,9 @@
         "Champagne Cocktail"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "aperitivo",
       "glass": "flute",
       "ice": "none",
@@ -1262,6 +1373,10 @@
         "Chartreuse Swizzle"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era",
+        "popular"
+      ],
       "category": "refreshing",
       "glass": "highball",
       "ice": "crushed",
@@ -1340,6 +1455,10 @@
         "Clover Club"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -1370,6 +1489,18 @@
           "amount": 1,
           "unit": "drop",
           "optional": false
+        },
+        {
+          "id": "raspberry-jam",
+          "amount": 1.5,
+          "unit": "bar-spoon",
+          "optional": false
+        },
+        {
+          "id": "vermouth-dry",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
         }
       ],
       "steps": [
@@ -1395,14 +1526,16 @@
         "派對",
         "浪漫"
       ],
-      "popularity": 2,
+      "popularity": 4,
       "sourceUrl": "https://www.iba-world.com/iba-cocktail/clover-club/",
       "sourceSite": "IBA Official Cocktails",
       "ingredientIds": [
         "gin",
         "raspberry-syrup",
         "lemon-juice",
-        "egg-white"
+        "egg-white",
+        "raspberry-jam",
+        "vermouth-dry"
       ],
       "garnishIds": [
         "raspberry"
@@ -1417,6 +1550,9 @@
         "亡者復生"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -1501,6 +1637,9 @@
         "曼哈頓小姐"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "sour",
       "glass": "martini",
       "ice": "shaken",
@@ -1578,6 +1717,9 @@
         "古巴自由"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "none",
@@ -1646,6 +1788,10 @@
         "Daiquiri"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "daiquiri",
       "glass": "coupe",
       "ice": "shaken",
@@ -1670,6 +1816,24 @@
           "amount": 2,
           "unit": "bar-spoon",
           "optional": false
+        },
+        {
+          "id": "rich-syrup",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "daiquiri-bitters",
+          "amount": 8,
+          "unit": "drop",
+          "optional": false
+        },
+        {
+          "id": "soda-water",
+          "amount": 7.5,
+          "unit": "ml",
+          "optional": false
         }
       ],
       "steps": [
@@ -1678,7 +1842,9 @@
         "濾入冰鎮的淺碟杯。",
         "不另加裝飾，趁新鮮飲用。"
       ],
-      "garnish": [],
+      "garnish": [
+        "lime-peel"
+      ],
       "tags": [
         "青檸",
         "酸甜",
@@ -1699,9 +1865,14 @@
       "ingredientIds": [
         "rum-white",
         "lime-juice",
-        "sugar-syrup"
+        "sugar-syrup",
+        "rich-syrup",
+        "daiquiri-bitters",
+        "soda-water"
       ],
-      "garnishIds": []
+      "garnishIds": [
+        "lime-peel"
+      ]
     },
     {
       "id": "dark-n-stormy",
@@ -1712,6 +1883,10 @@
         "黑 stormy"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era",
+        "popular"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "none",
@@ -1729,6 +1904,30 @@
           "id": "ginger-beer",
           "amount": 100,
           "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "rum-blackstrap",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "rich-syrup",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "angostura-bitters",
+          "amount": 2,
+          "unit": "dash",
           "optional": false
         }
       ],
@@ -1753,12 +1952,16 @@
         "派對",
         "秋冬"
       ],
-      "popularity": 3,
+      "popularity": 5,
       "sourceUrl": "https://www.iba-world.com/iba-cocktail/dark-n-stormy/",
       "sourceSite": "IBA Official Cocktails",
       "ingredientIds": [
         "rum-dark",
-        "ginger-beer"
+        "ginger-beer",
+        "rum-blackstrap",
+        "lime-juice",
+        "rich-syrup",
+        "angostura-bitters"
       ],
       "garnishIds": [
         "lime-peel"
@@ -1772,6 +1975,9 @@
         "Don's Special Daiquiri"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era"
+      ],
       "category": "daiquiri",
       "glass": "other",
       "ice": "crushed",
@@ -1855,6 +2061,10 @@
         "馬天尼"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "martini",
       "ice": "stirred",
@@ -1872,6 +2082,12 @@
           "id": "vermouth-dry",
           "amount": 10,
           "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orange-bitters",
+          "amount": 1,
+          "unit": "dash",
           "optional": false
         }
       ],
@@ -1897,12 +2113,13 @@
         "獨飲",
         "餐前"
       ],
-      "popularity": 4,
+      "popularity": 5,
       "sourceUrl": "https://www.iba-world.com/iba-cocktail/dry-martini/",
       "sourceSite": "IBA Official Cocktails",
       "ingredientIds": [
         "gin",
-        "vermouth-dry"
+        "vermouth-dry",
+        "orange-bitters"
       ],
       "garnishIds": [
         "olive",
@@ -1918,6 +2135,10 @@
         "咖啡馬天尼"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era",
+        "popular"
+      ],
       "category": "sweet",
       "glass": "martini",
       "ice": "shaken",
@@ -1948,6 +2169,24 @@
           "amount": 1,
           "unit": "shot",
           "optional": false
+        },
+        {
+          "id": "coffee",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "galliano-espresso",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "salt",
+          "amount": 2,
+          "unit": "drop",
+          "optional": false
         }
       ],
       "steps": [
@@ -1972,14 +2211,17 @@
         "派對",
         "飯後"
       ],
-      "popularity": 4,
+      "popularity": 5,
       "sourceUrl": "https://www.iba-world.com/iba-cocktail/espresso-martini/",
       "sourceSite": "IBA Official Cocktails",
       "ingredientIds": [
         "vodka",
         "coffee-liqueur",
         "simple-syrup",
-        "coffee-espresso"
+        "coffee-espresso",
+        "coffee",
+        "galliano-espresso",
+        "salt"
       ],
       "garnishIds": [
         "coffee-bean"
@@ -1993,6 +2235,9 @@
         "Fernandito"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era"
+      ],
       "category": "digestif",
       "glass": "rocks",
       "ice": "large-cube",
@@ -2049,6 +2294,10 @@
         "French 75"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "fizzy",
       "glass": "flute",
       "ice": "shaken",
@@ -2079,6 +2328,12 @@
           "amount": 60,
           "unit": "ml",
           "optional": false
+        },
+        {
+          "id": "powdered-sugar",
+          "amount": 1.5,
+          "unit": "bar-spoon",
+          "optional": false
         }
       ],
       "steps": [
@@ -2087,7 +2342,9 @@
         "補入冰鎮香檳至滿杯後輕攪。",
         "不另加裝飾，趁新鮮飲用。"
       ],
-      "garnish": [],
+      "garnish": [
+        "lemon-peel"
+      ],
       "tags": [
         "香檳",
         "經典",
@@ -2103,16 +2360,19 @@
         "派對",
         "浪漫"
       ],
-      "popularity": 4,
+      "popularity": 5,
       "sourceUrl": "https://www.iba-world.com/iba-cocktail/french-75/",
       "sourceSite": "IBA Official Cocktails",
       "ingredientIds": [
         "gin",
         "lemon-juice",
         "simple-syrup",
-        "champagne"
+        "champagne",
+        "powdered-sugar"
       ],
-      "garnishIds": []
+      "garnishIds": [
+        "lemon-peel"
+      ]
     },
     {
       "id": "french-connection",
@@ -2122,6 +2382,9 @@
         "French Connection"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "spirit-forward",
       "glass": "rocks",
       "ice": "large-cube",
@@ -2179,6 +2442,10 @@
         "French Martini"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era",
+        "popular"
+      ],
       "category": "sweet",
       "glass": "martini",
       "ice": "shaken",
@@ -2200,6 +2467,12 @@
         },
         {
           "id": "pineapple-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "chambord",
           "amount": 15,
           "unit": "ml",
           "optional": false
@@ -2227,13 +2500,14 @@
         "派對",
         "浪漫"
       ],
-      "popularity": 3,
+      "popularity": 4,
       "sourceUrl": "https://www.iba-world.com/iba-cocktail/french-martini/",
       "sourceSite": "IBA Official Cocktails",
       "ingredientIds": [
         "vodka",
         "raspberry-liqueur",
-        "pineapple-juice"
+        "pineapple-juice",
+        "chambord"
       ],
       "garnishIds": [
         "lemon-peel"
@@ -2247,6 +2521,10 @@
         "Garibaldi"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "aperitivo",
       "glass": "highball",
       "ice": "none",
@@ -2263,6 +2541,12 @@
         {
           "id": "orange-juice",
           "amount": 120,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "rich-syrup",
+          "amount": 2.5,
           "unit": "ml",
           "optional": false
         }
@@ -2290,12 +2574,13 @@
         "餐前",
         "夏日"
       ],
-      "popularity": 2,
+      "popularity": 3,
       "sourceUrl": "https://www.iba-world.com/iba-cocktail/garibaldi/",
       "sourceSite": "IBA Official Cocktails",
       "ingredientIds": [
         "campari",
-        "orange-juice"
+        "orange-juice",
+        "rich-syrup"
       ],
       "garnishIds": [
         "orange-peel"
@@ -2309,6 +2594,10 @@
         "Gin Basil Smash"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era",
+        "popular"
+      ],
       "category": "refreshing",
       "glass": "rocks",
       "ice": "shaken",
@@ -2339,6 +2628,12 @@
           "amount": 10,
           "unit": "piece",
           "optional": false
+        },
+        {
+          "id": "rich-syrup",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
         }
       ],
       "steps": [
@@ -2363,14 +2658,15 @@
         "夏日",
         "派對"
       ],
-      "popularity": 4,
+      "popularity": 5,
       "sourceUrl": "https://www.iba-world.com/iba-cocktail/gin-basil-smash/",
       "sourceSite": "IBA Official Cocktails",
       "ingredientIds": [
         "gin",
         "lemon-juice",
         "simple-syrup",
-        "basil"
+        "basil",
+        "rich-syrup"
       ],
       "garnishIds": [
         "basil"
@@ -2384,6 +2680,10 @@
         "Gin Fizz"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "sour",
       "glass": "collins",
       "ice": "shaken",
@@ -2413,6 +2713,12 @@
           "id": "soda-water",
           "amount": 1,
           "unit": "splash",
+          "optional": false
+        },
+        {
+          "id": "rich-syrup",
+          "amount": 15,
+          "unit": "ml",
           "optional": false
         }
       ],
@@ -2446,7 +2752,8 @@
         "gin",
         "lemon-juice",
         "simple-syrup",
-        "soda-water"
+        "soda-water",
+        "rich-syrup"
       ],
       "garnishIds": [
         "lemon-peel"
@@ -2460,6 +2767,9 @@
         "Grand Margarita"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era"
+      ],
       "category": "daiquiri",
       "glass": "rocks",
       "ice": "shaken",
@@ -2532,6 +2842,9 @@
         "跳蚤"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "sweet",
       "glass": "coupe",
       "ice": "shaken",
@@ -2601,6 +2914,10 @@
         "Hanky Panky"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "coupe",
       "ice": "stirred",
@@ -2624,6 +2941,12 @@
           "id": "fernet-branca",
           "amount": 7.5,
           "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "salt",
+          "amount": 2,
+          "unit": "drop",
           "optional": false
         }
       ],
@@ -2650,13 +2973,14 @@
         "餐前",
         "獨飲"
       ],
-      "popularity": 2,
+      "popularity": 3,
       "sourceUrl": "https://www.iba-world.com/iba-cocktail/hanky-panky/",
       "sourceSite": "IBA Official Cocktails",
       "ingredientIds": [
         "gin",
         "vermouth-red",
-        "fernet-branca"
+        "fernet-branca",
+        "salt"
       ],
       "garnishIds": [
         "orange-peel"
@@ -2670,6 +2994,9 @@
         "Hemingway Special"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -2743,6 +3070,9 @@
         "馬脖子"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "none",
@@ -2811,6 +3141,9 @@
         "提基"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era"
+      ],
       "category": "punch",
       "glass": "other",
       "ice": "crushed",
@@ -2926,6 +3259,9 @@
         "Illegal"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -3018,6 +3354,10 @@
         "Irish Coffee"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "sweet",
       "glass": "other",
       "ice": "none",
@@ -3048,6 +3388,12 @@
           "amount": 1,
           "unit": "tsp",
           "optional": false
+        },
+        {
+          "id": "demerara-syrup",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
         }
       ],
       "steps": [
@@ -3056,7 +3402,10 @@
         "以勺背將冰涼的濃稠鮮奶油沿液面緩緩淋下，讓奶油層浮在咖啡上而不混合。",
         "不另加裝飾，趁新鮮飲用。"
       ],
-      "garnish": [],
+      "garnish": [
+        "nutmeg",
+        "coffee-bean"
+      ],
       "tags": [
         "熱飲",
         "奶油層",
@@ -3079,9 +3428,13 @@
         "whiskey-irish",
         "coffee-espresso",
         "cream",
-        "sugar-syrup"
+        "sugar-syrup",
+        "demerara-syrup"
       ],
-      "garnishIds": []
+      "garnishIds": [
+        "nutmeg",
+        "coffee-bean"
+      ]
     },
     {
       "id": "john-collins",
@@ -3091,6 +3444,9 @@
         "John Collins"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "none",
@@ -3168,6 +3524,10 @@
         "Jungle Bird"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era",
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "rocks",
       "ice": "shaken",
@@ -3204,6 +3564,18 @@
           "amount": 15,
           "unit": "ml",
           "optional": false
+        },
+        {
+          "id": "rum-blackstrap",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "rich-syrup",
+          "amount": 12.5,
+          "unit": "ml",
+          "optional": false
         }
       ],
       "steps": [
@@ -3237,7 +3609,9 @@
         "campari",
         "pineapple-juice",
         "lime-juice",
-        "demerara-syrup"
+        "demerara-syrup",
+        "rum-blackstrap",
+        "rich-syrup"
       ],
       "garnishIds": [
         "pineapple"
@@ -3253,6 +3627,9 @@
         "基爾"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "aperitivo",
       "glass": "wine",
       "ice": "none",
@@ -3309,6 +3686,10 @@
         "Last Word"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -3339,6 +3720,12 @@
           "amount": 22.5,
           "unit": "ml",
           "optional": false
+        },
+        {
+          "id": "soda-water",
+          "amount": 7.5,
+          "unit": "ml",
+          "optional": false
         }
       ],
       "steps": [
@@ -3347,7 +3734,10 @@
         "以濾冰網過濾倒入冰鎮的淺碟杯。",
         "不另加裝飾，趁新鮮飲用。"
       ],
-      "garnish": [],
+      "garnish": [
+        "lime-peel",
+        "cherry"
+      ],
       "tags": [
         "草本",
         "酸酒",
@@ -3362,16 +3752,20 @@
         "派對",
         "獨飲"
       ],
-      "popularity": 3,
+      "popularity": 4,
       "sourceUrl": "https://www.iba-world.com/iba-cocktail/last-word/",
       "sourceSite": "IBA Official Cocktails",
       "ingredientIds": [
         "gin",
         "chartreuse-green",
         "maraschino",
-        "lime-juice"
+        "lime-juice",
+        "soda-water"
       ],
-      "garnishIds": []
+      "garnishIds": [
+        "lime-peel",
+        "cherry"
+      ]
     },
     {
       "id": "lemon-drop-martini",
@@ -3382,6 +3776,10 @@
         "檸檬甜馬天尼"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "sweet",
       "glass": "martini",
       "ice": "shaken",
@@ -3406,6 +3804,18 @@
           "amount": 15,
           "unit": "ml",
           "optional": false
+        },
+        {
+          "id": "rich-syrup",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "salt",
+          "amount": 3,
+          "unit": "drop",
+          "optional": false
         }
       ],
       "steps": [
@@ -3414,7 +3824,9 @@
         "以濾冰網過濾倒入冰鎮的馬天尼杯。",
         "不另加裝飾，趁新鮮飲用。"
       ],
-      "garnish": [],
+      "garnish": [
+        "lemon-peel"
+      ],
       "tags": [
         "檸檬",
         "甜味",
@@ -3434,9 +3846,13 @@
       "ingredientIds": [
         "vodka",
         "orange-liqueur",
-        "lemon-juice"
+        "lemon-juice",
+        "rich-syrup",
+        "salt"
       ],
-      "garnishIds": []
+      "garnishIds": [
+        "lemon-peel"
+      ]
     },
     {
       "id": "long-island-iced-tea",
@@ -3446,6 +3862,10 @@
         "Long Island Iced Tea"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "none",
@@ -3500,6 +3920,18 @@
           "amount": null,
           "unit": "fill",
           "optional": false
+        },
+        {
+          "id": "rich-syrup",
+          "amount": 12.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 12.5,
+          "unit": "ml",
+          "optional": false
         }
       ],
       "steps": [
@@ -3537,7 +3969,9 @@
         "orange-liqueur",
         "lemon-juice",
         "simple-syrup",
-        "cola"
+        "cola",
+        "rich-syrup",
+        "lime-juice"
       ],
       "garnishIds": [
         "lemon-peel"
@@ -3551,6 +3985,10 @@
         "Mai-Tai"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "highball",
       "glass": "rocks",
       "ice": "crushed",
@@ -3593,6 +4031,24 @@
           "amount": 7.5,
           "unit": "ml",
           "optional": false
+        },
+        {
+          "id": "rum-cuban",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "rich-syrup",
+          "amount": 7.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "rum-blackstrap",
+          "amount": 5,
+          "unit": "ml",
+          "optional": false
         }
       ],
       "steps": [
@@ -3620,7 +4076,7 @@
         "派對",
         "夏日"
       ],
-      "popularity": 4,
+      "popularity": 5,
       "sourceUrl": "https://www.iba-world.com/iba-cocktail/mai-tai/",
       "sourceSite": "IBA Official Cocktails",
       "ingredientIds": [
@@ -3629,7 +4085,10 @@
         "curacao",
         "orgeat-syrup",
         "lime-juice",
-        "simple-syrup"
+        "simple-syrup",
+        "rum-cuban",
+        "rich-syrup",
+        "rum-blackstrap"
       ],
       "garnishIds": [
         "pineapple",
@@ -3645,6 +4104,10 @@
         "Manhattan"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "coupe",
       "ice": "stirred",
@@ -3668,6 +4131,12 @@
           "id": "angostura-bitters",
           "amount": 1,
           "unit": "dash",
+          "optional": false
+        },
+        {
+          "id": "whiskey-bourbon",
+          "amount": 45,
+          "unit": "ml",
           "optional": false
         }
       ],
@@ -3694,13 +4163,14 @@
         "獨飲",
         "浪漫"
       ],
-      "popularity": 4,
+      "popularity": 5,
       "sourceUrl": "https://www.iba-world.com/iba-cocktail/manhattan/",
       "sourceSite": "IBA Official Cocktails",
       "ingredientIds": [
         "whiskey-rye",
         "vermouth-red",
-        "angostura-bitters"
+        "angostura-bitters",
+        "whiskey-bourbon"
       ],
       "garnishIds": [
         "cherry"
@@ -3714,6 +4184,10 @@
         "Margarita"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "daiquiri",
       "glass": "rocks",
       "ice": "shaken",
@@ -3737,6 +4211,30 @@
           "id": "lime-juice",
           "amount": 15,
           "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "tequila-reposado",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "agave-syrup",
+          "amount": 5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "margarita-bitters",
+          "amount": 6,
+          "unit": "drop",
+          "optional": false
+        },
+        {
+          "id": "salt",
+          "amount": 2,
+          "unit": "drop",
           "optional": false
         }
       ],
@@ -3771,7 +4269,11 @@
       "ingredientIds": [
         "tequila-blanco",
         "orange-liqueur",
-        "lime-juice"
+        "lime-juice",
+        "tequila-reposado",
+        "agave-syrup",
+        "margarita-bitters",
+        "salt"
       ],
       "garnishIds": [
         "lime-peel",
@@ -3786,6 +4288,10 @@
         "Martinez"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "coupe",
       "ice": "stirred",
@@ -3814,6 +4320,30 @@
         {
           "id": "orange-bitters",
           "amount": 2,
+          "unit": "dash",
+          "optional": false
+        },
+        {
+          "id": "genever",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "vermouth-dry",
+          "amount": 7.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "curacao",
+          "amount": 5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "angostura-bitters",
+          "amount": 1,
           "unit": "dash",
           "optional": false
         }
@@ -3848,7 +4378,11 @@
         "gin",
         "vermouth-red",
         "maraschino",
-        "orange-bitters"
+        "orange-bitters",
+        "genever",
+        "vermouth-dry",
+        "curacao",
+        "angostura-bitters"
       ],
       "garnishIds": [
         "lemon-peel"
@@ -3862,6 +4396,9 @@
         "Mary Pickford"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "sweet",
       "glass": "coupe",
       "ice": "shaken",
@@ -3933,6 +4470,9 @@
         "Mimosa"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "fizzy",
       "glass": "flute",
       "ice": "none",
@@ -3996,6 +4536,9 @@
         "薄荷朱莉普"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "spirit-forward",
       "glass": "mug",
       "ice": "crushed",
@@ -4072,6 +4615,9 @@
         "Missionary's Downfall"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era"
+      ],
       "category": "refreshing",
       "glass": "other",
       "ice": "crushed",
@@ -4164,6 +4710,9 @@
         "莫雞尾"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "refreshing",
       "glass": "highball",
       "ice": "none",
@@ -4250,6 +4799,9 @@
         "Monkey Gland"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -4321,6 +4873,10 @@
         "Moscow Mule"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "none",
@@ -4342,6 +4898,12 @@
         },
         {
           "id": "lime-juice",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "rich-syrup",
           "amount": 10,
           "unit": "ml",
           "optional": false
@@ -4369,13 +4931,14 @@
         "派對",
         "夏日"
       ],
-      "popularity": 4,
+      "popularity": 5,
       "sourceUrl": "https://www.iba-world.com/iba-cocktail/moscow-mule/",
       "sourceSite": "IBA Official Cocktails",
       "ingredientIds": [
         "vodka",
         "ginger-beer",
-        "lime-juice"
+        "lime-juice",
+        "rich-syrup"
       ],
       "garnishIds": [
         "lime-peel"
@@ -4389,6 +4952,9 @@
         "Naked and Famous"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -4462,6 +5028,10 @@
         "Negroni"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "aperitivo",
       "glass": "rocks",
       "ice": "large-cube",
@@ -4530,6 +5100,9 @@
         "New York Sour"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "shaken",
@@ -4617,6 +5190,10 @@
         "Old Cuban"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era",
+        "popular"
+      ],
       "category": "highball",
       "glass": "coupe",
       "ice": "shaken",
@@ -4659,6 +5236,18 @@
           "amount": 60,
           "unit": "ml",
           "optional": false
+        },
+        {
+          "id": "rum-cuban",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "rich-syrup",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
         }
       ],
       "steps": [
@@ -4693,7 +5282,9 @@
         "lime-juice",
         "simple-syrup",
         "angostura-bitters",
-        "champagne"
+        "champagne",
+        "rum-cuban",
+        "rich-syrup"
       ],
       "garnishIds": [
         "mint"
@@ -4708,6 +5299,10 @@
         "老派"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "rocks",
       "ice": "large-cube",
@@ -4737,6 +5332,30 @@
           "id": "water",
           "amount": 1,
           "unit": "dash",
+          "optional": false
+        },
+        {
+          "id": "whiskey-rye",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "demerara-syrup",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "abbotts-bitters",
+          "amount": 8,
+          "unit": "drop",
+          "optional": false
+        },
+        {
+          "id": "salt",
+          "amount": 3,
+          "unit": "drop",
           "optional": false
         }
       ],
@@ -4772,7 +5391,11 @@
         "whiskey-bourbon",
         "sugar-cube",
         "angostura-bitters",
-        "water"
+        "water",
+        "whiskey-rye",
+        "demerara-syrup",
+        "abbotts-bitters",
+        "salt"
       ],
       "garnishIds": [
         "orange-peel",
@@ -4788,6 +5411,10 @@
         "墨西哥日出"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era",
+        "popular"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "none",
@@ -4816,6 +5443,18 @@
         {
           "id": "grapefruit-soda",
           "amount": 100,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "grapefruit-juice",
+          "amount": 25,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "agave-syrup",
+          "amount": 7.5,
           "unit": "ml",
           "optional": false
         }
@@ -4850,7 +5489,9 @@
         "tequila-blanco",
         "lime-juice",
         "salt",
-        "grapefruit-soda"
+        "grapefruit-soda",
+        "grapefruit-juice",
+        "agave-syrup"
       ],
       "garnishIds": [
         "lime-peel",
@@ -4865,6 +5506,10 @@
         "Paper Plane"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era",
+        "popular"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -4903,7 +5548,9 @@
         "以濾冰網過濾倒入冰鎮的淺碟杯。",
         "不另加裝飾，趁新鮮飲用。"
       ],
-      "garnish": [],
+      "garnish": [
+        "orange-peel"
+      ],
       "tags": [
         "苦味",
         "新時代",
@@ -4927,7 +5574,9 @@
         "aperol",
         "lemon-juice"
       ],
-      "garnishIds": []
+      "garnishIds": [
+        "orange-peel"
+      ]
     },
     {
       "id": "paradise",
@@ -4937,6 +5586,9 @@
         "Paradise"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "sweet",
       "glass": "coupe",
       "ice": "shaken",
@@ -5002,6 +5654,10 @@
         "盤尼西林調酒"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era",
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "rocks",
       "ice": "shaken",
@@ -5038,6 +5694,24 @@
           "amount": 3.5,
           "unit": "piece",
           "optional": false
+        },
+        {
+          "id": "whiskey-scotch-blended",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "ginger-liqueur",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "whiskey-scotch-peated",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
         }
       ],
       "steps": [
@@ -5064,7 +5738,7 @@
         "飯後",
         "獨飲"
       ],
-      "popularity": 4,
+      "popularity": 5,
       "sourceUrl": "https://www.iba-world.com/iba-cocktail/penicillin/",
       "sourceSite": "IBA Official Cocktails",
       "ingredientIds": [
@@ -5072,7 +5746,10 @@
         "lagavulin-16",
         "lemon-juice",
         "honey-syrup",
-        "ginger"
+        "ginger",
+        "whiskey-scotch-blended",
+        "ginger-liqueur",
+        "whiskey-scotch-peated"
       ],
       "garnishIds": [
         "ginger"
@@ -5087,6 +5764,10 @@
         "Pina Colada"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "sweet",
       "glass": "other",
       "ice": "crushed",
@@ -5110,6 +5791,48 @@
           "id": "pineapple-juice",
           "amount": 50,
           "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "rum-cuban",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "simple-syrup",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "coconut-cream",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "salt",
+          "amount": 4,
+          "unit": "drop",
+          "optional": false
+        },
+        {
+          "id": "cream",
+          "amount": 7.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "xanthan-gum",
+          "amount": 0.25,
+          "unit": "bar-spoon",
           "optional": false
         }
       ],
@@ -5137,13 +5860,20 @@
         "派對",
         "浪漫"
       ],
-      "popularity": 4,
+      "popularity": 5,
       "sourceUrl": "https://www.iba-world.com/iba-cocktail/pina-colada/",
       "sourceSite": "IBA Official Cocktails",
       "ingredientIds": [
         "rum-white",
         "coconut-milk",
-        "pineapple-juice"
+        "pineapple-juice",
+        "rum-cuban",
+        "simple-syrup",
+        "lime-juice",
+        "coconut-cream",
+        "salt",
+        "cream",
+        "xanthan-gum"
       ],
       "garnishIds": [
         "pineapple",
@@ -5158,6 +5888,9 @@
         "Pisco Punch"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era"
+      ],
       "category": "punch",
       "glass": "other",
       "ice": "shaken",
@@ -5244,6 +5977,10 @@
         "Pisco Sour"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "sour",
       "glass": "other",
       "ice": "shaken",
@@ -5273,6 +6010,30 @@
           "id": "egg-white",
           "amount": 1,
           "unit": "piece",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "rich-syrup",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orange-flower-water",
+          "amount": 2.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "salt",
+          "amount": 3,
+          "unit": "drop",
           "optional": false
         }
       ],
@@ -5306,7 +6067,11 @@
         "pisco",
         "lemon-juice",
         "simple-syrup",
-        "egg-white"
+        "egg-white",
+        "lime-juice",
+        "rich-syrup",
+        "orange-flower-water",
+        "salt"
       ],
       "garnishIds": [
         "amargo-bitters"
@@ -5321,6 +6086,9 @@
         "Planters Punch"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "punch",
       "glass": "tumbler",
       "ice": "none",
@@ -5390,6 +6158,10 @@
         "Porn Star Martini"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era",
+        "popular"
+      ],
       "category": "fizzy",
       "glass": "martini",
       "ice": "shaken",
@@ -5426,6 +6198,24 @@
           "amount": 50,
           "unit": "ml",
           "optional": false
+        },
+        {
+          "id": "passion-fruit",
+          "amount": 1.5,
+          "unit": "piece",
+          "optional": false
+        },
+        {
+          "id": "simple-syrup",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
         }
       ],
       "steps": [
@@ -5454,7 +6244,7 @@
         "浪漫",
         "慶祝"
       ],
-      "popularity": 3,
+      "popularity": 4,
       "sourceUrl": "https://www.iba-world.com/iba-cocktail/porn-star-martini/",
       "sourceSite": "IBA Official Cocktails",
       "ingredientIds": [
@@ -5462,7 +6252,10 @@
         "passion-fruit-liqueur",
         "passion-fruit-puree",
         "vanilla-sugar",
-        "champagne"
+        "champagne",
+        "passion-fruit",
+        "simple-syrup",
+        "lime-juice"
       ],
       "garnishIds": [
         "passion-fruit",
@@ -5478,6 +6271,9 @@
         "波特翻轉"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "flip",
       "glass": "coupe",
       "ice": "shaken",
@@ -5547,6 +6343,9 @@
         "Rabo de Galo"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "spirit-forward",
       "glass": "rocks",
       "ice": "large-cube",
@@ -5621,6 +6420,9 @@
         "Ramos Fizz"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "fizzy",
       "glass": "highball",
       "ice": "shaken",
@@ -5729,6 +6531,9 @@
         "Remember the Maine"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "spirit-forward",
       "glass": "coupe",
       "ice": "stirred",
@@ -5805,6 +6610,9 @@
         "Russian Spring Punch"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era"
+      ],
       "category": "punch",
       "glass": "collins",
       "ice": "none",
@@ -5892,6 +6700,9 @@
         "Rusty Nail"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "spirit-forward",
       "glass": "rocks",
       "ice": "large-cube",
@@ -5952,6 +6763,10 @@
         "Sazerac"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "rocks",
       "ice": "crushed",
@@ -5980,6 +6795,36 @@
         {
           "id": "peychaud-bitters",
           "amount": 2,
+          "unit": "dash",
+          "optional": false
+        },
+        {
+          "id": "soda-water",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "whiskey-rye",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "whiskey-bourbon",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "rich-syrup",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "angostura-bitters",
+          "amount": 1,
           "unit": "dash",
           "optional": false
         }
@@ -6015,7 +6860,12 @@
         "brandy-cognac",
         "absinthe",
         "sugar-cube",
-        "peychaud-bitters"
+        "peychaud-bitters",
+        "soda-water",
+        "whiskey-rye",
+        "whiskey-bourbon",
+        "rich-syrup",
+        "angostura-bitters"
       ],
       "garnishIds": [
         "lemon-peel"
@@ -6029,6 +6879,9 @@
         "Sea Breeze"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "refreshing",
       "glass": "highball",
       "ice": "none",
@@ -6100,6 +6953,10 @@
         "Sex on the Beach"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "fizzy",
       "glass": "highball",
       "ice": "none",
@@ -6128,6 +6985,18 @@
         {
           "id": "cranberry-juice",
           "amount": 40,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "pineapple-juice",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "chambord",
+          "amount": 15,
           "unit": "ml",
           "optional": false
         }
@@ -6161,7 +7030,9 @@
         "vodka",
         "peach-liqueur",
         "orange-juice",
-        "cranberry-juice"
+        "cranberry-juice",
+        "pineapple-juice",
+        "chambord"
       ],
       "garnishIds": [
         "orange-peel"
@@ -6175,6 +7046,9 @@
         "Sherry Cobbler"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era"
+      ],
       "category": "refreshing",
       "glass": "mug",
       "ice": "crushed",
@@ -6261,6 +7135,10 @@
         "Sidecar"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -6285,6 +7163,24 @@
           "amount": 20,
           "unit": "ml",
           "optional": false
+        },
+        {
+          "id": "rich-syrup",
+          "amount": 5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "soda-water",
+          "amount": 5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "salt",
+          "amount": 2,
+          "unit": "drop",
+          "optional": false
         }
       ],
       "steps": [
@@ -6293,7 +7189,9 @@
         "以濾冰網過濾倒入冰鎮的淺碟杯。",
         "不另加裝飾，趁新鮮飲用。"
       ],
-      "garnish": [],
+      "garnish": [
+        "lemon-peel"
+      ],
       "tags": [
         "白蘭地",
         "酸甜",
@@ -6314,9 +7212,14 @@
       "ingredientIds": [
         "brandy-cognac",
         "orange-liqueur",
-        "lemon-juice"
+        "lemon-juice",
+        "rich-syrup",
+        "soda-water",
+        "salt"
       ],
-      "garnishIds": []
+      "garnishIds": [
+        "lemon-peel"
+      ]
     },
     {
       "id": "singapore-sling",
@@ -6326,6 +7229,10 @@
         "Singapore Sling"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "fizzy",
       "glass": "other",
       "ice": "shaken",
@@ -6380,6 +7287,12 @@
           "amount": 1,
           "unit": "dash",
           "optional": false
+        },
+        {
+          "id": "cherry-heering",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
         }
       ],
       "steps": [
@@ -6406,7 +7319,7 @@
         "派對",
         "夏日"
       ],
-      "popularity": 3,
+      "popularity": 4,
       "sourceUrl": "https://www.iba-world.com/iba-cocktail/singapore-sling/",
       "sourceSite": "IBA Official Cocktails",
       "ingredientIds": [
@@ -6417,7 +7330,8 @@
         "pineapple-juice",
         "lime-juice",
         "grenadine",
-        "angostura-bitters"
+        "angostura-bitters",
+        "cherry-heering"
       ],
       "garnishIds": [
         "pineapple",
@@ -6432,6 +7346,9 @@
         "South Side"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -6515,6 +7432,9 @@
         "Spicy Fifty"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -6599,6 +7519,9 @@
         "阿佩羅斯普里茲"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era"
+      ],
       "category": "fizzy",
       "glass": "wine",
       "ice": "none",
@@ -6669,6 +7592,9 @@
         "Stinger"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "digestif",
       "glass": "martini",
       "ice": "stirred",
@@ -6729,6 +7655,9 @@
         "Suffering Bastard"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era"
+      ],
       "category": "highball",
       "glass": "mug",
       "ice": "none",
@@ -6814,6 +7743,9 @@
         "Tequila Sunrise"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "sweet",
       "glass": "highball",
       "ice": "none",
@@ -6883,6 +7815,9 @@
         "三點一橫"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era"
+      ],
       "category": "punch",
       "glass": "other",
       "ice": "crushed",
@@ -6989,6 +7924,9 @@
         "Tipperary"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era"
+      ],
       "category": "spirit-forward",
       "glass": "martini",
       "ice": "stirred",
@@ -7064,6 +8002,10 @@
         "Tommy's Margarita"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era",
+        "popular"
+      ],
       "category": "daiquiri",
       "glass": "rocks",
       "ice": "shaken",
@@ -7087,6 +8029,18 @@
           "id": "agave-syrup",
           "amount": 30,
           "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "tequila-reposado",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "margarita-bitters",
+          "amount": 4,
+          "unit": "drop",
           "optional": false
         }
       ],
@@ -7119,7 +8073,9 @@
       "ingredientIds": [
         "tequila-blanco",
         "lime-juice",
-        "agave-syrup"
+        "agave-syrup",
+        "tequila-reposado",
+        "margarita-bitters"
       ],
       "garnishIds": [
         "lime-peel"
@@ -7133,6 +8089,10 @@
         "Trinidad Sour"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era",
+        "popular"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -7186,7 +8146,7 @@
         "派對",
         "獨飲"
       ],
-      "popularity": 2,
+      "popularity": 3,
       "sourceUrl": "https://www.iba-world.com/iba-cocktail/trinidad-sour/",
       "sourceSite": "IBA Official Cocktails",
       "ingredientIds": [
@@ -7205,6 +8165,9 @@
         "Tuxedo"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "sweet",
       "glass": "martini",
       "ice": "stirred",
@@ -7290,6 +8253,9 @@
         "Vento"
       ],
       "collection": "new-era",
+      "collections": [
+        "new-era"
+      ],
       "category": "sour",
       "glass": "tumbler",
       "ice": "shaken",
@@ -7376,6 +8342,9 @@
         "Vesper"
       ],
       "collection": "classic",
+      "collections": [
+        "classic"
+      ],
       "category": "spirit-forward",
       "glass": "coupe",
       "ice": "shaken",
@@ -7445,6 +8414,10 @@
         "Vieux Carré"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "coupe",
       "ice": "stirred",
@@ -7481,6 +8454,12 @@
           "amount": 2,
           "unit": "dash",
           "optional": false
+        },
+        {
+          "id": "angostura-bitters",
+          "amount": 1,
+          "unit": "dash",
+          "optional": false
         }
       ],
       "steps": [
@@ -7507,7 +8486,7 @@
         "餐前",
         "獨飲"
       ],
-      "popularity": 2,
+      "popularity": 3,
       "sourceUrl": "https://www.iba-world.com/iba-cocktail/vieux-carre/",
       "sourceSite": "IBA Official Cocktails",
       "ingredientIds": [
@@ -7515,7 +8494,8 @@
         "brandy-cognac",
         "vermouth-red",
         "benedictine",
-        "peychaud-bitters"
+        "peychaud-bitters",
+        "angostura-bitters"
       ],
       "garnishIds": [
         "orange-peel",
@@ -7530,6 +8510,10 @@
         "Whiskey Sour"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "shaken",
@@ -7560,6 +8544,24 @@
           "amount": 1,
           "unit": "drop",
           "optional": true
+        },
+        {
+          "id": "rich-syrup",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "angostura-bitters",
+          "amount": 3,
+          "unit": "dash",
+          "optional": false
+        },
+        {
+          "id": "salt",
+          "amount": 2,
+          "unit": "drop",
+          "optional": false
         }
       ],
       "steps": [
@@ -7587,14 +8589,17 @@
         "飯後",
         "獨飲"
       ],
-      "popularity": 4,
+      "popularity": 5,
       "sourceUrl": "https://www.iba-world.com/iba-cocktail/whiskey-sour/",
       "sourceSite": "IBA Official Cocktails",
       "ingredientIds": [
         "whiskey-bourbon",
         "lemon-juice",
         "simple-syrup",
-        "egg-white"
+        "egg-white",
+        "rich-syrup",
+        "angostura-bitters",
+        "salt"
       ],
       "garnishIds": [
         "orange-peel",
@@ -7609,6 +8614,10 @@
         "White Lady"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "sweet",
       "glass": "coupe",
       "ice": "shaken",
@@ -7633,6 +8642,30 @@
           "amount": 20,
           "unit": "ml",
           "optional": false
+        },
+        {
+          "id": "rich-syrup",
+          "amount": 7.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "egg-white",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "salt",
+          "amount": 3,
+          "unit": "drop",
+          "optional": false
+        },
+        {
+          "id": "orange-flower-water",
+          "amount": 3,
+          "unit": "drop",
+          "optional": false
         }
       ],
       "steps": [
@@ -7641,7 +8674,9 @@
         "以濾冰網過濾倒入冰鎮的淺碟杯。",
         "不另加裝飾，趁新鮮飲用。"
       ],
-      "garnish": [],
+      "garnish": [
+        "lemon-peel"
+      ],
       "tags": [
         "經典",
         "琴酒",
@@ -7662,9 +8697,15 @@
       "ingredientIds": [
         "gin",
         "orange-liqueur",
-        "lemon-juice"
+        "lemon-juice",
+        "rich-syrup",
+        "egg-white",
+        "salt",
+        "orange-flower-water"
       ],
-      "garnishIds": []
+      "garnishIds": [
+        "lemon-peel"
+      ]
     },
     {
       "id": "zombie",
@@ -7674,6 +8715,10 @@
         "Zombie"
       ],
       "collection": "classic",
+      "collections": [
+        "classic",
+        "popular"
+      ],
       "category": "highball",
       "glass": "tumbler",
       "ice": "crushed",
@@ -7734,6 +8779,66 @@
           "amount": 6,
           "unit": "drop",
           "optional": false
+        },
+        {
+          "id": "rum-cuban",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "rum-overproof",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "rum-jamaican-blend",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "pineapple-juice",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "grapefruit-juice",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "cinnamon-syrup",
+          "amount": 2.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "passion-fruit-syrup",
+          "amount": 2.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "absinthe",
+          "amount": 4,
+          "unit": "dash",
+          "optional": false
+        },
+        {
+          "id": "salt",
+          "amount": 3,
+          "unit": "drop",
+          "optional": false
+        },
+        {
+          "id": "xanthan-gum",
+          "amount": 0.25,
+          "unit": "bar-spoon",
+          "optional": false
         }
       ],
       "steps": [
@@ -7772,7 +8877,17 @@
         "donns-mix",
         "grenadine",
         "angostura-bitters",
-        "pernod"
+        "pernod",
+        "rum-cuban",
+        "rum-overproof",
+        "rum-jamaican-blend",
+        "pineapple-juice",
+        "grapefruit-juice",
+        "cinnamon-syrup",
+        "passion-fruit-syrup",
+        "absinthe",
+        "salt",
+        "xanthan-gum"
       ],
       "garnishIds": [
         "mint"
@@ -7784,6 +8899,9 @@
       "nameZh": "倫敦呼叫",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -7867,6 +8985,9 @@
         "提基止痛藥"
       ],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "punch",
       "glass": "mug",
       "ice": "crushed",
@@ -7950,6 +9071,9 @@
       "nameZh": "詩人之夢",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "coupe",
       "ice": "stirred",
@@ -8016,6 +9140,9 @@
       "nameZh": "拉莫斯金菲士",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "fizzy",
       "glass": "collins",
       "ice": "none",
@@ -8127,6 +9254,9 @@
       "nameZh": "慢速舒適螺絲",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "highball",
       "glass": "collins",
       "ice": "crushed",
@@ -8208,6 +9338,9 @@
       "nameZh": "東京冰茶",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "shaken",
@@ -8310,6 +9443,9 @@
       "nameZh": "湯姆柯林斯",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "highball",
       "glass": "collins",
       "ice": "shaken",
@@ -8386,6 +9522,9 @@
       "nameZh": "伏特加酸",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "shaken",
@@ -8475,6 +9614,9 @@
       "nameZh": "白俄羅斯",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "flip",
       "glass": "rocks",
       "ice": "stirred",
@@ -8542,6 +9684,9 @@
       "nameZh": "黑玫瑰",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "coupe",
       "ice": "none",
@@ -8623,6 +9768,9 @@
       "nameZh": "最後一庭",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -8699,6 +9847,9 @@
       "nameZh": "菲茨傑拉德",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "shaken",
@@ -8779,6 +9930,9 @@
       "nameZh": "手榴彈",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "highball",
       "glass": "collins",
       "ice": "crushed",
@@ -8860,6 +10014,9 @@
       "nameZh": "左岸馬天尼",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "coupe",
       "ice": "stirred",
@@ -8934,6 +10091,9 @@
       "nameZh": "梅斯卡爾瑪格麗塔",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "shaken",
@@ -9022,6 +10182,9 @@
       "nameZh": "維斯柏馬天尼",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "martini",
       "ice": "shaken",
@@ -9089,6 +10252,9 @@
       "nameZh": "核子代基里",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "daiquiri",
       "glass": "coupe",
       "ice": "shaken",
@@ -9170,6 +10336,9 @@
       "nameZh": "尖叫的高潮",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sweet",
       "glass": "other",
       "ice": "crushed",
@@ -9258,6 +10427,9 @@
       "nameZh": "空郵",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "fizzy",
       "glass": "flute",
       "ice": "shaken",
@@ -9337,6 +10509,9 @@
         "Aperitivo Spritz"
       ],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "aperitivo",
       "glass": "wine",
       "ice": "crushed",
@@ -9405,6 +10580,9 @@
       "nameZh": "路易斯安娜",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "coupe",
       "ice": "stirred",
@@ -9493,6 +10671,9 @@
       "nameZh": "亞歷山大（白蘭地版）",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "flip",
       "glass": "coupe",
       "ice": "shaken",
@@ -9566,6 +10747,9 @@
       "nameZh": "開心果馬天尼",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sweet",
       "glass": "martini",
       "ice": "shaken",
@@ -9640,6 +10824,9 @@
       "nameZh": "早餐馬天尼",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "martini",
       "ice": "shaken",
@@ -9717,6 +10904,9 @@
         "比榭"
       ],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "coupe",
       "ice": "stirred",
@@ -9792,6 +10982,9 @@
       "nameZh": "白尼格羅尼",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "aperitivo",
       "glass": "rocks",
       "ice": "stirred",
@@ -9869,6 +11062,9 @@
         "Mi-To"
       ],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "aperitivo",
       "glass": "rocks",
       "ice": "large-cube",
@@ -9928,6 +11124,9 @@
       "nameZh": "分割鐘",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -10004,6 +11203,9 @@
         "Naked and Famous"
       ],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -10080,6 +11282,9 @@
         "Champs-Élysées"
       ],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -10177,6 +11382,9 @@
         "Bobby Burns (Difford's own)"
       ],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "nick-nora",
       "ice": "stirred",
@@ -10258,6 +11466,9 @@
       "nameZh": "黑曼哈頓",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "coupe",
       "ice": "stirred",
@@ -10335,6 +11546,9 @@
         "Spicy Margarita"
       ],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "shaken",
@@ -10418,6 +11632,9 @@
       "nameZh": "沙夫特",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sweet",
       "glass": "coupe",
       "ice": "shaken",
@@ -10487,6 +11704,9 @@
       "nameZh": "戰爭之王",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "coupe",
       "ice": "shaken",
@@ -10576,6 +11796,9 @@
       "nameZh": "苦味朱塞佩",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "digestif",
       "glass": "rocks",
       "ice": "large-cube",
@@ -10656,6 +11879,9 @@
       "nameZh": "胡哥氣泡調酒",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "aperitivo",
       "glass": "wine",
       "ice": "crushed",
@@ -10733,6 +11959,9 @@
       "nameZh": "杏仁利口酒酸",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -10809,6 +12038,9 @@
       "nameZh": "巴坦加",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "highball",
       "glass": "collins",
       "ice": "crushed",
@@ -10885,6 +12117,9 @@
         "Blood and Sand (Difford's recipe)"
       ],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "coupe",
       "ice": "shaken",
@@ -10968,6 +12203,9 @@
       "nameZh": "M 與 M",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "rocks",
       "ice": "large-cube",
@@ -11028,6 +12266,9 @@
       "nameZh": "恩佐尼",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "shaken",
@@ -11111,6 +12352,9 @@
       "nameZh": "百歲雪茄",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "coupe",
       "ice": "none",
@@ -11197,6 +12441,9 @@
         "Corpse Reviver No.2"
       ],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -11284,6 +12531,9 @@
       "nameZh": "髒馬天尼",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "martini",
       "ice": "stirred",
@@ -11358,6 +12608,9 @@
       "nameZh": "總統先生",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "coupe",
       "ice": "stirred",
@@ -11438,6 +12691,9 @@
       "nameZh": "法式七十六",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "fizzy",
       "glass": "flute",
       "ice": "shaken",
@@ -11514,6 +12770,9 @@
         "Gimlet (Difford's recipe)"
       ],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -11601,6 +12860,9 @@
       "nameZh": "教父",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "rocks",
       "ice": "large-cube",
@@ -11671,6 +12933,9 @@
         "Papa Doble"
       ],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "daiquiri",
       "glass": "martini",
       "ice": "shaken",
@@ -11754,6 +13019,9 @@
       "nameZh": "邁阿密風雲",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "punch",
       "glass": "other",
       "ice": "crushed",
@@ -11854,6 +13122,9 @@
         "Tequila Negroni"
       ],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "aperitivo",
       "glass": "rocks",
       "ice": "large-cube",
@@ -11937,6 +13208,9 @@
         "Blinker"
       ],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -12006,6 +13280,9 @@
       "nameZh": "加州涼飲",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "refreshing",
       "glass": "coupe",
       "ice": "shaken",
@@ -12089,6 +13366,9 @@
       "nameZh": "卡梅隆的一踢",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -12165,6 +13445,9 @@
       "nameZh": "菊花",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "coupe",
       "ice": "stirred",
@@ -12232,6 +13515,9 @@
       "nameZh": "經典香榭麗舍",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -12313,6 +13599,9 @@
       "nameZh": "西拉諾",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "rocks",
       "ice": "crushed",
@@ -12403,6 +13692,9 @@
       "nameZh": "第四軍團",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "nick-nora",
       "ice": "stirred",
@@ -12485,6 +13777,9 @@
       "nameZh": "大寂默",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -12568,6 +13863,9 @@
       "nameZh": "綠眼睛金酒",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "shaken",
@@ -12651,6 +13949,9 @@
       "nameZh": "番石榴椰子帕洛瑪",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "refreshing",
       "glass": "collins",
       "ice": "crushed",
@@ -12741,6 +14042,9 @@
       "nameZh": "蒙面俏佳人",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "refreshing",
       "glass": "rocks",
       "ice": "shaken",
@@ -12824,6 +14128,9 @@
       "nameZh": "無名馬",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "other",
       "ice": "crushed",
@@ -12928,6 +14235,9 @@
       "nameZh": "謙卑派",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "rocks",
       "ice": "shaken",
@@ -13026,6 +14336,9 @@
       "nameZh": "百畝森林",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "non-alcoholic",
       "glass": "rocks",
       "ice": "large-cube",
@@ -13109,6 +14422,9 @@
       "nameZh": "鐵路巡騎兵",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "other",
       "ice": "crushed",
@@ -13199,6 +14515,9 @@
       "nameZh": "艾雷島代基里",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "daiquiri",
       "glass": "coupe",
       "ice": "shaken",
@@ -13282,6 +14601,9 @@
       "nameZh": "龍舌蘭謝謝",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "rocks",
       "ice": "large-cube",
@@ -13356,6 +14678,9 @@
       "nameZh": "苦味高球",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "crushed",
@@ -13424,6 +14749,9 @@
       "nameZh": "阿奇",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "shaken",
@@ -13491,6 +14819,9 @@
       "nameZh": "砒霜與蕾絲",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "coupe",
       "ice": "stirred",
@@ -13571,6 +14902,9 @@
       "nameZh": "秋天毛衣",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "rocks",
       "ice": "large-cube",
@@ -13659,6 +14993,9 @@
       "nameZh": "遙遠的顏色",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "rocks",
       "ice": "large-cube",
@@ -13726,6 +15063,9 @@
       "nameZh": "小海龜",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "shaken",
@@ -13821,6 +15161,9 @@
       "nameZh": "Baco Tell",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "fizzy",
       "glass": "highball",
       "ice": "crushed",
@@ -13918,6 +15261,9 @@
         "Bar Agricole's Japanese Cocktail"
       ],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "coupe",
       "ice": "shaken",
@@ -13987,6 +15333,9 @@
         "Bar Valentina's Espresso Martini"
       ],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sweet",
       "glass": "martini",
       "ice": "shaken",
@@ -14061,6 +15410,9 @@
       "nameZh": "羅勒 Gimlet",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -14136,6 +15488,9 @@
       "nameZh": "椰子奶昔",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "punch",
       "glass": "other",
       "ice": "none",
@@ -14213,6 +15568,9 @@
       "nameZh": "Beuser & Angus 特別版",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "shaken",
@@ -14301,6 +15659,9 @@
       "nameZh": "苦澀意圖",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "aperitivo",
       "glass": "collins",
       "ice": "crushed",
@@ -14382,6 +15743,9 @@
       "nameZh": "苦味瑪格麗塔",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "shaken",
@@ -14475,6 +15839,9 @@
         "Rusty Nail"
       ],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "rocks",
       "ice": "large-cube",
@@ -14556,6 +15923,9 @@
       "nameZh": "布里奇敦尼格羅尼",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "aperitivo",
       "glass": "rocks",
       "ice": "large-cube",
@@ -14623,6 +15993,9 @@
       "nameZh": "河畔",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "coupe",
       "ice": "stirred",
@@ -14713,6 +16086,9 @@
       "nameZh": "凱迪拉克瑪格麗塔",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "shaken",
@@ -14789,6 +16165,9 @@
         "Cat Bite Club's Alaska"
       ],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "nick-nora",
       "ice": "stirred",
@@ -14877,6 +16256,9 @@
       "nameZh": "昌西",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "coupe",
       "ice": "stirred",
@@ -14961,6 +16343,9 @@
         "Christine Wiseman's Margarita"
       ],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "shaken",
@@ -15037,6 +16422,9 @@
       "nameZh": "丘佩蒂尼",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "spirit-forward",
       "glass": "other",
       "ice": "stirred",
@@ -15096,6 +16484,9 @@
       "nameZh": "經典龐貝迪諾",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "flip",
       "glass": "mug",
       "ice": "none",
@@ -15170,6 +16561,9 @@
       "nameZh": "椰子瑪格麗塔",
       "aliases": [],
       "collection": "popular",
+      "collections": [
+        "popular"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "shaken",
@@ -15247,6 +16641,9 @@
         "Virgin Mojito"
       ],
       "collection": "mocktail",
+      "collections": [
+        "mocktail"
+      ],
       "category": "non-alcoholic",
       "glass": "highball",
       "ice": "crushed",
@@ -15334,6 +16731,9 @@
         "Shirley Temple"
       ],
       "collection": "mocktail",
+      "collections": [
+        "mocktail"
+      ],
       "category": "non-alcoholic",
       "glass": "highball",
       "ice": "shaken",
@@ -15412,6 +16812,9 @@
         "經典可樂"
       ],
       "collection": "mocktail",
+      "collections": [
+        "mocktail"
+      ],
       "category": "non-alcoholic",
       "glass": "highball",
       "ice": "shaken",
@@ -15489,6 +16892,9 @@
         "Cinderella"
       ],
       "collection": "mocktail",
+      "collections": [
+        "mocktail"
+      ],
       "category": "non-alcoholic",
       "glass": "collins",
       "ice": "shaken",
@@ -15582,6 +16988,9 @@
         "Virgin Pina Colada"
       ],
       "collection": "mocktail",
+      "collections": [
+        "mocktail"
+      ],
       "category": "non-alcoholic",
       "glass": "coupe",
       "ice": "crushed",
@@ -15652,6 +17061,9 @@
         "Virgin Mary"
       ],
       "collection": "mocktail",
+      "collections": [
+        "mocktail"
+      ],
       "category": "non-alcoholic",
       "glass": "collins",
       "ice": "shaken",
@@ -15752,6 +17164,9 @@
         "Pussyfoot"
       ],
       "collection": "mocktail",
+      "collections": [
+        "mocktail"
+      ],
       "category": "non-alcoholic",
       "glass": "coupe",
       "ice": "shaken",
@@ -15845,6 +17260,9 @@
         "Virgin Passion"
       ],
       "collection": "mocktail",
+      "collections": [
+        "mocktail"
+      ],
       "category": "non-alcoholic",
       "glass": "coupe",
       "ice": "shaken",
@@ -15922,6 +17340,9 @@
         "Roasted Mule Mocktail"
       ],
       "collection": "mocktail",
+      "collections": [
+        "mocktail"
+      ],
       "category": "non-alcoholic",
       "glass": "mug",
       "ice": "none",
@@ -16005,6 +17426,9 @@
         "Amaretto Sour Mocktail"
       ],
       "collection": "mocktail",
+      "collections": [
+        "mocktail"
+      ],
       "category": "non-alcoholic",
       "glass": "rocks",
       "ice": "shaken",
@@ -16096,6 +17520,9 @@
         "Afterglow"
       ],
       "collection": "mocktail",
+      "collections": [
+        "mocktail"
+      ],
       "category": "non-alcoholic",
       "glass": "highball",
       "ice": "none",
@@ -16172,6 +17599,9 @@
         "Strawberry Lemonade"
       ],
       "collection": "mocktail",
+      "collections": [
+        "mocktail"
+      ],
       "category": "non-alcoholic",
       "glass": "collins",
       "ice": "crushed",
@@ -16251,6 +17681,9 @@
         "Aloha Fruit Punch"
       ],
       "collection": "mocktail",
+      "collections": [
+        "mocktail"
+      ],
       "category": "non-alcoholic",
       "glass": "collins",
       "ice": "none",
@@ -16344,6 +17777,9 @@
         "Spiced Peach Punch"
       ],
       "collection": "mocktail",
+      "collections": [
+        "mocktail"
+      ],
       "category": "non-alcoholic",
       "glass": "mug",
       "ice": "none",
@@ -16437,6 +17873,9 @@
         "Cranberry Punch"
       ],
       "collection": "mocktail",
+      "collections": [
+        "mocktail"
+      ],
       "category": "non-alcoholic",
       "glass": "collins",
       "ice": "none",
@@ -16521,6 +17960,9 @@
         "Thai Iced Tea"
       ],
       "collection": "mocktail",
+      "collections": [
+        "mocktail"
+      ],
       "category": "non-alcoholic",
       "glass": "highball",
       "ice": "none",
@@ -16605,6 +18047,9 @@
         "Masala Chai"
       ],
       "collection": "mocktail",
+      "collections": [
+        "mocktail"
+      ],
       "category": "non-alcoholic",
       "glass": "mug",
       "ice": "none",
@@ -16719,6 +18164,9 @@
         "Limeade"
       ],
       "collection": "mocktail",
+      "collections": [
+        "mocktail"
+      ],
       "category": "non-alcoholic",
       "glass": "collins",
       "ice": "shaken",
@@ -16796,6 +18244,9 @@
         "Mint Limeade"
       ],
       "collection": "mocktail",
+      "collections": [
+        "mocktail"
+      ],
       "category": "non-alcoholic",
       "glass": "collins",
       "ice": "shaken",
@@ -16888,6 +18339,9 @@
         "Real Lemonade"
       ],
       "collection": "mocktail",
+      "collections": [
+        "mocktail"
+      ],
       "category": "non-alcoholic",
       "glass": "collins",
       "ice": "shaken",
@@ -16965,6 +18419,9 @@
         "Thai Lemonade"
       ],
       "collection": "mocktail",
+      "collections": [
+        "mocktail"
+      ],
       "category": "non-alcoholic",
       "glass": "collins",
       "ice": "shaken",
@@ -17051,6 +18508,9 @@
         "Lemon Drop Shot"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "shooter",
       "glass": "shot",
       "ice": "shaken",
@@ -17124,6 +18584,9 @@
         "B-52 轟炸機"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "shooter",
       "glass": "shot",
       "ice": "none",
@@ -17190,6 +18653,9 @@
         "Russian Lude"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "shooter",
       "glass": "shot",
       "ice": "none",
@@ -17255,6 +18721,9 @@
         "Raging Bull"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "shooter",
       "glass": "shot",
       "ice": "none",
@@ -17320,6 +18789,9 @@
         "Bijou"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "spirit-forward",
       "glass": "shot",
       "ice": "none",
@@ -17389,6 +18861,9 @@
         "F16 Shot"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "shooter",
       "glass": "shot",
       "ice": "none",
@@ -17454,6 +18929,9 @@
         "Bubblegum Shot"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "sweet",
       "glass": "shot",
       "ice": "shaken",
@@ -17523,6 +19001,9 @@
         "Fifth Avenue"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "sweet",
       "glass": "shot",
       "ice": "none",
@@ -17589,6 +19070,9 @@
         "Pavlova Shot"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "sweet",
       "glass": "shot",
       "ice": "none",
@@ -17650,6 +19134,9 @@
         "PB&J Shot"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "sweet",
       "glass": "shot",
       "ice": "shaken",
@@ -17716,6 +19203,9 @@
         "Pear Drop"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "sweet",
       "glass": "shot",
       "ice": "shaken",
@@ -17780,6 +19270,9 @@
         "Black Jack Shot"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "spirit-forward",
       "glass": "shot",
       "ice": "none",
@@ -17837,6 +19330,9 @@
         "Burning Bush"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "shooter",
       "glass": "shot",
       "ice": "none",
@@ -17897,6 +19393,9 @@
         "After Six"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "shooter",
       "glass": "shot",
       "ice": "none",
@@ -17963,6 +19462,9 @@
         "Avalanche"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "shooter",
       "glass": "shot",
       "ice": "none",
@@ -18028,6 +19530,9 @@
         "Stars and Stripes"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "spirit-forward",
       "glass": "shot",
       "ice": "none",
@@ -18093,6 +19598,9 @@
         "Quick Sex on the Beach"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "shooter",
       "glass": "shot",
       "ice": "none",
@@ -18169,6 +19677,9 @@
         "Melon Ball"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "refreshing",
       "glass": "shot",
       "ice": "shaken",
@@ -18239,6 +19750,9 @@
         "Liquorice Shot"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "spirit-forward",
       "glass": "shot",
       "ice": "shaken",
@@ -18304,6 +19818,9 @@
         "Opening Shot"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "spirit-forward",
       "glass": "shot",
       "ice": "shaken",
@@ -18370,6 +19887,9 @@
         "Espresso Rumtini"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "spirit-forward",
       "glass": "shot",
       "ice": "none",
@@ -18456,6 +19976,9 @@
         "Body Shot"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "shooter",
       "glass": "shot",
       "ice": "shaken",
@@ -18525,6 +20048,9 @@
         "草本一口酒"
       ],
       "collection": "shot",
+      "collections": [
+        "shot"
+      ],
       "category": "digestif",
       "glass": "shot",
       "ice": "none",
@@ -18591,6 +20117,9 @@
         "G&T"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "highball",
       "glass": "collins",
       "ice": "none",
@@ -18662,6 +20191,9 @@
         "Daiquiri"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "daiquiri",
       "glass": "coupe",
       "ice": "shaken",
@@ -18731,6 +20263,9 @@
         "金 Gimlet"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -18822,6 +20357,9 @@
         "Basil Gimlet"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -18908,6 +20446,9 @@
         "Eastside Gimlet"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "refreshing",
       "glass": "coupe",
       "ice": "shaken",
@@ -19001,6 +20542,9 @@
         "Ginger Mojito"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "refreshing",
       "glass": "collins",
       "ice": "crushed",
@@ -19094,6 +20638,9 @@
         "Ginger Punch"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "punch",
       "glass": "collins",
       "ice": "crushed",
@@ -19187,6 +20734,9 @@
         "Caipiginger"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "crushed",
@@ -19266,6 +20816,9 @@
         "Pineapple and Ginger"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "refreshing",
       "glass": "martini",
       "ice": "shaken",
@@ -19345,6 +20898,9 @@
         "Bohemian Iced Tea"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "refreshing",
       "glass": "rocks",
       "ice": "none",
@@ -19429,6 +20985,9 @@
         "Loch Almond Highball"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "none",
@@ -19499,6 +21058,9 @@
         "Barbary Coast Highball"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "none",
@@ -19579,6 +21141,9 @@
         "Gingertini"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "spirit-forward",
       "glass": "martini",
       "ice": "shaken",
@@ -19656,6 +21221,9 @@
         "Ginger Cocktail"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "refreshing",
       "glass": "martini",
       "ice": "shaken",
@@ -19746,6 +21314,9 @@
         "Hard Lemonade"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "refreshing",
       "glass": "collins",
       "ice": "none",
@@ -19823,6 +21394,9 @@
         "Icy Pink Lemonade"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "refreshing",
       "glass": "collins",
       "ice": "none",
@@ -19907,6 +21481,9 @@
         "Frisky Lemonade"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "highball",
       "glass": "collins",
       "ice": "none",
@@ -19977,6 +21554,9 @@
         "Coffee and Vanilla Daiquiri"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "daiquiri",
       "glass": "coupe",
       "ice": "shaken",
@@ -20061,6 +21641,9 @@
         "Brazilian Coffee"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "flip",
       "glass": "mug",
       "ice": "crushed",
@@ -20135,6 +21718,9 @@
         "Coffee Batida"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "flip",
       "glass": "rocks",
       "ice": "crushed",
@@ -20211,6 +21797,9 @@
         "Screwdriver"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "none",
@@ -20274,6 +21863,9 @@
         "Rum Screwdriver"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "none",
@@ -20343,6 +21935,9 @@
         "Iced Tea"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "highball",
       "glass": "collins",
       "ice": "crushed",
@@ -20440,6 +22035,9 @@
         "Almond Joy"
       ],
       "collection": "easy",
+      "collections": [
+        "easy"
+      ],
       "category": "sweet",
       "glass": "coupe",
       "ice": "none",
@@ -20507,6 +22105,9 @@
         "Kaoliang Cola"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "none",
@@ -20565,6 +22166,9 @@
         "高粱烏梅"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "refreshing",
       "glass": "highball",
       "ice": "none",
@@ -20644,6 +22248,9 @@
         "Kumquat Kaoliang Highball"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "none",
@@ -20722,6 +22329,9 @@
         "芭樂綠茶高粱"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "refreshing",
       "glass": "highball",
       "ice": "none",
@@ -20785,6 +22395,9 @@
         "茶香高粱"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "refreshing",
       "glass": "highball",
       "ice": "none",
@@ -20861,6 +22474,9 @@
         "沙士高粱"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "none",
@@ -20920,6 +22536,9 @@
         "Urban Bamboo Lemon"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -21005,6 +22624,9 @@
         "蜜豆奶高粱"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "highball",
       "ice": "none",
@@ -21065,6 +22687,9 @@
         "伯朗高粱"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "digestif",
       "glass": "highball",
       "ice": "none",
@@ -21124,6 +22749,9 @@
         "玉山竹葉青黃瓜通寧水"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "refreshing",
       "glass": "highball",
       "ice": "none",
@@ -21195,6 +22823,9 @@
         "高粱雪碧蘋果醋"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "fizz",
       "glass": "highball",
       "ice": "none",
@@ -21273,6 +22904,9 @@
         "高粱番茄桑椹"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "refreshing",
       "glass": "collins",
       "ice": "none",
@@ -21358,6 +22992,9 @@
         "高粱柳橙蘋果西打"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "refreshing",
       "glass": "highball",
       "ice": "none",
@@ -21435,6 +23072,9 @@
         "高粱芭樂汁"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "refreshing",
       "glass": "highball",
       "ice": "none",
@@ -21500,6 +23140,9 @@
         "高粱桑椹"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "refreshing",
       "glass": "highball",
       "ice": "none",
@@ -21565,6 +23208,9 @@
         "高粱反芭檸"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "fizz",
       "glass": "collins",
       "ice": "none",
@@ -21658,6 +23304,9 @@
         "高粱 Mojito"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "refreshing",
       "glass": "collins",
       "ice": "crushed",
@@ -21745,6 +23394,9 @@
         "高粱海風"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "none",
@@ -21829,6 +23481,9 @@
         "高粱夜襲"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "none",
@@ -21903,6 +23558,9 @@
         "高粱多多綠"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "collins",
       "ice": "none",
@@ -21978,6 +23636,9 @@
         "島嶼夢"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "refreshing",
       "glass": "collins",
       "ice": "crushed",
@@ -22041,6 +23702,9 @@
         "高粱蠻牛"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "highball",
       "glass": "collins",
       "ice": "none",
@@ -22107,6 +23771,9 @@
         "竹葉青柚香"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "coupe",
       "ice": "shaken",
@@ -22192,6 +23859,9 @@
         "高粱葡萄柚通寧水"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "none",
@@ -22263,6 +23933,9 @@
         "高粱蔓越莓"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "refreshing",
       "glass": "highball",
       "ice": "none",
@@ -22326,6 +23999,9 @@
         "高粱蜂蜜"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "digestif",
       "glass": "rocks",
       "ice": "large-cube",
@@ -22384,6 +24060,9 @@
         "高粱烏梅汁"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "highball",
       "ice": "none",
@@ -22443,6 +24122,9 @@
         "七喜好高粱"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "none",
@@ -22502,6 +24184,9 @@
         "可爾必思高粱"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "highball",
       "ice": "none",
@@ -22564,6 +24249,9 @@
         "奶茶高粱"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "highball",
       "ice": "none",
@@ -22623,6 +24311,9 @@
         "蜂蜜檸檬高粱"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "none",
@@ -22694,6 +24385,9 @@
         "Depth Bomb"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "shooter",
       "glass": "other",
       "ice": "none",
@@ -22753,6 +24447,9 @@
         "高粱黃瓜氣泡"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "fizz",
       "glass": "collins",
       "ice": "none",
@@ -22833,6 +24530,9 @@
         "高粱清酒牛奶"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "highball",
       "ice": "none",
@@ -22907,6 +24607,9 @@
         "奧利多高粱"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "highball",
       "ice": "none",
@@ -22964,6 +24667,9 @@
         "維大力高粱"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "highball",
       "ice": "none",
@@ -23022,6 +24728,9 @@
         "Paolyta Beer"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "none",
@@ -23081,6 +24790,9 @@
         "保力達奶茶"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "highball",
       "ice": "none",
@@ -23141,6 +24853,9 @@
         "保力達B紅標米酒"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "rocks",
       "ice": "none",
@@ -23199,6 +24914,9 @@
         "保力達舒跑"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "highball",
       "ice": "none",
@@ -23257,6 +24975,9 @@
         "維士比維大力"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "non-alcoholic",
       "glass": "highball",
       "ice": "none",
@@ -23315,6 +25036,9 @@
         "保力達B韓國燒酒"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "highball",
       "glass": "rocks",
       "ice": "none",
@@ -23372,6 +25096,9 @@
         "維士比咖啡"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "digestif",
       "glass": "rocks",
       "ice": "none",
@@ -23431,6 +25158,9 @@
         "保力達米酒維大力"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "highball",
       "ice": "none",
@@ -23496,6 +25226,9 @@
         "保力達B綠茶"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "aperitivo",
       "glass": "rocks",
       "ice": "none",
@@ -23553,6 +25286,9 @@
         "健酪保力達咖啡"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "digestif",
       "glass": "rocks",
       "ice": "none",
@@ -23620,6 +25356,9 @@
         "保力達B維大力"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "highball",
       "ice": "none",
@@ -23677,6 +25416,9 @@
         "保力達鳳梨蘭姆"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "punch",
       "glass": "highball",
       "ice": "none",
@@ -23754,6 +25496,9 @@
         "保力達楊桃汁"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "refreshing",
       "glass": "rocks",
       "ice": "none",
@@ -23814,6 +25559,9 @@
         "保力達涼茶"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "aperitivo",
       "glass": "rocks",
       "ice": "none",
@@ -23873,6 +25621,9 @@
         "保力達椰子水"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "refreshing",
       "glass": "highball",
       "ice": "none",
@@ -23930,6 +25681,9 @@
         "保力達礦泉水"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "refreshing",
       "glass": "rocks",
       "ice": "none",
@@ -23986,6 +25740,9 @@
         "保力達烏龍茶"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "aperitivo",
       "glass": "rocks",
       "ice": "none",
@@ -24043,6 +25800,9 @@
         "保力達蘆筍汁"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "aperitivo",
       "glass": "rocks",
       "ice": "none",
@@ -24100,6 +25860,9 @@
         "保力達沙士"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "none",
@@ -24158,6 +25921,9 @@
         "保力達紅酒"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "wine",
       "ice": "none",
@@ -24216,6 +25982,9 @@
         "保力達提拉米蘇"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "rocks",
       "ice": "none",
@@ -24294,6 +26063,9 @@
         "保力達蠻牛"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "none",
@@ -24352,6 +26124,9 @@
         "保力達鮮奶"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "rocks",
       "ice": "none",
@@ -24411,6 +26186,9 @@
         "維大力米酒"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "highball",
       "ice": "none",
@@ -24471,6 +26249,9 @@
         "米酒蔓越莓"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "coupe",
       "ice": "none",
@@ -24530,6 +26311,9 @@
         "米酒西瓜"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "refreshing",
       "glass": "highball",
       "ice": "none",
@@ -24593,6 +26377,9 @@
         "米酒豆漿"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "highball",
       "ice": "none",
@@ -24652,6 +26439,9 @@
         "米酒蘋果西打"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "fizz",
       "glass": "highball",
       "ice": "none",
@@ -24714,6 +26504,9 @@
         "台啤養樂多"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "refreshing",
       "glass": "highball",
       "ice": "none",
@@ -24773,6 +26566,9 @@
         "啤酒燒酒"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "none",
@@ -24831,6 +26627,9 @@
         "台啤可爾必思"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "refreshing",
       "glass": "highball",
       "ice": "none",
@@ -24889,6 +26688,9 @@
         "蘋果西打啤酒"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "fizz",
       "glass": "wine",
       "ice": "none",
@@ -24951,6 +26753,9 @@
         "啤酒番茄汁"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sour",
       "glass": "collins",
       "ice": "none",
@@ -25014,6 +26819,9 @@
         "台啤燒酒"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "none",
@@ -25071,6 +26879,9 @@
         "台啤柳橙"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "refreshing",
       "glass": "highball",
       "ice": "none",
@@ -25134,6 +26945,9 @@
         "七喜血腥瑪莉"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sour",
       "glass": "collins",
       "ice": "none",
@@ -25204,6 +27018,9 @@
         "玉泉彩虹"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "fizz",
       "glass": "highball",
       "ice": "none",
@@ -25288,6 +27105,9 @@
         "玉泉清酒萊姆"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "refreshing",
       "glass": "highball",
       "ice": "none",
@@ -25356,6 +27176,9 @@
         "玉泉全家福"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "wine",
       "ice": "none",
@@ -25418,6 +27241,9 @@
         "玉泉荔枝酒"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "wine",
       "ice": "none",
@@ -25476,6 +27302,9 @@
         "玉泉天馬"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "fizz",
       "glass": "highball",
       "ice": "none",
@@ -25553,6 +27382,9 @@
         "玉泉粉佳人"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "wine",
       "ice": "none",
@@ -25622,6 +27454,9 @@
         "玉泉蘭郁"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "fizz",
       "glass": "highball",
       "ice": "none",
@@ -25699,6 +27534,9 @@
         "玉泉梅酒"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "highball",
       "ice": "none",
@@ -25761,6 +27599,9 @@
         "玉泉金香白"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "fizz",
       "glass": "highball",
       "ice": "none",
@@ -25831,6 +27672,9 @@
         "玉泉鳳凰"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "fizz",
       "glass": "highball",
       "ice": "none",
@@ -25902,6 +27746,9 @@
         "梅啤"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "fizz",
       "glass": "highball",
       "ice": "none",
@@ -25960,6 +27807,9 @@
         "小米酒蜂蜜檸檬"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "none",
@@ -26030,6 +27880,9 @@
         "小米酒蘇打"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "fizz",
       "glass": "highball",
       "ice": "none",
@@ -26088,6 +27941,9 @@
         "小米酒咖啡"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "digestif",
       "glass": "mug",
       "ice": "none",
@@ -26147,6 +28003,9 @@
         "小米酒蔓越莓"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "coupe",
       "ice": "none",
@@ -26206,6 +28065,9 @@
         "小米酒加雪碧"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "fizz",
       "glass": "highball",
       "ice": "none",
@@ -26269,6 +28131,9 @@
         "小米酒養樂多"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "highball",
       "ice": "none",
@@ -26327,6 +28192,9 @@
         "小米酒柳橙汁"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "highball",
       "ice": "none",
@@ -26389,6 +28257,9 @@
         "紅酒蘋果西打"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "fizz",
       "glass": "wine",
       "ice": "none",
@@ -26452,6 +28323,9 @@
         "琴酒可林"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "highball",
       "glass": "collins",
       "ice": "none",
@@ -26533,6 +28407,9 @@
         "Gin Tonic"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "highball",
       "glass": "highball",
       "ice": "none",
@@ -26603,6 +28480,9 @@
         "琴酒萊姆"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "stirred",
@@ -26680,6 +28560,9 @@
         "愛蘭白酒美人香"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sour",
       "glass": "coupe",
       "ice": "shaken",
@@ -26765,6 +28648,9 @@
         "愛蘭白酒蜂蜜"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "rocks",
       "ice": "none",
@@ -26830,6 +28716,9 @@
         "愛蘭白酒雪碧"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "fizz",
       "glass": "highball",
       "ice": "none",
@@ -26901,6 +28790,9 @@
         "梅酒薄荷"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "refreshing",
       "glass": "collins",
       "ice": "crushed",
@@ -26982,6 +28874,9 @@
         "梅酒琴湯"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "fizz",
       "glass": "collins",
       "ice": "none",
@@ -27060,6 +28955,9 @@
         "梅酒茶割"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "highball",
       "ice": "none",
@@ -27121,6 +29019,9 @@
         "梅子啤酒"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "fizz",
       "glass": "highball",
       "ice": "none",
@@ -27182,6 +29083,9 @@
         "梅酒割"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "refreshing",
       "glass": "highball",
       "ice": "none",
@@ -27241,6 +29145,9 @@
         "梅酒甜點"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "other",
       "ice": "none",
@@ -27300,6 +29207,9 @@
         "梅酒熱飲"
       ],
       "collection": "taiwan",
+      "collections": [
+        "taiwan"
+      ],
       "category": "sweet",
       "glass": "mug",
       "ice": "none",
@@ -27365,6 +29275,9 @@
         "西班牙桑格麗亞"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "punch",
       "glass": "other",
       "ice": "none",
@@ -27477,6 +29390,9 @@
         "Sangria"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "punch",
       "glass": "coupe",
       "ice": "shaken",
@@ -27561,6 +29477,9 @@
         "White Sangria"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "punch",
       "glass": "rocks",
       "ice": "none",
@@ -27640,6 +29559,9 @@
         "古巴莫吉托"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "refreshing",
       "glass": "collins",
       "ice": "crushed",
@@ -27729,6 +29651,9 @@
         "龍舌蘭葡萄柚"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "refreshing",
       "glass": "collins",
       "ice": "none",
@@ -27814,6 +29739,9 @@
         "Paloma Simple"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "refreshing",
       "glass": "collins",
       "ice": "none",
@@ -27886,6 +29814,9 @@
         "艾倫翰 Spritz"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "aperitivo",
       "glass": "wine",
       "ice": "none",
@@ -27958,6 +29889,9 @@
         "Summer Breeze"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "refreshing",
       "glass": "collins",
       "ice": "none",
@@ -28036,6 +29970,9 @@
         "Summer Rose"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "sweet",
       "glass": "martini",
       "ice": "shaken",
@@ -28110,6 +30047,9 @@
         "Summertime"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "sweet",
       "glass": "martini",
       "ice": "shaken",
@@ -28188,6 +30128,9 @@
         "甜味苦艾高球"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "aperitivo",
       "glass": "highball",
       "ice": "none",
@@ -28274,6 +30217,9 @@
         "西瓜伏特加酸"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "sour",
       "glass": "rocks",
       "ice": "shaken",
@@ -28368,6 +30314,9 @@
         "熱甜酒"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "digestif",
       "glass": "mug",
       "ice": "none",
@@ -28463,6 +30412,9 @@
         "Hot Toddy Tea"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "digestif",
       "glass": "mug",
       "ice": "none",
@@ -28548,6 +30500,9 @@
         "熱白蘭地"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "digestif",
       "glass": "mug",
       "ice": "none",
@@ -28626,6 +30581,9 @@
         "香料熱紅酒"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "digestif",
       "glass": "mug",
       "ice": "none",
@@ -28751,6 +30709,9 @@
         "香料熱白酒"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "digestif",
       "glass": "mug",
       "ice": "none",
@@ -28832,6 +30793,9 @@
         "蘋果白蘭地熱飲"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "digestif",
       "glass": "mug",
       "ice": "none",
@@ -28905,6 +30869,9 @@
         "Spiced Berry Hot Toddy"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "digestif",
       "glass": "mug",
       "ice": "none",
@@ -28993,6 +30960,9 @@
         "冬日派對賓士"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "punch",
       "glass": "coupe",
       "ice": "shaken",
@@ -29082,6 +31052,9 @@
         "熱咖啡利口酒"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "digestif",
       "glass": "mug",
       "ice": "none",
@@ -29161,6 +31134,9 @@
         "熱咖啡"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "digestif",
       "glass": "mug",
       "ice": "none",
@@ -29243,6 +31219,9 @@
         "聖誕蛋酒"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "flip",
       "glass": "mug",
       "ice": "none",
@@ -29335,6 +31314,9 @@
         "瑞典賓士"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "punch",
       "glass": "rocks",
       "ice": "none",
@@ -29414,6 +31396,9 @@
         "啤酒龐希"
       ],
       "collection": "seasonal",
+      "collections": [
+        "seasonal"
+      ],
       "category": "punch",
       "glass": "collins",
       "ice": "none",

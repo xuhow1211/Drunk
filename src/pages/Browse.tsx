@@ -8,7 +8,7 @@ import { useCocktails } from '../hooks/useCocktails';
 import { FilterBar } from '../components/FilterBar';
 import { RecipeGrid } from '../components/RecipeGrid';
 import { Reveal } from '../components/Reveal';
-import { DEFAULT_FILTERS, collectFacets, filterRecipes, sortRecipes } from '../lib/filters';
+import { DEFAULT_FILTERS, collectFacets, filterRecipes, getRecipeCollections, sortRecipes } from '../lib/filters';
 import type { FilterState } from '../lib/filters';
 import type { Collection } from '../lib/types';
 
@@ -31,8 +31,13 @@ export function BrowsePage({ title, subtitle, collections }: BrowsePageProps) {
   const { recipes, ingredients } = useCocktails();
   const [filters, setFilters] = useState<FilterState>(DEFAULT_FILTERS);
 
+  // 一杯酒可能同時屬於多個系列（例如既是 IBA 經典也是票選熱門），
+  // 因此系列範圍以 collections 陣列判斷，不能只看單一 collection。
   const scoped = useMemo(
-    () => recipes.filter((recipe) => collections.includes(recipe.collection)),
+    () =>
+      recipes.filter((recipe) =>
+        getRecipeCollections(recipe).some((collection) => collections.includes(collection)),
+      ),
     [recipes, collections],
   );
 
@@ -44,8 +49,8 @@ export function BrowsePage({ title, subtitle, collections }: BrowsePageProps) {
   );
 
   const filtered = useMemo(
-    () => filterRecipes(scoped, filters, ingredientNames),
-    [scoped, filters, ingredientNames],
+    () => filterRecipes(scoped, filters, ingredientNames, { collections }),
+    [scoped, filters, ingredientNames, collections],
   );
 
   const sorted = useMemo(() => sortRecipes(filtered, filters.sort), [filtered, filters.sort]);

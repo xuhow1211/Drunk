@@ -142,8 +142,21 @@ export interface Recipe {
   nameZh: string;
   /** 別名，供搜尋使用。 */
   aliases: string[];
-  /** 配方系列分類。 */
+  /**
+   * 配方系列分類（主要系列）。
+   *
+   * 定義為 `collections[0]`，保留此欄位是為了相容既有程式；
+   * 一杯酒可能同時屬於多個系列（例如既是 IBA 經典也是票選熱門），
+   * 系列篩選一律以 `collections` 為準。
+   */
   collection: Collection;
+  /**
+   * 配方所屬的全部系列。
+   *
+   * 同一杯酒出現在多個資料來源時會整併（材料取聯集、熱門度取最大值），
+   * 各來源的系列會一併保留，因此同一杯可能同時出現在多個瀏覽頁面。
+   */
+  collections: Collection[];
   /** 調酒類型（flip、sour、highball 等）。 */
   category: string;
   /** 建議杯型。 */
@@ -170,8 +183,8 @@ export interface Recipe {
   occasion: string[];
   /** 熱門度（數字越大越熱門）。 */
   popularity: number;
-  /** 來源網址。 */
-  sourceUrl: string;
+  /** 來源網址；建置期已過濾非 http(s) 協定，沒有合法網址時為 null。 */
+  sourceUrl: string | null;
   /** 來源網站名稱。 */
   sourceSite?: string;
   /** 所有材料（不含裝飾）的食材 id，供比對引擎快速取用。 */

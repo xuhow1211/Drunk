@@ -6,6 +6,7 @@
 import { useMemo, useRef } from 'react';
 import type { PointerEvent as ReactPointerEvent } from 'react';
 import { useCocktails } from '../hooks/useCocktails';
+import { getRecipeCollections } from '../lib/filters';
 import { CountUp } from '../components/CountUp';
 import { EntryCards } from '../components/EntryCards';
 import { Hero } from '../components/Hero';
@@ -23,8 +24,10 @@ export function Home() {
     let popular = 0;
     const sources = new Set<string>();
     for (const recipe of recipes) {
-      if (recipe.collection === 'classic' || recipe.collection === 'new-era') classic += 1;
-      if (recipe.collection === 'popular') popular += 1;
+      // 一杯酒可能同時屬於多個系列，杯數須依 collections 陣列累計
+      const collections = getRecipeCollections(recipe);
+      if (collections.includes('classic') || collections.includes('new-era')) classic += 1;
+      if (collections.includes('popular')) popular += 1;
       sources.add(recipe.sourceSite ?? '其他');
     }
     return { classic, popular, sources: sources.size };

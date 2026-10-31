@@ -20,8 +20,13 @@ const DATA_DIR = path.join(ROOT_DIR, 'data');
 const OUT_DIR = path.join(ROOT_DIR, 'src', 'data');
 
 /**
- * 配方來源，順序即優先序：同一個配方 id 出現於多個來源時，保留優先序較前者的版本。
+ * 配方來源，順序即優先序：同一個配方 id 出現於多個來源時，以優先序較前者的欄位為主。
  * 理由：iba-classics 為官方清單，其 collection 分類（classic / new-era）最具權威性。
+ *
+ * 重要：優先序只決定「欄位以誰為準」，不代表可以丟棄另一來源的資料。
+ * 跨來源重複的配方會整併（材料取聯集、collections 取聯集、popularity 取最大值），
+ * 詳見 mergeRecipes；否則票選熱門榜會整批消失，且保留版的材料可能比被丟棄版更少，
+ * 讓比對引擎誤判缺料。
  */
 const SOURCES = [
   { file: 'iba-classics.json', label: 'IBA 官方經典', required: true, defaultCollection: 'classic' },
@@ -145,11 +150,14 @@ const stats = {
   ingredientsMerged: 0,
   ingredientConflicts: [],
   recipesTotal: 0,
-  duplicateRecipes: [],
+  /** 跨來源重複配方的整併明細（取代舊有的「略過」清單）。 */
+  mergedRecipes: [],
   collectionCounts: {},
   substitutedRelations: 0,
   inferredRelations: 0,
   unknownCollectionValues: [],
+  /** sourceUrl 非 http(s) 協定而被清空的紀錄。 */
+  sourceUrlViolations: [],
   warnings: [],
 };
 
@@ -291,6 +299,102 @@ function normalizeCollection(raw, fallback) {
   return fallback;
 }
 
+/** 允許的來源網址協定：僅 http 與 https。 */
+const HTTP_URL_PATTERN = /^https?:\/\//i;
+
+/**
+ * 依 http(s) 白名單過濾來源網址。
+ *
+ * 爬蟲資料不受信任：偽協定（javascript:、data: 等）若原樣進入 href，
+ * 使用者點擊就會執行非預期腳本，因此非 http(s) 的值一律清空為 null，
+ * 並記入警告清單供追查來源。
+ *
+ * @param {unknown} value 原始網址
+ * @param {string} context 紀錄用的說明（通常是配方 id）
+ * @returns {string | null} 合法網址；不合法或空值時為 null
+ */
+function sanitizeSourceUrl(value, context) {
+  const cleaned = cleanString(value);
+  if (!cleaned) return null;
+  if (HTTP_URL_PATTERN.test(cleaned)) return cleaned;
+  stats.sourceUrlViolations.push(`${context}：${cleaned}`);
+  return null;
+}
+
+/**
+ * 判斷配方是否帶有「有效的中文名」。
+ *
+ * 中文名等於英文名等同於沒有翻譯，中文站不該直接顯示英文，
+ * 因此這類配方在整併時視為缺中文名處理。
+ *
+ * @param {object} recipe 已正規化的配方
+ * @returns {boolean} 是否有有效中文名
+ */
+function hasChineseName(recipe) {
+  const zh = cleanString(recipe.nameZh);
+  if (!zh) return false;
+  const en = cleanString(recipe.nameEn);
+  return en === '' || zh !== en;
+}
+
+/**
+ * 整併同一 id 的兩份配方。
+ *
+ * 設計原則：優先來源決定「欄位以誰為準」，但另一來源的獨有資料不得遺失。
+ *   - 材料：取聯集。同一材料 id 以優先來源的 amount / unit 為準（IBA 用量較權威），
+ *           另一來源的獨有材料附加在後，並沿用其 amount / unit / optional。
+ *   - collections：取聯集。一杯酒可同時屬於多個系列（例如既是 IBA 經典也是票選熱門）。
+ *   - popularity：取最大值，避免熱門度被較低者覆蓋。
+ *   - 其他欄位：以優先來源為主；優先來源該欄位為空而另一方有值時採用另一方的值。
+ *
+ * @param {object} primary 優先來源的配方（已被整併過的既有版本）
+ * @param {object} secondary 另一來源的配方
+ * @returns {object} 整併後的配方
+ */
+function mergeRecipes(primary, secondary) {
+  const primaryIngredientIds = new Set(primary.ingredients.map((item) => item.id));
+  const ingredients = [
+    ...primary.ingredients,
+    ...secondary.ingredients.filter((item) => !primaryIngredientIds.has(item.id)),
+  ];
+
+  const merged = { ...primary };
+  merged.ingredients = ingredients;
+  merged.ingredientIds = ingredients.map((item) => item.id);
+  merged.collections = dedupeStrings([...primary.collections, ...secondary.collections]);
+  merged.collection = merged.collections[0] ?? primary.collection;
+  merged.popularity = Math.max(primary.popularity, secondary.popularity);
+
+  // 文字欄位：優先來源為空時改用另一方
+  for (const key of ['nameEn', 'category', 'glass', 'ice', 'abv', 'time', 'sourceUrl', 'sourceSite']) {
+    if (!cleanString(merged[key]) && cleanString(secondary[key])) {
+      merged[key] = secondary[key];
+    }
+  }
+
+  // 陣列欄位：優先來源為空陣列時改用另一方
+  for (const key of ['aliases', 'steps', 'tags', 'flavor', 'occasion', 'garnish']) {
+    const current = merged[key];
+    const incoming = secondary[key];
+    if (Array.isArray(current) && current.length === 0 && Array.isArray(incoming) && incoming.length > 0) {
+      merged[key] = incoming;
+    }
+  }
+
+  // 中文名：優先來源的中文名等同英文名（未翻譯）時，改採另一方的中文名
+  if (!hasChineseName(primary) && hasChineseName(secondary)) {
+    merged.nameZh = secondary.nameZh;
+  }
+
+  // 難度：優先來源沒有有效數值時才改用另一方
+  if (!(merged.difficulty > 0) && secondary.difficulty > 0) {
+    merged.difficulty = secondary.difficulty;
+  }
+
+  merged.garnishIds = merged.garnish;
+  return merged;
+}
+
 /**
  * 正規化單一配方，補上比對引擎所需的 ingredientIds 與 garnishIds。
  */
@@ -301,12 +405,17 @@ function normalizeRecipe(raw, source) {
 
   const garnish = normalizeGarnish(raw.garnish);
 
+  const collection = normalizeCollection(raw.collection, source.defaultCollection);
+  const id = cleanString(raw.id);
+
   const recipe = {
-    id: cleanString(raw.id),
+    id,
     nameEn: cleanString(raw.nameEn),
     nameZh: cleanString(raw.nameZh),
     aliases: dedupeStrings(Array.isArray(raw.aliases) ? raw.aliases : []),
-    collection: normalizeCollection(raw.collection, source.defaultCollection),
+    collection,
+    /** 配方所屬的全部系列；單一來源時只有一項，跨來源整併後會有多項。 */
+    collections: [collection],
     category: cleanString(raw.category),
     glass: cleanString(raw.glass),
     ice: cleanString(raw.ice),
@@ -320,7 +429,7 @@ function normalizeRecipe(raw, source) {
     flavor: dedupeStrings(Array.isArray(raw.flavor) ? raw.flavor : []),
     occasion: dedupeStrings(Array.isArray(raw.occasion) ? raw.occasion : []),
     popularity: typeof raw.popularity === 'number' ? raw.popularity : 0,
-    sourceUrl: cleanString(raw.sourceUrl) || source.sourceUrl || '',
+    sourceUrl: sanitizeSourceUrl(cleanString(raw.sourceUrl) || source.sourceUrl, `配方 ${id}`),
     sourceSite: cleanString(raw.sourceSite) || source.site,
     ingredientIds: ingredients.map((item) => item.id),
     garnishIds: garnish,
@@ -329,7 +438,6 @@ function normalizeRecipe(raw, source) {
   // nameZh 不得為空：缺者以英文名或 id 補上，再由驗證關卡把關。
   if (!recipe.nameZh) {
     recipe.nameZh = recipe.nameEn || recipe.id;
-    stats.warnings.push(`配方 ${recipe.id} 缺 nameZh，以「${recipe.nameZh}」補上`);
   }
 
   return recipe;
@@ -352,6 +460,8 @@ function main() {
 
   // 2. 讀取各來源，合併 extraIngredients 與配方
   const recipeMap = new Map();
+  /** 配方 id → 優先來源標籤，供整併明細顯示用。 */
+  const recipeSourceLabels = new Map();
   const extraIngredientSources = [];
 
   for (const source of SOURCES) {
@@ -360,7 +470,12 @@ function main() {
     if (!data) continue;
 
     const site = cleanString(data.source) || source.label;
-    const sourceInfo = { ...source, site, sourceUrl: cleanString(data.sourceUrl) };
+    // 來源層級的網址同樣不可信，先過濾一次，避免同一筆違規被每個配方重複記錄
+    const sourceInfo = {
+      ...source,
+      site,
+      sourceUrl: sanitizeSourceUrl(data.sourceUrl, `來源檔 ${source.file}`),
+    };
 
     for (const raw of data.extraIngredients ?? []) {
       const incoming = normalizeIngredient(raw);
@@ -396,12 +511,25 @@ function main() {
       if (!recipe.id) continue;
       const existing = recipeMap.get(recipe.id);
       if (existing) {
-        stats.duplicateRecipes.push(
-          `${recipe.id}（${existing.collection} 保留，${recipe.collection} 略過）`,
-        );
+        // 跨來源重複：不整份丟棄，改為整併（材料聯集、collections 聯集、popularity 取最大）
+        const merged = mergeRecipes(existing, recipe);
+        recipeMap.set(recipe.id, merged);
+        stats.mergedRecipes.push({
+          id: recipe.id,
+          primarySource: recipeSourceLabels.get(recipe.id) ?? source.label,
+          secondarySource: source.label,
+          primaryIngredients: existing.ingredients.length,
+          secondaryIngredients: recipe.ingredients.length,
+          mergedIngredients: merged.ingredients.length,
+          primaryPopularity: existing.popularity,
+          secondaryPopularity: recipe.popularity,
+          mergedPopularity: merged.popularity,
+          collections: merged.collections,
+        });
         continue;
       }
       recipeMap.set(recipe.id, recipe);
+      recipeSourceLabels.set(recipe.id, source.label);
     }
   }
 
@@ -510,11 +638,13 @@ function main() {
 
   // 5. 產出
   const recipes = [...recipeMap.values()];
-  for (const recipe of recipes) {
-    stats.collectionCounts[recipe.collection] =
-      (stats.collectionCounts[recipe.collection] ?? 0) + 1;
-  }
   stats.recipesTotal = recipes.length;
+  for (const recipe of recipes) {
+    // 同一杯可同屬多個系列，因此各系列的杯數會大於配方總數
+    for (const collection of recipe.collections) {
+      stats.collectionCounts[collection] = (stats.collectionCounts[collection] ?? 0) + 1;
+    }
+  }
 
   const catalog = {
     version: cleanString(base.version) || '1.0',
@@ -541,26 +671,54 @@ function main() {
   );
 
   // 6. 統計
+  const popularCount = stats.collectionCounts.popular ?? 0;
+  const classicCount = (stats.collectionCounts.classic ?? 0) + (stats.collectionCounts['new-era'] ?? 0);
+
   console.log('=== join 這麼喝：資料管線建置完成 ===');
   console.log(`配方總數：${stats.recipesTotal} 杯`);
-  console.log('各系列杯數：');
+  console.log('各系列杯數（同一杯可同時屬於多個系列）：');
   for (const [collection, count] of Object.entries(stats.collectionCounts).sort((a, b) => b[1] - a[1])) {
     console.log(`  - ${collection}：${count} 杯`);
   }
+  console.log(`/popular 頁面：${popularCount} 杯`);
+  console.log(`/classic + /new-era 頁面：${classicCount} 杯`);
   console.log(
     `統一食材總數：${ingredients.length} 筆（主對照表 ${baseIngredientCount} 筆 +` +
       ` extraIngredients 新增 ${stats.ingredientsAdded} 筆 + 合併 ${stats.ingredientsMerged} 筆）`,
   );
+  console.log(
+    `食材欄位衝突：${stats.ingredientConflicts.length} 筆（超過 0 筆時列為警告，但不阻斷建置）`,
+  );
   console.log(`替代規則：${substitutions.length} 組（人工判定 ${stats.substitutedRelations} 筆、自動推導 ${stats.inferredRelations} 筆）`);
   console.log(`驗證結果：全部通過（${recipes.length} 杯配方的材料與裝飾 id 皆可解析，id 唯一，nameZh 非空）`);
 
-  if (stats.duplicateRecipes.length > 0) {
-    console.log(`\n跨來源重複配方（保留優先序較前者的版本，共 ${stats.duplicateRecipes.length} 筆）：`);
-    for (const item of stats.duplicateRecipes) console.log('  - ' + item);
+  if (stats.mergedRecipes.length > 0) {
+    console.log(
+      `\n跨來源重複配方整併（材料取聯集、collections 取聯集、popularity 取最大值，` +
+        `共 ${stats.mergedRecipes.length} 杯）：`,
+    );
+    for (const item of stats.mergedRecipes) {
+      console.log(
+        `  - ${item.id}：` +
+          `${item.primarySource}（材料 ${item.primaryIngredients} 項／熱門度 ${item.primaryPopularity}）` +
+          ` + ${item.secondarySource}（材料 ${item.secondaryIngredients} 項／熱門度 ${item.secondaryPopularity}）` +
+          ` → 材料 ${item.mergedIngredients} 項／熱門度 ${item.mergedPopularity}／系列 ${item.collections.join('、')}`,
+      );
+    }
   }
   if (stats.ingredientConflicts.length > 0) {
-    console.log(`\n食材欄位衝突（依規則合併，共 ${stats.ingredientConflicts.length} 筆）：`);
+    // 衝突以統計與警告呈現，不阻斷建置：食材欄位衝突已有明確的合併規則，
+    // 合法資料不應因此建置失敗，但數量必須被看見。
+    console.log(
+      `\n[警告] 食材欄位衝突（依規則合併，共 ${stats.ingredientConflicts.length} 筆）：`,
+    );
     for (const item of stats.ingredientConflicts) console.log('  - ' + item);
+  }
+  if (stats.sourceUrlViolations.length > 0) {
+    console.log(
+      `\n[警告] sourceUrl 非 http(s) 協定已清空（共 ${stats.sourceUrlViolations.length} 筆）：`,
+    );
+    for (const item of stats.sourceUrlViolations) console.log('  - ' + item);
   }
   if (stats.unknownCollectionValues.length > 0) {
     console.log(`\n無法對應的 collection 值（共 ${stats.unknownCollectionValues.length} 筆）：`);
