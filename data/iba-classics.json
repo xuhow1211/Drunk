@@ -1,0 +1,7333 @@
+{
+  "source": "IBA Official Cocktails",
+  "sourceUrl": "https://www.iba-world.com/cocktails/",
+  "fetchedAt": "2026-10-31",
+  "recipes": [
+    {
+      "id": "alexander",
+      "nameEn": "Alexander",
+      "nameZh": "亞歷山大",
+      "aliases": [
+        "亞歷山大調酒"
+      ],
+      "collection": "classic",
+      "category": "flip",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 25%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "brandy-cognac",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "cacao-liqueur-dark",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "cream",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將白蘭地／干邑、可可利口酒（黑）、鮮奶油依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "以肉豆蔻裝飾後享用。"
+      ],
+      "garnish": [
+        "nutmeg"
+      ],
+      "tags": [
+        "奶油調酒",
+        "巧克力",
+        "經典"
+      ],
+      "flavor": [
+        "creamy",
+        "sweet",
+        "coffee"
+      ],
+      "occasion": [
+        "飯後",
+        "派對"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/alexander/"
+    },
+    {
+      "id": "americano",
+      "nameEn": "Americano",
+      "nameZh": "美式",
+      "aliases": [
+        "Americano",
+        "美式苦酒"
+      ],
+      "collection": "classic",
+      "category": "aperitivo",
+      "glass": "rocks",
+      "ice": "stirred",
+      "difficulty": 1,
+      "abv": "約 16%",
+      "time": "3 分鐘",
+      "ingredients": [
+        {
+          "id": "campari",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "vermouth-red",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "soda-water",
+          "amount": 1,
+          "unit": "splash",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將金巴利、甜味美思（紅）、蘇打水／氣泡水依序倒入裝滿冰塊的古典杯。",
+        "輕攪拌約 10 秒，使材料均勻融合後享用。",
+        "以柳橙皮、檸檬皮裝飾後享用。"
+      ],
+      "garnish": [
+        "orange-peel",
+        "lemon-peel"
+      ],
+      "tags": [
+        "開胃酒",
+        "苦味",
+        "低酒精"
+      ],
+      "flavor": [
+        "bitter",
+        "herbal",
+        "citrus"
+      ],
+      "occasion": [
+        "開胃",
+        "餐前"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/americano/"
+    },
+    {
+      "id": "angel-face",
+      "nameEn": "Angel Face",
+      "nameZh": "天使之顏",
+      "aliases": [
+        "Angel Face"
+      ],
+      "collection": "classic",
+      "category": "sweet",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 24%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "apricot-brandy",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "calvados",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將琴酒（金酒）、杏桃白蘭地、蘋果白蘭地依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "奶油調酒",
+        "杏桃",
+        "經典"
+      ],
+      "flavor": [
+        "fruity",
+        "sweet",
+        "creamy"
+      ],
+      "occasion": [
+        "飯後",
+        "浪漫"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/angel-face/"
+    },
+    {
+      "id": "aviation",
+      "nameEn": "Aviation",
+      "nameZh": "飛行",
+      "aliases": [
+        "Aviation",
+        "航空"
+      ],
+      "collection": "classic",
+      "category": "sour",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 25%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "maraschino",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "violette-liqueur",
+          "amount": 1,
+          "unit": "bar-spoon",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將琴酒（金酒）、黑櫻桃酒、檸檬汁、紫羅蘭利口酒依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "以櫻桃裝飾後享用。"
+      ],
+      "garnish": [
+        "cherry"
+      ],
+      "tags": [
+        "酸甜",
+        "花果香",
+        "經典"
+      ],
+      "flavor": [
+        "fruity",
+        "sour",
+        "herbal"
+      ],
+      "occasion": [
+        "派對",
+        "浪漫"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/aviation/"
+    },
+    {
+      "id": "bees-knees",
+      "nameEn": "Bee’s Knees",
+      "nameZh": "蜜蜂的膝蓋",
+      "aliases": [
+        "Bee's Knees",
+        "蜂膝"
+      ],
+      "collection": "new-era",
+      "category": "sweet",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 24%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 52.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "honey-syrup",
+          "amount": 2,
+          "unit": "tsp",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orange-juice",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將琴酒（金酒）、蜂蜜糖漿、檸檬汁、柳橙汁依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "以柳橙皮裝飾後享用。"
+      ],
+      "garnish": [
+        "orange-peel"
+      ],
+      "tags": [
+        "蜂蜜",
+        "甜味",
+        "新時代"
+      ],
+      "flavor": [
+        "sweet",
+        "citrus"
+      ],
+      "occasion": [
+        "派對",
+        "浪漫"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/bees-knees/"
+    },
+    {
+      "id": "bellini",
+      "nameEn": "Bellini",
+      "nameZh": "貝里尼",
+      "aliases": [
+        "Bellini"
+      ],
+      "collection": "classic",
+      "category": "fizzy",
+      "glass": "flute",
+      "ice": "stirred",
+      "difficulty": 1,
+      "abv": "約 12%",
+      "time": "3 分鐘",
+      "ingredients": [
+        {
+          "id": "prosecco",
+          "amount": 100,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "peach-puree",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將白桃果泥倒入裝冰的調酒杯。",
+        "加入普羅塞克氣泡酒，輕輕攪拌後倒入冰鎮的香檳杯。",
+        "IBA 變體：Puccini 用鮮橘子汁、Rossini 用草莓果泥、Tintoretto 用鮮石榴汁。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "早午餐",
+        "氣泡",
+        "水果"
+      ],
+      "flavor": [
+        "fruity",
+        "fizzy",
+        "sweet"
+      ],
+      "occasion": [
+        "夏日",
+        "派對",
+        "浪漫"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/bellini/"
+    },
+    {
+      "id": "between-the-sheets",
+      "nameEn": "Between the Sheets",
+      "nameZh": "床單之間",
+      "aliases": [
+        "Between the Sheets"
+      ],
+      "collection": "classic",
+      "category": "sweet",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 26%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "rum-white",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "brandy-cognac",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orange-liqueur",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將白蘭姆酒、白蘭地／干邑、橙味利口酒（君度／橙皮酒）、檸檬汁依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "經典",
+        "甜味",
+        "雙基酒"
+      ],
+      "flavor": [
+        "sweet",
+        "citrus"
+      ],
+      "occasion": [
+        "派對",
+        "浪漫"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/between-the-sheets/"
+    },
+    {
+      "id": "black-russian",
+      "nameEn": "Black Russian",
+      "nameZh": "黑俄羅斯",
+      "aliases": [
+        "Black Russian"
+      ],
+      "collection": "classic",
+      "category": "spirit-forward",
+      "glass": "rocks",
+      "ice": "large-cube",
+      "difficulty": 1,
+      "abv": "約 22%",
+      "time": "2 分鐘",
+      "ingredients": [
+        {
+          "id": "vodka",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "coffee-liqueur",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將伏特加、咖啡利口酒依序倒入裝滿冰塊的古典杯。",
+        "輕攪拌約 10 秒，使材料均勻融合後享用。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "咖啡",
+        "簡易",
+        "經典"
+      ],
+      "flavor": [
+        "coffee",
+        "sweet"
+      ],
+      "occasion": [
+        "獨飲",
+        "飯後"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/black-russian/"
+    },
+    {
+      "id": "bloody-mary",
+      "nameEn": "Bloody Mary",
+      "nameZh": "血腥瑪莉",
+      "aliases": [
+        "Bloody Mary"
+      ],
+      "collection": "classic",
+      "category": "spirit-forward",
+      "glass": "highball",
+      "ice": "none",
+      "difficulty": 2,
+      "abv": "約 15%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "vodka",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "tomato-juice",
+          "amount": 90,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "worcestershire-sauce",
+          "amount": 2,
+          "unit": "dash",
+          "optional": false
+        },
+        {
+          "id": "tabasco",
+          "amount": null,
+          "unit": null,
+          "optional": false
+        },
+        {
+          "id": "celery-salt",
+          "amount": null,
+          "unit": null,
+          "optional": false
+        },
+        {
+          "id": "black-pepper",
+          "amount": null,
+          "unit": null,
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將伏特加、番茄汁、檸檬汁、烏醋辣醬與辣椒醬等所有材料放入調酒杯。",
+        "加冰後輕輕攪拌均勻。",
+        "倒入岩石杯；如需加冰則改用高球杯。",
+        "以芹菜、檸檬皮裝飾後享用。",
+        "部分材料 IBA 未標示確切用量（如補滿至杯口或依口味添加），用量依個人口味調整。"
+      ],
+      "garnish": [
+        "celery",
+        "lemon-peel"
+      ],
+      "tags": [
+        "早午餐",
+        "鹹味",
+        "辛香"
+      ],
+      "flavor": [
+        "spicy",
+        "sour",
+        "herbal"
+      ],
+      "occasion": [
+        "派對",
+        "夏日"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/bloody-mary/"
+    },
+    {
+      "id": "boulevardier",
+      "nameEn": "Boulevardier",
+      "nameZh": "布魯威爾大道",
+      "aliases": [
+        "Boulevardier"
+      ],
+      "collection": "classic",
+      "category": "spirit-forward",
+      "glass": "coupe",
+      "ice": "stirred",
+      "difficulty": 2,
+      "abv": "約 28%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "whiskey-bourbon",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "campari",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "vermouth-red",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將波本威士忌、金巴利、甜味美思（紅）依序加入調酒杯。",
+        "加入冰塊，攪拌約 20 至 30 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "以柳橙皮、檸檬皮裝飾後享用。"
+      ],
+      "garnish": [
+        "orange-peel",
+        "lemon-peel"
+      ],
+      "tags": [
+        "苦味",
+        "威士忌",
+        "經典"
+      ],
+      "flavor": [
+        "bitter",
+        "herbal"
+      ],
+      "occasion": [
+        "飯後",
+        "獨飲"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/boulevardier/"
+    },
+    {
+      "id": "bramble",
+      "nameEn": "Bramble",
+      "nameZh": "荊棘",
+      "aliases": [
+        "Bramble",
+        "黑莓灌木"
+      ],
+      "collection": "new-era",
+      "category": "sour",
+      "glass": "rocks",
+      "ice": "crushed",
+      "difficulty": 3,
+      "abv": "約 18%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 25,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "simple-syrup",
+          "amount": 12.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "blackberry-liqueur",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "除黑莓利口酒外的所有材料加入搖酒壺加冰搖勻。",
+        "濾入裝滿碎冰的古典杯。",
+        "將黑莓利口酒以圓弧方式緩緩淋在酒液表面。",
+        "以檸檬皮、黑莓裝飾後享用。"
+      ],
+      "garnish": [
+        "lemon-peel",
+        "blackberry"
+      ],
+      "tags": [
+        "莓果",
+        "酸甜",
+        "新時代"
+      ],
+      "flavor": [
+        "fruity",
+        "sour",
+        "sweet"
+      ],
+      "occasion": [
+        "夏日",
+        "派對"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/bramble/"
+    },
+    {
+      "id": "brandy-crusta",
+      "nameEn": "Brandy Crusta",
+      "nameZh": "白蘭地克拉斯塔",
+      "aliases": [
+        "Brandy Crusta"
+      ],
+      "collection": "classic",
+      "category": "sweet",
+      "glass": "coupe",
+      "ice": "stirred",
+      "difficulty": 3,
+      "abv": "約 26%",
+      "time": "6 分鐘",
+      "ingredients": [
+        {
+          "id": "brandy-cognac",
+          "amount": 52.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "maraschino",
+          "amount": 7.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "curacao",
+          "amount": 1,
+          "unit": "bar-spoon",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "simple-syrup",
+          "amount": 1,
+          "unit": "bar-spoon",
+          "optional": false
+        },
+        {
+          "id": "aromatic-bitters",
+          "amount": 2,
+          "unit": "dash",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將白蘭地、馬拉斯奇諾、橙皮酒、檸檬汁、糖漿與苦精放入調酒杯加冰攪勻。",
+        "以濾冰網過濾倒入準備好的薄身淺碟杯。",
+        "將柳橙或檸檬片沿杯口塗抹一圈並沾上白色細糖，再把橙皮捲放入杯內。",
+        "以糖霜杯口、柳橙皮裝飾後享用。"
+      ],
+      "garnish": [
+        "sugar-rim",
+        "orange-peel"
+      ],
+      "tags": [
+        "糖霜杯口",
+        "經典",
+        "白蘭地"
+      ],
+      "flavor": [
+        "sweet",
+        "citrus"
+      ],
+      "occasion": [
+        "派對",
+        "浪漫"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/brandy-crusta/"
+    },
+    {
+      "id": "caipirinha",
+      "nameEn": "Caipirinha",
+      "nameZh": "卡比林亞",
+      "aliases": [
+        "Caipirinha",
+        "巴西小酒"
+      ],
+      "collection": "classic",
+      "category": "refreshing",
+      "glass": "rocks",
+      "ice": "crushed",
+      "difficulty": 2,
+      "abv": "約 20%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "cachaca",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime",
+          "amount": 1,
+          "unit": "piece",
+          "optional": false
+        },
+        {
+          "id": "sugar-syrup",
+          "amount": 4,
+          "unit": "tsp",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將青檸切成小塊放入古典杯。",
+        "加入白砂糖輕搗成汁，再補滿碎冰。",
+        "倒入卡莎薩，輕攪使糖分融化。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "巴西",
+        "清涼",
+        "經典"
+      ],
+      "flavor": [
+        "citrus",
+        "sweet"
+      ],
+      "occasion": [
+        "夏日",
+        "派對"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/caipirinha/"
+    },
+    {
+      "id": "canchanchara",
+      "nameEn": "Canchanchara",
+      "nameZh": "坎昌查拉",
+      "aliases": [
+        "Canchanchara"
+      ],
+      "collection": "new-era",
+      "category": "refreshing",
+      "glass": "highball",
+      "ice": "none",
+      "difficulty": 2,
+      "abv": "約 15%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "rum-white",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "honey-syrup",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "water",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將蜂蜜、水與青檸汁混合，塗在杯底與杯壁。",
+        "加入碎冰，再倒入古巴aguardiente。",
+        "從底部向上用力攪拌至完全融合。",
+        "以青檸皮裝飾後享用。"
+      ],
+      "garnish": [
+        "lime-peel"
+      ],
+      "tags": [
+        "蜂蜜",
+        "清涼",
+        "新時代"
+      ],
+      "flavor": [
+        "sweet",
+        "citrus"
+      ],
+      "occasion": [
+        "夏日",
+        "派對"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/canchanchara/"
+    },
+    {
+      "id": "cardinale",
+      "nameEn": "Cardinale",
+      "nameZh": "紅衣主教",
+      "aliases": [
+        "Cardinale"
+      ],
+      "collection": "classic",
+      "category": "aperitivo",
+      "glass": "coupe",
+      "ice": "stirred",
+      "difficulty": 2,
+      "abv": "約 27%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 40,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "vermouth-dry",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "campari",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將琴酒（金酒）、乾味美思（白）、金巴利依序加入調酒杯。",
+        "加入冰塊，攪拌約 20 至 30 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "以檸檬皮裝飾後享用。"
+      ],
+      "garnish": [
+        "lemon-peel"
+      ],
+      "tags": [
+        "苦味",
+        "琴酒",
+        "開胃"
+      ],
+      "flavor": [
+        "bitter",
+        "herbal"
+      ],
+      "occasion": [
+        "開胃",
+        "餐前"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/cardinale/"
+    },
+    {
+      "id": "casino",
+      "nameEn": "Casino",
+      "nameZh": "賭場",
+      "aliases": [
+        "Casino"
+      ],
+      "collection": "classic",
+      "category": "sour",
+      "glass": "rocks",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 24%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 40,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "maraschino",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orange-bitters",
+          "amount": 2,
+          "unit": "dash",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將琴酒（金酒）、黑櫻桃酒、檸檬汁、橙味苦精依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的古典杯。",
+        "以檸檬皮、櫻桃裝飾後享用。"
+      ],
+      "garnish": [
+        "lemon-peel",
+        "cherry"
+      ],
+      "tags": [
+        "酸甜",
+        "經典"
+      ],
+      "flavor": [
+        "sour",
+        "citrus"
+      ],
+      "occasion": [
+        "派對"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/casino/"
+    },
+    {
+      "id": "champagne-cocktail",
+      "nameEn": "Champagne Cocktail",
+      "nameZh": "香檳雞尾酒",
+      "aliases": [
+        "Champagne Cocktail"
+      ],
+      "collection": "classic",
+      "category": "aperitivo",
+      "glass": "flute",
+      "ice": "none",
+      "difficulty": 2,
+      "abv": "約 14%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "champagne",
+          "amount": 90,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "brandy-cognac",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "angostura-bitters",
+          "amount": 2,
+          "unit": "dash",
+          "optional": false
+        },
+        {
+          "id": "orange-liqueur",
+          "amount": 1,
+          "unit": "drop",
+          "optional": true
+        },
+        {
+          "id": "sugar-cube",
+          "amount": 1,
+          "unit": "cube",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將方糖與兩滴苦精放入大香檳杯，加入干邑。",
+        "再緩緩倒入冰鎮的香檳。",
+        "以柳橙皮、櫻桃裝飾後享用。"
+      ],
+      "garnish": [
+        "orange-peel",
+        "cherry"
+      ],
+      "tags": [
+        "香檳",
+        "開胃",
+        "經典"
+      ],
+      "flavor": [
+        "fizzy",
+        "sour",
+        "citrus"
+      ],
+      "occasion": [
+        "開胃",
+        "慶祝",
+        "浪漫"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/champagne-cocktail/"
+    },
+    {
+      "id": "chartreuse-swizzle",
+      "nameEn": "Chartreuse Swizzle",
+      "nameZh": "查特酒搖盪",
+      "aliases": [
+        "Chartreuse Swizzle"
+      ],
+      "collection": "new-era",
+      "category": "refreshing",
+      "glass": "highball",
+      "ice": "crushed",
+      "difficulty": 2,
+      "abv": "約 18%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "chartreuse-green",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "pineapple-juice",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "falernum",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將所有材料依序倒入高球杯並加入碎冰。",
+        "以吧匙或 Swizzle Stick 用力快速攪打。",
+        "補滿碎冰後再快速攪打一下。",
+        "以薄荷、肉豆蔻裝飾後享用。"
+      ],
+      "garnish": [
+        "mint",
+        "nutmeg"
+      ],
+      "tags": [
+        "草本",
+        "新時代",
+        "清涼"
+      ],
+      "flavor": [
+        "herbal",
+        "fruity",
+        "spicy"
+      ],
+      "occasion": [
+        "夏日",
+        "派對"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/chartreuse-swizzle/"
+    },
+    {
+      "id": "clover-club",
+      "nameEn": "Clover Club",
+      "nameZh": "三葉草俱樂部",
+      "aliases": [
+        "Clover Club"
+      ],
+      "collection": "classic",
+      "category": "sour",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 24%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "raspberry-syrup",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "egg-white",
+          "amount": 1,
+          "unit": "drop",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將琴酒（金酒）、覆盆子糖漿、檸檬汁、蛋白依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "以覆盆子裝飾後享用。"
+      ],
+      "garnish": [
+        "raspberry"
+      ],
+      "tags": [
+        "莓果",
+        "酸甜",
+        "經典"
+      ],
+      "flavor": [
+        "fruity",
+        "sour",
+        "sweet"
+      ],
+      "occasion": [
+        "派對",
+        "浪漫"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/clover-club/"
+    },
+    {
+      "id": "corpse-reviver-2",
+      "nameEn": "Corpse Reviver #2",
+      "nameZh": "亡者甦醒二號",
+      "aliases": [
+        "Corpse Reviver #2",
+        "亡者復生"
+      ],
+      "collection": "classic",
+      "category": "sour",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 3,
+      "abv": "約 27%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orange-liqueur",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lillet-blanc",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "absinthe",
+          "amount": 1,
+          "unit": "dash",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將琴酒（金酒）、橙味利口酒（君度／橙皮酒）、白麗葉酒、檸檬汁、苦艾酒依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "以柳橙皮裝飾後享用。"
+      ],
+      "garnish": [
+        "orange-peel"
+      ],
+      "tags": [
+        "酸酒",
+        "草本",
+        "經典"
+      ],
+      "flavor": [
+        "sour",
+        "herbal",
+        "citrus"
+      ],
+      "occasion": [
+        "派對",
+        "開胃"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/corpse-reviver-2/"
+    },
+    {
+      "id": "cosmopolitan",
+      "nameEn": "Cosmopolitan",
+      "nameZh": "柯夢波丹",
+      "aliases": [
+        "Cosmopolitan",
+        "曼哈頓小姐"
+      ],
+      "collection": "classic",
+      "category": "sour",
+      "glass": "martini",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 24%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "vodka",
+          "amount": 40,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orange-liqueur",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "cranberry-juice",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將伏特加、橙味利口酒（君度／橙皮酒）、青檸汁、蔓越莓汁依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的馬天尼杯。",
+        "以檸檬皮裝飾後享用。"
+      ],
+      "garnish": [
+        "lemon-peel"
+      ],
+      "tags": [
+        "蔓越莓",
+        "酸甜",
+        "都會"
+      ],
+      "flavor": [
+        "sour",
+        "fruity",
+        "citrus"
+      ],
+      "occasion": [
+        "派對",
+        "浪漫"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/cosmopolitan/"
+    },
+    {
+      "id": "cuba-libre",
+      "nameEn": "Cuba Libre",
+      "nameZh": "自由古巴",
+      "aliases": [
+        "Cuba Libre",
+        "古巴自由"
+      ],
+      "collection": "classic",
+      "category": "highball",
+      "glass": "highball",
+      "ice": "none",
+      "difficulty": 1,
+      "abv": "約 13%",
+      "time": "3 分鐘",
+      "ingredients": [
+        {
+          "id": "rum-white",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "cola",
+          "amount": 120,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將白蘭姆酒、可樂、青檸汁依序倒入高球杯。",
+        "補滿冰塊，輕輕攪拌均勻後享用。",
+        "以青檸皮裝飾後享用。"
+      ],
+      "garnish": [
+        "lime-peel"
+      ],
+      "tags": [
+        "可樂",
+        "蘭姆",
+        "簡易"
+      ],
+      "flavor": [
+        "sour",
+        "sweet",
+        "fizzy"
+      ],
+      "occasion": [
+        "派對",
+        "夏日"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/cuba-libre/"
+    },
+    {
+      "id": "daiquiri",
+      "nameEn": "Daiquiri",
+      "nameZh": "代基里",
+      "aliases": [
+        "Daiquiri"
+      ],
+      "collection": "classic",
+      "category": "daiquiri",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 20%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "rum-white",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "sugar-syrup",
+          "amount": 2,
+          "unit": "bar-spoon",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將白朗姆、青檸汁與糖放入搖酒壺，先攪拌使糖溶解。",
+        "加入冰塊用力搖盪。",
+        "濾入冰鎮的淺碟杯。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "青檸",
+        "酸甜",
+        "經典"
+      ],
+      "flavor": [
+        "sour",
+        "citrus",
+        "sweet"
+      ],
+      "occasion": [
+        "夏日",
+        "派對"
+      ],
+      "popularity": 5,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/daiquiri/"
+    },
+    {
+      "id": "dark-n-stormy",
+      "nameEn": "Dark ‘N’ Stormy",
+      "nameZh": "暗與暴風雨",
+      "aliases": [
+        "Dark 'N' Stormy",
+        "黑 stormy"
+      ],
+      "collection": "new-era",
+      "category": "highball",
+      "glass": "highball",
+      "ice": "none",
+      "difficulty": 1,
+      "abv": "約 15%",
+      "time": "3 分鐘",
+      "ingredients": [
+        {
+          "id": "rum-dark",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "ginger-beer",
+          "amount": 100,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "高球杯裝滿冰塊，先倒入薑汁啤酒。",
+        "再將深色朗姆沿冰塊緩緩浮在表面，形成分層。",
+        "以青檸皮裝飾後享用。"
+      ],
+      "garnish": [
+        "lime-peel"
+      ],
+      "tags": [
+        "薑汁啤酒",
+        "新時代",
+        "分層"
+      ],
+      "flavor": [
+        "spicy",
+        "sweet"
+      ],
+      "occasion": [
+        "派對",
+        "秋冬"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/dark-n-stormy/"
+    },
+    {
+      "id": "dons-special-daiquiri",
+      "nameEn": "Don&#8217;s Special Daiquiri",
+      "nameZh": "唐氏特調代基里",
+      "aliases": [
+        "Don's Special Daiquiri"
+      ],
+      "collection": "new-era",
+      "category": "daiquiri",
+      "glass": "other",
+      "ice": "crushed",
+      "difficulty": 3,
+      "abv": "約 18%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "rum-jamaican-gold",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "rum-cuban",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "passion-fruit-syrup",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "honey-syrup",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將所有材料與碎冰放入 milkshake 機攪打數秒。",
+        "倒入高腳杯並補滿碎冰。",
+        "以百香果裝飾後享用。"
+      ],
+      "garnish": [
+        "passion-fruit"
+      ],
+      "tags": [
+        "百香果",
+        "新時代",
+        "水果"
+      ],
+      "flavor": [
+        "fruity",
+        "sour",
+        "sweet"
+      ],
+      "occasion": [
+        "夏日",
+        "派對"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/dons-special-daiquiri/"
+    },
+    {
+      "id": "dry-martini",
+      "nameEn": "Dry Martini",
+      "nameZh": "乾式馬天尼",
+      "aliases": [
+        "Dry Martini",
+        "馬天尼"
+      ],
+      "collection": "classic",
+      "category": "spirit-forward",
+      "glass": "martini",
+      "ice": "stirred",
+      "difficulty": 2,
+      "abv": "約 28%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "vermouth-dry",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將琴酒（金酒）、乾味美思（白）依序加入調酒杯。",
+        "加入冰塊，攪拌約 20 至 30 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的馬天尼杯。",
+        "以橄欖、檸檬皮裝飾後享用。"
+      ],
+      "garnish": [
+        "olive",
+        "lemon-peel"
+      ],
+      "tags": [
+        "琴酒",
+        "極簡",
+        "經典"
+      ],
+      "flavor": [
+        "herbal"
+      ],
+      "occasion": [
+        "獨飲",
+        "餐前"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/dry-martini/"
+    },
+    {
+      "id": "espresso-martini",
+      "nameEn": "Espresso Martini",
+      "nameZh": "濃縮咖啡馬天尼",
+      "aliases": [
+        "Espresso Martini",
+        "咖啡馬天尼"
+      ],
+      "collection": "new-era",
+      "category": "sweet",
+      "glass": "martini",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 22%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "vodka",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "coffee-liqueur",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "simple-syrup",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "coffee-espresso",
+          "amount": 1,
+          "unit": "shot",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將伏特加、咖啡利口酒、糖漿與濃縮咖啡加入搖酒壺。",
+        "加入冰塊用力搖盪至完全冰冷。",
+        "雙重過濾倒入冰鎮的馬天尼杯。",
+        "以咖啡豆裝飾後享用。"
+      ],
+      "garnish": [
+        "coffee-bean"
+      ],
+      "tags": [
+        "咖啡",
+        "新時代",
+        "夜生活"
+      ],
+      "flavor": [
+        "coffee",
+        "sweet"
+      ],
+      "occasion": [
+        "派對",
+        "飯後"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/espresso-martini/"
+    },
+    {
+      "id": "fernandito",
+      "nameEn": "Fernandito",
+      "nameZh": "費內迪托",
+      "aliases": [
+        "Fernandito"
+      ],
+      "collection": "new-era",
+      "category": "digestif",
+      "glass": "rocks",
+      "ice": "large-cube",
+      "difficulty": 1,
+      "abv": "約 19%",
+      "time": "3 分鐘",
+      "ingredients": [
+        {
+          "id": "fernet-branca",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "cola",
+          "amount": null,
+          "unit": "fill",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將費內苦味酒、可樂依序倒入古典杯。",
+        "補滿冰塊，輕輕攪拌均勻後享用。",
+        "部分材料 IBA 未標示確切用量（如補滿至杯口或依口味添加），用量依個人口味調整。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "餐後",
+        "苦味",
+        "草本"
+      ],
+      "flavor": [
+        "bitter",
+        "herbal"
+      ],
+      "occasion": [
+        "飯後"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/fernandito/"
+    },
+    {
+      "id": "french-75",
+      "nameEn": "French 75",
+      "nameZh": "法式七十五",
+      "aliases": [
+        "French 75"
+      ],
+      "collection": "classic",
+      "category": "fizzy",
+      "glass": "flute",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 18%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "simple-syrup",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "champagne",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將琴酒、檸檬汁與糖漿放入搖酒壺加冰搖勻。",
+        "濾入香檳杯。",
+        "補入冰鎮香檳至滿杯後輕攪。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "香檳",
+        "經典",
+        "慶祝"
+      ],
+      "flavor": [
+        "fizzy",
+        "citrus",
+        "sour"
+      ],
+      "occasion": [
+        "慶祝",
+        "派對",
+        "浪漫"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/french-75/"
+    },
+    {
+      "id": "french-connection",
+      "nameEn": "French Connection",
+      "nameZh": "法式連結",
+      "aliases": [
+        "French Connection"
+      ],
+      "collection": "classic",
+      "category": "spirit-forward",
+      "glass": "rocks",
+      "ice": "large-cube",
+      "difficulty": 1,
+      "abv": "約 24%",
+      "time": "2 分鐘",
+      "ingredients": [
+        {
+          "id": "brandy-cognac",
+          "amount": 35,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "amaretto",
+          "amount": 35,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將白蘭地／干邑、杏仁酒依序倒入裝滿冰塊的古典杯。",
+        "輕攪拌約 10 秒，使材料均勻融合後享用。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "白蘭地",
+        "杏仁",
+        "餐後"
+      ],
+      "flavor": [
+        "nutty",
+        "sweet",
+        "herbal"
+      ],
+      "occasion": [
+        "飯後",
+        "獨飲"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/french-connection/"
+    },
+    {
+      "id": "french-martini",
+      "nameEn": "French Martini",
+      "nameZh": "法式馬天尼",
+      "aliases": [
+        "French Martini"
+      ],
+      "collection": "new-era",
+      "category": "sweet",
+      "glass": "martini",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 23%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "vodka",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "raspberry-liqueur",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "pineapple-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將伏特加、覆盆子利口酒、鳳梨汁依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的馬天尼杯。",
+        "以檸檬皮裝飾後享用。"
+      ],
+      "garnish": [
+        "lemon-peel"
+      ],
+      "tags": [
+        "覆盆子",
+        "新時代",
+        "甜味"
+      ],
+      "flavor": [
+        "fruity",
+        "sweet"
+      ],
+      "occasion": [
+        "派對",
+        "浪漫"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/french-martini/"
+    },
+    {
+      "id": "garibaldi",
+      "nameEn": "Garibaldi",
+      "nameZh": "加里波第",
+      "aliases": [
+        "Garibaldi"
+      ],
+      "collection": "classic",
+      "category": "aperitivo",
+      "glass": "highball",
+      "ice": "none",
+      "difficulty": 1,
+      "abv": "約 13%",
+      "time": "3 分鐘",
+      "ingredients": [
+        {
+          "id": "campari",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orange-juice",
+          "amount": 120,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將金巴利、柳橙汁依序倒入高球杯。",
+        "補滿冰塊，輕輕攪拌均勻後享用。",
+        "以柳橙皮裝飾後享用。"
+      ],
+      "garnish": [
+        "orange-peel"
+      ],
+      "tags": [
+        "開胃",
+        "柳橙",
+        "苦味"
+      ],
+      "flavor": [
+        "bitter",
+        "fruity",
+        "citrus"
+      ],
+      "occasion": [
+        "開胃",
+        "餐前",
+        "夏日"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/garibaldi/"
+    },
+    {
+      "id": "gin-basil-smash",
+      "nameEn": "Gin Basil Smash",
+      "nameZh": "琴酒羅勒搗碎",
+      "aliases": [
+        "Gin Basil Smash"
+      ],
+      "collection": "new-era",
+      "category": "refreshing",
+      "glass": "rocks",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 18%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "simple-syrup",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "basil",
+          "amount": 10,
+          "unit": "piece",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將琴酒（金酒）、檸檬汁、糖水（1:1）、羅勒依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的古典杯。",
+        "以羅勒裝飾後享用。"
+      ],
+      "garnish": [
+        "basil"
+      ],
+      "tags": [
+        "草本",
+        "新時代",
+        "清爽"
+      ],
+      "flavor": [
+        "herbal",
+        "citrus"
+      ],
+      "occasion": [
+        "夏日",
+        "派對"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/gin-basil-smash/"
+    },
+    {
+      "id": "gin-fizz",
+      "nameEn": "Gin Fizz",
+      "nameZh": "琴酒費茲",
+      "aliases": [
+        "Gin Fizz"
+      ],
+      "collection": "classic",
+      "category": "sour",
+      "glass": "collins",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 16%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "simple-syrup",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "soda-water",
+          "amount": 1,
+          "unit": "splash",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將除蘇打水外的所有材料加入搖酒壺加冰搖盪。",
+        "濾入高身直筒杯，補上蘇打水。",
+        "依 IBA 原始配方不加入冰塊服務。",
+        "以檸檬皮裝飾後享用。"
+      ],
+      "garnish": [
+        "lemon-peel"
+      ],
+      "tags": [
+        "氣泡",
+        "酸甜",
+        "經典"
+      ],
+      "flavor": [
+        "sour",
+        "citrus",
+        "fizzy"
+      ],
+      "occasion": [
+        "夏日",
+        "開胃"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/gin-fizz/"
+    },
+    {
+      "id": "grand-margarita",
+      "nameEn": "Grand Margarita",
+      "nameZh": "大瑪格麗特",
+      "aliases": [
+        "Grand Margarita"
+      ],
+      "collection": "new-era",
+      "category": "daiquiri",
+      "glass": "rocks",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 22%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "tequila-blanco",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orange-liqueur",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "以優質海鹽為岩石杯口上鹽。",
+        "將所有材料放入搖酒壺，杯中與壺中同時加冰。",
+        "用力搖盪 10 秒後濾入杯中。",
+        "以青檸皮、鹽裝飾後享用。"
+      ],
+      "garnish": [
+        "lime-peel",
+        "salt"
+      ],
+      "tags": [
+        "龍舌蘭",
+        "新時代",
+        "鹽口"
+      ],
+      "flavor": [
+        "citrus",
+        "sweet",
+        "fruity"
+      ],
+      "occasion": [
+        "派對",
+        "夏日"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/grand-margarita/"
+    },
+    {
+      "id": "grasshopper",
+      "nameEn": "Grasshopper",
+      "nameZh": "草蜢",
+      "aliases": [
+        "Grasshopper",
+        "跳蚤"
+      ],
+      "collection": "classic",
+      "category": "sweet",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 22%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "cacao-liqueur-white",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "creme-de-menthe",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "cream",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將可可利口酒（白）、薄荷酒、鮮奶油依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "以薄荷裝飾後享用。"
+      ],
+      "garnish": [
+        "mint"
+      ],
+      "tags": [
+        "薄荷",
+        "奶油調酒",
+        "餐後"
+      ],
+      "flavor": [
+        "creamy",
+        "sweet",
+        "herbal"
+      ],
+      "occasion": [
+        "飯後",
+        "派對"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/grasshopper/"
+    },
+    {
+      "id": "hanky-panky",
+      "nameEn": "Hanky Panky",
+      "nameZh": "漢基潘基",
+      "aliases": [
+        "Hanky Panky"
+      ],
+      "collection": "classic",
+      "category": "spirit-forward",
+      "glass": "coupe",
+      "ice": "stirred",
+      "difficulty": 2,
+      "abv": "約 28%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "vermouth-red",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "fernet-branca",
+          "amount": 7.5,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將琴酒（金酒）、甜味美思（紅）、費內苦味酒依序加入調酒杯。",
+        "加入冰塊，攪拌約 20 至 30 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "以柳橙皮裝飾後享用。"
+      ],
+      "garnish": [
+        "orange-peel"
+      ],
+      "tags": [
+        "苦味",
+        "琴酒",
+        "經典"
+      ],
+      "flavor": [
+        "bitter",
+        "herbal"
+      ],
+      "occasion": [
+        "開胃",
+        "餐前",
+        "獨飲"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/hanky-panky/"
+    },
+    {
+      "id": "hemingway-special",
+      "nameEn": "Hemingway Special",
+      "nameZh": "海明威特調",
+      "aliases": [
+        "Hemingway Special"
+      ],
+      "collection": "classic",
+      "category": "sour",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 22%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "rum",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "grapefruit-juice",
+          "amount": 40,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "maraschino",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將蘭姆酒（通用）、葡萄柚汁、黑櫻桃酒、青檸汁依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "酸甜",
+        "經典",
+        "苦味"
+      ],
+      "flavor": [
+        "sour",
+        "bitter",
+        "citrus"
+      ],
+      "occasion": [
+        "派對",
+        "浪漫"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/hemingway-special/"
+    },
+    {
+      "id": "horses-neck",
+      "nameEn": "Horse’s Neck",
+      "nameZh": "馬頸",
+      "aliases": [
+        "Horse's Neck",
+        "馬脖子"
+      ],
+      "collection": "classic",
+      "category": "highball",
+      "glass": "highball",
+      "ice": "none",
+      "difficulty": 1,
+      "abv": "約 12%",
+      "time": "3 分鐘",
+      "ingredients": [
+        {
+          "id": "brandy-cognac",
+          "amount": 40,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "ginger-ale",
+          "amount": 120,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "angostura-bitters",
+          "amount": 1,
+          "unit": "dash",
+          "optional": true
+        }
+      ],
+      "steps": [
+        "將白蘭地／干邑、薑汁汽水、安格仕苦精依序倒入高球杯。",
+        "補滿冰塊，輕輕攪拌均勻後享用。",
+        "以檸檬皮裝飾後享用。"
+      ],
+      "garnish": [
+        "lemon-peel"
+      ],
+      "tags": [
+        "薑汁汽水",
+        "簡易",
+        "經典"
+      ],
+      "flavor": [
+        "spicy",
+        "citrus"
+      ],
+      "occasion": [
+        "開胃",
+        "派對"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/horses-neck/"
+    },
+    {
+      "id": "iba-tiki",
+      "nameEn": "IBA Tiki",
+      "nameZh": "IBA 提基",
+      "aliases": [
+        "IBA Tiki",
+        "提基"
+      ],
+      "collection": "new-era",
+      "category": "punch",
+      "glass": "other",
+      "ice": "crushed",
+      "difficulty": 3,
+      "abv": "約 20%",
+      "time": "8 分鐘",
+      "ingredients": [
+        {
+          "id": "ron-profundo",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "ron-smoky",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "amaretto",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "frangelico",
+          "amount": 5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "maraschino",
+          "amount": 5,
+          "unit": "drop",
+          "optional": false
+        },
+        {
+          "id": "passion-fruit-puree",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "pineapple-juice",
+          "amount": 90,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "ginger",
+          "amount": 1,
+          "unit": "piece",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將生薑放入提基杯，輕輕搗壓約 15 秒讓香氣釋出。",
+        "加入哈瓦那深色蘭姆酒、哈瓦那煙燻蘭姆酒、杏仁酒、義式香草榛果酒、黑櫻桃酒、百香果果泥、鳳梨汁、青檸汁與冰塊。",
+        "充分攪拌或搖勻使味道融合。",
+        "以薄荷、乾燥橙片、鳳梨葉裝飾後享用。"
+      ],
+      "garnish": [
+        "mint",
+        "dehydrated-orange",
+        "pineapple-leaf"
+      ],
+      "tags": [
+        "提基",
+        "熱帶",
+        "新時代"
+      ],
+      "flavor": [
+        "fruity",
+        "spicy",
+        "herbal"
+      ],
+      "occasion": [
+        "派對",
+        "夏日"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/iba-tiki/"
+    },
+    {
+      "id": "illegal",
+      "nameEn": "Illegal",
+      "nameZh": "非法",
+      "aliases": [
+        "Illegal"
+      ],
+      "collection": "new-era",
+      "category": "sour",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 3,
+      "abv": "約 22%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "mezcal",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "rum-white",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "falernum",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "maraschino",
+          "amount": 1,
+          "unit": "bar-spoon",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "simple-syrup",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "egg-white",
+          "amount": 1,
+          "unit": "drop",
+          "optional": true
+        }
+      ],
+      "steps": [
+        "將梅斯卡尔（龍舌蘭系）、白蘭姆酒、法勒南酒、黑櫻桃酒、青檸汁、糖水（1:1）、蛋白依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "梅斯卡尔",
+        "新時代",
+        "酸甜"
+      ],
+      "flavor": [
+        "sour",
+        "herbal",
+        "spicy"
+      ],
+      "occasion": [
+        "派對"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/illegal/"
+    },
+    {
+      "id": "irish-coffee",
+      "nameEn": "Irish Coffee",
+      "nameZh": "愛爾蘭咖啡",
+      "aliases": [
+        "Irish Coffee"
+      ],
+      "collection": "classic",
+      "category": "sweet",
+      "glass": "other",
+      "ice": "none",
+      "difficulty": 2,
+      "abv": "約 17%",
+      "time": "8 分鐘",
+      "ingredients": [
+        {
+          "id": "whiskey-irish",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "coffee-espresso",
+          "amount": 120,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "cream",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "sugar-syrup",
+          "amount": 1,
+          "unit": "tsp",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將熱咖啡倒入預熱的愛爾蘭咖啡杯。",
+        "加入愛爾蘭威士忌與至少一匙糖，攪拌至完全溶解。",
+        "以勺背將冰涼的濃稠鮮奶油沿液面緩緩淋下，讓奶油層浮在咖啡上而不混合。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "熱飲",
+        "奶油層",
+        "經典"
+      ],
+      "flavor": [
+        "coffee",
+        "creamy",
+        "sweet"
+      ],
+      "occasion": [
+        "飯後",
+        "秋冬",
+        "浪漫"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/irish-coffee/"
+    },
+    {
+      "id": "john-collins",
+      "nameEn": "John Collins",
+      "nameZh": "約翰柯林斯",
+      "aliases": [
+        "John Collins"
+      ],
+      "collection": "classic",
+      "category": "highball",
+      "glass": "highball",
+      "ice": "none",
+      "difficulty": 2,
+      "abv": "約 14%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "simple-syrup",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "soda-water",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將琴酒（金酒）、檸檬汁、糖水（1:1）、蘇打水／氣泡水依序倒入高球杯。",
+        "補滿冰塊，輕輕攪拌均勻後享用。",
+        "以檸檬皮、櫻桃裝飾後享用。"
+      ],
+      "garnish": [
+        "lemon-peel",
+        "cherry"
+      ],
+      "tags": [
+        "氣泡",
+        "琴酒",
+        "經典"
+      ],
+      "flavor": [
+        "citrus",
+        "fizzy",
+        "sour"
+      ],
+      "occasion": [
+        "夏日",
+        "開胃"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/john-collins/"
+    },
+    {
+      "id": "jungle-bird",
+      "nameEn": "Jungle Bird",
+      "nameZh": "叢林鳥",
+      "aliases": [
+        "Jungle Bird"
+      ],
+      "collection": "new-era",
+      "category": "spirit-forward",
+      "glass": "rocks",
+      "ice": "shaken",
+      "difficulty": 3,
+      "abv": "約 24%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "rum-dark",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "campari",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "pineapple-juice",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "demerara-syrup",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將深色蘭姆酒、金巴利、鳳梨汁、青檸汁、德梅拉拉糖漿依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的古典杯。",
+        "以鳳梨（塊或片）裝飾後享用。"
+      ],
+      "garnish": [
+        "pineapple"
+      ],
+      "tags": [
+        "鳳梨",
+        "新時代",
+        "苦味"
+      ],
+      "flavor": [
+        "fruity",
+        "bitter",
+        "spicy"
+      ],
+      "occasion": [
+        "派對",
+        "夏日"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/jungle-bird/"
+    },
+    {
+      "id": "kir",
+      "nameEn": "Kir",
+      "nameZh": "基爾",
+      "aliases": [
+        "Kir",
+        "Kir Royale",
+        "基爾"
+      ],
+      "collection": "classic",
+      "category": "aperitivo",
+      "glass": "wine",
+      "ice": "none",
+      "difficulty": 1,
+      "abv": "約 12%",
+      "time": "2 分鐘",
+      "ingredients": [
+        {
+          "id": "white-wine",
+          "amount": 90,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "cassis-liqueur",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "先將黑醋栗利口酒倒入冰鎮的紅酒杯。",
+        "再緩緩注入白酒；Kir Royal 則改用香檳。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "開胃",
+        "白葡萄酒",
+        "簡易"
+      ],
+      "flavor": [
+        "fruity",
+        "bitter"
+      ],
+      "occasion": [
+        "開胃",
+        "餐前"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/kir/"
+    },
+    {
+      "id": "last-word",
+      "nameEn": "Last Word",
+      "nameZh": "最後一言",
+      "aliases": [
+        "Last Word"
+      ],
+      "collection": "classic",
+      "category": "sour",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 3,
+      "abv": "約 24%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "chartreuse-green",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "maraschino",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將琴酒（金酒）、綠查特酒、黑櫻桃酒、青檸汁依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "草本",
+        "酸酒",
+        "經典"
+      ],
+      "flavor": [
+        "sour",
+        "herbal",
+        "bitter"
+      ],
+      "occasion": [
+        "派對",
+        "獨飲"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/last-word/"
+    },
+    {
+      "id": "lemon-drop-martini",
+      "nameEn": "Lemon Drop Martini",
+      "nameZh": "檸檬甜馬天尼",
+      "aliases": [
+        "Lemon Drop Martini",
+        "檸檬甜馬天尼"
+      ],
+      "collection": "classic",
+      "category": "sweet",
+      "glass": "martini",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 25%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "vodka",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orange-liqueur",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將伏特加、橙味利口酒（君度／橙皮酒）、檸檬汁依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的馬天尼杯。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "檸檬",
+        "甜味",
+        "經典"
+      ],
+      "flavor": [
+        "sweet",
+        "citrus"
+      ],
+      "occasion": [
+        "派對",
+        "浪漫"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/lemon-drop-martini/"
+    },
+    {
+      "id": "long-island-iced-tea",
+      "nameEn": "Long Island Iced Tea",
+      "nameZh": "長島冰茶",
+      "aliases": [
+        "Long Island Iced Tea"
+      ],
+      "collection": "classic",
+      "category": "highball",
+      "glass": "highball",
+      "ice": "none",
+      "difficulty": 3,
+      "abv": "約 22%",
+      "time": "6 分鐘",
+      "ingredients": [
+        {
+          "id": "vodka",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "tequila-blanco",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "rum-white",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "gin",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orange-liqueur",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 25,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "simple-syrup",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "cola",
+          "amount": null,
+          "unit": "fill",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將伏特加、龍舌蘭酒（透明）、白蘭姆酒、琴酒（金酒）、橙味利口酒（君度／橙皮酒）、檸檬汁、糖水（1:1）、可樂依序倒入高球杯。",
+        "補滿冰塊，輕輕攪拌均勻後享用。",
+        "部分材料 IBA 未標示確切用量（如補滿至杯口或依口味添加），用量依個人口味調整。",
+        "以檸檬皮裝飾後享用。"
+      ],
+      "garnish": [
+        "lemon-peel"
+      ],
+      "tags": [
+        "五種基酒",
+        "高酒精",
+        "經典"
+      ],
+      "flavor": [
+        "sweet",
+        "citrus",
+        "fizzy"
+      ],
+      "occasion": [
+        "派對",
+        "夏日",
+        "慶祝"
+      ],
+      "popularity": 5,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/long-island-iced-tea/"
+    },
+    {
+      "id": "mai-tai",
+      "nameEn": "Mai-Tai",
+      "nameZh": "邁泰",
+      "aliases": [
+        "Mai-Tai"
+      ],
+      "collection": "classic",
+      "category": "highball",
+      "glass": "rocks",
+      "ice": "crushed",
+      "difficulty": 2,
+      "abv": "約 22%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "rum-amber-jamaican",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "rum-martinique-molasses",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "curacao",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orgeat-syrup",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "simple-syrup",
+          "amount": 7.5,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將琥珀牙買加蘭姆酒、馬丁尼可糖蜜朗姆酒、橙皮酒（綠／無色）、杏仁糖漿、青檸汁、糖水（1:1）依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的古典杯。",
+        "以鳳梨（塊或片）、薄荷、青檸皮裝飾後享用。"
+      ],
+      "garnish": [
+        "pineapple",
+        "mint",
+        "lime-peel"
+      ],
+      "tags": [
+        "提基",
+        "鳳梨",
+        "經典"
+      ],
+      "flavor": [
+        "fruity",
+        "nutty",
+        "citrus"
+      ],
+      "occasion": [
+        "派對",
+        "夏日"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/mai-tai/"
+    },
+    {
+      "id": "manhattan",
+      "nameEn": "Manhattan",
+      "nameZh": "曼哈頓",
+      "aliases": [
+        "Manhattan"
+      ],
+      "collection": "classic",
+      "category": "spirit-forward",
+      "glass": "coupe",
+      "ice": "stirred",
+      "difficulty": 2,
+      "abv": "約 28%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "whiskey-rye",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "vermouth-red",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "angostura-bitters",
+          "amount": 1,
+          "unit": "dash",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將裸麥威士忌、甜味美思（紅）、安格仕苦精依序加入調酒杯。",
+        "加入冰塊，攪拌約 20 至 30 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "以櫻桃裝飾後享用。"
+      ],
+      "garnish": [
+        "cherry"
+      ],
+      "tags": [
+        "威士忌",
+        "經典",
+        "苦味"
+      ],
+      "flavor": [
+        "bitter",
+        "herbal"
+      ],
+      "occasion": [
+        "餐前",
+        "獨飲",
+        "浪漫"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/manhattan/"
+    },
+    {
+      "id": "margarita",
+      "nameEn": "Margarita",
+      "nameZh": "瑪格麗特",
+      "aliases": [
+        "Margarita"
+      ],
+      "collection": "classic",
+      "category": "daiquiri",
+      "glass": "rocks",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 22%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "tequila-blanco",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orange-liqueur",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將龍舌蘭酒（透明）、橙味利口酒（君度／橙皮酒）、青檸汁依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的古典杯。",
+        "以青檸皮、鹽裝飾後享用。"
+      ],
+      "garnish": [
+        "lime-peel",
+        "salt"
+      ],
+      "tags": [
+        "龍舌蘭",
+        "經典",
+        "鹽口"
+      ],
+      "flavor": [
+        "citrus",
+        "sour",
+        "sweet"
+      ],
+      "occasion": [
+        "派對",
+        "夏日",
+        "浪漫"
+      ],
+      "popularity": 5,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/margarita/"
+    },
+    {
+      "id": "martinez",
+      "nameEn": "Martinez",
+      "nameZh": "馬丁尼茲",
+      "aliases": [
+        "Martinez"
+      ],
+      "collection": "classic",
+      "category": "spirit-forward",
+      "glass": "coupe",
+      "ice": "stirred",
+      "difficulty": 2,
+      "abv": "約 27%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "vermouth-red",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "maraschino",
+          "amount": 1,
+          "unit": "bar-spoon",
+          "optional": false
+        },
+        {
+          "id": "orange-bitters",
+          "amount": 2,
+          "unit": "dash",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將琴酒（金酒）、甜味美思（紅）、黑櫻桃酒、橙味苦精依序加入調酒杯。",
+        "加入冰塊，攪拌約 20 至 30 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "以檸檬皮裝飾後享用。"
+      ],
+      "garnish": [
+        "lemon-peel"
+      ],
+      "tags": [
+        "琴酒",
+        "經典",
+        "苦味"
+      ],
+      "flavor": [
+        "bitter",
+        "herbal",
+        "sweet"
+      ],
+      "occasion": [
+        "餐前",
+        "獨飲"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/martinez/"
+    },
+    {
+      "id": "mary-pickford",
+      "nameEn": "Mary Pickford",
+      "nameZh": "瑪莉畢克佛",
+      "aliases": [
+        "Mary Pickford"
+      ],
+      "collection": "classic",
+      "category": "sweet",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 21%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "rum-white",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "pineapple-juice",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "maraschino",
+          "amount": 7.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "grenadine",
+          "amount": 5,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將白蘭姆酒、鳳梨汁、黑櫻桃酒、紅石榴糖漿依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "鳳梨",
+        "甜味",
+        "經典"
+      ],
+      "flavor": [
+        "fruity",
+        "sweet"
+      ],
+      "occasion": [
+        "派對",
+        "浪漫"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/mary-pickford/"
+    },
+    {
+      "id": "mimosa",
+      "nameEn": "Mimosa",
+      "nameZh": "含羞草",
+      "aliases": [
+        "Mimosa"
+      ],
+      "collection": "classic",
+      "category": "fizzy",
+      "glass": "flute",
+      "ice": "none",
+      "difficulty": 1,
+      "abv": "約 10%",
+      "time": "2 分鐘",
+      "ingredients": [
+        {
+          "id": "orange-juice",
+          "amount": 75,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "prosecco",
+          "amount": 75,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將柳橙汁倒入冰鎮的香檳杯。",
+        "緩緩倒入氣泡酒，輕攪一下即可。",
+        "以柳橙皮裝飾後享用。"
+      ],
+      "garnish": [
+        "orange-peel"
+      ],
+      "tags": [
+        "早午餐",
+        "氣泡",
+        "簡易"
+      ],
+      "flavor": [
+        "fizzy",
+        "fruity",
+        "sweet"
+      ],
+      "occasion": [
+        "夏日",
+        "派對",
+        "浪漫"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/mimosa/"
+    },
+    {
+      "id": "mint-julep",
+      "nameEn": "Mint Julep",
+      "nameZh": "薄荷茱莉普",
+      "aliases": [
+        "Mint Julep",
+        "薄荷朱莉普"
+      ],
+      "collection": "classic",
+      "category": "spirit-forward",
+      "glass": "mug",
+      "ice": "crushed",
+      "difficulty": 2,
+      "abv": "約 19%",
+      "time": "6 分鐘",
+      "ingredients": [
+        {
+          "id": "whiskey-bourbon",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "mint",
+          "amount": 4,
+          "unit": "piece",
+          "optional": false
+        },
+        {
+          "id": "sugar-syrup",
+          "amount": 1,
+          "unit": "tsp",
+          "optional": false
+        },
+        {
+          "id": "water",
+          "amount": 2,
+          "unit": "tsp",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "在金屬梅酒杯中將薄荷與糖、少量水輕搗。",
+        "補滿碎冰後加入波本威士忌。",
+        "持續攪拌至杯身結霜。",
+        "以薄荷裝飾後享用。"
+      ],
+      "garnish": [
+        "mint"
+      ],
+      "tags": [
+        "薄荷",
+        "美式",
+        "經典"
+      ],
+      "flavor": [
+        "herbal",
+        "sweet"
+      ],
+      "occasion": [
+        "夏日",
+        "派對",
+        "慶祝"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/mint-julep/"
+    },
+    {
+      "id": "missionarys-downfall",
+      "nameEn": "Missionary&#8217;s Downfall",
+      "nameZh": "傳教士的墮落",
+      "aliases": [
+        "Missionary's Downfall"
+      ],
+      "collection": "new-era",
+      "category": "refreshing",
+      "glass": "other",
+      "ice": "crushed",
+      "difficulty": 2,
+      "abv": "約 16%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "rum-white",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "peach-brandy",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "honey-syrup",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "mint",
+          "amount": 10,
+          "unit": "piece",
+          "optional": false
+        },
+        {
+          "id": "pineapple",
+          "amount": 3,
+          "unit": "piece",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將所有材料與半杯碎冰放入果汁機攪打。",
+        "倒入大杯裝飾杯（coppa grande）。",
+        "以薄荷、鳳梨（塊或片）裝飾後享用。"
+      ],
+      "garnish": [
+        "mint",
+        "pineapple"
+      ],
+      "tags": [
+        "薄荷",
+        "新時代",
+        "水果"
+      ],
+      "flavor": [
+        "fruity",
+        "herbal",
+        "sweet"
+      ],
+      "occasion": [
+        "夏日",
+        "派對"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/missionarys-downfall/"
+    },
+    {
+      "id": "mojito",
+      "nameEn": "Mojito",
+      "nameZh": "莫吉托",
+      "aliases": [
+        "Mojito",
+        "莫雞尾"
+      ],
+      "collection": "classic",
+      "category": "refreshing",
+      "glass": "highball",
+      "ice": "none",
+      "difficulty": 2,
+      "abv": "約 15%",
+      "time": "6 分鐘",
+      "ingredients": [
+        {
+          "id": "rum-white",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "mint",
+          "amount": 6,
+          "unit": "piece",
+          "optional": false
+        },
+        {
+          "id": "sugar-syrup",
+          "amount": 2,
+          "unit": "tsp",
+          "optional": false
+        },
+        {
+          "id": "soda-water",
+          "amount": null,
+          "unit": null,
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將薄荷、蔗糖與青檸汁放入高球杯，輕搗出香氣。",
+        "加入白朗姆酒並補滿碎冰。",
+        "注入蘇打水，輕攪使所有材料融合。",
+        "以薄荷、青檸皮裝飾後享用。",
+        "部分材料 IBA 未標示確切用量（如補滿至杯口或依口味添加），用量依個人口味調整。"
+      ],
+      "garnish": [
+        "mint",
+        "lime-peel"
+      ],
+      "tags": [
+        "薄荷",
+        "清涼",
+        "經典"
+      ],
+      "flavor": [
+        "herbal",
+        "citrus",
+        "sweet"
+      ],
+      "occasion": [
+        "夏日",
+        "派對"
+      ],
+      "popularity": 5,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/mojito/"
+    },
+    {
+      "id": "monkey-gland",
+      "nameEn": "Monkey Gland",
+      "nameZh": "猴子的腺體",
+      "aliases": [
+        "Monkey Gland"
+      ],
+      "collection": "classic",
+      "category": "sour",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 23%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orange-juice",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "absinthe",
+          "amount": 1,
+          "unit": "tbsp",
+          "optional": false
+        },
+        {
+          "id": "grenadine",
+          "amount": 1,
+          "unit": "tbsp",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將琴酒（金酒）、柳橙汁、苦艾酒、紅石榴糖漿依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "苦艾",
+        "經典",
+        "酸甜"
+      ],
+      "flavor": [
+        "sour",
+        "herbal",
+        "citrus"
+      ],
+      "occasion": [
+        "派對"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/monkey-gland/"
+    },
+    {
+      "id": "moscow-mule",
+      "nameEn": "Moscow Mule",
+      "nameZh": "莫斯科驢子",
+      "aliases": [
+        "Moscow Mule"
+      ],
+      "collection": "classic",
+      "category": "highball",
+      "glass": "highball",
+      "ice": "none",
+      "difficulty": 1,
+      "abv": "約 12%",
+      "time": "3 分鐘",
+      "ingredients": [
+        {
+          "id": "vodka",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "ginger-beer",
+          "amount": 120,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將伏特加、薑汁啤酒、青檸汁依序倒入高球杯。",
+        "補滿冰塊，輕輕攪拌均勻後享用。",
+        "以青檸皮裝飾後享用。"
+      ],
+      "garnish": [
+        "lime-peel"
+      ],
+      "tags": [
+        "薑汁啤酒",
+        "伏特加",
+        "簡易"
+      ],
+      "flavor": [
+        "spicy",
+        "citrus",
+        "fizzy"
+      ],
+      "occasion": [
+        "派對",
+        "夏日"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/moscow-mule/"
+    },
+    {
+      "id": "naked-and-famous",
+      "nameEn": "Naked and Famous",
+      "nameZh": "裸體與著名",
+      "aliases": [
+        "Naked and Famous"
+      ],
+      "collection": "new-era",
+      "category": "sour",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 3,
+      "abv": "約 23%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "mezcal",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "chartreuse-yellow",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "aperol",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將梅斯卡尔（龍舌蘭系）、黃查特酒、阿佩羅橙酒、青檸汁依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "梅斯卡尔",
+        "新時代",
+        "草本"
+      ],
+      "flavor": [
+        "sour",
+        "herbal",
+        "bitter"
+      ],
+      "occasion": [
+        "派對",
+        "獨飲"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/naked-and-famous/"
+    },
+    {
+      "id": "negroni",
+      "nameEn": "Negroni",
+      "nameZh": "尼格羅尼",
+      "aliases": [
+        "金巴利尼格羅尼",
+        "Negroni"
+      ],
+      "collection": "classic",
+      "category": "aperitivo",
+      "glass": "rocks",
+      "ice": "large-cube",
+      "difficulty": 1,
+      "abv": "約 22%",
+      "time": "3 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "campari",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "vermouth-red",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將琴酒（金酒）、金巴利、甜味美思（紅）依序倒入裝滿冰塊的古典杯。",
+        "輕攪拌約 10 秒，使材料均勻融合後享用。",
+        "以柳橙皮裝飾後享用。"
+      ],
+      "garnish": [
+        "orange-peel"
+      ],
+      "tags": [
+        "開胃酒",
+        "苦味",
+        "高酒精"
+      ],
+      "flavor": [
+        "bitter",
+        "herbal"
+      ],
+      "occasion": [
+        "開胃",
+        "餐前",
+        "獨飲"
+      ],
+      "popularity": 5,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/negroni/"
+    },
+    {
+      "id": "new-york-sour",
+      "nameEn": "New York Sour",
+      "nameZh": "紐約酸味",
+      "aliases": [
+        "New York Sour"
+      ],
+      "collection": "new-era",
+      "category": "sour",
+      "glass": "rocks",
+      "ice": "shaken",
+      "difficulty": 3,
+      "abv": "約 21%",
+      "time": "6 分鐘",
+      "ingredients": [
+        {
+          "id": "whiskey-bourbon",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "simple-syrup",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "egg-white",
+          "amount": 1,
+          "unit": "drop",
+          "optional": false
+        },
+        {
+          "id": "red-wine",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將威士忌、糖漿與檸檬汁加入搖酒壺。",
+        "加入蛋白後用力搖盪，濾入裝冰的古典杯。",
+        "以吧匙背面將紅酒緩緩浮在酒液表面，形成分層。",
+        "以檸檬皮、柳橙皮、櫻桃裝飾後享用。"
+      ],
+      "garnish": [
+        "lemon-peel",
+        "orange-peel",
+        "cherry"
+      ],
+      "tags": [
+        "浮紅酒",
+        "新時代",
+        "酸酒"
+      ],
+      "flavor": [
+        "sour",
+        "fruity",
+        "bitter"
+      ],
+      "occasion": [
+        "派對",
+        "浪漫"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/new-york-sour/"
+    },
+    {
+      "id": "old-cuban",
+      "nameEn": "Old Cuban",
+      "nameZh": "古巴老人",
+      "aliases": [
+        "Old Cuban"
+      ],
+      "collection": "new-era",
+      "category": "highball",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 3,
+      "abv": "約 20%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "mint",
+          "amount": 0.75,
+          "unit": "piece",
+          "optional": false
+        },
+        {
+          "id": "rum-dark",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "simple-syrup",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "angostura-bitters",
+          "amount": 2,
+          "unit": "dash",
+          "optional": false
+        },
+        {
+          "id": "champagne",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將薄荷、陳年朗姆、青檸汁、糖漿與苦精加入搖酒壺加冰搖勻。",
+        "濾入冰鎮的淺碟杯。",
+        "補入冰鎮香檳或氣泡酒至杯口。",
+        "以薄荷裝飾後享用。"
+      ],
+      "garnish": [
+        "mint"
+      ],
+      "tags": [
+        "香檳",
+        "薄荷",
+        "新時代"
+      ],
+      "flavor": [
+        "fizzy",
+        "herbal",
+        "fruity"
+      ],
+      "occasion": [
+        "派對",
+        "浪漫"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/old-cuban/"
+    },
+    {
+      "id": "old-fashioned",
+      "nameEn": "Old Fashioned",
+      "nameZh": "古典",
+      "aliases": [
+        "Old Fashioned",
+        "老派"
+      ],
+      "collection": "classic",
+      "category": "spirit-forward",
+      "glass": "rocks",
+      "ice": "large-cube",
+      "difficulty": 2,
+      "abv": "約 30%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "whiskey-bourbon",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "sugar-cube",
+          "amount": 1,
+          "unit": "cube",
+          "optional": false
+        },
+        {
+          "id": "angostura-bitters",
+          "amount": 1,
+          "unit": "dash",
+          "optional": false
+        },
+        {
+          "id": "water",
+          "amount": 1,
+          "unit": "dash",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將方糖放入古典杯，淋上安格仕苦精並加入少許清水，輕搗至糖溶解。",
+        "補滿冰塊後倒入波本或裸麥威士忌。",
+        "輕攪拌約 20 秒至充分降溫。",
+        "以柳橙皮、櫻桃裝飾後享用。"
+      ],
+      "garnish": [
+        "orange-peel",
+        "cherry"
+      ],
+      "tags": [
+        "威士忌",
+        "經典",
+        "高酒精"
+      ],
+      "flavor": [
+        "sweet",
+        "bitter",
+        "spicy"
+      ],
+      "occasion": [
+        "獨飲",
+        "餐前",
+        "飯後"
+      ],
+      "popularity": 5,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/old-fashioned/"
+    },
+    {
+      "id": "paloma",
+      "nameEn": "Paloma",
+      "nameZh": "帕洛瑪",
+      "aliases": [
+        "Paloma",
+        "墨西哥日出"
+      ],
+      "collection": "new-era",
+      "category": "highball",
+      "glass": "highball",
+      "ice": "none",
+      "difficulty": 1,
+      "abv": "約 13%",
+      "time": "3 分鐘",
+      "ingredients": [
+        {
+          "id": "tequila-blanco",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "salt",
+          "amount": 1,
+          "unit": "pinch",
+          "optional": false
+        },
+        {
+          "id": "grapefruit-soda",
+          "amount": 100,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將龍舌蘭酒（透明）、青檸汁、鹽、粉紅葡萄柚汽水依序倒入高球杯。",
+        "補滿冰塊，輕輕攪拌均勻後享用。",
+        "以青檸皮、鹽裝飾後享用。"
+      ],
+      "garnish": [
+        "lime-peel",
+        "salt"
+      ],
+      "tags": [
+        "龍舌蘭",
+        "新時代",
+        "清涼"
+      ],
+      "flavor": [
+        "citrus",
+        "fruity",
+        "fizzy"
+      ],
+      "occasion": [
+        "夏日",
+        "派對"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/paloma/"
+    },
+    {
+      "id": "paper-plane",
+      "nameEn": "Paper Plane",
+      "nameZh": "紙飛機",
+      "aliases": [
+        "Paper Plane"
+      ],
+      "collection": "new-era",
+      "category": "sour",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 25%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "whiskey-bourbon",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "amaro-nonino",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "aperol",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將波本威士忌、義式苦味酒（Amaro Nonino）、阿佩羅橙酒、檸檬汁依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "苦味",
+        "新時代",
+        "威士忌"
+      ],
+      "flavor": [
+        "bitter",
+        "sour",
+        "citrus"
+      ],
+      "occasion": [
+        "派對",
+        "開胃"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/paper-plane/"
+    },
+    {
+      "id": "paradise",
+      "nameEn": "Paradise",
+      "nameZh": "天堂",
+      "aliases": [
+        "Paradise"
+      ],
+      "collection": "classic",
+      "category": "sweet",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 24%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "apricot-brandy",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orange-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將琴酒（金酒）、杏桃白蘭地、柳橙汁依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "杏桃",
+        "經典",
+        "甜味"
+      ],
+      "flavor": [
+        "fruity",
+        "sweet"
+      ],
+      "occasion": [
+        "派對",
+        "浪漫"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/paradise/"
+    },
+    {
+      "id": "penicillin",
+      "nameEn": "Penicillin",
+      "nameZh": "盤尼西林",
+      "aliases": [
+        "Penicillin",
+        "盤尼西林調酒"
+      ],
+      "collection": "new-era",
+      "category": "spirit-forward",
+      "glass": "rocks",
+      "ice": "shaken",
+      "difficulty": 3,
+      "abv": "約 25%",
+      "time": "6 分鐘",
+      "ingredients": [
+        {
+          "id": "whiskey-scotch",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lagavulin-16",
+          "amount": 7.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "honey-syrup",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "ginger",
+          "amount": 3.5,
+          "unit": "piece",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "先將生薑在搖酒壺中搗出汁液。",
+        "加入蜂蜜糖漿、檸檬汁與蘇格蘭威士忌，裝滿冰塊後用力搖盪。",
+        "濾入裝冰的古典杯，最後將艾雷島單一麥芽威士忌浮在表面。",
+        "以生薑裝飾後享用。"
+      ],
+      "garnish": [
+        "ginger"
+      ],
+      "tags": [
+        "蜂蜜",
+        "薑",
+        "新時代"
+      ],
+      "flavor": [
+        "spicy",
+        "herbal",
+        "sweet"
+      ],
+      "occasion": [
+        "秋冬",
+        "飯後",
+        "獨飲"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/penicillin/"
+    },
+    {
+      "id": "pina-colada",
+      "nameEn": "Pina Colada",
+      "nameZh": "椰林風暴",
+      "aliases": [
+        "Piña Colada",
+        "Pina Colada"
+      ],
+      "collection": "classic",
+      "category": "sweet",
+      "glass": "other",
+      "ice": "crushed",
+      "difficulty": 2,
+      "abv": "約 18%",
+      "time": "6 分鐘",
+      "ingredients": [
+        {
+          "id": "rum-white",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "coconut-milk",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "pineapple-juice",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將白朗姆、椰奶與鮮鳳梨汁連同冰塊放入果汁機。",
+        "攪打至均勻後倒入大杯，以吸管飲用。",
+        "以鳳梨（塊或片）、櫻桃裝飾後享用。"
+      ],
+      "garnish": [
+        "pineapple",
+        "cherry"
+      ],
+      "tags": [
+        "椰子",
+        "熱帶",
+        "經典"
+      ],
+      "flavor": [
+        "fruity",
+        "creamy",
+        "sweet"
+      ],
+      "occasion": [
+        "夏日",
+        "派對",
+        "浪漫"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/pina-colada/"
+    },
+    {
+      "id": "pisco-punch",
+      "nameEn": "Pisco Punch",
+      "nameZh": "皮斯科賓士",
+      "aliases": [
+        "Pisco Punch"
+      ],
+      "collection": "new-era",
+      "category": "punch",
+      "glass": "other",
+      "ice": "shaken",
+      "difficulty": 3,
+      "abv": "約 18%",
+      "time": "6 分鐘",
+      "ingredients": [
+        {
+          "id": "pisco",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "pineapple-juice",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "simple-syrup",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "white-wine",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "cloves",
+          "amount": 3,
+          "unit": "piece",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "先將糖漿與丁香稍微搗拌混合。",
+        "加入其餘材料（酒除外）與冰塊，用力搖盪後雙重過濾至大酒杯。",
+        "最後浮上白葡萄酒並輕攪。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "賓士",
+        "南美",
+        "新時代"
+      ],
+      "flavor": [
+        "fruity",
+        "spicy",
+        "sweet"
+      ],
+      "occasion": [
+        "派對",
+        "夏日"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/pisco-punch/"
+    },
+    {
+      "id": "pisco-sour",
+      "nameEn": "Pisco Sour",
+      "nameZh": "皮斯科酸酒",
+      "aliases": [
+        "Pisco Sour"
+      ],
+      "collection": "classic",
+      "category": "sour",
+      "glass": "other",
+      "ice": "shaken",
+      "difficulty": 3,
+      "abv": "約 22%",
+      "time": "6 分鐘",
+      "ingredients": [
+        {
+          "id": "pisco",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "simple-syrup",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "egg-white",
+          "amount": 1,
+          "unit": "piece",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將皮斯科、檸檬汁、糖水（1:1）、蛋白依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的高腳古典杯。",
+        "以苦味苦精裝飾後享用。"
+      ],
+      "garnish": [
+        "amargo-bitters"
+      ],
+      "tags": [
+        "蛋白泡沫",
+        "南美",
+        "經典"
+      ],
+      "flavor": [
+        "sour",
+        "citrus",
+        "sweet"
+      ],
+      "occasion": [
+        "派對",
+        "飯後"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/pisco-sour/"
+    },
+    {
+      "id": "planters-punch",
+      "nameEn": "Planters Punch",
+      "nameZh": "莊園園丁的賓士",
+      "aliases": [
+        "Planter's Punch",
+        "Planters Punch"
+      ],
+      "collection": "classic",
+      "category": "punch",
+      "glass": "tumbler",
+      "ice": "none",
+      "difficulty": 2,
+      "abv": "約 20%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "rum-dark",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "sugar-cane-juice",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將深色蘭姆酒、青檸汁、甘蔗汁依序倒入直筒杯。",
+        "補滿冰塊，輕輕攪拌均勻後享用。",
+        "可依口味加入水、冰塊或新鮮果汁稀釋，份量自行調整。",
+        "以柳橙皮裝飾後享用。"
+      ],
+      "garnish": [
+        "orange-peel"
+      ],
+      "tags": [
+        "賓士",
+        "甘蔗",
+        "經典"
+      ],
+      "flavor": [
+        "fruity",
+        "sweet",
+        "citrus"
+      ],
+      "occasion": [
+        "夏日",
+        "派對"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/planters-punch/"
+    },
+    {
+      "id": "porn-star-martini",
+      "nameEn": "Porn Star Martini",
+      "nameZh": "色情之星馬天尼",
+      "aliases": [
+        "Porn Star Martini"
+      ],
+      "collection": "new-era",
+      "category": "fizzy",
+      "glass": "martini",
+      "ice": "shaken",
+      "difficulty": 3,
+      "abv": "約 22%",
+      "time": "6 分鐘",
+      "ingredients": [
+        {
+          "id": "vodka",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "passion-fruit-liqueur",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "passion-fruit-puree",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "vanilla-sugar",
+          "amount": 2,
+          "unit": "bar-spoon",
+          "optional": false
+        },
+        {
+          "id": "champagne",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將伏特加、百香果利口酒、百香果果泥、香草糖、香檳依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的馬天尼杯。",
+        "另外準備一杯冰鎮香檳佐餐。",
+        "以百香果、糖霜杯口裝飾後享用。"
+      ],
+      "garnish": [
+        "passion-fruit",
+        "sugar-rim"
+      ],
+      "tags": [
+        "百香果",
+        "香檳",
+        "新時代"
+      ],
+      "flavor": [
+        "fruity",
+        "fizzy",
+        "sweet"
+      ],
+      "occasion": [
+        "派對",
+        "浪漫",
+        "慶祝"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/porn-star-martini/"
+    },
+    {
+      "id": "porto-flip",
+      "nameEn": "Porto Flip",
+      "nameZh": "波特酒蛋酒",
+      "aliases": [
+        "Porto Flip",
+        "波特翻轉"
+      ],
+      "collection": "classic",
+      "category": "flip",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 17%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "brandy-cognac",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "port",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "egg-yolk",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將白蘭地／干邑、波特酒、蛋黃依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "以肉豆蔻裝飾後享用。"
+      ],
+      "garnish": [
+        "nutmeg"
+      ],
+      "tags": [
+        "蛋酒",
+        "波特",
+        "餐後"
+      ],
+      "flavor": [
+        "sweet",
+        "creamy",
+        "nutty"
+      ],
+      "occasion": [
+        "飯後",
+        "浪漫"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/porto-flip/"
+    },
+    {
+      "id": "rabo-de-galo",
+      "nameEn": "Rabo de Galo",
+      "nameZh": "公雞的尾巴",
+      "aliases": [
+        "Rabo de Galo"
+      ],
+      "collection": "classic",
+      "category": "spirit-forward",
+      "glass": "rocks",
+      "ice": "large-cube",
+      "difficulty": 2,
+      "abv": "約 26%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "cachaca",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "vermouth-red",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "cynar",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "angostura-bitters",
+          "amount": 2,
+          "unit": "drop",
+          "optional": true
+        }
+      ],
+      "steps": [
+        "將卡莎薩（巴西甘蔗酒）、甜味美思（紅）、藝術根草苦味酒、安格仕苦精依序倒入裝滿冰塊的古典杯。",
+        "輕攪拌約 10 秒，使材料均勻融合後享用。",
+        "以柳橙皮裝飾後享用。"
+      ],
+      "garnish": [
+        "orange-peel"
+      ],
+      "tags": [
+        "巴西",
+        "苦味",
+        "經典"
+      ],
+      "flavor": [
+        "bitter",
+        "herbal"
+      ],
+      "occasion": [
+        "開胃",
+        "餐前"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/rabo-de-galo/"
+    },
+    {
+      "id": "ramos-fizz",
+      "nameEn": "Ramos Fizz",
+      "nameZh": "拉莫斯費茲",
+      "aliases": [
+        "Ramos Fizz"
+      ],
+      "collection": "classic",
+      "category": "fizzy",
+      "glass": "highball",
+      "ice": "shaken",
+      "difficulty": 3,
+      "abv": "約 13%",
+      "time": "10 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "simple-syrup",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "cream",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "egg-white",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orange-flower-water",
+          "amount": 3,
+          "unit": "dash",
+          "optional": false
+        },
+        {
+          "id": "vanilla-extract",
+          "amount": 2,
+          "unit": "drop",
+          "optional": false
+        },
+        {
+          "id": "soda-water",
+          "amount": null,
+          "unit": null,
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將除蘇打水外的所有材料放入搖酒壺加冰，用力搖盪約 2 分鐘後雙重過濾。",
+        "倒回搖酒壺、不加冰再用力搖盪 1 分鐘，產生濃密的蛋白泡沫。",
+        "倒入高球杯，最後以蘇打水補滿。",
+        "不另加裝飾，趁新鮮飲用。",
+        "部分材料 IBA 未標示確切用量（如補滿至杯口或依口味添加），用量依個人口味調整。"
+      ],
+      "garnish": [],
+      "tags": [
+        "蛋白泡沫",
+        "長搖",
+        "經典"
+      ],
+      "flavor": [
+        "fizzy",
+        "sour",
+        "creamy"
+      ],
+      "occasion": [
+        "派對",
+        "慶祝"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/ramos-fizz/"
+    },
+    {
+      "id": "remember-the-maine",
+      "nameEn": "Remember the Maine",
+      "nameZh": "緬因紀念",
+      "aliases": [
+        "Remember the Maine"
+      ],
+      "collection": "classic",
+      "category": "spirit-forward",
+      "glass": "coupe",
+      "ice": "stirred",
+      "difficulty": 3,
+      "abv": "約 28%",
+      "time": "6 分鐘",
+      "ingredients": [
+        {
+          "id": "whiskey-rye",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "vermouth-red",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "cherry-brandy",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "absinthe",
+          "amount": 7.5,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "以苦艾酒淋洗淺碟杯內壁，倒掉多餘苦艾酒後備用。",
+        "其餘材料在調酒杯中加冰攪拌至冷卻。",
+        "濾入以苦艾酒潤洗過的杯子。",
+        "以檸檬皮裝飾後享用。"
+      ],
+      "garnish": [
+        "lemon-peel"
+      ],
+      "tags": [
+        "苦艾酒",
+        "經典",
+        "威士忌"
+      ],
+      "flavor": [
+        "herbal",
+        "bitter",
+        "sour"
+      ],
+      "occasion": [
+        "餐前",
+        "獨飲"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/remember-the-maine/"
+    },
+    {
+      "id": "russian-spring-punch",
+      "nameEn": "Russian Spring Punch",
+      "nameZh": "俄羅斯春之賓士",
+      "aliases": [
+        "Russian Spring Punch"
+      ],
+      "collection": "new-era",
+      "category": "punch",
+      "glass": "collins",
+      "ice": "none",
+      "difficulty": 2,
+      "abv": "約 15%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "vodka",
+          "amount": 25,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 25,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "cassis-liqueur",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "simple-syrup",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "sparkling-wine",
+          "amount": null,
+          "unit": "fill",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將伏特加、檸檬汁、黑醋栗利口酒與糖漿加入搖酒壺加冰搖勻。",
+        "濾入裝冰的高身直筒杯。",
+        "以氣泡酒補至杯口。",
+        "以黑莓、檸檬皮裝飾後享用。",
+        "部分材料 IBA 未標示確切用量（如補滿至杯口或依口味添加），用量依個人口味調整。"
+      ],
+      "garnish": [
+        "blackberry",
+        "lemon-peel"
+      ],
+      "tags": [
+        "賓士",
+        "新時代",
+        "氣泡"
+      ],
+      "flavor": [
+        "fruity",
+        "fizzy",
+        "sweet"
+      ],
+      "occasion": [
+        "派對",
+        "夏日",
+        "浪漫"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/russian-spring-punch/"
+    },
+    {
+      "id": "rusty-nail",
+      "nameEn": "Rusty Nail",
+      "nameZh": "生鏽的釘子",
+      "aliases": [
+        "Rusty Nail"
+      ],
+      "collection": "classic",
+      "category": "spirit-forward",
+      "glass": "rocks",
+      "ice": "large-cube",
+      "difficulty": 1,
+      "abv": "約 25%",
+      "time": "3 分鐘",
+      "ingredients": [
+        {
+          "id": "whiskey-scotch",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "drambuie",
+          "amount": 25,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將蘇格蘭威士忌、蜂蜜香草威士忌利口酒依序倒入裝滿冰塊的古典杯。",
+        "輕攪拌約 10 秒，使材料均勻融合後享用。",
+        "以檸檬皮裝飾後享用。"
+      ],
+      "garnish": [
+        "lemon-peel"
+      ],
+      "tags": [
+        "蘇格蘭威士忌",
+        "經典",
+        "簡易"
+      ],
+      "flavor": [
+        "herbal",
+        "sweet"
+      ],
+      "occasion": [
+        "飯後",
+        "獨飲"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/rusty-nail/"
+    },
+    {
+      "id": "sazerac",
+      "nameEn": "Sazerac",
+      "nameZh": "薩澤拉克",
+      "aliases": [
+        "Sazerac"
+      ],
+      "collection": "classic",
+      "category": "spirit-forward",
+      "glass": "rocks",
+      "ice": "crushed",
+      "difficulty": 3,
+      "abv": "約 30%",
+      "time": "6 分鐘",
+      "ingredients": [
+        {
+          "id": "brandy-cognac",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "absinthe",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "sugar-cube",
+          "amount": 1,
+          "unit": "cube",
+          "optional": false
+        },
+        {
+          "id": "peychaud-bitters",
+          "amount": 2,
+          "unit": "dash",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "以苦艾酒淋洗冰鎮的古典杯，倒掉多餘苦艾酒後備用。",
+        "將干邑、糖、佩喬苦精在調酒杯中加碎冰攪拌。",
+        "倒掉碎冰與多餘苦艾酒，將酒液濾入備用的杯子。",
+        "以檸檬皮裝飾後享用。"
+      ],
+      "garnish": [
+        "lemon-peel"
+      ],
+      "tags": [
+        "苦艾酒",
+        "新奥尔良",
+        "經典"
+      ],
+      "flavor": [
+        "herbal",
+        "bitter",
+        "spicy"
+      ],
+      "occasion": [
+        "獨飲",
+        "餐前",
+        "飯後"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/sazerac/"
+    },
+    {
+      "id": "sea-breeze",
+      "nameEn": "Sea Breeze",
+      "nameZh": "海風",
+      "aliases": [
+        "Sea Breeze"
+      ],
+      "collection": "classic",
+      "category": "refreshing",
+      "glass": "highball",
+      "ice": "none",
+      "difficulty": 1,
+      "abv": "約 11%",
+      "time": "3 分鐘",
+      "ingredients": [
+        {
+          "id": "vodka",
+          "amount": 40,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "cranberry-juice",
+          "amount": 120,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "grapefruit-juice",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將伏特加、蔓越莓汁、葡萄柚汁依序倒入高球杯。",
+        "補滿冰塊，輕輕攪拌均勻後享用。",
+        "以柳橙皮、櫻桃裝飾後享用。"
+      ],
+      "garnish": [
+        "orange-peel",
+        "cherry"
+      ],
+      "tags": [
+        "蔓越莓",
+        "清涼",
+        "經典"
+      ],
+      "flavor": [
+        "fruity",
+        "citrus",
+        "sour"
+      ],
+      "occasion": [
+        "夏日",
+        "派對",
+        "浪漫"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/sea-breeze/"
+    },
+    {
+      "id": "sex-on-the-beach",
+      "nameEn": "Sex on the Beach",
+      "nameZh": "海灘之性",
+      "aliases": [
+        "Sex on the Beach"
+      ],
+      "collection": "classic",
+      "category": "fizzy",
+      "glass": "highball",
+      "ice": "none",
+      "difficulty": 1,
+      "abv": "約 13%",
+      "time": "3 分鐘",
+      "ingredients": [
+        {
+          "id": "vodka",
+          "amount": 40,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "peach-liqueur",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orange-juice",
+          "amount": 40,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "cranberry-juice",
+          "amount": 40,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將伏特加、桃味利口酒、柳橙汁、蔓越莓汁依序倒入高球杯。",
+        "補滿冰塊，輕輕攪拌均勻後享用。",
+        "以柳橙皮裝飾後享用。"
+      ],
+      "garnish": [
+        "orange-peel"
+      ],
+      "tags": [
+        "桃味",
+        "派對",
+        "經典"
+      ],
+      "flavor": [
+        "fruity",
+        "sweet",
+        "citrus"
+      ],
+      "occasion": [
+        "派對",
+        "夏日"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/sex-on-the-beach/"
+    },
+    {
+      "id": "sherry-cobbler",
+      "nameEn": "Sherry Cobbler",
+      "nameZh": "雪利酒柯布勒",
+      "aliases": [
+        "Sherry Cobbler"
+      ],
+      "collection": "new-era",
+      "category": "refreshing",
+      "glass": "mug",
+      "ice": "crushed",
+      "difficulty": 2,
+      "abv": "約 15%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "sherry-amontillado",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "sherry-palo-cortado",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "sugar-syrup",
+          "amount": 1,
+          "unit": "tsp",
+          "optional": false
+        },
+        {
+          "id": "orange-peel",
+          "amount": 0.5,
+          "unit": "piece",
+          "optional": false
+        },
+        {
+          "id": "lemon-peel",
+          "amount": 0.5,
+          "unit": "piece",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將阿蒙提利亞多雪莉酒、帕洛科塔多雪莉酒、糖、柳橙皮、檸檬皮依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的柯布勒杯。",
+        "以柳橙皮、檸檬皮裝飾後享用。"
+      ],
+      "garnish": [
+        "orange-peel",
+        "lemon-peel"
+      ],
+      "tags": [
+        "雪利酒",
+        "西班牙",
+        "新時代"
+      ],
+      "flavor": [
+        "fruity",
+        "sweet",
+        "nutty"
+      ],
+      "occasion": [
+        "夏日",
+        "派對",
+        "飯後"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/sherry-cobbler/"
+    },
+    {
+      "id": "sidecar",
+      "nameEn": "Sidecar",
+      "nameZh": "賽德卡",
+      "aliases": [
+        "Sidecar"
+      ],
+      "collection": "classic",
+      "category": "sour",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 25%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "brandy-cognac",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orange-liqueur",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將白蘭地／干邑、橙味利口酒（君度／橙皮酒）、檸檬汁依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "白蘭地",
+        "酸甜",
+        "經典"
+      ],
+      "flavor": [
+        "sour",
+        "citrus"
+      ],
+      "occasion": [
+        "餐前",
+        "派對",
+        "浪漫"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/sidecar/"
+    },
+    {
+      "id": "singapore-sling",
+      "nameEn": "Singapore Sling",
+      "nameZh": "新加坡司令",
+      "aliases": [
+        "Singapore Sling"
+      ],
+      "collection": "classic",
+      "category": "fizzy",
+      "glass": "other",
+      "ice": "shaken",
+      "difficulty": 3,
+      "abv": "約 20%",
+      "time": "6 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "cherry-sangue-morlacco",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orange-liqueur",
+          "amount": 7.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "benedictine",
+          "amount": 7.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "pineapple-juice",
+          "amount": 120,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "grenadine",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "angostura-bitters",
+          "amount": 1,
+          "unit": "dash",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將琴酒（金酒）、血橙櫻桃酒、橙味利口酒（君度／橙皮酒）、班尼迪克丁、鳳梨汁、青檸汁、紅石榴糖漿、安格仕苦精依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的颶風杯。",
+        "以鳳梨（塊或片）、櫻桃裝飾後享用。"
+      ],
+      "garnish": [
+        "pineapple",
+        "cherry"
+      ],
+      "tags": [
+        "鳳梨",
+        "經典",
+        "長搖"
+      ],
+      "flavor": [
+        "fruity",
+        "sour",
+        "spicy"
+      ],
+      "occasion": [
+        "派對",
+        "夏日"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/singapore-sling/"
+    },
+    {
+      "id": "south-side",
+      "nameEn": "South Side",
+      "nameZh": "南區",
+      "aliases": [
+        "South Side"
+      ],
+      "collection": "new-era",
+      "category": "sour",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 26%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "simple-syrup",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "mint",
+          "amount": 0.8333333333333334,
+          "unit": "piece",
+          "optional": false
+        },
+        {
+          "id": "egg-white",
+          "amount": 1,
+          "unit": "drop",
+          "optional": true
+        }
+      ],
+      "steps": [
+        "將琴酒（金酒）、檸檬汁、糖水（1:1）、薄荷、蛋白依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "以薄荷裝飾後享用。"
+      ],
+      "garnish": [
+        "mint"
+      ],
+      "tags": [
+        "琴酒",
+        "酸酒",
+        "新時代"
+      ],
+      "flavor": [
+        "sour",
+        "herbal",
+        "citrus"
+      ],
+      "occasion": [
+        "派對",
+        "獨飲"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/south-side/"
+    },
+    {
+      "id": "spicy-fifty",
+      "nameEn": "Spicy Fifty",
+      "nameZh": "辣五十",
+      "aliases": [
+        "Spicy Fifty"
+      ],
+      "collection": "new-era",
+      "category": "sour",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 3,
+      "abv": "約 20%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "vodka",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "elderflower-cordial",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "honey-syrup",
+          "amount": 10,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "chili",
+          "amount": 2,
+          "unit": "piece",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將伏特加、接骨木花糖漿、青檸汁、蜂蜜糖漿、辣椒依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "以辣椒裝飾後享用。"
+      ],
+      "garnish": [
+        "chili"
+      ],
+      "tags": [
+        "辣椒",
+        "新時代",
+        "酸酒"
+      ],
+      "flavor": [
+        "spicy",
+        "sour",
+        "sweet"
+      ],
+      "occasion": [
+        "派對",
+        "獨飲"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/spicy-fifty/"
+    },
+    {
+      "id": "spritz",
+      "nameEn": "Spritz",
+      "nameZh": "斯普里茲",
+      "aliases": [
+        "Spritz",
+        "阿佩羅斯普里茲"
+      ],
+      "collection": "new-era",
+      "category": "fizzy",
+      "glass": "wine",
+      "ice": "none",
+      "difficulty": 1,
+      "abv": "約 11%",
+      "time": "3 分鐘",
+      "ingredients": [
+        {
+          "id": "prosecco",
+          "amount": 90,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "aperol",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "soda-water",
+          "amount": 1,
+          "unit": "splash",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "先將冰塊放入紅酒杯。",
+        "依序倒入普羅塞克氣泡酒與阿佩羅，最後補入蘇打水。",
+        "輕攪均勻後享用。",
+        "以柳橙皮裝飾後享用。"
+      ],
+      "garnish": [
+        "orange-peel"
+      ],
+      "tags": [
+        "開胃",
+        "氣泡",
+        "義大利"
+      ],
+      "flavor": [
+        "bitter",
+        "citrus",
+        "fizzy"
+      ],
+      "occasion": [
+        "開胃",
+        "餐前",
+        "派對"
+      ],
+      "popularity": 5,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/spritz/"
+    },
+    {
+      "id": "stinger",
+      "nameEn": "Stinger",
+      "nameZh": "螫叮",
+      "aliases": [
+        "Stinger"
+      ],
+      "collection": "classic",
+      "category": "digestif",
+      "glass": "martini",
+      "ice": "stirred",
+      "difficulty": 1,
+      "abv": "約 20%",
+      "time": "3 分鐘",
+      "ingredients": [
+        {
+          "id": "brandy-cognac",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "creme-de-menthe",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將白蘭地／干邑、薄荷酒依序加入調酒杯。",
+        "加入冰塊，攪拌約 20 至 30 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的馬天尼杯。",
+        "以薄荷裝飾後享用。"
+      ],
+      "garnish": [
+        "mint"
+      ],
+      "tags": [
+        "薄荷",
+        "餐後",
+        "白蘭地"
+      ],
+      "flavor": [
+        "herbal",
+        "sweet"
+      ],
+      "occasion": [
+        "飯後"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/stinger/"
+    },
+    {
+      "id": "suffering-bastard",
+      "nameEn": "Suffering Bastard",
+      "nameZh": "受苦的混蛋",
+      "aliases": [
+        "Suffering Bastard"
+      ],
+      "collection": "new-era",
+      "category": "highball",
+      "glass": "mug",
+      "ice": "none",
+      "difficulty": 2,
+      "abv": "約 15%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "brandy-cognac",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "gin",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "angostura-bitters",
+          "amount": 2,
+          "unit": "dash",
+          "optional": false
+        },
+        {
+          "id": "ginger-beer",
+          "amount": null,
+          "unit": "fill",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將干邑、琴酒、青檸汁與苦精加入搖酒壺加冰搖勻。",
+        "不濾冰直接倒入可林杯或傳統的 S. Bastard 馬克杯。",
+        "最後以薑汁啤酒補滿。",
+        "以薄荷、柳橙皮裝飾後享用。",
+        "部分材料 IBA 未標示確切用量（如補滿至杯口或依口味添加），用量依個人口味調整。"
+      ],
+      "garnish": [
+        "mint",
+        "orange-peel"
+      ],
+      "tags": [
+        "薑汁啤酒",
+        "新時代",
+        "混合"
+      ],
+      "flavor": [
+        "spicy",
+        "citrus"
+      ],
+      "occasion": [
+        "派對",
+        "秋冬"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/suffering-bastard/"
+    },
+    {
+      "id": "tequila-sunrise",
+      "nameEn": "Tequila Sunrise",
+      "nameZh": "龍舌蘭日出",
+      "aliases": [
+        "Tequila Sunrise"
+      ],
+      "collection": "classic",
+      "category": "sweet",
+      "glass": "highball",
+      "ice": "none",
+      "difficulty": 1,
+      "abv": "約 14%",
+      "time": "3 分鐘",
+      "ingredients": [
+        {
+          "id": "tequila-blanco",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orange-juice",
+          "amount": 90,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "grenadine",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將龍舌蘭酒與柳橙汁倒入裝冰的高球杯。",
+        "緩緩加入紅石榴糖漿製造日出漸層，不要攪拌。",
+        "以柳橙皮裝飾後享用。"
+      ],
+      "garnish": [
+        "orange-peel"
+      ],
+      "tags": [
+        "漸層",
+        "柳橙",
+        "經典"
+      ],
+      "flavor": [
+        "fruity",
+        "sweet",
+        "citrus"
+      ],
+      "occasion": [
+        "夏日",
+        "派對"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/tequila-sunrise/"
+    },
+    {
+      "id": "three-dots-and-a-dash",
+      "nameEn": "Three Dots and a Dash",
+      "nameZh": "三點與一破折號",
+      "aliases": [
+        "Three Dots and a Dash",
+        "三點一橫"
+      ],
+      "collection": "new-era",
+      "category": "punch",
+      "glass": "other",
+      "ice": "crushed",
+      "difficulty": 3,
+      "abv": "約 19%",
+      "time": "6 分鐘",
+      "ingredients": [
+        {
+          "id": "rum-martinique-agricole",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "rum-blended-aged",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "falernum",
+          "amount": 7.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "allspice-liqueur",
+          "amount": 7.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orange-juice",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "honey-syrup",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "angostura-bitters",
+          "amount": 2,
+          "unit": "dash",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將所有材料與約 12 盎司碎冰放入果汁機。",
+        "快速攪打後倒入高腳玻璃杯（copo glass）。",
+        "再補滿碎冰。",
+        "以櫻桃、鳳梨（塊或片）裝飾後享用。"
+      ],
+      "garnish": [
+        "cherry",
+        "pineapple"
+      ],
+      "tags": [
+        "提基",
+        "新時代",
+        "賓士"
+      ],
+      "flavor": [
+        "fruity",
+        "spicy",
+        "herbal"
+      ],
+      "occasion": [
+        "派對",
+        "夏日"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/three-dots-and-a-dash/"
+    },
+    {
+      "id": "tipperary",
+      "nameEn": "Tipperary",
+      "nameZh": "提珀利",
+      "aliases": [
+        "Tipperary"
+      ],
+      "collection": "new-era",
+      "category": "spirit-forward",
+      "glass": "martini",
+      "ice": "stirred",
+      "difficulty": 2,
+      "abv": "約 26%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "whiskey-irish",
+          "amount": 50,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "vermouth-red",
+          "amount": 25,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "chartreuse-green",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "angostura-bitters",
+          "amount": 2,
+          "unit": "dash",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將愛爾蘭威士忌、甜味美思（紅）、綠查特酒、安格仕苦精依序加入調酒杯。",
+        "加入冰塊，攪拌約 20 至 30 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的馬天尼杯。",
+        "以柳橙皮裝飾後享用。"
+      ],
+      "garnish": [
+        "orange-peel"
+      ],
+      "tags": [
+        "愛爾蘭",
+        "草本",
+        "經典"
+      ],
+      "flavor": [
+        "herbal",
+        "bitter"
+      ],
+      "occasion": [
+        "餐前",
+        "獨飲"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/tipperary/"
+    },
+    {
+      "id": "tommys-margarita",
+      "nameEn": "Tommy&#8217;s Margarita",
+      "nameZh": "湯米的瑪格麗特",
+      "aliases": [
+        "Tommy's Margarita"
+      ],
+      "collection": "new-era",
+      "category": "daiquiri",
+      "glass": "rocks",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 22%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "tequila-blanco",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "agave-syrup",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將龍舌蘭酒（透明）、青檸汁、龍舌蘭糖漿依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的古典杯。",
+        "以青檸皮裝飾後享用。"
+      ],
+      "garnish": [
+        "lime-peel"
+      ],
+      "tags": [
+        "龍舌蘭",
+        "新時代",
+        "甜味"
+      ],
+      "flavor": [
+        "citrus",
+        "sweet",
+        "fruity"
+      ],
+      "occasion": [
+        "派對",
+        "夏日"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/tommys-margarita/"
+    },
+    {
+      "id": "trinidad-sour",
+      "nameEn": "Trinidad Sour",
+      "nameZh": "千里達酸酒",
+      "aliases": [
+        "Trinidad Sour"
+      ],
+      "collection": "new-era",
+      "category": "sour",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 3,
+      "abv": "約 23%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "angostura-bitters",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orgeat-syrup",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "whiskey-rye",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將安格仕苦精、杏仁糖漿、檸檬汁、裸麥威士忌依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "杏仁",
+        "新時代",
+        "酸酒"
+      ],
+      "flavor": [
+        "sour",
+        "nutty",
+        "spicy"
+      ],
+      "occasion": [
+        "派對",
+        "獨飲"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/trinidad-sour/"
+    },
+    {
+      "id": "tuxedo",
+      "nameEn": "Tuxedo",
+      "nameZh": "燕尾服",
+      "aliases": [
+        "Tuxedo"
+      ],
+      "collection": "classic",
+      "category": "sweet",
+      "glass": "martini",
+      "ice": "stirred",
+      "difficulty": 2,
+      "abv": "約 26%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "vermouth-dry",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "maraschino",
+          "amount": 0.5,
+          "unit": "bar-spoon",
+          "optional": false
+        },
+        {
+          "id": "absinthe",
+          "amount": 0.25,
+          "unit": "bar-spoon",
+          "optional": false
+        },
+        {
+          "id": "orange-bitters",
+          "amount": 3,
+          "unit": "dash",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將琴酒（金酒）、乾味美思（白）、黑櫻桃酒、苦艾酒、橙味苦精依序加入調酒杯。",
+        "加入冰塊，攪拌約 20 至 30 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的馬天尼杯。",
+        "以櫻桃、檸檬皮裝飾後享用。"
+      ],
+      "garnish": [
+        "cherry",
+        "lemon-peel"
+      ],
+      "tags": [
+        "琴酒",
+        "經典",
+        "雙基酒"
+      ],
+      "flavor": [
+        "herbal",
+        "sweet"
+      ],
+      "occasion": [
+        "餐前",
+        "派對"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/tuxedo/"
+    },
+    {
+      "id": "ve-n-to",
+      "nameEn": "Ve.N.To",
+      "nameZh": "維恩托",
+      "aliases": [
+        "Ve.N.To",
+        "Vento"
+      ],
+      "collection": "new-era",
+      "category": "sour",
+      "glass": "tumbler",
+      "ice": "shaken",
+      "difficulty": 3,
+      "abv": "約 17%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "grappa",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 22.5,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "honey-syrup",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "chamomile-cordial",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "egg-white",
+          "amount": 1,
+          "unit": "drop",
+          "optional": true
+        }
+      ],
+      "steps": [
+        "將義式白葡萄烈酒、檸檬汁、蜂蜜糖漿、洋甘菊糖漿、蛋白依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的直筒杯。",
+        "以檸檬皮、白葡萄裝飾後享用。"
+      ],
+      "garnish": [
+        "lemon-peel",
+        "white-grape"
+      ],
+      "tags": [
+        "蜂蜜",
+        "洋甘菊",
+        "新時代"
+      ],
+      "flavor": [
+        "sour",
+        "herbal",
+        "sweet"
+      ],
+      "occasion": [
+        "派對",
+        "浪漫",
+        "秋冬"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/ve-n-to/"
+    },
+    {
+      "id": "vesper",
+      "nameEn": "Vesper",
+      "nameZh": "維斯帕",
+      "aliases": [
+        "Vesper"
+      ],
+      "collection": "classic",
+      "category": "spirit-forward",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 28%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "vodka",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lillet-blanc",
+          "amount": 7.5,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將琴酒（金酒）、伏特加、白麗葉酒依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "以檸檬皮裝飾後享用。"
+      ],
+      "garnish": [
+        "lemon-peel"
+      ],
+      "tags": [
+        "琴酒",
+        "伏特加",
+        "007"
+      ],
+      "flavor": [
+        "herbal",
+        "citrus"
+      ],
+      "occasion": [
+        "餐前",
+        "獨飲",
+        "浪漫"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/vesper/"
+    },
+    {
+      "id": "vieux-carre",
+      "nameEn": "Vieux Carré",
+      "nameZh": "老方形",
+      "aliases": [
+        "Vieux Carré"
+      ],
+      "collection": "classic",
+      "category": "spirit-forward",
+      "glass": "coupe",
+      "ice": "stirred",
+      "difficulty": 3,
+      "abv": "約 29%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "whiskey-rye",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "brandy-cognac",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "vermouth-red",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "benedictine",
+          "amount": 1,
+          "unit": "bar-spoon",
+          "optional": false
+        },
+        {
+          "id": "peychaud-bitters",
+          "amount": 2,
+          "unit": "dash",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將裸麥威士忌、白蘭地／干邑、甜味美思（紅）、班尼迪克丁、佩喬苦精依序加入調酒杯。",
+        "加入冰塊，攪拌約 20 至 30 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "以柳橙皮、櫻桃裝飾後享用。"
+      ],
+      "garnish": [
+        "orange-peel",
+        "cherry"
+      ],
+      "tags": [
+        "苦味",
+        "經典",
+        "新奧良"
+      ],
+      "flavor": [
+        "bitter",
+        "herbal",
+        "sweet"
+      ],
+      "occasion": [
+        "餐前",
+        "獨飲"
+      ],
+      "popularity": 2,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/vieux-carre/"
+    },
+    {
+      "id": "whiskey-sour",
+      "nameEn": "Whiskey Sour",
+      "nameZh": "威士忌酸酒",
+      "aliases": [
+        "Whiskey Sour"
+      ],
+      "collection": "classic",
+      "category": "sour",
+      "glass": "rocks",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 21%",
+      "time": "5 分鐘",
+      "ingredients": [
+        {
+          "id": "whiskey-bourbon",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 25,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "simple-syrup",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "egg-white",
+          "amount": 1,
+          "unit": "drop",
+          "optional": true
+        }
+      ],
+      "steps": [
+        "將波本威士忌、檸檬汁、糖水（1:1）、蛋白依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的古典杯。",
+        "以柳橙皮、櫻桃裝飾後享用。"
+      ],
+      "garnish": [
+        "orange-peel",
+        "cherry"
+      ],
+      "tags": [
+        "蛋白泡沫",
+        "經典",
+        "威士忌"
+      ],
+      "flavor": [
+        "sour",
+        "citrus",
+        "sweet"
+      ],
+      "occasion": [
+        "派對",
+        "飯後",
+        "獨飲"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/whiskey-sour/"
+    },
+    {
+      "id": "white-lady",
+      "nameEn": "White Lady",
+      "nameZh": "白夫人",
+      "aliases": [
+        "White Lady"
+      ],
+      "collection": "classic",
+      "category": "sweet",
+      "glass": "coupe",
+      "ice": "shaken",
+      "difficulty": 2,
+      "abv": "約 24%",
+      "time": "4 分鐘",
+      "ingredients": [
+        {
+          "id": "gin",
+          "amount": 40,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "orange-liqueur",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lemon-juice",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將琴酒（金酒）、橙味利口酒（君度／橙皮酒）、檸檬汁依序倒入搖酒壺。",
+        "加入滿杯冰塊，蓋好搖酒壺用力搖盪 10 至 15 秒至充分降溫。",
+        "以濾冰網過濾倒入冰鎮的淺碟杯。",
+        "不另加裝飾，趁新鮮飲用。"
+      ],
+      "garnish": [],
+      "tags": [
+        "經典",
+        "琴酒",
+        "甜味"
+      ],
+      "flavor": [
+        "sour",
+        "sweet",
+        "citrus"
+      ],
+      "occasion": [
+        "派對",
+        "浪漫"
+      ],
+      "popularity": 3,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/white-lady/"
+    },
+    {
+      "id": "zombie",
+      "nameEn": "Zombie",
+      "nameZh": "喪屍",
+      "aliases": [
+        "Zombie"
+      ],
+      "collection": "classic",
+      "category": "highball",
+      "glass": "tumbler",
+      "ice": "crushed",
+      "difficulty": 3,
+      "abv": "約 25%",
+      "time": "6 分鐘",
+      "ingredients": [
+        {
+          "id": "rum-dark",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "rum-puerto-rican-gold",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "rum-demerara",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "lime-juice",
+          "amount": 20,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "falernum",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "donns-mix",
+          "amount": 15,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "grenadine",
+          "amount": 1,
+          "unit": "tsp",
+          "optional": false
+        },
+        {
+          "id": "angostura-bitters",
+          "amount": 1,
+          "unit": "dash",
+          "optional": false
+        },
+        {
+          "id": "pernod",
+          "amount": 6,
+          "unit": "drop",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "將除碎冰外的所有材料放入果汁機。",
+        "加入 170 克碎冰，快速脈衝攪打數秒。",
+        "倒入直筒杯。",
+        "以薄荷裝飾後享用。"
+      ],
+      "garnish": [
+        "mint"
+      ],
+      "tags": [
+        "提基",
+        "經典",
+        "高酒精"
+      ],
+      "flavor": [
+        "fruity",
+        "spicy",
+        "herbal"
+      ],
+      "occasion": [
+        "派對",
+        "夏日",
+        "慶祝"
+      ],
+      "popularity": 4,
+      "sourceUrl": "https://www.iba-world.com/iba-cocktail/zombie/"
+    }
+  ],
+  "extraIngredients": [
+    {
+      "id": "cacao-liqueur-dark",
+      "zh": "可可利口酒（黑）",
+      "en": "Crème de Cacao (Brown)",
+      "category": "liqueur",
+      "aliases": [
+        "黑可可",
+        "可可酒"
+      ]
+    },
+    {
+      "id": "cacao-liqueur-white",
+      "zh": "可可利口酒（白）",
+      "en": "Crème de Cacao (White)",
+      "category": "liqueur",
+      "aliases": [
+        "白可可"
+      ]
+    },
+    {
+      "id": "blackberry-liqueur",
+      "zh": "黑莓利口酒",
+      "en": "Crème de Mûre",
+      "category": "liqueur",
+      "aliases": [
+        "黑莓酒"
+      ]
+    },
+    {
+      "id": "violette-liqueur",
+      "zh": "紫羅蘭利口酒",
+      "en": "Crème de Violette",
+      "category": "liqueur",
+      "aliases": [
+        "紫罗兰"
+      ]
+    },
+    {
+      "id": "cassis-liqueur",
+      "zh": "黑醋栗利口酒",
+      "en": "Crème de Cassis",
+      "category": "liqueur",
+      "aliases": [
+        "黑醋栗"
+      ]
+    },
+    {
+      "id": "amaro-nonino",
+      "zh": "義式苦味酒（Amaro Nonino）",
+      "en": "Amaro Nonino",
+      "category": "liqueur",
+      "aliases": [
+        "Nonino"
+      ]
+    },
+    {
+      "id": "cynar",
+      "zh": "藝術根草苦味酒",
+      "en": "Cynar",
+      "category": "liqueur",
+      "aliases": [
+        "Cynar"
+      ]
+    },
+    {
+      "id": "fernet-branca",
+      "zh": "費內苦味酒",
+      "en": "Fernet Branca",
+      "category": "liqueur",
+      "aliases": [
+        "Fernet"
+      ]
+    },
+    {
+      "id": "pernod",
+      "zh": "Pernod 茴香烈酒",
+      "en": "Pernod",
+      "category": "liqueur",
+      "aliases": [
+        "Pernod"
+      ]
+    },
+    {
+      "id": "frangelico",
+      "zh": "義式香草榛果酒",
+      "en": "Frangelico",
+      "category": "liqueur",
+      "aliases": [
+        "Frangelico"
+      ]
+    },
+    {
+      "id": "drambuie",
+      "zh": "蜂蜜香草威士忌利口酒",
+      "en": "Drambuie",
+      "category": "liqueur",
+      "aliases": [
+        "Drambuie"
+      ]
+    },
+    {
+      "id": "lagavulin-16",
+      "zh": "拉加維林 16 年威士忌",
+      "en": "Lagavulin 16",
+      "category": "base-spirit",
+      "aliases": [
+        "Lagavulin",
+        "艾雷島威士忌"
+      ]
+    },
+    {
+      "id": "grappa",
+      "zh": "義式白葡萄烈酒",
+      "en": "Grappa",
+      "category": "base-spirit",
+      "aliases": [
+        "Grappa"
+      ]
+    },
+    {
+      "id": "calvados",
+      "zh": "蘋果白蘭地",
+      "en": "Calvados",
+      "category": "base-spirit",
+      "aliases": [
+        "Calvados"
+      ]
+    },
+    {
+      "id": "apricot-brandy",
+      "zh": "杏桃白蘭地",
+      "en": "Apricot Brandy",
+      "category": "liqueur",
+      "aliases": [
+        "杏桃酒"
+      ]
+    },
+    {
+      "id": "peach-brandy",
+      "zh": "桃味白蘭地",
+      "en": "Peach Brandy",
+      "category": "liqueur",
+      "aliases": [
+        "桃味白蘭地"
+      ]
+    },
+    {
+      "id": "cherry-brandy",
+      "zh": "櫻桃白蘭地",
+      "en": "Cherry Brandy",
+      "category": "liqueur",
+      "aliases": [
+        "Cherry Brandy"
+      ]
+    },
+    {
+      "id": "cherry-sangue-morlacco",
+      "zh": "血橙櫻桃酒",
+      "en": "Cherry Sangue Morlacco",
+      "category": "liqueur",
+      "aliases": [
+        "Sangue Morlacco"
+      ]
+    },
+    {
+      "id": "lillet-blanc",
+      "zh": "白麗葉酒",
+      "en": "Lillet Blanc",
+      "category": "fortified-wine",
+      "aliases": [
+        "Lillet"
+      ]
+    },
+    {
+      "id": "orgeat-syrup",
+      "zh": "杏仁糖漿",
+      "en": "Orgeat Syrup",
+      "category": "syrup",
+      "aliases": [
+        "Orgeat"
+      ]
+    },
+    {
+      "id": "raspberry-syrup",
+      "zh": "覆盆子糖漿",
+      "en": "Raspberry Syrup",
+      "category": "syrup",
+      "aliases": []
+    },
+    {
+      "id": "raspberry-liqueur",
+      "zh": "覆盆子利口酒",
+      "en": "Raspberry Liqueur",
+      "category": "liqueur",
+      "aliases": []
+    },
+    {
+      "id": "passion-fruit-syrup",
+      "zh": "百香果糖漿",
+      "en": "Passion Fruit Syrup",
+      "category": "syrup",
+      "aliases": []
+    },
+    {
+      "id": "passion-fruit-puree",
+      "zh": "百香果果泥",
+      "en": "Passion Fruit Puree",
+      "category": "mixer",
+      "aliases": []
+    },
+    {
+      "id": "passion-fruit-liqueur",
+      "zh": "百香果利口酒",
+      "en": "Passion Fruit Liqueur",
+      "category": "liqueur",
+      "aliases": []
+    },
+    {
+      "id": "peach-puree",
+      "zh": "白桃果泥",
+      "en": "White Peach Puree",
+      "category": "mixer",
+      "aliases": [
+        "桃泥"
+      ]
+    },
+    {
+      "id": "elderflower-cordial",
+      "zh": "接骨木花糖漿",
+      "en": "Elderflower Cordial",
+      "category": "mixer",
+      "aliases": [
+        "接骨木"
+      ]
+    },
+    {
+      "id": "chamomile-cordial",
+      "zh": "洋甘菊糖漿",
+      "en": "Chamomile Cordial",
+      "category": "mixer",
+      "aliases": [
+        "洋甘菊"
+      ]
+    },
+    {
+      "id": "orange-flower-water",
+      "zh": "橙花水",
+      "en": "Orange Flower Water",
+      "category": "mixer",
+      "aliases": []
+    },
+    {
+      "id": "vanilla-extract",
+      "zh": "香草精",
+      "en": "Vanilla Extract",
+      "category": "mixer",
+      "aliases": [
+        "香草"
+      ]
+    },
+    {
+      "id": "vanilla-sugar",
+      "zh": "香草糖",
+      "en": "Vanilla Sugar",
+      "category": "syrup",
+      "aliases": []
+    },
+    {
+      "id": "coffee-bean",
+      "zh": "咖啡豆",
+      "en": "Coffee Beans",
+      "category": "garnish",
+      "aliases": []
+    },
+    {
+      "id": "worcestershire-sauce",
+      "zh": "烏醋辣醬",
+      "en": "Worcestershire Sauce",
+      "category": "mixer",
+      "aliases": [
+        "Worcestershire"
+      ]
+    },
+    {
+      "id": "tabasco",
+      "zh": "塔巴斯科辣椒醬",
+      "en": "Tabasco",
+      "category": "mixer",
+      "aliases": []
+    },
+    {
+      "id": "celery-salt",
+      "zh": "芹菜鹽",
+      "en": "Celery Salt",
+      "category": "garnish",
+      "aliases": []
+    },
+    {
+      "id": "ginger",
+      "zh": "生薑",
+      "en": "Fresh Ginger",
+      "category": "mixer",
+      "aliases": [
+        "薑",
+        "ginger"
+      ]
+    },
+    {
+      "id": "basil",
+      "zh": "羅勒",
+      "en": "Basil",
+      "category": "garnish",
+      "aliases": [
+        "九層塔"
+      ]
+    },
+    {
+      "id": "cloves",
+      "zh": "丁香",
+      "en": "Cloves",
+      "category": "garnish",
+      "aliases": []
+    },
+    {
+      "id": "nutmeg",
+      "zh": "肉豆蔻",
+      "en": "Nutmeg",
+      "category": "garnish",
+      "aliases": []
+    },
+    {
+      "id": "lime",
+      "zh": "青檸（整顆或切片）",
+      "en": "Lime",
+      "category": "mixer",
+      "aliases": [
+        "青檸"
+      ]
+    },
+    {
+      "id": "pineapple",
+      "zh": "鳳梨（塊或片）",
+      "en": "Pineapple",
+      "category": "garnish",
+      "aliases": [
+        "鳳梨"
+      ]
+    },
+    {
+      "id": "sugar-cane-juice",
+      "zh": "甘蔗汁",
+      "en": "Sugar Cane Juice",
+      "category": "mixer",
+      "aliases": []
+    },
+    {
+      "id": "grapefruit-soda",
+      "zh": "粉紅葡萄柚汽水",
+      "en": "Pink Grapefruit Soda",
+      "category": "mixer",
+      "aliases": [
+        "葡萄柚汽水"
+      ]
+    },
+    {
+      "id": "donns-mix",
+      "zh": "唐斯混合液",
+      "en": "Don's Mix",
+      "category": "mixer",
+      "aliases": [
+        "Don's Mix"
+      ]
+    },
+    {
+      "id": "cinnamon-syrup",
+      "zh": "肉桂糖漿",
+      "en": "Cinnamon Syrup",
+      "category": "syrup",
+      "aliases": []
+    },
+    {
+      "id": "passion-fruit",
+      "zh": "百香果",
+      "en": "Passion Fruit",
+      "category": "garnish",
+      "aliases": [
+        "百香果"
+      ]
+    },
+    {
+      "id": "raspberry",
+      "zh": "覆盆子",
+      "en": "Raspberry",
+      "category": "garnish",
+      "aliases": [
+        "覆盆子"
+      ]
+    },
+    {
+      "id": "blackberry",
+      "zh": "黑莓",
+      "en": "Blackberry",
+      "category": "garnish",
+      "aliases": [
+        "黑莓"
+      ]
+    },
+    {
+      "id": "white-grape",
+      "zh": "白葡萄",
+      "en": "White Grapes",
+      "category": "garnish",
+      "aliases": [
+        "白葡萄"
+      ]
+    },
+    {
+      "id": "amargo-bitters",
+      "zh": "苦味苦精",
+      "en": "Amargo Bitters",
+      "category": "bitter",
+      "aliases": [
+        "Amargo"
+      ]
+    },
+    {
+      "id": "rum-jamaican-gold",
+      "zh": "牙買加金蘭姆酒",
+      "en": "Gold Jamaican Rum",
+      "category": "base-spirit",
+      "aliases": [
+        "蘭姆酒",
+        "牙買加蘭姆",
+        "金蘭姆"
+      ]
+    },
+    {
+      "id": "rum-cuban",
+      "zh": "古巴蘭姆酒",
+      "en": "Cuban Rum",
+      "category": "base-spirit",
+      "aliases": [
+        "蘭姆酒",
+        "古巴蘭姆"
+      ]
+    },
+    {
+      "id": "ron-profundo",
+      "zh": "哈瓦那深色蘭姆酒",
+      "en": "Ron Profundo",
+      "category": "base-spirit",
+      "aliases": [
+        "蘭姆酒",
+        "哈瓦那蘭姆",
+        "深色蘭姆"
+      ]
+    },
+    {
+      "id": "ron-smoky",
+      "zh": "哈瓦那煙燻蘭姆酒",
+      "en": "Ron Smoky",
+      "category": "base-spirit",
+      "aliases": [
+        "蘭姆酒",
+        "哈瓦那蘭姆",
+        "煙燻蘭姆"
+      ]
+    },
+    {
+      "id": "rum-martinique-agricole",
+      "zh": "馬丁尼可農業朗姆酒",
+      "en": "Rhum Martinique Agricole",
+      "category": "base-spirit",
+      "aliases": [
+        "蘭姆酒",
+        "馬丁尼可朗姆"
+      ]
+    },
+    {
+      "id": "rum-demerara",
+      "zh": "德梅拉拉蘭姆酒",
+      "en": "Demerara Rum",
+      "category": "base-spirit",
+      "aliases": [
+        "蘭姆酒",
+        "德梅拉拉朗姆"
+      ]
+    },
+    {
+      "id": "rum-puerto-rican-gold",
+      "zh": "波多黎各金蘭姆酒",
+      "en": "Gold Puerto Rican Rum",
+      "category": "base-spirit",
+      "aliases": [
+        "蘭姆酒",
+        "波多黎各蘭姆"
+      ]
+    },
+    {
+      "id": "rum-amber-jamaican",
+      "zh": "琥珀牙買加蘭姆酒",
+      "en": "Amber Jamaican Rum",
+      "category": "base-spirit",
+      "aliases": [
+        "蘭姆酒",
+        "牙買加蘭姆",
+        "琥珀蘭姆"
+      ]
+    },
+    {
+      "id": "rum-martinique-molasses",
+      "zh": "馬丁尼可糖蜜朗姆酒",
+      "en": "Martinique Molasses Rhum",
+      "category": "base-spirit",
+      "aliases": [
+        "蘭姆酒",
+        "馬丁尼可朗姆",
+        "糖蜜朗姆"
+      ]
+    },
+    {
+      "id": "rum-blended-aged",
+      "zh": "陳年調配蘭姆酒",
+      "en": "Blended Aged Rum",
+      "category": "base-spirit",
+      "aliases": [
+        "蘭姆酒",
+        "陳年蘭姆",
+        "深色蘭姆"
+      ]
+    },
+    {
+      "id": "sherry-amontillado",
+      "zh": "阿蒙提利亞多雪莉酒",
+      "en": "Amontillado Sherry",
+      "category": "fortified-wine",
+      "aliases": [
+        "雪莉酒",
+        "雪莉"
+      ]
+    },
+    {
+      "id": "sherry-palo-cortado",
+      "zh": "帕洛科塔多雪莉酒",
+      "en": "Palo Cortado",
+      "category": "fortified-wine",
+      "aliases": [
+        "雪莉酒",
+        "雪莉"
+      ]
+    },
+    {
+      "id": "water",
+      "zh": "水",
+      "en": "Water",
+      "category": "mixer",
+      "aliases": [
+        "清水"
+      ]
+    }
+  ]
+}
