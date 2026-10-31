@@ -1,0 +1,50 @@
+@import 'tailwindcss';
+
+/**
+ * join 這麼喝 主題變數
+ *
+ * 暗色夜店酒吧風格：深紫黑底搭配霓虹紫、青、桃、金四色重點色。
+ * 透過 Tailwind v4 的 @theme 定義成色票變數，介面可直接使用
+ * bg-neon-purple、text-neon-cyan、border-neon-pink 等工具類別。
+ */
+@theme {
+  /* 底色 */
+  --color-night-900: #08070d;
+  --color-night-800: #12101c;
+  --color-night-700: #1b1826;
+
+  /* 霓虹重點色 */
+  --color-neon-purple: #a855f7;
+  --color-neon-cyan: #22d3ee;
+  --color-neon-pink: #fb7185;
+  --color-neon-gold: #fbbf24;
+
+  /* 文字 */
+  --color-ink: #f5f3ff;
+  --color-ink-muted: #a5a3b8;
+
+  /* 字體 */
+  --font-sans:
+    'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', system-ui, -apple-system, sans-serif;
+}
+
+/* 全域底色與文字配色 */
+body {
+  margin: 0;
+  background-color: var(--color-night-900);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* 尊重使用者的減少動態偏好 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
