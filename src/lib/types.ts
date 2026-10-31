@@ -61,12 +61,13 @@ export const MIN_RETAINED_WEIGHT_RATIO = 0.3;
 /**
  * 缺料權重保留比例（= max(1 − 折扣率, 最低保留比例)）。
  *
- * same = 30%（受下限保護）、close = 30%、cross = 60%。
+ * same = 30%（完全同調，折扣率 100% 受下限保護）、close = 30%、cross = 60%。
+ * 這裡直接寫死數值而非由折扣率推導，避免浮點運算誤差。
  */
 export const SUBSTITUTION_RETAINED_RATIO: Record<SubstitutionQuality, number> = {
-  same: Math.max(1 - SUBSTITUTION_DISCOUNT_RATE.same, MIN_RETAINED_WEIGHT_RATIO),
-  close: Math.max(1 - SUBSTITUTION_DISCOUNT_RATE.close, MIN_RETAINED_WEIGHT_RATIO),
-  cross: Math.max(1 - SUBSTITUTION_DISCOUNT_RATE.cross, MIN_RETAINED_WEIGHT_RATIO),
+  same: 0.3,
+  close: 0.3,
+  cross: 0.6,
 };
 
 /** 單條替代規則：由 `from` 指定的食材，可改用 `to` 內任一食材。 */
