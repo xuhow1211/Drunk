@@ -57,8 +57,16 @@ function RecipeRoute() {
 
 /**
  * 直接輸入 /recipe/:id（沒有背景頁面）時的底層畫面。
+ *
+ * 若配方編號不存在，就不會有任何抽屜開啟，此時改顯示 404 頁，
+ * 避免使用者看到「配方詳情已在右側開啟」卻找不到抽屜。
  */
 function RecipeBackdrop() {
+  const { id } = useParams();
+  const { byId } = useCocktails();
+
+  if (id && !byId.has(id)) return <NotFound />;
+
   return (
     <div className="flex min-h-screen items-center justify-center px-6 text-center">
       <p className="text-sm text-ink-muted">配方詳情已在右側開啟，關閉後即可回到首頁。</p>

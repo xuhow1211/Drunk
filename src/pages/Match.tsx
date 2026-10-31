@@ -23,8 +23,14 @@ export function Match() {
   const [owned, setOwned] = useState<ReadonlySet<string>>(() => new Set<string>());
   const [sort, setSort] = useState<MatchSort>('closest');
 
-  // 每次勾選變化都重新計算比對結果
-  const results = useMemo(() => matchRecipes(recipes, owned), [recipes, owned]);
+  // 每次勾選變化都重新計算比對結果。
+  // 裝飾（橙皮、橄欖、櫻桃等）不影響能不能調出來，因此不列入缺料計算：
+  // 否則手邊有「伏特加＋柳橙汁」時，螺絲起子會因為少了柳橙皮而被標成缺一樣，
+  // 使用者會誤以為這杯調不成。
+  const results = useMemo(
+    () => matchRecipes(recipes, owned, { includeGarnish: false }),
+    [recipes, owned],
+  );
 
   const toggleIngredient = (id: string) => {
     setOwned((previous) => {
