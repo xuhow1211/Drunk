@@ -16,11 +16,12 @@ import {
   DEFAULT_BAR_MUSIC_VOLUME,
   clampVolume,
   findChannelById,
+  parseVolumePreference,
   pickRandomChannel,
 } from '../lib/barMusic';
 import { createAmbientSynth } from '../lib/ambientSynth';
 import type { AmbientSynth } from '../lib/ambientSynth';
-import type { BarMusicChannel } from '../lib/barMusic';
+import type { BarMusicChannel, BarMusicVolumePreference } from '../lib/barMusic';
 
 /** 背景音的播放狀態。 */
 export type BarMusicStatus =
@@ -66,16 +67,12 @@ export interface BarMusicController {
   dismiss: () => void;
 }
 
-/** 從 localStorage 讀回使用者調整過的音量。 */
-function readStoredVolume(): number {
+/** 從 localStorage 讀回使用者調整過的音量與靜音狀態。 */
+function readStoredPreference(): BarMusicVolumePreference {
   try {
-    const raw = window.localStorage.getItem(BAR_MUSIC_VOLUME_STORAGE_KEY);
-    if (!raw) return DEFAULT_BAR_MUSIC_VOLUME;
-    const parsed: unknown = JSON.parse(raw);
-    if (typeof parsed !== 'number') return DEFAULT_BAR_MUSIC_VOLUME;
-    return clampVolume(parsed);
+    return parseVolumePreference(window.localStorage.getItem(BAR_MUSIC_VOLUME_STORAGE_KEY));
   } catch {
-    return DEFAULT_BAR_MUSIC_VOLUME;
+    return { volume: DEFAULT_BAR_MUSIC_VOLUME, muted: false };
   }
 }
 
@@ -127,13 +124,15 @@ export function useBarMusic(): BarMusicController {
     isDismissed() ? 'dismissed' : 'connecting',
   );
   const [channel, setChannel] = useState<BarMusicChannel>(resolveInitialChannel);
-  const [volume, setVolumeState] = useState<number>(readStoredVolume);
-  const [isMuted, setIsMuted] = useState(false);
+  const [volume, setVolumeState] = useState<number>(() => readStoredPreference().volume);
+  const [isMuted, setIsMuted] = useState(() => readStoredPreference().muted);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const synthRef = useRef<AmbientSynth | null>(null);
   const fallbackTimerRef = useRef<number | null>(null);
   const disposedRef = useRef(false);
+  /** 使用者已表示不想聽背景音，用來擋掉「第一次互動就播放」的行為。 */
+  const dismissedRef = useRef(false);
   /** 目前實際使用的音源：串流或合成環境音。 */
   const synthModeRef = useRef(false);
 
@@ -277,7 +276,7 @@ export function useBarMusic(): BarMusicController {
     try {
       window.localStorage.setItem(
         BAR_MUSIC_VOLUME_STORAGE_KEY,
-        JSON.stringify(volume),
+        JSON.stringify({ volume, muted: isMuted } satisfies BarMusicVolumePreference),
       );
     } catch {
       // 無法寫入時不影響播放
@@ -336,6 +335,36 @@ export function useBarMusic(): BarMusicController {
     start();
   }, [pause, start]);
 
+  /**
+   * 被自動播放政策擋下時，監聽頁面上的第一次點擊或按鍵就開始播放。
+   *
+   * 只把提示放在右下角的小卡片，使用者很可能完全沒注意到，
+   * 結果就是「進了首頁卻沒有音樂」。
+   * 瀏覽器把任何一次點擊或按鍵都視為使用者意圖，
+   * 因此只要使用者對頁面有任何操作，音樂就能立刻響起。
+   *
+   * 監聽器刻意使用 bubble 階段而非 capture：
+   * capture 會比 React 的事件處理更早觸發，導致「不要背景音」按鈕
+   * 在 click 之前就被換掉，按鈕的 onClick 永遠不會執行。
+   * bubble 階段則由 React 先處理完按鈕行為，再落到這裡。
+   */
+  useEffect(() => {
+    if (status !== 'needs-gesture') return;
+
+    const handleFirstInteraction = () => {
+      if (dismissedRef.current) return;
+      start();
+    };
+
+    document.addEventListener('click', handleFirstInteraction);
+    document.addEventListener('keydown', handleFirstInteraction);
+
+    return () => {
+      document.removeEventListener('click', handleFirstInteraction);
+      document.removeEventListener('keydown', handleFirstInteraction);
+    };
+  }, [status, start]);
+
   const changeVolume = useCallback((next: number) => {
     setVolumeState(clampVolume(next));
     setIsMuted(false);
@@ -350,6 +379,7 @@ export function useBarMusic(): BarMusicController {
   }, []);
 
   const dismiss = useCallback(() => {
+    dismissedRef.current = true;
     stopStream();
     synthRef.current?.stop();
     try {

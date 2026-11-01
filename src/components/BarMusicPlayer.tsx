@@ -46,23 +46,34 @@ export function BarMusicPlayer() {
   // 瀏覽器擋下自動播放時，用較醒目的卡片請使用者主動點一次
   if (music.status === 'needs-gesture') {
     return (
-      <div className="fixed bottom-4 right-4 z-50 w-[min(21rem,calc(100vw-2rem))]">
-        <div className="panel animate-rise border-neon-cyan/35 p-4 shadow-[0_0_36px_-12px_rgba(34,211,238,0.7)]">
-          <div className="flex items-center gap-2 text-neon-cyan">
-            <MusicNoteIcon width={18} height={18} />
-            <span className="font-display text-sm font-bold">酒吧背景音</span>
+      <div className="fixed bottom-4 right-4 z-50 w-[min(22rem,calc(100vw-2rem))]">
+        <div className="panel animate-rise border-neon-cyan/50 p-4 shadow-[0_0_44px_-10px_rgba(34,211,238,0.8)]">
+          <div className="flex items-center gap-2.5">
+            <span
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-neon-cyan/50 bg-neon-cyan/15 text-neon-cyan animate-pulse-neon"
+              aria-hidden="true"
+            >
+              <MusicNoteIcon width={18} height={18} />
+            </span>
+            <div className="min-w-0">
+              <p className="font-display text-sm font-bold text-neon-cyan">酒吧背景音</p>
+              <p className="truncate text-[11px] text-ink-muted">{music.channel.nameZh}</p>
+            </div>
           </div>
-          <p className="mt-2 text-sm leading-relaxed text-ink">
+
+          <p className="mt-2.5 text-sm leading-relaxed text-ink">
             點一下就開始播放「{music.channel.nameZh}」
           </p>
-          <p className="mt-1 text-xs text-ink-muted">{music.channel.mood}</p>
+          <p className="mt-1 text-xs text-ink-muted">
+            {music.channel.mood}。點擊頁面任何地方也會開始。
+          </p>
 
           <div className="mt-3 flex items-center gap-2">
             <button
               type="button"
               onClick={music.start}
               data-testid="bar-music-start"
-              className="inline-flex items-center gap-1.5 rounded-full border border-neon-cyan/60 bg-neon-cyan/15 px-3.5 py-2 text-sm font-semibold text-neon-cyan transition hover:bg-neon-cyan/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-cyan"
+              className="inline-flex items-center gap-1.5 rounded-full border border-neon-cyan/60 bg-neon-cyan/15 px-4 py-2 text-sm font-semibold text-neon-cyan transition hover:bg-neon-cyan/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-cyan"
             >
               <PlayIcon width={15} height={15} />
               開始播放

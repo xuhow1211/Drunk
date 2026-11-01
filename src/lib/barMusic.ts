@@ -88,7 +88,7 @@ export const BAR_MUSIC_CHANNELS: readonly BarMusicChannel[] = [
 /** 預設音量（0 至 1）。酒吧背景音不該蓋過使用者的閱讀，預設壓低。 */
 export const DEFAULT_BAR_MUSIC_VOLUME = 0.3;
 
-/** localStorage 鍵名，記住使用者調整過的音量。 */
+/** localStorage 鍵名，記住使用者調整過的音量與靜音狀態。 */
 export const BAR_MUSIC_VOLUME_STORAGE_KEY = 'join-bar-music-volume';
 
 /** sessionStorage 鍵名，讓同一分頁內回到首頁時接續同一個頻道。 */
@@ -133,4 +133,43 @@ export function findChannelById(id: string | null | undefined): BarMusicChannel 
 export function clampVolume(value: number): number {
   if (!Number.isFinite(value)) return DEFAULT_BAR_MUSIC_VOLUME;
   return Math.min(1, Math.max(0, value));
+}
+
+/** 使用者保存下來的音量偏好。 */
+export interface BarMusicVolumePreference {
+  /** 音量（0 至 1）。 */
+  volume: number;
+  /** 是否靜音。 */
+  muted: boolean;
+}
+
+/**
+ * 讀取並校正保存的音量偏好。
+ *
+ * 舊版本只存了音量數字，因此兩種格式都要能讀；
+ * 讀不到或格式不符時一律回到預設值。
+ */
+export function parseVolumePreference(raw: string | null): BarMusicVolumePreference {
+  if (!raw) {
+    return { volume: DEFAULT_BAR_MUSIC_VOLUME, muted: false };
+  }
+  try {
+    const parsed: unknown = JSON.parse(raw);
+    if (typeof parsed === 'number') {
+      // 舊格式：只存了音量
+      return { volume: clampVolume(parsed), muted: false };
+    }
+    if (typeof parsed === 'object' && parsed !== null) {
+      const record = parsed as { volume?: unknown; muted?: unknown };
+      const volume =
+        typeof record.volume === 'number'
+          ? clampVolume(record.volume)
+          : DEFAULT_BAR_MUSIC_VOLUME;
+      const muted = record.muted === true;
+      return { volume, muted };
+    }
+  } catch {
+    // 格式損毀時退回預設值
+  }
+  return { volume: DEFAULT_BAR_MUSIC_VOLUME, muted: false };
 }
