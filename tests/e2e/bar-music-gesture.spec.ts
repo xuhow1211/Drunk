@@ -18,7 +18,7 @@ test.use({
 
 test.describe('自動播放被瀏覽器擋下時', () => {
   test('出現請使用者點一下開始播放的卡片', async ({ page }) => {
-    await page.route('**/*.mp3', (route) => route.abort());
+    await page.route('**/ice1.somafm.com/**', (route) => route.abort());
     await page.goto('/');
 
     const start = page.getByTestId('bar-music-start');
@@ -27,7 +27,7 @@ test.describe('自動播放被瀏覽器擋下時', () => {
   });
 
   test('點擊開始播放後收起為一般面板', async ({ page }) => {
-    await page.route('**/*.mp3', (route) => route.abort());
+    await page.route('**/ice1.somafm.com/**', (route) => route.abort());
     await page.goto('/');
 
     await page.getByTestId('bar-music-start').click();
@@ -35,7 +35,7 @@ test.describe('自動播放被瀏覽器擋下時', () => {
   });
 
   test('選擇不要背景音後面板完全消失', async ({ page }) => {
-    await page.route('**/*.mp3', (route) => route.abort());
+    await page.route('**/ice1.somafm.com/**', (route) => route.abort());
     await page.goto('/');
 
     await page.getByRole('button', { name: '不要背景音' }).click();
@@ -44,7 +44,7 @@ test.describe('自動播放被瀏覽器擋下時', () => {
   });
 
   test('點擊頁面任何地方就會開始播放', async ({ page }) => {
-    await page.route('**/*.mp3', (route) => route.abort());
+    await page.route('**/ice1.somafm.com/**', (route) => route.abort());
     await page.goto('/');
 
     await expect(page.getByTestId('bar-music-start')).toBeVisible();
@@ -57,7 +57,7 @@ test.describe('自動播放被瀏覽器擋下時', () => {
   });
 
   test('選擇不要背景音後，點擊頁面任何地方都不會開始播放', async ({ page }) => {
-    await page.route('**/*.mp3', (route) => route.abort());
+    await page.route('**/ice1.somafm.com/**', (route) => route.abort());
     await page.goto('/');
 
     await page.getByRole('button', { name: '不要背景音' }).click();

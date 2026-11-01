@@ -18,7 +18,7 @@ test.use({
 
 /** 攔截所有電台串流請求，讓測試不依賴外部網路。 */
 async function blockStreams(page: Page) {
-  await page.route('**/*.mp3', (route) => route.abort());
+  await page.route('**/ice1.somafm.com/**', (route) => route.abort());
 }
 
 /** 收集頁面未捕捉的例外，避免背景音的錯誤被靜默吞掉。 */
