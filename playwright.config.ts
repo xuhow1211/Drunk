@@ -60,12 +60,22 @@ export default defineConfig({
     {
       name: 'desktop-1440',
       use: { viewport: { width: 1440, height: 900 }, channel: browserChannel },
-      testMatch: ['**/home.spec.ts', '**/match.spec.ts', '**/browse.spec.ts'],
+      testMatch: [
+        '**/home.spec.ts',
+        '**/match.spec.ts',
+        '**/browse.spec.ts',
+        '**/owned.spec.ts',
+      ],
     },
     {
       name: 'mobile-375',
       use: { viewport: { width: 375, height: 812 }, channel: browserChannel },
-      testMatch: ['**/home.spec.ts', '**/match.spec.ts', '**/browse.spec.ts'],
+      testMatch: [
+        '**/home.spec.ts',
+        '**/match.spec.ts',
+        '**/browse.spec.ts',
+        '**/owned.spec.ts',
+      ],
     },
     {
       name: 'responsive',

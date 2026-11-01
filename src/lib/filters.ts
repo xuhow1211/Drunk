@@ -191,7 +191,8 @@ export function filterRecipes(
 /**
  * 依指定方式排序配方。
  *
- * 所有排序都附加 id 當作最終比較鍵，確保結果順序穩定可預期。
+ * 所有排序都附加 id 當作最終比較鍵，確保結果順序穩定可預期；
+ * 無法解析數值的配方（abv 或 time 不是合法數字）一律排在最後。
  *
  * @param recipes 待排序配方
  * @param sort 排序方式
@@ -205,7 +206,7 @@ export function sortRecipes(recipes: readonly Recipe[], sort: SortKey): Recipe[]
       case 'materials':
         return getMaterialCount(a) - getMaterialCount(b) || a.id.localeCompare(b.id);
       case 'difficulty':
-        return a.difficulty - b.difficulty || b.popularity - a.popularity;
+        return a.difficulty - b.difficulty || a.id.localeCompare(b.id);
       case 'abv': {
         const aAbv = parseAbv(a.abv);
         const bAbv = parseAbv(b.abv);
@@ -220,11 +221,15 @@ export function sortRecipes(recipes: readonly Recipe[], sort: SortKey): Recipe[]
         if (aTime === null && bTime === null) return a.id.localeCompare(b.id);
         if (aTime === null) return 1;
         if (bTime === null) return -1;
-        return aTime - bTime || b.popularity - a.popularity;
+        return aTime - bTime || a.id.localeCompare(b.id);
       }
       case 'popularity':
       default:
-        return b.popularity - a.popularity || getMaterialCount(a) - getMaterialCount(b);
+        return (
+          b.popularity - a.popularity ||
+          getMaterialCount(a) - getMaterialCount(b) ||
+          a.id.localeCompare(b.id)
+        );
     }
   });
   return sorted;

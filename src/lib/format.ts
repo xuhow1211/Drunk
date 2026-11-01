@@ -121,34 +121,48 @@ export const RECIPE_CATEGORY_HUES: Record<RecipeCategory, number> = {
   shooter: 350,
 };
 
+/** 酒精濃度的合理範圍（百分比）；超出範圍視為無法解析。 */
+const ABV_MIN = 0;
+const ABV_MAX = 100;
+
+/** 製作時間的合理範圍（分鐘）；超出範圍視為無法解析。 */
+const MINUTES_MIN = 0;
+const MINUTES_MAX = 600;
+
 /**
  * 解析酒精濃度字串，取出百分比數值。
  *
  * 資料集中的格式為「約 22%」或「0%」，一律取出第一組數字；
- * 無法解析時回傳 null（介面仍可顯示原字串，但不納入區間篩選）。
+ * 負數、超過 100%、空字串或非數字字串都視為無法解析（回傳 null），
+ * 介面仍可顯示原字串，但不納入區間篩選，排序時也排在最後。
  *
  * @param abv 原始酒精濃度字串
  */
 export function parseAbv(abv: string): number | null {
-  const matched = /(\d+(?:\.\d+)?)/.exec(abv);
+  const matched = /(-?\d+(?:\.\d+)?)/.exec(abv);
   if (!matched || matched[1] === undefined) return null;
   const value = Number.parseFloat(matched[1]);
-  return Number.isFinite(value) ? value : null;
+  if (!Number.isFinite(value)) return null;
+  if (value < ABV_MIN || value > ABV_MAX) return null;
+  return value;
 }
 
 /**
  * 解析製作時間字串，取出分鐘數。
  *
  * 資料集中的格式為「4 分鐘」，一律取出第一組整數；
- * 無法解析時回傳 null（排序時視為最末）。
+ * 負數、超過 600 分鐘、空字串或非數字字串都視為無法解析（回傳 null），
+ * 排序時視為最末。
  *
  * @param time 原始製作時間字串
  */
 export function parseMinutes(time: string): number | null {
-  const matched = /(\d+)/.exec(time);
+  const matched = /(-?\d+)/.exec(time);
   if (!matched || matched[1] === undefined) return null;
   const value = Number.parseInt(matched[1], 10);
-  return Number.isFinite(value) ? value : null;
+  if (!Number.isFinite(value)) return null;
+  if (value < MINUTES_MIN || value > MINUTES_MAX) return null;
+  return value;
 }
 
 /**
