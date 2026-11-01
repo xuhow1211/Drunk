@@ -22,10 +22,18 @@ function addToOwnedButtons(page: Page) {
   return page.locator('[data-add-to-owned="true"]');
 }
 
-/** 依配方 id 找到對應配方卡上的「加入我的手邊」按鈕。 */
+/**
+ * 依配方 id 找到對應配方卡上的「加入我的手邊」按鈕。
+ *
+ * 配方卡（瀏覽頁）把 data-recipe-id 放在內層按鈕上，
+ * 比對結果卡則放在 article 本身，兩種都要找得到。
+ */
 function addToOwnedButtonOf(page: Page, recipeId: string) {
   return page
-    .locator(`article:has(button[data-recipe-id="${recipeId}"])`)
+    .locator(
+      `article:has([data-add-to-owned="true"]):has([data-recipe-id="${recipeId}"]), ` +
+        `article[data-recipe-id="${recipeId}"]`,
+    )
     .locator('[data-add-to-owned="true"]')
     .first();
 }
@@ -174,10 +182,13 @@ test.describe('手邊材料共享狀態', () => {
     await selectIngredient(page, '柳橙汁');
     await expect(pickerPanel(page).getByText('已選 1 種')).toBeVisible();
 
-    // 結果卡上的「加入我的手邊」也讀同一份狀態：點擊後計數會增加
+    // 結果卡上的「加入我的手邊」也讀同一份狀態：點擊後計數會增加。
+    // 斷言「計數增加」而非固定數字，避免結果排序變動時測試誤判。
     const firstAdd = addToOwnedButtons(page).first();
     await firstAdd.click();
-    await expect(pickerPanel(page).getByText('已選 2 種')).toBeVisible();
+    await expect(firstAdd).toHaveAttribute('aria-pressed', 'true');
+    await expect(pickerPanel(page).getByText('已選 1 種')).toBeHidden();
+    await expect(pickerPanel(page).getByText(/已選 [2-9] 種/)).toBeVisible();
   });
 
   test('搜尋材料時，已加入的材料仍顯示為已勾選', async ({ page }) => {

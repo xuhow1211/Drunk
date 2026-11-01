@@ -11,6 +11,7 @@ import {
   applyDiscountRate,
   applySubstitutionDiscount,
   compareMatchResults,
+  getRequiredIngredientIds,
   getTopMatches,
   matchRecipe,
   matchRecipes,
@@ -379,5 +380,67 @@ describe('選用材料（includeOptional）', () => {
       }
     }
     expect(optionalCount).toBeGreaterThan(0);
+  });
+});
+
+describe('材料計數與加入清單用的必備材料', () => {
+  it('requiredCount 是符合度的分母，且不包含選用材料', () => {
+    const owned = new Set(['gin', 'campari', 'orange-juice']);
+    const results = matchRecipes(recipes, owned, { includeOptional: false });
+
+    for (const result of results) {
+      const optionalIds = new Set(
+        result.recipe.ingredients
+          .filter((ingredient) => ingredient.optional)
+          .map((ingredient) => ingredient.id),
+      );
+      const expected = result.recipe.ingredients.filter(
+        (ingredient) => !optionalIds.has(ingredient.id),
+      ).length;
+
+      // 比對引擎的材料集合＝非選用材料 + 裝飾；
+      // 但若某項裝飾同時是選用材料（例如莫吉托的薄荷），引擎會把它排除。
+      const expectedIds = new Set<string>([
+        ...result.recipe.ingredients
+          .filter((ingredient) => !optionalIds.has(ingredient.id))
+          .map((ingredient) => ingredient.id),
+        ...result.recipe.garnishIds.filter((id) => !optionalIds.has(id)),
+      ]);
+
+      expect(result.requiredCount).toBe(expectedIds.size);
+      expect(expectedIds.size).toBeGreaterThanOrEqual(expected);
+      expect(result.matchedRatio).toBeCloseTo(
+        result.requiredCount === 0 ? 1 : (result.requiredCount - result.missing.length) / result.requiredCount,
+        10,
+      );
+    }
+  });
+
+  it('getRequiredIngredientIds 排除選用材料', () => {
+    const withOptional = recipes.find((recipe) =>
+      recipe.ingredients.some((ingredient) => ingredient.optional),
+    );
+    expect(withOptional).toBeDefined();
+
+    const required = getRequiredIngredientIds(withOptional!);
+    const optionalIds = withOptional!.ingredients
+      .filter((ingredient) => ingredient.optional)
+      .map((ingredient) => ingredient.id);
+
+    for (const id of optionalIds) {
+      expect(required).not.toContain(id);
+    }
+    expect(required.length).toBe(
+      withOptional!.ingredients.length - optionalIds.length,
+    );
+  });
+
+  it('沒有選用材料的配方，加入清單的材料就是全部材料', () => {
+    const plain = recipes.find((recipe) =>
+      recipe.ingredients.every((ingredient) => !ingredient.optional),
+    );
+    expect(plain).toBeDefined();
+
+    expect(getRequiredIngredientIds(plain!)).toEqual(plain!.ingredientIds);
   });
 });

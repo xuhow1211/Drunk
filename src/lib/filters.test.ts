@@ -410,6 +410,35 @@ describe('sortRecipes', () => {
     }
   });
 
+  // 上面兩項測試在真實資料上不會遇到 null（目前 392 杯的 abv 與 time 皆可解析），
+  // 因此「null 排在最後」這個分支實際上沒有被執行到。
+  // 以下兩項以人工構造的配方明確驗證該分支，確保功能壞掉時測試會失敗。
+  it('abv：無法解析的酒精度確實被排到所有可解析者之後', () => {
+    const mixed = [
+      makeRecipe({ id: 'unparsable-abv', abv: '不明' }),
+      makeRecipe({ id: 'high-abv', abv: '約 30%' }),
+      makeRecipe({ id: 'low-abv', abv: '約 5%' }),
+    ];
+
+    const sorted = sortRecipes(mixed, 'abv');
+
+    expect(sorted.map((item) => item.id)).toEqual(['high-abv', 'low-abv', 'unparsable-abv']);
+    expect(parseAbv(sorted[sorted.length - 1]?.abv ?? '')).toBeNull();
+  });
+
+  it('time：無法解析的製作時間確實被排到所有可解析者之後', () => {
+    const mixed = [
+      makeRecipe({ id: 'unparsable-time', time: '隨手調' }),
+      makeRecipe({ id: 'slow-time', time: '10 分鐘' }),
+      makeRecipe({ id: 'fast-time', time: '1 分鐘' }),
+    ];
+
+    const sorted = sortRecipes(mixed, 'time');
+
+    expect(sorted.map((item) => item.id)).toEqual(['fast-time', 'slow-time', 'unparsable-time']);
+    expect(parseMinutes(sorted[sorted.length - 1]?.time ?? '')).toBeNull();
+  });
+
   it('同鍵時以 id 為最終比較鍵（difficulty 與 time 也不例外）', () => {
     const same = [
       makeRecipe({ id: 'zzz-high-popularity', difficulty: 1, popularity: 5 }),
