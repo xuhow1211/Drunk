@@ -220,10 +220,11 @@ function MatchCard({
               <span>材料符合度</span>
               <span className="font-semibold text-ink">{ratio}%</span>
             </div>
+            {/* 進度條以 scaleX 變化，不觸發版面重排（分析報告 §3.4） */}
             <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-white/10">
               <div
-                className="h-full rounded-full bg-[linear-gradient(90deg,#a855f7,#22d3ee)] transition-[width] duration-500"
-                style={{ width: `${ratio}%` }}
+                className="h-full w-full origin-left rounded-full bg-[linear-gradient(90deg,#a855f7,#22d3ee)] transition-transform duration-500"
+                style={{ transform: `scaleX(${ratio / 100})` }}
               />
             </div>
           </div>

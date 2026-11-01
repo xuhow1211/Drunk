@@ -34,10 +34,23 @@ export function CountUp({ value, duration = 1400, suffix = '', prefix = '', clas
   const ref = useRef<HTMLSpanElement>(null);
   const [display, setDisplay] = useState(0);
   const startedRef = useRef(false);
+  /** 目前顯示的值；用於在數值變動時從現況往上累加，而不是跳回 0。 */
+  const displayRef = useRef(0);
+
+  /** 更新顯示值並同步 ref。 */
+  const updateDisplay = (next: number) => {
+    displayRef.current = next;
+    setDisplay(next);
+  };
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return undefined;
+
+    // 每次 value 變動都重新允許一次遞增動畫；
+    // 少了這行，observer 的回呼會因為 startedRef 已是 true 而直接略過，
+    // 數字就會永久停在舊值。
+    startedRef.current = false;
 
     const reduceMotion =
       typeof window !== 'undefined' &&
@@ -45,12 +58,12 @@ export function CountUp({ value, duration = 1400, suffix = '', prefix = '', clas
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (reduceMotion) {
-      setDisplay(value);
+      updateDisplay(value);
       return undefined;
     }
 
     if (typeof IntersectionObserver === 'undefined') {
-      setDisplay(value);
+      updateDisplay(value);
       return undefined;
     }
 
@@ -63,9 +76,12 @@ export function CountUp({ value, duration = 1400, suffix = '', prefix = '', clas
           observer.disconnect();
 
           const start = performance.now();
+          // 從目前顯示值遞增到新值，避免數字變動時閃爍回 0
+          const from = displayRef.current;
           const step = (now: number) => {
             const progress = Math.min(1, (now - start) / duration);
-            setDisplay(Math.round(easeOutCubic(progress) * value));
+            const eased = easeOutCubic(progress);
+            updateDisplay(Math.round(from + (value - from) * eased));
             if (progress < 1) frame = requestAnimationFrame(step);
           };
           frame = requestAnimationFrame(step);
