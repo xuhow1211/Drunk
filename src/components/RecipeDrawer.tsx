@@ -9,11 +9,12 @@ import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { getIngredient } from '../lib/ingredients';
 import {
-  DIFFICULTY_LABELS,
+  FLAVOR_LABELS,
   GLASS_LABELS,
   ICE_LABELS,
   RECIPE_CATEGORY_LABELS,
   categoryGradient,
+  difficultyLabel,
 } from '../lib/format';
 import { useRecipeNav } from '../hooks/useRecipeNav';
 import { AbvBadge, DifficultyDots, PopularityMark, TagChip } from './Badges';
@@ -112,7 +113,7 @@ export function RecipeDrawer({ recipe, onClose, related }: RecipeDrawerProps) {
 
   if (!content) return null;
 
-  const difficultyLabel = DIFFICULTY_LABELS[Math.min(Math.max(content.difficulty, 1), 3) - 1];
+  const difficultyText = difficultyLabel(content.difficulty);
 
   return (
     <div className="fixed inset-0 z-50" role="dialog" aria-modal="true" aria-label={`${content.nameZh} 配方詳情`}>
@@ -146,7 +147,7 @@ export function RecipeDrawer({ recipe, onClose, related }: RecipeDrawerProps) {
           <div className="relative flex items-start justify-between gap-3">
             <div>
               <p className="text-xs font-semibold uppercase tracking-widest text-white/80">
-                {RECIPE_CATEGORY_LABELS[content.category] ?? content.category}
+                {RECIPE_CATEGORY_LABELS[content.category]}
               </p>
               <h2 className="mt-1 font-display text-2xl font-black leading-tight text-white sm:text-3xl">
                 {content.nameZh}
@@ -171,7 +172,7 @@ export function RecipeDrawer({ recipe, onClose, related }: RecipeDrawerProps) {
         <div className="flex-1 overflow-y-auto px-5 py-5 sm:px-7">
           {/* 概要資訊 */}
           <dl className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
-            <InfoCell label="杯型" value={GLASS_LABELS[content.glass] ?? content.glass} icon={<GlassIcon width={16} height={16} />} />
+            <InfoCell label="杯型" value={GLASS_LABELS[content.glass]} icon={<GlassIcon width={16} height={16} />} />
             <InfoCell label="冰塊" value={ICE_LABELS[content.ice] ?? content.ice} />
             <InfoCell label="酒精濃度" value={content.abv} />
             <InfoCell label="製作時間" value={content.time} />
@@ -180,7 +181,7 @@ export function RecipeDrawer({ recipe, onClose, related }: RecipeDrawerProps) {
           <div className="mt-4 flex flex-wrap items-center gap-2">
             <AbvBadge abv={content.abv} />
             <TagChip className="border-neon-gold/40 bg-neon-gold/10 text-neon-gold">
-              難度 {content.difficulty}／3（{difficultyLabel}）
+              難度 {content.difficulty}／3（{difficultyText}）
             </TagChip>
             <DifficultyDots level={content.difficulty} />
             <PopularityMark popularity={content.popularity} />
@@ -192,7 +193,7 @@ export function RecipeDrawer({ recipe, onClose, related }: RecipeDrawerProps) {
                 <div className="flex flex-wrap items-center gap-1.5">
                   <span className="text-xs text-ink-muted">風味</span>
                   {content.flavor.map((flavor) => (
-                    <TagChip key={flavor}>{flavor}</TagChip>
+                    <TagChip key={flavor}>{FLAVOR_LABELS[flavor] ?? flavor}</TagChip>
                   ))}
                 </div>
               ) : null}
@@ -302,7 +303,7 @@ export function RecipeDrawer({ recipe, onClose, related }: RecipeDrawerProps) {
                       {item.nameEn}
                     </p>
                     <p className="mt-2 text-xs text-neon-purple">
-                      {RECIPE_CATEGORY_LABELS[item.category] ?? item.category}
+                      {RECIPE_CATEGORY_LABELS[item.category]}
                     </p>
                   </button>
                 ))}

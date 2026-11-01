@@ -6,6 +6,7 @@
 import type { ReactNode } from 'react';
 import { FlameIcon, PuzzleIcon, StarIcon } from './Icons';
 import { SEVERITY_CLASSES, SEVERITY_LABELS, severityOf } from '../lib/severity';
+import { difficultyLabel } from '../lib/format';
 import type { IngredientCategory, SubstituteOption } from '../lib/types';
 
 /** 一般標籤晶片。 */
@@ -30,8 +31,8 @@ export function TagChip({
 
 /** 難度指示（1 至 3 顆圓點）。 */
 export function DifficultyDots({ level, showLabel = false }: { level: number; showLabel?: boolean }) {
-  const labels = ['簡單', '中等', '進階'];
-  const label = labels[Math.min(Math.max(level, 1), 3) - 1] ?? '簡單';
+  // 難度文字一律取自 format.ts 的單一來源，避免各元件各寫一份
+  const label = difficultyLabel(level);
   return (
     <span
       className="inline-flex items-center gap-1 text-xs text-ink-muted"

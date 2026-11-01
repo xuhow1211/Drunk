@@ -4,26 +4,33 @@
  * 資料集內的若干欄位是英文原始值或帶單位的中文字串
  * （例如 abv 為「約 22%」、time 為「4 分鐘」、glass 為「rocks」），
  * 介面需要先解析或翻譯才能顯示，本檔集中處理這些轉換。
+ *
+ * 對照表以 Record<RecipeCategory, string>／Record<GlassType, string> 宣告，
+ * 型別是窮舉的：新增一個合法的類型卻忘了補繁中標籤時，
+ * 型別檢查階段就會報錯，不會讓介面在執行期直接顯示英文。
  */
+import type { GlassType, RecipeCategory } from './types';
 
 /** 調酒類型（recipe.category）的中文對照。 */
-export const RECIPE_CATEGORY_LABELS: Record<string, string> = {
+export const RECIPE_CATEGORY_LABELS: Record<RecipeCategory, string> = {
   flip: '翻轉類 Flip',
   sour: '酸甜類 Sour',
   'spirit-forward': '烈酒型 Spirit-forward',
   highball: '高球類 Highball',
   sweet: '甜味類 Sweet',
   fizzy: '氣泡類 Fizzy',
+  fizz: '打氣調飲 Fizz',
   refreshing: '清爽類 Refreshing',
   aperitivo: '開胃酒 Aperitivo',
   daiquiri: '代基里 Daiquiri',
   punch: '潘趣 Punch',
   digestif: '餐後酒 Digestif',
   'non-alcoholic': '無酒精 Non-alcoholic',
+  shooter: '一口飲 Shooter',
 };
 
 /** 杯型（recipe.glass）的中文對照。 */
-export const GLASS_LABELS: Record<string, string> = {
+export const GLASS_LABELS: Record<GlassType, string> = {
   coupe: '淺碟杯',
   rocks: '古典杯',
   flute: '香檳杯',
@@ -34,6 +41,7 @@ export const GLASS_LABELS: Record<string, string> = {
   mug: '啤酒杯',
   tumbler: '威士忌杯',
   'nick-nora': '尼可拉杯',
+  shot: '一口杯',
   other: '其他杯型',
 };
 
@@ -73,26 +81,44 @@ export const COLLECTION_LABELS: Record<string, string> = {
   seasonal: '季節限定',
 };
 
-/** 難度 1 至 3 的中文標示。 */
+/**
+ * 難度 1 至 3 的中文標示（全站唯一的來源）。
+ *
+ * Badges、FilterBar、RecipeDrawer 都以此表為準，避免三處各寫一份而不同步。
+ */
 export const DIFFICULTY_LABELS: readonly string[] = ['簡單', '中等', '進階'];
+
+/**
+ * 取得難度的中文標示。
+ *
+ * 超出 1 至 3 的值一律收斂到最接近的合法級距，避免介面出現空白。
+ *
+ * @param level 難度值
+ */
+export function difficultyLabel(level: number): string {
+  const index = Math.min(Math.max(Math.trunc(level), 1), DIFFICULTY_LABELS.length) - 1;
+  return DIFFICULTY_LABELS[index] ?? DIFFICULTY_LABELS[0] ?? '';
+}
 
 /**
  * 各調酒類型的色相（0 至 360），用於產生漸層色票。
  * 每個類型給固定色相，讓同一類型在整站維持一致配色。
  */
-export const RECIPE_CATEGORY_HUES: Record<string, number> = {
+export const RECIPE_CATEGORY_HUES: Record<RecipeCategory, number> = {
   flip: 285,
   sour: 190,
   'spirit-forward': 265,
   highball: 205,
   sweet: 330,
   fizzy: 175,
+  fizz: 165,
   refreshing: 155,
   aperitivo: 20,
   daiquiri: 45,
   punch: 300,
   digestif: 15,
   'non-alcoholic': 120,
+  shooter: 350,
 };
 
 /**
@@ -130,7 +156,7 @@ export function parseMinutes(time: string): number | null {
  *
  * @param category 調酒類型
  */
-export function categoryGradient(category: string): string {
+export function categoryGradient(category: RecipeCategory): string {
   const hue = RECIPE_CATEGORY_HUES[category] ?? 270;
   return `linear-gradient(140deg, hsl(${hue} 80% 44% / 0.95), hsl(${(hue + 30) % 360} 78% 31% / 0.92))`;
 }
@@ -140,7 +166,7 @@ export function categoryGradient(category: string): string {
  *
  * @param category 調酒類型
  */
-export function categoryAccent(category: string): string {
+export function categoryAccent(category: RecipeCategory): string {
   const hue = RECIPE_CATEGORY_HUES[category] ?? 270;
   return `hsl(${hue} 85% 66%)`;
 }

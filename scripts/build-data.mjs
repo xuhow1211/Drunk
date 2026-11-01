@@ -46,7 +46,54 @@ const ALLOWED_COLLECTIONS = [
   'seasonal',
 ];
 
-/** 來源 collection 值到合法 collection 的對應表。 */
+/**
+ * 正規化後合法的配方分類。
+ *
+ * 必須與 src/lib/types.ts 的 RecipeCategory 型別union、以及
+ * src/lib/format.ts 的 RECIPE_CATEGORY_LABELS / RECIPE_CATEGORY_HUES 對照表一致。
+ * 這份清單是「建置期的第三道防線」：介面端已用 Record<RecipeCategory, string>
+ * 讓漏標籤在編譯期就爆錯，但原始爬蟲資料是外部輸入，
+ * 若出現未登錄的新分類，建置期就該直接失敗，而不是讓英文標籤漏到中文介面上。
+ */
+const ALLOWED_CATEGORIES = [
+  'flip',
+  'aperitivo',
+  'sweet',
+  'sour',
+  'fizzy',
+  'spirit-forward',
+  'refreshing',
+  'highball',
+  'daiquiri',
+  'digestif',
+  'punch',
+  'non-alcoholic',
+  'shooter',
+  'fizz',
+];
+
+/**
+ * 正規化後合法的杯型。
+ *
+ * 必須與 src/lib/types.ts 的 GlassType 型別union、以及
+ * src/lib/format.ts 的 GLASS_LABELS 對照表一致；理由同 ALLOWED_CATEGORIES。
+ */
+const ALLOWED_GLASSES = [
+  'coupe',
+  'rocks',
+  'flute',
+  'highball',
+  'martini',
+  'other',
+  'collins',
+  'wine',
+  'mug',
+  'tumbler',
+  'nick-nora',
+  'shot',
+];
+
+/** 來源 collection 值到合法 collection 的對照表。 */
 const COLLECTION_ALIASES = {
   classic: 'classic',
   'contemporary-classic': 'classic',
@@ -666,6 +713,16 @@ function main() {
       if (!ingredientMap.has(garnishId)) {
         errors.push(`配方 ${recipe.id} 的裝飾 id「${garnishId}」不存在於統一對照表`);
       }
+    }
+
+    // 驗證五：分類與杯型必須在合法清單內。
+    // 未登錄的值在介面上沒有繁中標籤，會直接漏出英文（shooter、fizz、shot 等），
+    // 因此視為建置期錯誤，強迫補上對照表與型別union後才能建置。
+    if (!ALLOWED_CATEGORIES.includes(recipe.category)) {
+      errors.push(`配方 ${recipe.id} 的分類「${recipe.category}」未登錄於合法分類清單`);
+    }
+    if (!ALLOWED_GLASSES.includes(recipe.glass)) {
+      errors.push(`配方 ${recipe.id} 的杯型「${recipe.glass}」未登錄於合法杯型清單`);
     }
 
     // 警告（非阻斷）：中文名等同英文名代表尚未翻譯，中文站不該直接顯示英文。

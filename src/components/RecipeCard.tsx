@@ -7,6 +7,7 @@
  */
 import { getMaterialCount } from '../lib/matching';
 import {
+  FLAVOR_LABELS,
   RECIPE_CATEGORY_LABELS,
   categoryAccent,
   categoryGradient,
@@ -37,7 +38,7 @@ export interface RecipeCardProps {
 export function RecipeCard({ recipe, delay = 0 }: RecipeCardProps) {
   const openRecipe = useRecipeNav();
   const materials = getMaterialCount(recipe);
-  const categoryLabel = RECIPE_CATEGORY_LABELS[recipe.category] ?? recipe.category;
+  const categoryLabel = RECIPE_CATEGORY_LABELS[recipe.category];
 
   return (
     <article
@@ -89,7 +90,7 @@ export function RecipeCard({ recipe, delay = 0 }: RecipeCardProps) {
             <div className="mt-2 flex flex-wrap gap-1.5">
               {recipe.flavor.slice(0, 3).map((flavor) => (
                 <TagChip key={flavor} className="border-white/10 bg-white/5">
-                  {flavor}
+                  {FLAVOR_LABELS[flavor] ?? flavor}
                 </TagChip>
               ))}
             </div>

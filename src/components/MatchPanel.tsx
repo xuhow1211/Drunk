@@ -208,7 +208,7 @@ function MatchCard({
 
           <div className="mt-2.5 flex flex-wrap items-center gap-1.5">
             <TagChip className="border-neon-cyan/35 bg-neon-cyan/10 text-neon-cyan">
-              {RECIPE_CATEGORY_LABELS[recipe.category] ?? recipe.category}
+              {RECIPE_CATEGORY_LABELS[recipe.category]}
             </TagChip>
             <DifficultyDots level={recipe.difficulty} showLabel />
             <AbvBadge abv={recipe.abv} />

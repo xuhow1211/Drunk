@@ -6,7 +6,7 @@
  */
 import { getMaterialCount } from './matching';
 import { parseAbv, parseMinutes } from './format';
-import type { Collection, Recipe } from './types';
+import type { Collection, Recipe, RecipeCategory } from './types';
 
 /** 排序方式。 */
 export type SortKey = 'popularity' | 'name' | 'materials' | 'difficulty' | 'abv' | 'time';
@@ -14,7 +14,7 @@ export type SortKey = 'popularity' | 'name' | 'materials' | 'difficulty' | 'abv'
 /** 篩選列的完整狀態。 */
 export interface FilterState {
   /** 調酒類型（recipe.category）多選。 */
-  categories: string[];
+  categories: RecipeCategory[];
   /** 風味標籤（recipe.flavor）多選。 */
   flavors: string[];
   /** 場合標籤（recipe.occasion）多選。 */
@@ -56,7 +56,7 @@ export const SORT_OPTIONS: { value: SortKey; label: string }[] = [
 /** 篩選列可用的篩選面向。 */
 export interface FilterFacets {
   /** 可選的調酒類型。 */
-  categories: string[];
+  categories: RecipeCategory[];
   /** 可選的風味標籤。 */
   flavors: string[];
   /** 可選的場合標籤。 */
@@ -69,7 +69,7 @@ export interface FilterFacets {
  * @param recipes 待分析的配方
  */
 export function collectFacets(recipes: readonly Recipe[]): FilterFacets {
-  const categories = new Set<string>();
+  const categories = new Set<RecipeCategory>();
   const flavors = new Set<string>();
   const occasions = new Set<string>();
 

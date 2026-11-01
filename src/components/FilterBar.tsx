@@ -6,7 +6,7 @@
  */
 import type { ReactNode } from 'react';
 import { useState } from 'react';
-import { FLAVOR_LABELS, RECIPE_CATEGORY_LABELS } from '../lib/format';
+import { FLAVOR_LABELS, RECIPE_CATEGORY_LABELS, difficultyLabel } from '../lib/format';
 import { SORT_OPTIONS } from '../lib/filters';
 import type { FilterFacets, FilterState, SortKey } from '../lib/filters';
 import { SearchIcon } from './Icons';
@@ -26,7 +26,7 @@ export interface FilterBarProps {
 /**
  * 在陣列中切換某個值（多選篩選的共用邏輯）。
  */
-function toggle(list: string[], value: string): string[] {
+function toggle<T>(list: T[], value: T): T[] {
   return list.includes(value) ? list.filter((item) => item !== value) : [...list, value];
 }
 
@@ -107,7 +107,7 @@ export function FilterBar({ filters, onChange, facets, resultCount }: FilterBarP
               active={filters.categories.includes(category)}
               onClick={() => onChange({ ...filters, categories: toggle(filters.categories, category) })}
             >
-              {RECIPE_CATEGORY_LABELS[category] ?? category}
+              {RECIPE_CATEGORY_LABELS[category]}
             </ChipButton>
           ))}
         </FilterGroup>
@@ -150,7 +150,7 @@ export function FilterBar({ filters, onChange, facets, resultCount }: FilterBarP
                 })
               }
             >
-              {level === 1 ? '簡單' : level === 2 ? '中等' : '進階'}
+              {difficultyLabel(level)}
             </ChipButton>
           ))}
         </FilterGroup>

@@ -132,6 +132,48 @@ export type Collection =
   | 'taiwan'
   | 'seasonal';
 
+/**
+ * 調酒類型（recipe.category）的合法值。
+ *
+ * 以 union 型別列出全部合法值，讓新增資料時若忘了補繁中標籤，
+ * 在型別檢查階段就會暴露（RECIPE_CATEGORY_LABELS 為 Record<RecipeCategory, string>，
+ * 少一個成員就編譯不過），不會等到執行期才在介面上直接顯示英文。
+ */
+export type RecipeCategory =
+  | 'flip'
+  | 'aperitivo'
+  | 'sweet'
+  | 'sour'
+  | 'fizzy'
+  | 'spirit-forward'
+  | 'refreshing'
+  | 'highball'
+  | 'daiquiri'
+  | 'digestif'
+  | 'punch'
+  | 'non-alcoholic'
+  | 'shooter'
+  | 'fizz';
+
+/**
+ * 建議杯型（recipe.glass）的合法值。
+ *
+ * 同樣以 union 型別收斂，確保每個杯型都有繁中標籤。
+ */
+export type GlassType =
+  | 'coupe'
+  | 'rocks'
+  | 'flute'
+  | 'highball'
+  | 'martini'
+  | 'other'
+  | 'collins'
+  | 'wine'
+  | 'mug'
+  | 'tumbler'
+  | 'nick-nora'
+  | 'shot';
+
 /** 一杯調酒的完整配方。 */
 export interface Recipe {
   /** 配方唯一識別碼，全域唯一。 */
@@ -158,9 +200,9 @@ export interface Recipe {
    */
   collections: Collection[];
   /** 調酒類型（flip、sour、highball 等）。 */
-  category: string;
+  category: RecipeCategory;
   /** 建議杯型。 */
-  glass: string;
+  glass: GlassType;
   /** 調法（shaken、stirred 等）。 */
   ice: string;
   /** 難度 1 至 3。 */
