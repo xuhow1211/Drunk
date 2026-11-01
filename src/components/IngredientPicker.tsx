@@ -3,6 +3,9 @@
  *
  * 依分類分頁呈現食材晶片，支援中文、英文與別名搜尋，
  * 並提供常備材料快捷區與一鍵清空、隨機挑選等輔助操作。
+ *
+ * 手邊材料的狀態來自 useOwnedIngredients（全站共用同一份），
+ * 因此左欄的勾選與右欄結果清單、按鈕的「已加入」狀態永遠一致。
  */
 import { useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
@@ -12,30 +15,21 @@ import {
   getCommonIngredients,
   searchIngredients,
 } from '../lib/ingredients';
+import { useOwnedIngredients } from '../hooks/useOwnedIngredients';
 import { CheckIcon, SearchIcon } from './Icons';
 import type { Ingredient, IngredientCategory } from '../lib/types';
 
-/** IngredientPicker 的參數。 */
-export interface IngredientPickerProps {
-  /** 使用者手邊已有的食材 id。 */
-  owned: ReadonlySet<string>;
-  /** 勾選或取消勾選食材。 */
-  onToggle: (id: string) => void;
-  /** 清空所有已選材料。 */
-  onClear: () => void;
-  /** 隨機挑選 5 種材料（取代目前選擇）。 */
-  onRandom: () => void;
-}
+/** 隨機挑選時使用的材料數量。 */
+const RANDOM_PICK_COUNT = 5;
 
 /** 分頁選項：全部或單一分類。 */
 type CategoryTab = 'all' | IngredientCategory;
 
 /**
  * 材料選擇器。
- *
- * @param props 元件參數
  */
-export function IngredientPicker({ owned, onToggle, onClear, onRandom }: IngredientPickerProps) {
+export function IngredientPicker() {
+  const { owned, toggle, replace, clear } = useOwnedIngredients();
   const [tab, setTab] = useState<CategoryTab>('all');
   const [query, setQuery] = useState('');
   const [commonExpanded, setCommonExpanded] = useState(false);
@@ -58,6 +52,18 @@ export function IngredientPicker({ owned, onToggle, onClear, onRandom }: Ingredi
     }
     return map;
   }, [categories]);
+
+  /** 隨機挑選 5 種常備材料（取代目前選擇）。 */
+  const randomPick = () => {
+    const pool = getCommonIngredients();
+    const picked = new Set<string>();
+    while (picked.size < RANDOM_PICK_COUNT && pool.length > 0) {
+      const index = Math.floor(Math.random() * pool.length);
+      const item = pool[index];
+      if (item) picked.add(item.id);
+    }
+    replace([...picked]);
+  };
 
   return (
     <section className="panel flex h-full flex-col p-4 sm:p-5" aria-label="材料選擇器">
@@ -126,7 +132,7 @@ export function IngredientPicker({ owned, onToggle, onClear, onRandom }: Ingredi
                   key={ingredient.id}
                   ingredient={ingredient}
                   selected={owned.has(ingredient.id)}
-                  onToggle={onToggle}
+                  onToggle={toggle}
                 />
               ))}
             </div>
@@ -152,7 +158,7 @@ export function IngredientPicker({ owned, onToggle, onClear, onRandom }: Ingredi
                     key={ingredient.id}
                     ingredient={ingredient}
                     selected={owned.has(ingredient.id)}
-                    onToggle={onToggle}
+                    onToggle={toggle}
                   />
                 ))}
               </div>
@@ -171,7 +177,7 @@ export function IngredientPicker({ owned, onToggle, onClear, onRandom }: Ingredi
                 key={ingredient.id}
                 ingredient={ingredient}
                 selected={owned.has(ingredient.id)}
-                onToggle={onToggle}
+                onToggle={toggle}
               />
             ))}
           </div>
@@ -182,14 +188,14 @@ export function IngredientPicker({ owned, onToggle, onClear, onRandom }: Ingredi
       <div className="mt-4 flex flex-wrap gap-2 border-t border-white/5 pt-3">
         <button
           type="button"
-          onClick={onRandom}
+          onClick={randomPick}
           className="flex-1 rounded-full border border-neon-cyan/45 bg-neon-cyan/10 px-3 py-2 text-xs font-semibold text-neon-cyan transition hover:bg-neon-cyan/20"
         >
           隨機挑 5 種
         </button>
         <button
           type="button"
-          onClick={onClear}
+          onClick={clear}
           disabled={owned.size === 0}
           className="flex-1 rounded-full border border-neon-pink/45 bg-neon-pink/10 px-3 py-2 text-xs font-semibold text-neon-pink transition hover:bg-neon-pink/20 disabled:cursor-not-allowed disabled:opacity-40"
         >

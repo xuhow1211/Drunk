@@ -19,6 +19,7 @@ import {
   WeightTag,
 } from './Badges';
 import { RECIPE_CATEGORY_LABELS } from '../lib/format';
+import { AddToOwnedButton } from './AddToOwnedButton';
 import type { MatchResult } from '../lib/types';
 
 /** 結果排序方式。 */
@@ -226,9 +227,10 @@ function MatchCard({
             </div>
           </div>
 
-          <div className="mt-3 flex flex-wrap gap-1.5">
+          <div className="mt-3 flex flex-wrap items-center gap-1.5">
             <MissingBadge count={missing.length} fullyAvailable={isFullyAvailable} />
             {missingBaseSpirit ? <MissingBaseSpiritBadge /> : null}
+            <AddToOwnedButton materialIds={recipe.ingredientIds} />
           </div>
         </div>
 
