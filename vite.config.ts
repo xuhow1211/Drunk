@@ -17,5 +17,14 @@ export default defineConfig({
   test: {
     environment: 'node',
     include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],
+    coverage: {
+      // 只統計「可獨立以 node 環境測試」的邏輯層。
+      // React 元件需要 DOM 環境，目前改以 Playwright 端對端測試涵蓋，
+      // 因此不納入本報告，避免出現大量 0% 造成誤導。
+      include: ['src/lib/**/*.ts', 'src/hooks/**/*.ts'],
+      exclude: ['src/**/*.test.ts', 'src/**/*.test.tsx', 'src/**/*.d.ts'],
+      reporter: ['text', 'html'],
+      reportsDirectory: './coverage',
+    },
   },
 });
