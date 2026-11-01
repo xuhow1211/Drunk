@@ -11,7 +11,9 @@ import tseslint from 'typescript-eslint';
  */
 export default tseslint.config(
   {
-    ignores: ['dist', 'coverage', 'node_modules', 'src/data'],
+    // .worktrees 是開發用的 git worktree（內含另一份完整專案與其產物），
+    // 不屬於本專案的原始碼，排除以免重複掃描。
+    ignores: ['dist', 'coverage', 'node_modules', 'src/data', '.worktrees'],
   },
   {
     files: ['**/*.{ts,tsx}'],

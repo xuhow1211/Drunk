@@ -84,9 +84,15 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: `npm run build && npm run preview -- --port ${PORT} --host 127.0.0.1`,
+    // --strictPort：埠位被占用時直接失敗，不要默默改用其他埠位。
+    // 否則測試會一直等著 baseURL 對應的埠位，最後以逾時收場，
+    // 真正的錯誤（埠位衝突）反而被掩蓋。
+    command: `npm run build && npm run preview -- --port ${PORT} --strictPort --host 127.0.0.1`,
     url: baseURL,
-    reuseExistingServer: !process.env.CI,
+    // 不重用既有伺服器：殘留的 preview 可能指向已被刪除的建置目錄，
+    // 對著這樣的頁面執行測試只會得到莫名其妙的失敗。
+    // 每次都起新的伺服器，代價是重建置一次（約 30 秒），换来結果可靠。
+    reuseExistingServer: false,
     timeout: 180_000,
     stdout: 'ignore',
     stderr: 'pipe',
