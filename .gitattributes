@@ -1,0 +1,4 @@
+# 資料檔由建置腳本產生，一律以 LF 存放，避免 Windows 的 CRLF 轉換讓
+# git 誤判工作區檔案已被修改（會讓 data:check 與 git status 產生雜訊）。
+data/*.json text eol=lf
+src/data/*.json text eol=lf
