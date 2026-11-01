@@ -7,6 +7,7 @@ import {
   DEFAULT_BAR_MUSIC_VOLUME,
   clampVolume,
   findChannelById,
+  parseVolumePreference,
   pickRandomChannel,
 } from './barMusic';
 
@@ -82,5 +83,42 @@ describe('音量限制', () => {
   it('非有限值退回預設音量', () => {
     expect(clampVolume(Number.NaN)).toBe(DEFAULT_BAR_MUSIC_VOLUME);
     expect(clampVolume(Number.POSITIVE_INFINITY)).toBe(DEFAULT_BAR_MUSIC_VOLUME);
+  });
+});
+
+describe('解析保存的音量偏好', () => {
+  it('沒有保存紀錄時回到預設音量且未靜音', () => {
+    expect(parseVolumePreference(null)).toEqual({
+      volume: DEFAULT_BAR_MUSIC_VOLUME,
+      muted: false,
+    });
+  });
+
+  it('讀得回新格式的音量與靜音狀態', () => {
+    const raw = JSON.stringify({ volume: 0.8, muted: true });
+    expect(parseVolumePreference(raw)).toEqual({ volume: 0.8, muted: true });
+  });
+
+  it('相容舊格式（只存了音量數字）', () => {
+    expect(parseVolumePreference(JSON.stringify(0.4))).toEqual({
+      volume: 0.4,
+      muted: false,
+    });
+  });
+
+  it('格式損毀時回到預設值', () => {
+    expect(parseVolumePreference('not json')).toEqual({
+      volume: DEFAULT_BAR_MUSIC_VOLUME,
+      muted: false,
+    });
+    expect(parseVolumePreference(JSON.stringify({ volume: 'loud' }))).toEqual({
+      volume: DEFAULT_BAR_MUSIC_VOLUME,
+      muted: false,
+    });
+  });
+
+  it('超出範圍的音量會被修正', () => {
+    expect(parseVolumePreference(JSON.stringify({ volume: 5 })).volume).toBe(1);
+    expect(parseVolumePreference(JSON.stringify({ volume: -2 })).volume).toBe(0);
   });
 });

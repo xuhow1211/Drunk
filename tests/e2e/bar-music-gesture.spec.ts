@@ -42,4 +42,28 @@ test.describe('自動播放被瀏覽器擋下時', () => {
     await expect(page.getByTestId('bar-music-start')).toHaveCount(0);
     await expect(page.getByTestId('bar-music-panel')).toHaveCount(0);
   });
+
+  test('點擊頁面任何地方就會開始播放', async ({ page }) => {
+    await page.route('**/*.mp3', (route) => route.abort());
+    await page.goto('/');
+
+    await expect(page.getByTestId('bar-music-start')).toBeVisible();
+
+    // 點擊頁面上與播放無關的位置（例如主標）
+    await page.locator('h1').first().click();
+
+    await expect(page.getByTestId('bar-music-panel')).toBeVisible();
+    await expect(page.getByTestId('bar-music-start')).toHaveCount(0);
+  });
+
+  test('選擇不要背景音後，點擊頁面任何地方都不會開始播放', async ({ page }) => {
+    await page.route('**/*.mp3', (route) => route.abort());
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '不要背景音' }).click();
+    await page.locator('h1').first().click();
+    await page.waitForTimeout(1500);
+
+    await expect(page.getByTestId('bar-music-panel')).toHaveCount(0);
+  });
 });
