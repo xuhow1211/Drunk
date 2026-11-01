@@ -5,7 +5,7 @@
  * 以及手邊材料可以替代的建議。
  */
 import { useMemo, useState } from 'react';
-import { compareMatchResults, getMaterialCount } from '../lib/matching';
+import { compareMatchResults, getRequiredIngredientIds } from '../lib/matching';
 import { parseMinutes } from '../lib/format';
 import { useFlipList } from '../hooks/useFlipList';
 import { useRecipeNav } from '../hooks/useRecipeNav';
@@ -179,7 +179,7 @@ function MatchCard({
   register: (id: string, node: HTMLElement | null) => void;
   onOpen: () => void;
 }) {
-  const { recipe, missing, optionalMissing, matchedRatio, isFullyAvailable, missingBaseSpirit } =
+  const { recipe, missing, optionalMissing, matchedRatio, requiredCount, isFullyAvailable, missingBaseSpirit } =
     result;
   const ratio = Math.round(matchedRatio * 100);
 
@@ -212,7 +212,7 @@ function MatchCard({
             </TagChip>
             <DifficultyDots level={recipe.difficulty} showLabel />
             <AbvBadge abv={recipe.abv} />
-            <TagChip>{getMaterialCount(recipe)} 項材料</TagChip>
+            <TagChip>{requiredCount} 項材料</TagChip>
           </div>
 
           <div className="mt-3">
@@ -232,7 +232,7 @@ function MatchCard({
           <div className="mt-3 flex flex-wrap items-center gap-1.5">
             <MissingBadge count={missing.length} fullyAvailable={isFullyAvailable} />
             {missingBaseSpirit ? <MissingBaseSpiritBadge /> : null}
-            <AddToOwnedButton materialIds={recipe.ingredientIds} />
+            <AddToOwnedButton materialIds={getRequiredIngredientIds(recipe)} />
           </div>
         </div>
 

@@ -301,6 +301,13 @@ export interface MatchResult {
    * 讓使用者知道「這杯還可以加點冰塊之類的選用材料」。
    */
   optionalMissing: OptionalMissingItem[];
+  /**
+   * 本次比對採用的材料總數（不含選用材料）。
+   *
+   * 這是 matchedRatio 的分母。介面顯示「N 項材料」時應使用同一個數字，
+   * 否則會出現「符合度 33%」與「4 項材料」互相矛盾的情形。
+   */
+  requiredCount: number;
   /** 已備材料數除以材料總數，介於 0 至 1。 */
   matchedRatio: number;
   /** 是否零缺料（手邊材料完全足夠）。 */

@@ -224,10 +224,22 @@ export function matchRecipe(
     score,
     missing,
     optionalMissing,
+    requiredCount: totalMaterials,
     matchedRatio: totalMaterials === 0 ? 1 : ownedCount / totalMaterials,
     isFullyAvailable: missing.length === 0,
     missingBaseSpirit: missing.some((item) => item.category === 'base-spirit'),
   };
+}
+
+/**
+ * 取得配方中「必須準備」的材料 id（排除可省略的選用材料）。
+ *
+ * 「加入我的手邊」這類動作會把整組材料一次加進使用者的清單，
+ * 若把選用材料也算進去（例如冰塊、蛋白），使用者會看到自己
+ * 「擁有」一些其實可有可無的項目，清單就不再反映真實手邊狀況。
+ */
+export function getRequiredIngredientIds(recipe: Recipe): string[] {
+  return recipe.ingredients.filter((item) => !item.optional).map((item) => item.id);
 }
 
 /**
