@@ -74,13 +74,6 @@ export function searchIngredients(query: string): Ingredient[] {
   });
 }
 
-/** 查詢可替代某食材的所有食材 id。 */
-export function getSubstitutes(id: string): string[] {
-  const rules = substitutionIndex.get(id);
-  if (!rules) return [];
-  return rules.flatMap((rule) => rule.to);
-}
-
 /** 取得替代規則索引（被替代的食材 id → 規則清單），避免重複掃描。 */
 export function getSubstitutionMap(): Map<string, Substitution[]> {
   return substitutionIndex;
@@ -101,9 +94,4 @@ export function getCategories(): { id: string; zh: string; order: number }[] {
   return Object.entries(catalog.categories)
     .map(([id, meta]) => ({ id, zh: meta.zh, order: meta.order }))
     .sort((a, b) => a.order - b.order);
-}
-
-/** 取得對照表版本號，供介面顯示資料版本。 */
-export function getCatalogVersion(): string {
-  return catalog.version;
 }

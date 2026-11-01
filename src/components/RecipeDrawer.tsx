@@ -241,7 +241,8 @@ export function RecipeDrawer({ recipe, onClose, related }: RecipeDrawerProps) {
           <Section title="步驟" icon={<StarIcon width={16} height={16} />}>
             <ol className="space-y-3">
               {content.steps.map((step, index) => (
-                <li key={step} className="flex gap-3">
+                // 步驟文字可能重複，因此以「索引＋文字」為鍵，避免 React 的重複鍵警告
+                <li key={`${index}-${step}`} className="flex gap-3">
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-neon-purple/50 bg-neon-purple/15 text-xs font-bold text-neon-purple">
                     {index + 1}
                   </span>

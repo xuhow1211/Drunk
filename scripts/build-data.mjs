@@ -480,6 +480,21 @@ function mergeRecipes(primary, secondary) {
 }
 
 /**
+ * 原始資料只有英文名的配方，在此補上繁體中文譯名。
+ *
+ * 這幾杯在爬蟲來源中沒有中文名（nameZh 直接等於 nameEn），
+ * 中文站不該把英文名當成中文名顯示，因此在正規化階段直接補上譯名。
+ * 原始爬蟲資料（data/*.json）維持原樣不動，譯名只存在於本建置腳本。
+ *
+ * - baco-tell：以百加得 151 蘭姆為基酒的自製氣泡調酒。
+ * - chill-gpt：以高粱、黃瓜與蘇打水調成的清涼氣泡飲（原始別名亦作「高粱黃瓜氣泡」）。
+ */
+const CHINESE_NAME_OVERRIDES = {
+  'baco-tell': '百加得 151 蘭姆',
+  'chill-gpt': '高粱黃瓜氣泡',
+};
+
+/**
  * 正規化單一配方，補上比對引擎所需的 ingredientIds 與 garnishIds。
  */
 function normalizeRecipe(raw, source) {
@@ -495,7 +510,7 @@ function normalizeRecipe(raw, source) {
   const recipe = {
     id,
     nameEn: cleanString(raw.nameEn),
-    nameZh: cleanString(raw.nameZh),
+    nameZh: CHINESE_NAME_OVERRIDES[id] ?? cleanString(raw.nameZh),
     aliases: dedupeStrings(Array.isArray(raw.aliases) ? raw.aliases : []),
     collection,
     /** 配方所屬的全部系列；單一來源時只有一項，跨來源整併後會有多項。 */

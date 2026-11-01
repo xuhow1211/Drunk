@@ -9,6 +9,7 @@
 import { useCallback, useMemo } from 'react';
 import {
   BrowserRouter,
+  Link,
   Route,
   Routes,
   useLocation,
@@ -19,6 +20,7 @@ import type { Location } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { RecipeDrawer } from './components/RecipeDrawer';
 import { useCocktails } from './hooks/useCocktails';
+import { HOME_LOCATION } from './hooks/useRecipeNav';
 import { Classic } from './pages/Classic';
 import { Home } from './pages/Home';
 import { Match } from './pages/Match';
@@ -42,11 +44,13 @@ function RecipeRoute() {
       .slice(0, 4);
   }, [recipe, recipes]);
 
-  const state = location.state as { background?: Location } | null;
+  const state = location.state as { background?: Location | null } | null;
   const background = state?.background;
 
   const handleClose = useCallback(() => {
-    if (background) navigate(-1);
+    // 背景是保底的首頁（代表由深層連結直接開啟抽屜）時直接回首頁，
+    // 其餘情況回到開啟抽屜前的頁面。
+    if (background && background !== HOME_LOCATION) navigate(-1);
     else navigate('/', { replace: true });
   }, [background, navigate]);
 
@@ -82,12 +86,12 @@ function NotFound() {
     <div className="flex min-h-[60vh] flex-col items-center justify-center gap-3 px-6 text-center">
       <p className="neon-text font-display text-6xl font-black">404</p>
       <p className="text-sm text-ink-muted">這個頁面不存在，或配方編號有誤。</p>
-      <a
-        href="/"
+      <Link
+        to="/"
         className="rounded-full border border-neon-purple/60 bg-neon-purple/15 px-5 py-2 text-sm font-semibold text-ink transition hover:bg-neon-purple/25"
       >
         回到首頁
-      </a>
+      </Link>
     </div>
   );
 }
