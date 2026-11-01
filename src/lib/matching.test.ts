@@ -275,3 +275,109 @@ describe('比對引擎（真實資料）', () => {
     }
   });
 });
+
+describe('選用材料（includeOptional）', () => {
+  it('includeOptional 為 false 時，選用材料不計入缺料但會出現在 optionalMissing', () => {
+    const afterglow = recipeById('afterglow');
+    const owned = new Set(['grenadine', 'orange-juice', 'pineapple-juice', 'orange-peel']);
+
+    const result = matchRecipe(afterglow, owned, { includeOptional: false });
+
+    // 冰塊是選用材料，不列入缺料
+    expect(result.missing.map((item) => item.id)).not.toContain('ice');
+    expect(result.missing).toHaveLength(0);
+    expect(result.score).toBe(0);
+    expect(result.isFullyAvailable).toBe(true);
+
+    // 但仍要讓介面知道有選用材料缺少
+    expect(result.optionalMissing.map((item) => item.id)).toEqual(['ice']);
+    expect(result.optionalMissing[0]?.zh).toBe('冰塊');
+  });
+
+  it('includeOptional 為 false 時，選用材料已擁有就不會出現在 optionalMissing', () => {
+    const afterglow = recipeById('afterglow');
+    const owned = new Set([
+      'grenadine',
+      'orange-juice',
+      'pineapple-juice',
+      'orange-peel',
+      'ice',
+    ]);
+
+    const result = matchRecipe(afterglow, owned, { includeOptional: false });
+
+    expect(result.optionalMissing).toHaveLength(0);
+    expect(result.missing).toHaveLength(0);
+  });
+
+  it('includeOptional 為 true（預設）時，選用材料照舊計入缺料且 optionalMissing 為空', () => {
+    const afterglow = recipeById('afterglow');
+    const owned = new Set(['grenadine', 'orange-juice', 'pineapple-juice', 'orange-peel']);
+
+    const result = matchRecipe(afterglow, owned);
+
+    expect(result.missing.map((item) => item.id)).toContain('ice');
+    expect(result.optionalMissing).toHaveLength(0);
+    expect(result.score).toBeGreaterThan(0);
+    expect(result.isFullyAvailable).toBe(false);
+  });
+
+  it('includeOptional 為 false 時，裝飾不列入缺料（與比對模式的設定一致）', () => {
+    const afterglow = recipeById('afterglow');
+    const owned = new Set(['grenadine', 'orange-juice', 'pineapple-juice']);
+
+    const result = matchRecipe(afterglow, owned, {
+      includeOptional: false,
+      includeGarnish: false,
+    });
+
+    expect(result.missing).toHaveLength(0);
+    expect(result.optionalMissing.map((item) => item.id)).toEqual(['ice']);
+  });
+
+  it('含選用材料的配方在關閉選用計分後，缺料數明顯下降', () => {
+    const whiskeySour = recipeById('whiskey-sour');
+    const owned = new Set([
+      'whiskey-bourbon',
+      'lemon-juice',
+      'simple-syrup',
+      'rich-syrup',
+      'angostura-bitters',
+      'salt',
+      'orange-peel',
+      'cherry',
+    ]);
+
+    const withOptional = matchRecipe(whiskeySour, owned);
+    const withoutOptional = matchRecipe(whiskeySour, owned, { includeOptional: false });
+
+    // 蛋白是選用材料
+    expect(withOptional.missing.map((item) => item.id)).toContain('egg-white');
+    expect(withoutOptional.missing.map((item) => item.id)).not.toContain('egg-white');
+    expect(withoutOptional.optionalMissing.map((item) => item.id)).toEqual(['egg-white']);
+    expect(withoutOptional.score).toBeLessThan(withOptional.score);
+  });
+
+  it('真實資料中每一杯的選用材料在關閉選用計分後都不會出現在缺料清單', () => {
+    const owned = new Set(['gin', 'campari', 'orange-juice']);
+    const results = matchRecipes(recipes, owned, { includeOptional: false });
+
+    let optionalCount = 0;
+    for (const result of results) {
+      const optionalIds = new Set(
+        result.recipe.ingredients
+          .filter((ingredient) => ingredient.optional)
+          .map((ingredient) => ingredient.id),
+      );
+      optionalCount += optionalIds.size;
+
+      for (const item of result.missing) {
+        expect(
+          optionalIds.has(item.id),
+          `${result.recipe.id} 的 ${item.id} 是選用材料，不應列入缺料`,
+        ).toBe(false);
+      }
+    }
+    expect(optionalCount).toBeGreaterThan(0);
+  });
+});

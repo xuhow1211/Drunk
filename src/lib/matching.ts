@@ -20,6 +20,7 @@ import type {
   MatchOptions,
   MatchResult,
   MissingItem,
+  OptionalMissingItem,
   Recipe,
   SubstituteOption,
   SubstitutionQuality,
@@ -135,6 +136,10 @@ export function getMaterialCount(recipe: Recipe): number {
 /**
  * 對單杯配方進行比對。
  *
+ * includeOptional 為 false 時，選用材料不列入缺料計算，
+ * 但缺少的選用材料會另外收在 optionalMissing，
+ * 讓介面仍能以較弱的樣式提示「另有選用：冰塊」，而不是把它算成缺料。
+ *
  * @param recipe 待比對的配方
  * @param ownedIds 使用者手邊已有的食材 id 集合
  * @param options 比對選項
@@ -148,12 +153,18 @@ export function matchRecipe(
   const includeOptional = options.includeOptional ?? true;
 
   const requiredIds = new Set<string>();
+  const optionalIds = new Set<string>();
   for (const ingredient of recipe.ingredients) {
-    if (!includeOptional && ingredient.optional) continue;
+    if (ingredient.optional && !includeOptional) {
+      optionalIds.add(ingredient.id);
+      continue;
+    }
     requiredIds.add(ingredient.id);
   }
   if (includeGarnish) {
     for (const garnishId of recipe.garnishIds) {
+      // 選用材料即使同時出現在裝飾清單，也不該被當成必要材料
+      if (optionalIds.has(garnishId)) continue;
       requiredIds.add(garnishId);
     }
   }
@@ -191,6 +202,20 @@ export function matchRecipe(
 
   missing.sort((a, b) => b.weight - a.weight || a.id.localeCompare(b.id));
 
+  // 缺少的選用材料：不計分、不計數，但介面要看得見
+  const optionalMissing: OptionalMissingItem[] = [];
+  for (const id of optionalIds) {
+    if (ownedIds.has(id)) continue;
+    const ingredient = getIngredient(id);
+    optionalMissing.push({
+      id,
+      zh: ingredient?.zh ?? id,
+      en: ingredient?.en ?? '',
+      category: ingredient?.category ?? 'mixer',
+    });
+  }
+  optionalMissing.sort((a, b) => a.id.localeCompare(b.id));
+
   const score = missing.reduce((sum, item) => sum + item.weight, 0);
   const totalMaterials = requiredIds.size;
 
@@ -198,6 +223,7 @@ export function matchRecipe(
     recipe,
     score,
     missing,
+    optionalMissing,
     matchedRatio: totalMaterials === 0 ? 1 : ownedCount / totalMaterials,
     isFullyAvailable: missing.length === 0,
     missingBaseSpirit: missing.some((item) => item.category === 'base-spirit'),

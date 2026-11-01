@@ -179,7 +179,8 @@ function MatchCard({
   register: (id: string, node: HTMLElement | null) => void;
   onOpen: () => void;
 }) {
-  const { recipe, missing, matchedRatio, isFullyAvailable, missingBaseSpirit } = result;
+  const { recipe, missing, optionalMissing, matchedRatio, isFullyAvailable, missingBaseSpirit } =
+    result;
   const ratio = Math.round(matchedRatio * 100);
 
   return (
@@ -262,6 +263,13 @@ function MatchCard({
               ))}
             </ul>
           )}
+
+          {/* 選用材料：不算缺料，但要以較弱的樣式告知使用者 */}
+          {optionalMissing.length > 0 ? (
+            <p className="mt-2 border-t border-white/5 pt-2 text-xs text-ink-muted/80">
+              另有選用：{optionalMissing.map((item) => item.zh).join('、')}
+            </p>
+          ) : null}
         </div>
       </div>
     </article>

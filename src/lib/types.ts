@@ -231,6 +231,18 @@ export interface MissingItem {
   category: IngredientCategory;
 }
 
+/** 選用材料中缺少的項目（不計入缺料數與缺料分數，但介面仍要標示）。 */
+export interface OptionalMissingItem {
+  /** 缺少的食材 id。 */
+  id: string;
+  /** 缺少的食材中文名稱。 */
+  zh: string;
+  /** 缺少的食材英文名稱。 */
+  en: string;
+  /** 缺少的食材分類。 */
+  category: IngredientCategory;
+}
+
 /** 單杯配方的比對結果。 */
 export interface MatchResult {
   /** 原始配方。 */
@@ -239,6 +251,14 @@ export interface MatchResult {
   score: number;
   /** 缺料清單（已依權重由高至低排序）。 */
   missing: MissingItem[];
+  /**
+   * 缺少的選用材料。
+   *
+   * 只有在比對選項 includeOptional 為 false 時才會有內容；
+   * 這些材料不計入缺料數與缺料分數，但介面仍以較弱的樣式標示出來，
+   * 讓使用者知道「這杯還可以加點冰塊之類的選用材料」。
+   */
+  optionalMissing: OptionalMissingItem[];
   /** 已備材料數除以材料總數，介於 0 至 1。 */
   matchedRatio: number;
   /** 是否零缺料（手邊材料完全足夠）。 */

@@ -24,8 +24,10 @@ export function Match() {
   // 裝飾（橙皮、橄欖、櫻桃等）不影響能不能調出來，因此不列入缺料計算：
   // 否則手邊有「伏特加＋柳橙汁」時，螺絲起子會因為少了柳橙皮而被標成缺一樣，
   // 使用者會誤以為這杯調不成。
+  // 選用材料（例如冰塊、蛋白）同樣不列入缺料計分，但仍會在結果卡上標示出來，
+  // 避免出現「缺 1 樣：冰塊」這種對使用者毫無意義的結果。
   const results = useMemo(
-    () => matchRecipes(recipes, owned, { includeGarnish: false }),
+    () => matchRecipes(recipes, owned, { includeGarnish: false, includeOptional: false }),
     [recipes, owned],
   );
 
