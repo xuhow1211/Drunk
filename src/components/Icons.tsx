@@ -124,3 +124,61 @@ export function EyeIcon(props: IconProps) {
     </svg>
   );
 }
+
+/** 音符，用於酒吧背景音面板。 */
+export function MusicNoteIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M9 18V6l10-2v12" />
+      <circle cx="6.5" cy="18" r="2.5" />
+      <circle cx="16.5" cy="16" r="2.5" />
+    </svg>
+  );
+}
+
+/** 播放，用於背景音控制。 */
+export function PlayIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M7 4.5 19 12 7 19.5v-15Z" />
+    </svg>
+  );
+}
+
+/** 暫停，用於背景音控制。 */
+export function PauseIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M9 5v14M15 5v14" />
+    </svg>
+  );
+}
+
+/** 音量，用於背景音控制。 */
+export function VolumeIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4v-5Z" />
+      <path d="M16 9a4 4 0 0 1 0 6" />
+    </svg>
+  );
+}
+
+/** 靜音，用於背景音控制。 */
+export function VolumeMuteIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4v-5Z" />
+      <path d="m16.5 9.5 5 5M21.5 9.5l-5 5" />
+    </svg>
+  );
+}
+
+/** 隨機換台，用於背景音控制。 */
+export function ShuffleIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M16 4h4v4M4 20l6-6M20 20l-4-4M4 4l4 4 6 6 2 2" />
+    </svg>
+  );
+}

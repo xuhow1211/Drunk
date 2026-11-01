@@ -7,6 +7,7 @@ import { useMemo, useRef } from 'react';
 import type { PointerEvent as ReactPointerEvent } from 'react';
 import { useCocktails } from '../hooks/useCocktails';
 import { getRecipeCollections } from '../lib/filters';
+import { BarMusicPlayer } from '../components/BarMusicPlayer';
 import { CountUp } from '../components/CountUp';
 import { EntryCards } from '../components/EntryCards';
 import { Hero } from '../components/Hero';
@@ -42,7 +43,8 @@ export function Home() {
   );
 
   return (
-    <div className="pb-10">
+    // 底部留白要避開右下角浮動的背景音面板，否則最後一排內容會被蓋住
+    <div className="pb-36 sm:pb-24">
       <Hero />
 
       <EntryCards classicCount={counts.classic} popularCount={counts.popular} />
@@ -71,6 +73,9 @@ export function Home() {
           <StatCard label="涵蓋來源數" value={counts.sources} suffix=" 個" />
         </div>
       </section>
+
+      {/* 酒吧背景音控制面板 */}
+      <BarMusicPlayer />
     </div>
   );
 }
