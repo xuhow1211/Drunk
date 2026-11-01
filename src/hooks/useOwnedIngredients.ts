@@ -29,13 +29,21 @@ let currentOwned: ReadonlySet<string> = readStoredIds();
  *
  * 伺服器預先算繪或隱私模式瀏覽器可能沒有 localStorage，
  * 此時一律退回記憶體內運作，不影響功能。
+ *
+ * 注意：部分瀏覽器在隱私模式下存取 window.localStorage 這個屬性本身
+ * 就會丟出 SecurityError，因此整段判斷都包在 try 裡，
+ * 不能只保護 getItem 呼叫。
  */
 function canUseStorage(): boolean {
-  return (
-    typeof window !== 'undefined' &&
-    typeof window.localStorage !== 'undefined' &&
-    typeof window.localStorage.getItem === 'function'
-  );
+  try {
+    return (
+      typeof window !== 'undefined' &&
+      typeof window.localStorage !== 'undefined' &&
+      typeof window.localStorage.getItem === 'function'
+    );
+  } catch {
+    return false;
+  }
 }
 
 /**
@@ -85,9 +93,32 @@ function commit(next: ReadonlySet<string>): void {
   for (const listener of listeners) listener();
 }
 
+/**
+ * 同步其他分頁對手邊清單的變更。
+ *
+ * localStorage 的變更只會在「其他」分頁觸發 storage 事件，
+ * 同一分頁的寫入不會觸發（同一分頁已由 commit 直接更新）。
+ * 不處理會造成使用者在分頁之間切換時看到不同步的清單。
+ *
+ * 監聽器在第一次有訂閱者時才註冊，避免模組載入當下就產生副作用。
+ */
+let storageListenerAttached = false;
+
+function ensureStorageListener(): void {
+  if (storageListenerAttached) return;
+  if (typeof window === 'undefined' || typeof window.addEventListener !== 'function') return;
+  storageListenerAttached = true;
+  window.addEventListener('storage', (event) => {
+    if (event.key !== OWNED_INGREDIENTS_STORAGE_KEY) return;
+    currentOwned = readStoredIds();
+    for (const listener of listeners) listener();
+  });
+}
+
 /** 訂閱清單變更。 */
 function subscribe(listener: () => void): () => void {
   listeners.add(listener);
+  ensureStorageListener();
   return () => {
     listeners.delete(listener);
   };

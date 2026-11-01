@@ -5,7 +5,7 @@
  * 顯示中英文名、分類、難度、酒精度、材料數與熱門標記，
  * 並提供「一鍵加入我的手邊」按鈕。
  */
-import { getMaterialCount } from '../lib/matching';
+import { getMaterialCount, getRequiredIngredientIds } from '../lib/matching';
 import {
   FLAVOR_LABELS,
   RECIPE_CATEGORY_LABELS,
@@ -50,7 +50,6 @@ export function RecipeCard({ recipe, delay = 0 }: RecipeCardProps) {
         onClick={() => openRecipe(recipe)}
         data-recipe-id={recipe.id}
         className="block w-full cursor-pointer text-left"
-        aria-label={`開啟 ${recipe.nameZh}（${recipe.nameEn}）配方詳情`}
       >
         <div
           className="relative flex h-24 items-end justify-between overflow-hidden px-4 pb-3"
@@ -97,7 +96,7 @@ export function RecipeCard({ recipe, delay = 0 }: RecipeCardProps) {
           ) : null}
 
           <span
-            className="mt-4 inline-flex items-center gap-1 text-xs font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
+            className="mt-4 inline-flex items-center gap-1 text-xs font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100"
             style={{ color: categoryAccent(recipe.category) }}
           >
             <EyeIcon width={15} height={15} />
@@ -107,7 +106,7 @@ export function RecipeCard({ recipe, delay = 0 }: RecipeCardProps) {
       </button>
 
       <div className="px-4 pb-4">
-        <AddToOwnedButton materialIds={recipe.ingredientIds} />
+        <AddToOwnedButton materialIds={getRequiredIngredientIds(recipe)} />
       </div>
     </article>
   );
