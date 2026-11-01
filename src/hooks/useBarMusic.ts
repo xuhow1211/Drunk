@@ -51,6 +51,13 @@ export interface BarMusicController {
   volume: number;
   /** 是否靜音。 */
   isMuted: boolean;
+  /**
+   * 合成環境音是否真的在運作。
+   *
+   * 沒有使用者互動時瀏覽器會讓 AudioContext 停在 suspended（完全靜音），
+   * 此時介面要提示使用者點一下才能聽到聲音。
+   */
+  synthReady: boolean;
   /** 開始播放。 */
   start: () => void;
   /** 暫停播放。 */
@@ -126,6 +133,8 @@ export function useBarMusic(): BarMusicController {
   const [channel, setChannel] = useState<BarMusicChannel>(resolveInitialChannel);
   const [volume, setVolumeState] = useState<number>(() => readStoredPreference().volume);
   const [isMuted, setIsMuted] = useState(() => readStoredPreference().muted);
+  /** 合成環境音是否真的在運作（沒有使用者互動時會停在 suspended）。 */
+  const [synthRunning, setSynthRunning] = useState(false);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const synthRef = useRef<AmbientSynth | null>(null);
@@ -135,6 +144,8 @@ export function useBarMusic(): BarMusicController {
   const dismissedRef = useRef(false);
   /** 目前實際使用的音源：串流或合成環境音。 */
   const synthModeRef = useRef(false);
+  /** 合成環境音是否真的在運作（供 toggle 判斷要啟動還是暫停）。 */
+  const synthRunningRef = useRef(false);
 
   // 以 ref 保存最新狀態，讓下面的 effect 不必把 status 列入相依陣列。
   // 若直接把 status 放進相依陣列，effect 會因為自己更新 status 而無限重跑。
@@ -144,6 +155,7 @@ export function useBarMusic(): BarMusicController {
   statusRef.current = status;
   volumeRef.current = volume;
   isMutedRef.current = isMuted;
+  synthRunningRef.current = synthRunning;
 
   /** 清除降級計時器。 */
   const clearFallbackTimer = useCallback(() => {
@@ -174,9 +186,17 @@ export function useBarMusic(): BarMusicController {
       synthRef.current = createAmbientSynth();
     }
     synthRef.current.setVolume(isMutedRef.current ? 0 : volumeRef.current);
-    void synthRef.current.start().catch(() => {
-      // 合成音也開不起來（例如環境不支援 Web Audio）就維持離線模式
-    });
+    void synthRef.current
+      .start()
+      .then(() => {
+        if (disposedRef.current) return;
+        // 沒有使用者互動時，AudioContext 會停在 suspended（靜音），
+        // 介面要據此提示使用者點一下才能聽到聲音。
+        setSynthRunning(synthRef.current?.isRunning() ?? false);
+      })
+      .catch(() => {
+        // 合成音也開不起來（例如環境不支援 Web Audio）就維持離線模式
+      });
     setStatus('offline');
   }, [stopStream]);
 
@@ -250,6 +270,11 @@ export function useBarMusic(): BarMusicController {
           // 只有被自動播放政策擋下才需要使用者點一次；
           // 其他失敗（連不上、格式不支援）代表串流不可用，該降級為合成環境音。
           if (isAutoplayPolicyError(error)) {
+            // 自動播放被擋下不代表串流有問題，因此必須取消降級計時器。
+            // 否則計時器到點會把「請點擊播放」的卡片換成離線模式面板，
+            // 使用者不但看不到提示，合成音也因為沒有互動而無法啟動，
+            // 結果就是整頁完全沒有聲音。
+            clearFallbackTimer();
             setStatus('needs-gesture');
           } else {
             fallbackToSynth();
@@ -257,7 +282,8 @@ export function useBarMusic(): BarMusicController {
         });
     }
 
-    // 串流連不上時降級為合成環境音
+    // 串流連不上時降級為合成環境音。
+    // 這是安全網：play() 沒有 resolve 也沒有 reject 的情況才會走到這裡。
     fallbackTimerRef.current = window.setTimeout(() => {
       fallbackTimerRef.current = null;
       fallbackToSynth();
@@ -289,7 +315,9 @@ export function useBarMusic(): BarMusicController {
 
     // 已經降級為合成音，直接重新啟動合成音
     if (synthModeRef.current) {
-      void synthRef.current?.start();
+      void synthRef.current?.start().then(() => {
+        if (!disposedRef.current) setSynthRunning(synthRef.current?.isRunning() ?? false);
+      });
       setStatus('offline');
       return;
     }
@@ -327,6 +355,12 @@ export function useBarMusic(): BarMusicController {
 
   const toggle = useCallback(() => {
     const current = statusRef.current;
+    // 合成環境音還沒真的啟動（沒有使用者互動時 AudioContext 停在 suspended），
+    // 此時按鈕應該是「啟動」而不是「暫停」
+    if (current === 'offline' && !synthRunningRef.current) {
+      start();
+      return;
+    }
     // 離線模式下合成環境音同樣算「正在播放」，暫停鈕要能停掉它
     if (current === 'playing' || current === 'offline') {
       pause();
@@ -343,17 +377,32 @@ export function useBarMusic(): BarMusicController {
    * 瀏覽器把任何一次點擊或按鍵都視為使用者意圖，
    * 因此只要使用者對頁面有任何操作，音樂就能立刻響起。
    *
+   * 離線模式（合成環境音）也要一併處理：
+   * AudioContext 在沒有使用者互動前會停在 suspended 而完全靜音，
+   * 此時同樣需要一次互動才能 resume。
+   *
    * 監聽器刻意使用 bubble 階段而非 capture：
    * capture 會比 React 的事件處理更早觸發，導致「不要背景音」按鈕
    * 在 click 之前就被換掉，按鈕的 onClick 永遠不會執行。
    * bubble 階段則由 React 先處理完按鈕行為，再落到這裡。
    */
   useEffect(() => {
-    if (status !== 'needs-gesture') return;
+    const needsGesture = status === 'needs-gesture';
+    const needsSynthResume = status === 'offline' && !synthRunning;
+    if (!needsGesture && !needsSynthResume) return;
 
     const handleFirstInteraction = () => {
       if (dismissedRef.current) return;
-      start();
+
+      if (needsGesture) {
+        start();
+        return;
+      }
+
+      // 合成音因缺少互動而停在 suspended，在這次互動中 resume 它
+      void synthRef.current?.start().then(() => {
+        if (!disposedRef.current) setSynthRunning(synthRef.current?.isRunning() ?? false);
+      });
     };
 
     document.addEventListener('click', handleFirstInteraction);
@@ -363,7 +412,7 @@ export function useBarMusic(): BarMusicController {
       document.removeEventListener('click', handleFirstInteraction);
       document.removeEventListener('keydown', handleFirstInteraction);
     };
-  }, [status, start]);
+  }, [status, synthRunning, start]);
 
   const changeVolume = useCallback((next: number) => {
     setVolumeState(clampVolume(next));
@@ -395,6 +444,7 @@ export function useBarMusic(): BarMusicController {
     channel,
     volume,
     isMuted,
+    synthReady: synthRunning,
     start,
     pause,
     toggle,

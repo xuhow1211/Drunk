@@ -92,6 +92,14 @@ export interface AmbientSynth {
   stop(): void;
   /** 調整音量（0 至 1）。 */
   setVolume(volume: number): void;
+  /**
+   * 目前音訊脈絡是否真的在運作。
+   *
+   * 瀏覽器規定 AudioContext 必須在使用者互動之後才能啟動，
+   * 沒有互動時會停在 suspended（靜音）。介面要靠這個判斷
+   * 該不該提示使用者「點一下即可啟動」。
+   */
+  isRunning(): boolean;
   /** 目前是否正在播放。 */
   readonly running: boolean;
 }
@@ -233,6 +241,10 @@ export function createAmbientSynth(): AmbientSynth {
 
   return {
     get running() {
+      return context !== null && context.state === 'running';
+    },
+
+    isRunning() {
       return context !== null && context.state === 'running';
     },
 

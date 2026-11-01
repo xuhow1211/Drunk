@@ -17,7 +17,10 @@ import {
 } from './Icons';
 
 /** 狀態對應的說明文字。 */
-function statusLabel(status: ReturnType<typeof useBarMusic>['status']): string {
+function statusLabel(
+  status: ReturnType<typeof useBarMusic>['status'],
+  synthReady: boolean,
+): string {
   switch (status) {
     case 'connecting':
       return '連線中';
@@ -26,7 +29,8 @@ function statusLabel(status: ReturnType<typeof useBarMusic>['status']): string {
     case 'paused':
       return '已暫停';
     case 'offline':
-      return '離線模式 · 合成環境音';
+      // 沒有使用者互動時 AudioContext 會停在 suspended，這時必須明確提示
+      return synthReady ? '離線模式 · 合成環境音' : '離線模式 · 點一下即可啟動';
     case 'needs-gesture':
       return '等待播放';
     default:
@@ -119,7 +123,7 @@ export function BarMusicPlayer() {
               {music.channel.nameZh}
             </p>
             <p className="truncate text-[11px] text-ink-muted">
-              {statusLabel(music.status)}
+              {statusLabel(music.status, music.synthReady)}
             </p>
           </div>
 
