@@ -98,24 +98,24 @@ export function BarMusicPlayer() {
   const isPlaying = music.status === 'playing' || music.status === 'offline';
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 w-[min(19rem,calc(100vw-2rem))]">
+    <div className="fixed bottom-3 right-3 z-50 w-[calc(100vw-1.5rem)] max-w-[18rem] sm:bottom-4 sm:right-4 sm:w-[19rem]">
       <div
-        className="panel animate-rise p-3"
+        className="panel animate-rise p-2.5 sm:p-3"
         role="region"
         aria-label="酒吧背景音"
         data-testid="bar-music-panel"
       >
         {/* 上列：音符、頻道名稱與次要操作 */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2 sm:gap-2.5">
           <span
             className={[
-              'flex h-9 w-9 shrink-0 items-center justify-center rounded-full',
+              'flex h-8 w-8 shrink-0 items-center justify-center rounded-full sm:h-9 sm:w-9',
               'border border-neon-purple/40 bg-neon-purple/15 text-neon-purple',
               isPlaying ? 'animate-pulse-neon' : '',
             ].join(' ')}
             aria-hidden="true"
           >
-            <MusicNoteIcon width={17} height={17} />
+            <MusicNoteIcon width={16} height={16} />
           </span>
 
           <div className="min-w-0 flex-1">
@@ -149,19 +149,19 @@ export function BarMusicPlayer() {
         </div>
 
         {/* 下列：播放、靜音與音量 */}
-        <div className="mt-2.5 flex items-center gap-2.5 border-t border-white/8 pt-2.5">
+        <div className="mt-2 flex items-center gap-2 border-t border-white/8 pt-2 sm:mt-2.5 sm:gap-2.5 sm:pt-2.5">
           <button
             type="button"
             onClick={music.toggle}
             aria-label={isPlaying ? '暫停背景音' : '播放背景音'}
             aria-pressed={isPlaying}
             data-testid="bar-music-toggle"
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-neon-cyan/45 bg-neon-cyan/10 text-neon-cyan transition hover:bg-neon-cyan/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-cyan"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-neon-cyan/45 bg-neon-cyan/10 text-neon-cyan transition hover:bg-neon-cyan/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-cyan sm:h-9 sm:w-9"
           >
             {isPlaying ? (
-              <PauseIcon width={16} height={16} />
+              <PauseIcon width={15} height={15} />
             ) : (
-              <PlayIcon width={16} height={16} />
+              <PlayIcon width={15} height={15} />
             )}
           </button>
 
@@ -171,12 +171,12 @@ export function BarMusicPlayer() {
             aria-label={music.isMuted ? '取消靜音' : '靜音'}
             aria-pressed={music.isMuted}
             data-testid="bar-music-mute"
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 text-ink transition hover:bg-white/12 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-cyan"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 text-ink transition hover:bg-white/12 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-cyan sm:h-9 sm:w-9"
           >
             {music.isMuted ? (
-              <VolumeMuteIcon width={16} height={16} />
+              <VolumeMuteIcon width={15} height={15} />
             ) : (
-              <VolumeIcon width={16} height={16} />
+              <VolumeIcon width={15} height={15} />
             )}
           </button>
 
