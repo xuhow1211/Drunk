@@ -5,6 +5,12 @@
  */
 import { Link } from 'react-router-dom';
 import { ArrowRightIcon } from './Icons';
+import {
+  ClassicCocktailIllustration,
+  MaterialsIllustration,
+  PopularCocktailIllustration,
+} from './EntryIllustrations';
+import type { ReactNode } from 'react';
 
 /** EntryCards 的參數。 */
 export interface EntryCardsProps {
@@ -15,11 +21,25 @@ export interface EntryCardsProps {
 }
 
 /** 入口卡片內容設定。 */
-const ENTRIES = [
+const ENTRIES: {
+  to: string;
+  title: string;
+  accent: string;
+  /** 插畫線條與填色使用的主題色。 */
+  ink: string;
+  /** 插畫區往卡片邊界延伸的負邊距，要跟卡片內距一致才會齊邊。 */
+  bleed: string;
+  illustration: ReactNode;
+  text: string;
+  highlighted: boolean;
+}[] = [
   {
     to: '/classic',
     title: '經典調酒',
     accent: 'from-neon-purple/25 to-neon-cyan/10',
+    ink: 'text-neon-purple',
+    bleed: '-mx-6 -mt-6',
+    illustration: <ClassicCocktailIllustration className="h-full w-full" />,
     text: 'IBA 官方經典與新時代飲品，認真做過的標準配方。',
     highlighted: false,
   },
@@ -27,6 +47,9 @@ const ENTRIES = [
     to: '/popular',
     title: '熱門推薦',
     accent: 'from-neon-cyan/25 to-neon-purple/10',
+    ink: 'text-neon-cyan',
+    bleed: '-mx-6 -mt-6',
+    illustration: <PopularCocktailIllustration className="h-full w-full" />,
     text: "Difford's、Punchdrink、Imbibe 等來源票選出的高人氣酒款。",
     highlighted: false,
   },
@@ -34,6 +57,9 @@ const ENTRIES = [
     to: '/match',
     title: '我手邊有什麼',
     accent: 'from-neon-pink/25 to-neon-purple/20',
+    ink: 'text-neon-pink',
+    bleed: '-mx-6 -mt-6 md:-mx-8 md:-mt-8',
+    illustration: <MaterialsIllustration className="h-full w-full" />,
     text: '勾選現有材料，算出最能調出來的調酒，直接列出還缺哪幾樣。',
     highlighted: true,
   },
@@ -74,10 +100,22 @@ export function EntryCards({ classicCount, popularCount }: EntryCardsProps) {
               />
             ) : null}
 
-            <span
-              aria-hidden="true"
-              className={`absolute inset-x-0 top-0 h-28 bg-gradient-to-b ${entry.accent} opacity-70 transition-opacity duration-300 group-hover:opacity-100`}
-            />
+            {/* 插畫區：漸層底色加專屬 SVG 插畫 */}
+            <div className={`relative h-36 overflow-hidden ${entry.bleed}`}>
+              <span
+                aria-hidden="true"
+                className={`absolute inset-0 bg-gradient-to-b ${entry.accent} opacity-70 transition-opacity duration-300 group-hover:opacity-100`}
+              />
+              <span
+                aria-hidden="true"
+                className={`absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-night-900/80 to-transparent`}
+              />
+              <div
+                className={`absolute inset-0 flex items-end justify-center pb-2 ${entry.ink} opacity-85 transition-transform duration-500 group-hover:scale-105`}
+              >
+                {entry.illustration}
+              </div>
+            </div>
 
             <div className="relative">
               <p className="text-xs font-semibold tracking-widest text-ink-muted">
