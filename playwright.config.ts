@@ -44,7 +44,9 @@ export default defineConfig({
   // 失敗時保留 trace 與截圖，方便回報問題
   fullyParallel: true,
   forbidOnly: Boolean(process.env.CI),
-  retries: 0,
+  // CI 上重試一次：背景音情境依賴外部電台串流（somafm），連不上時偶發假失敗；
+  // 徹底解法（不依賴外部網路的情境測試）另列待辦。
+  retries: process.env.CI ? 1 : 0,
   workers: 4,
   timeout: 90_000,
   expect: { timeout: 10_000 },
