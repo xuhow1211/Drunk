@@ -4,10 +4,13 @@
  * 涵蓋：首頁載入、三大入口導覽、精選熱選橫向捲動、資料統計數字。
  */
 import { expect, test } from '@playwright/test';
-import { collectConsoleErrors, homeTitle, scrollIntoView } from './helpers';
+import { blockExternalRadio, collectConsoleErrors, homeTitle, scrollIntoView } from './helpers';
 
 test.describe('首頁', () => {
   test('首頁載入成功，主標「join 這麼喝」可見且沒有 console 錯誤', async ({ page }) => {
+    // 背景音連線的外部電台串流間歇回 403，屬外部服務問題，
+    // 攔截後讓應用走合成音降級路徑，避免假失敗。
+    await blockExternalRadio(page);
     const errors = collectConsoleErrors(page);
 
     await page.goto('/');
