@@ -7,6 +7,7 @@
  * 因此抽屜開啟時底下的頁面不會被卸載，關閉後也能回到原處。
  */
 import { useCallback, useMemo } from 'react';
+import type { ReactNode } from 'react';
 import {
   BrowserRouter,
   Link,
@@ -25,6 +26,51 @@ import { Classic } from './pages/Classic';
 import { Home } from './pages/Home';
 import { Match } from './pages/Match';
 import { Popular } from './pages/Popular';
+
+/**
+ * 待資料就緒的顯示。
+ */
+function DataLoading() {
+  return (
+    <div className="flex min-h-screen items-center justify-center px-6 text-center">
+      <p className="text-sm text-ink-muted">資料載入中，請稍候……</p>
+    </div>
+  );
+}
+
+/**
+ * 資料載入失敗的顯示。
+ *
+ * @param error 載入失敗的原因
+ */
+function DataError({ error }: { error: Error }) {
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center gap-3 px-6 text-center">
+      <p className="font-display text-2xl font-black text-ink">資料載入失敗</p>
+      <p className="text-sm text-ink-muted">{error.message}</p>
+      <button
+        type="button"
+        onClick={() => window.location.reload()}
+        className="rounded-full border border-neon-purple/60 bg-neon-purple/15 px-5 py-2 text-sm font-semibold text-ink transition hover:bg-neon-purple/25"
+      >
+        重新載入
+      </button>
+    </div>
+  );
+}
+
+/**
+ * 資料守門元件：資料就緒前不放行任何頁面，讓所有子元件掛載時資料都已備妥
+ * （材料選擇器等元件會在掛載時快取同步查詢結果，資料未就緒就掛載會拿到空內容）。
+ *
+ * @param children 就緒後要渲染的路由內容
+ */
+function DataGate({ children }: { children: ReactNode }) {
+  const { loading, error } = useCocktails();
+  if (loading) return <DataLoading />;
+  if (error) return <DataError error={error} />;
+  return <>{children}</>;
+}
 
 /**
  * 配方抽屜的路由元件。
@@ -132,7 +178,9 @@ function Shell() {
 export default function App() {
   return (
     <BrowserRouter>
-      <Shell />
+      <DataGate>
+        <Shell />
+      </DataGate>
     </BrowserRouter>
   );
 }
