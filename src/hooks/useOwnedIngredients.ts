@@ -91,6 +91,27 @@ function commit(next: ReadonlySet<string>): void {
   currentOwned = next;
   persistIds(next);
   for (const listener of listeners) listener();
+  commitListener?.();
+}
+
+/** 外部模組登記的提交通知回呼（雲端同步用；未登記時為 null）。 */
+let commitListener: (() => void) | null = null;
+
+/**
+ * 登記「本地清單變更」的通知回呼（雲端同步模組使用）。
+ *
+ * 本檔不依賴 Supabase，因此只開這個掛點讓 sync 模組在變更時接手，
+ * 未登入或未掛載同步模組時完全沒有額外行為。
+ *
+ * @param listener 提交通知回呼；傳入 null 取消登記
+ */
+export function setOwnedCommitListener(listener: (() => void) | null): void {
+  commitListener = listener;
+}
+
+/** 取得目前清單的快照（不需要 React 的呼叫端使用）。 */
+export function getOwnedSnapshot(): ReadonlySet<string> {
+  return currentOwned;
 }
 
 /**

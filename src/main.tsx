@@ -9,10 +9,12 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 import { startDataLoad } from './lib/dataStore';
 import { startAuthLoad } from './lib/authStore';
+import { startPantrySync } from './lib/pantrySync';
 import './index.css';
 
 startDataLoad();
 startAuthLoad();
+startPantrySync();
 
 const container = document.getElementById('root');
 
