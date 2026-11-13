@@ -7,7 +7,6 @@ import { useMemo, useRef } from 'react';
 import type { PointerEvent as ReactPointerEvent } from 'react';
 import { useCocktails } from '../hooks/useCocktails';
 import { getRecipeCollections } from '../lib/filters';
-import { BarMusicPlayer } from '../components/BarMusicPlayer';
 import { CountUp } from '../components/CountUp';
 import { EntryCards } from '../components/EntryCards';
 import { Hero } from '../components/Hero';
@@ -73,9 +72,6 @@ export function Home() {
           <StatCard label="涵蓋來源數" value={counts.sources} suffix=" 個" />
         </div>
       </section>
-
-      {/* 酒吧背景音控制面板 */}
-      <BarMusicPlayer />
     </div>
   );
 }

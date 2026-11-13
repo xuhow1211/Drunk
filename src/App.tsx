@@ -22,6 +22,7 @@ import { Layout } from './components/Layout';
 import { RecipeDrawer } from './components/RecipeDrawer';
 import { useCocktails } from './hooks/useCocktails';
 import { HOME_LOCATION } from './hooks/useRecipeNav';
+import { BarMusicPlayer } from './components/BarMusicPlayer';
 import { Classic } from './pages/Classic';
 import { Auth } from './pages/Auth';
 import { Home } from './pages/Home';
@@ -170,6 +171,9 @@ function Shell() {
       <Routes>
         <Route path="/recipe/:id" element={<RecipeRoute />} />
       </Routes>
+
+      {/* 背景音面板：掛在最外層，換頁時不隨頁面卸載，音源因此不中斷 */}
+      <BarMusicPlayer />
     </>
   );
 }
