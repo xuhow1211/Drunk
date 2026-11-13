@@ -8,6 +8,7 @@
 import { describe, expect, it } from 'vitest';
 import cocktailData from '../data/cocktails.json';
 import catalogJson from '../data/ingredients.json';
+import { CATEGORY_LABELS } from './categoryLabels';
 import type { CocktailDataset, IngredientCatalog } from './types';
 import {
   getByCategory,
@@ -20,6 +21,20 @@ import {
 
 const catalog = catalogJson as unknown as IngredientCatalog;
 const recipes = (cocktailData as unknown as CocktailDataset).recipes;
+
+describe('分類常數（categoryLabels）', () => {
+  it('涵蓋對照表中出現的每一個分類，id 與資料一致', () => {
+    const labelIds = new Set(CATEGORY_LABELS.map((item) => item.id));
+    for (const ingredient of catalog.ingredients) {
+      expect(labelIds.has(ingredient.category), ingredient.category).toBe(true);
+    }
+  });
+
+  it('getCategories 的內容來自常數，且 id 排序與資料無關', () => {
+    const categories = getCategories();
+    expect(categories.map((item) => item.id)).toEqual(CATEGORY_LABELS.map((item) => item.id));
+  });
+});
 
 describe('getIngredient', () => {
   it('查得到常見材料', () => {

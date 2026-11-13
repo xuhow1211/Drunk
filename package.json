@@ -5,7 +5,7 @@
   "type": "module",
   "description": "join 這麼喝：勾選手邊材料，即時算出只差最少材料的調酒推薦",
   "scripts": {
-    "dev": "vite",
+    "dev": "npm run build:data && vite",
     "build": "npm run build:data && tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.node.json",
@@ -19,6 +19,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.119.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "react-router-dom": "^7.18.5"

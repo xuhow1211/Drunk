@@ -16,6 +16,8 @@ export default defineConfig({
   },
   test: {
     environment: 'node',
+    // 注入食材對照表索引：ingredients 模組為注入式，同步查詢 API 需先初始化
+    setupFiles: ['src/test/setupCatalog.ts'],
     include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],
     coverage: {
       // 只統計「可獨立以 node 環境測試」的邏輯層。

@@ -7,7 +7,18 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 
 /**
+ * 背景音功能會連線的外部電台串流網域。
+ *
+ * 該外部服務間歇回應 403，屬外部服務不穩定，與本應用的正確性無關；
+ * 情境測試一律攔截此網域的請求，並排除此網域產生的 console 錯誤。
+ */
+const EXTERNAL_RADIO_URL = /ice1\.somafm\.com/;
+
+/**
  * 蒐集頁面上的 console 錯誤與未捕捉例外。
+ *
+ * 排除外部電台串流網域產生的錯誤：該網域間歇回 403，
+ * 是外部服務問題，不應造成本應用的情境測試假失敗。
  *
  * @param page Playwright 頁面
  * @returns 可即時讀取的錯誤陣列
@@ -15,10 +26,24 @@ import { expect, type Locator, type Page } from '@playwright/test';
 export function collectConsoleErrors(page: Page): string[] {
   const errors: string[] = [];
   page.on('console', (message) => {
-    if (message.type() === 'error') errors.push(message.text());
+    if (message.type() !== 'error') return;
+    if (EXTERNAL_RADIO_URL.test(message.location()?.url ?? '')) return;
+    errors.push(message.text());
   });
   page.on('pageerror', (error) => errors.push(error.message));
   return errors;
+}
+
+/**
+ * 攔截外部電台串流的請求（直接中止，不送出真實網路請求）。
+ *
+ * 應用端對連不上串流的降級路徑（合成環境音）是真實路徑，
+ * 攔截後應用照常運作，且測試不再受外部服務間歇性 403 影響。
+ *
+ * @param page Playwright 頁面
+ */
+export async function blockExternalRadio(page: Page): Promise<void> {
+  await page.route(EXTERNAL_RADIO_URL, (route) => route.abort());
 }
 
 /**

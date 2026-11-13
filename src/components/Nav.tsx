@@ -2,8 +2,10 @@
  * 頂部導覽列。
  *
  * 固定在頁面上方，點選路由時以霓虹漸層底線標示目前所在頁面。
+ * 右側為會員區：已登入顯示名稱與登出按鈕，未登入顯示登入入口。
  */
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import { signOut, useAuth } from '../lib/authStore';
 
 /** 導覽項目設定。 */
 const LINKS = [
@@ -12,6 +14,46 @@ const LINKS = [
   { to: '/popular', label: '熱門推薦', end: false },
   { to: '/match', label: '我手邊有什麼', end: false },
 ];
+
+/**
+ * 導覽列右側的會員區。
+ */
+function AuthArea() {
+  const { status, displayName, available } = useAuth();
+
+  if (!available) return null;
+  if (status === 'initializing') {
+    return <span className="hidden shrink-0 text-xs text-ink-muted lg:inline">會員狀態讀取中…</span>;
+  }
+  if (status === 'signedIn') {
+    return (
+      <div className="flex shrink-0 items-center gap-2">
+        <span className="max-w-[8rem] truncate text-sm font-medium text-ink" title={displayName ?? ''}>
+          {displayName ?? '會員'}
+        </span>
+        <button
+          type="button"
+          onClick={() => {
+            signOut().catch(() => {
+              // 登出失敗時交由下一次操作重試，不在導覽列插錯誤訊息
+            });
+          }}
+          className="rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold text-ink-muted transition hover:bg-white/5 hover:text-ink"
+        >
+          登出
+        </button>
+      </div>
+    );
+  }
+  return (
+    <Link
+      to="/auth"
+      className="shrink-0 rounded-full border border-neon-purple/60 bg-neon-purple/15 px-3 py-1.5 text-sm font-semibold text-ink transition hover:bg-neon-purple/25 no-underline"
+    >
+      登入
+    </Link>
+  );
+}
 
 /**
  * 頂部導覽列。
@@ -50,6 +92,8 @@ export function Nav() {
             </li>
           ))}
         </ul>
+
+        <AuthArea />
       </nav>
     </header>
   );

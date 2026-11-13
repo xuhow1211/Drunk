@@ -6,6 +6,10 @@
  *   - src/data/ingredients.json：統一食材對照表
  *   - src/data/cocktails.json：全部配方（含比對引擎所需的 id 清單）
  *
+ * 兩份檔案同步輸出到 public/data/（內容相同）：
+ * src/data/ 供單元測試以 import 引入；public/data/ 供 runtime 以 fetch 載入
+ * （JS bundle 不內嵌資料，資料改由 CDN 快取）。
+ *
  * 僅使用 Node 內建的 fs / path，不引入任何第三方套件。
  * 驗證關卡若不通過會印出錯誤並以非零碼結束。
  */
@@ -18,6 +22,8 @@ const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = path.resolve(SCRIPT_DIR, '..');
 const DATA_DIR = path.join(ROOT_DIR, 'data');
 const OUT_DIR = path.join(ROOT_DIR, 'src', 'data');
+/** runtime 資料輸出位置（Vite 會原樣複製 public/ 到建置產物，供 CDN 快取）。 */
+const PUBLIC_DATA_DIR = path.join(ROOT_DIR, 'public', 'data');
 
 /**
  * 配方來源，順序即優先序：同一個配方 id 出現於多個來源時，以優先序較前者的欄位為主。
@@ -234,6 +240,20 @@ function readJsonIfExists(filePath) {
   } catch {
     return null;
   }
+}
+
+/**
+ * 將同一份 JSON 同步寫入 src/data 與 public/data 兩處。
+ *
+ * 內容完全相同：src/data 供單元測試 import；public/data 供 runtime fetch。
+ *
+ * @param {string} fileName 檔名
+ * @param {string} content JSON 字串
+ */
+function writeOut(fileName, content) {
+  const text = content + '\n';
+  fs.writeFileSync(path.join(OUT_DIR, fileName), text, 'utf8');
+  fs.writeFileSync(path.join(PUBLIC_DATA_DIR, fileName), text, 'utf8');
 }
 
 /**
@@ -544,6 +564,7 @@ function normalizeRecipe(raw, source) {
 
 function main() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
+  fs.mkdirSync(PUBLIC_DATA_DIR, { recursive: true });
 
   // 1. 讀取主對照表
   const basePath = path.join(DATA_DIR, 'ingredients.json');
@@ -785,16 +806,8 @@ function main() {
     recipes,
   };
 
-  fs.writeFileSync(
-    path.join(OUT_DIR, 'ingredients.json'),
-    JSON.stringify(catalog, null, 2) + '\n',
-    'utf8',
-  );
-  fs.writeFileSync(
-    path.join(OUT_DIR, 'cocktails.json'),
-    JSON.stringify(dataset, null, 2) + '\n',
-    'utf8',
-  );
+  writeOut('ingredients.json', JSON.stringify(catalog, null, 2));
+  writeOut('cocktails.json', JSON.stringify(dataset, null, 2));
 
   // 6. 統計
   const popularCount = stats.collectionCounts.popular ?? 0;
