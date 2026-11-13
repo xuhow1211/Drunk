@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static:
+    name: 檢查與單元測試
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: 資料快照比對
+        run: npm run data:check
+      - name: 型別檢查
+        run: npm run typecheck
+      - name: ESLint
+        run: npm run lint
+      - name: 單元測試
+        run: npm test
+
+  e2e:
+    name: 情境測試（Playwright）
+    needs: static
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: 情境測試
+        run: npm run test:e2e
+      - name: 上傳失敗證據
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-failure
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7
