@@ -213,6 +213,9 @@ export async function loadSupabaseData(client: SupabaseClient): Promise<LoadedDa
       .from('recipes')
       .select('*,recipe_ingredients(ingredient_id,amount,unit,optional,position)')
       .order('popularity', { ascending: false })
+      // 分頁需要全域穩定的排序：popularity 同值者多，補 id 作為唯一次要鍵，
+      // 否則跨頁可能漏列出現重複。
+      .order('id', { ascending: true })
       .order('position', { referencedTable: 'recipe_ingredients', ascending: true })
       .range(from, to),
   );
@@ -221,7 +224,14 @@ export async function loadSupabaseData(client: SupabaseClient): Promise<LoadedDa
       client.from('ingredients').select('*').order('id', { ascending: true }).range(from, to),
   );
   const substitutionRows = await fetchAll<SupabaseSubstitutionRow>(
-    (from, to) => client.from('substitutions').select('*').range(from, to),
+    // 分頁須有穩定排序，以 (from_id, to_id) 排序避免跨頁漏行列舉重複
+    (from, to) =>
+      client
+        .from('substitutions')
+        .select('*')
+        .order('from_id', { ascending: true })
+        .order('to_id', { ascending: true })
+        .range(from, to),
   );
 
   const dataset: CocktailDataset = {

@@ -39,6 +39,14 @@ let inFlight = false;
 /** 自動重試的計時器。 */
 let retryTimer: ReturnType<typeof setTimeout> | undefined;
 
+/**
+ * 首次合併被擋（前一次同步還在飛）時的重試計時器。
+ *
+ * 與共用 retryTimer 分開：cloudSet 已就緒時，共用的分派會把
+ * 新使用者的首次合併誤判成「推差異」，因此這裡獨立排「重跑合併」。
+ */
+let mergeRetryTimer: ReturnType<typeof setTimeout> | undefined;
+
 /** 目前這項變已重試的次數。 */
 let retryAttempts = 0;
 
@@ -70,6 +78,7 @@ async function handleAuthChange(): Promise<void> {
   const { status, user } = getAuthState();
   if (status !== 'signedIn' || !user || !user.id) {
     clearRetryTimer();
+    clearMergeRetryTimer();
     cloudSet = null;
     syncedForUserId = null;
     retryAttempts = 0;
@@ -100,7 +109,18 @@ async function loadClient(): Promise<SupabaseClient | null> {
  */
 async function syncFromCloud(user: User): Promise<void> {
   if (cloudSet !== null && syncedForUserId === user.id) return;
-  if (inFlight) return;
+  if (inFlight) {
+    // 前一次同步還在飛：新使用者的首次合併不能整個跳過，否則永不再補做。
+    // 稍後直接重跑本使用者的合併；共用重試在此情境會因 cloudSet 已就緒
+    // 而誤分派到「推差異」，故另立計時器。同時刻只排一個，避免堆疊。
+    if (!mergeRetryTimer) {
+      mergeRetryTimer = setTimeout(() => {
+        mergeRetryTimer = undefined;
+        void syncFromCloud(user);
+      }, PANTRY_SYNC_RETRY_DELAY_MS);
+    }
+    return;
+  }
   inFlight = true;
   try {
     const client = await loadClient();
@@ -117,8 +137,11 @@ async function syncFromCloud(user: User): Promise<void> {
     syncedForUserId = user.id;
     retryAttempts = 0;
     replaceOwned([...merged]);
-  } catch {
+  } catch (cause) {
     // 雲端失敗：本地不動，稍後重試一次；再失敗等下次啟動／登入補同步
+    console.warn(
+      `[pantrySync] 首次合併失敗，稍後重試：${cause instanceof Error ? cause.message : String(cause)}`,
+    );
     scheduleRetry(user);
   } finally {
     inFlight = false;
@@ -162,7 +185,10 @@ async function pushDiff(user: User): Promise<void> {
     if (toRemove.length > 0) await deleteIds(client, user.id, toRemove);
     cloudSet = new Set(local);
     succeeded = true;
-  } catch {
+  } catch (cause) {
+    console.warn(
+      `[pantrySync] 手邊材料推送失敗，稍後重試：${cause instanceof Error ? cause.message : String(cause)}`,
+    );
     scheduleRetry(user);
   } finally {
     inFlight = false;
@@ -210,6 +236,14 @@ function clearRetryTimer(): void {
   if (retryTimer) {
     clearTimeout(retryTimer);
     retryTimer = undefined;
+  }
+}
+
+/** 取消已排程的首次合併重試。 */
+function clearMergeRetryTimer(): void {
+  if (mergeRetryTimer) {
+    clearTimeout(mergeRetryTimer);
+    mergeRetryTimer = undefined;
   }
 }
 

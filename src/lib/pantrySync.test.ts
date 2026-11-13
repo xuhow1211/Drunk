@@ -236,6 +236,66 @@ describe('登入時的合併', () => {
       expect(sortedStoredIds()).toEqual(['campari', 'gin']);
     });
   });
+
+  it('前一次合併仍在飛時登入另一使用者，改為排重試補做該使用者的首次合併', async () => {
+    // 自建假節點：第一次查詢（使用者 1）以閘門卡住，模擬「合併仍在飛」
+    const upserts: { user_id: string; ingredient_id: string }[][] = [];
+    let fetchCount = 0;
+    let releaseFirst!: (result: { data: { ingredient_id: string }[]; error: null }) => void;
+    const firstGate = new Promise<{ data: { ingredient_id: string }[]; error: null }>(
+      (resolve) => {
+        releaseFirst = resolve;
+      },
+    );
+    await loadModules(['gin']);
+    createClientMock.mockImplementation(() => ({
+      from: (table: string) =>
+        table === 'user_pantry'
+          ? {
+              select: () => ({
+                eq: () => {
+                  fetchCount += 1;
+                  // 查詢一：使用者 1 的首次合併；查詢二：使用者 2 的重試合併
+                  return fetchCount === 1
+                    ? firstGate
+                    : Promise.resolve({ data: [], error: null });
+                },
+              }),
+              upsert: (rows: { user_id: string; ingredient_id: string }[]) => {
+                upserts.push(rows);
+                return Promise.resolve({ data: null, error: null });
+              },
+              delete: () => ({
+                eq: () => ({
+                  in: () => Promise.resolve({ data: null, error: null }),
+                }),
+              }),
+            }
+          : {},
+    }));
+    vi.useFakeTimers();
+
+    // 使用者 1 的合併卡在飛行中時，使用者 2 同時登入；
+    // 若此情境被直接跳過，使用者 2 的首次合併將永遠不會補做
+    signInAs('user-1');
+    signInAs('user-2');
+
+    // 放行使用者 1 的查詢：雲端有 campari，聯集後補上傳 gin
+    releaseFirst({ data: [{ ingredient_id: 'campari' }], error: null });
+    await vi.waitFor(() => {
+      expect(sortedStoredIds()).toEqual(['campari', 'gin']);
+    });
+
+    // 重試時間到：使用者 2 的首次合併補做，雲端（空）差異需以使用者 2 的名義上傳
+    await vi.advanceTimersByTimeAsync(PANTRY_SYNC_RETRY_DELAY_MS);
+    await vi.waitFor(() => {
+      expect(upserts.length).toBeGreaterThanOrEqual(2);
+      expect(upserts[1]).toEqual([
+        { user_id: 'user-2', ingredient_id: 'campari' },
+        { user_id: 'user-2', ingredient_id: 'gin' },
+      ]);
+    });
+  });
 });
 
 describe('登入後的差異推送', () => {
@@ -303,6 +363,33 @@ describe('登入後的差異推送', () => {
     });
     expect(node.calls.upserts).toHaveLength(2);
     expect(sortedStoredIds()).toEqual(['gin']);
+  });
+
+  it('同步失敗時輸出 console.warn（首次合併與差異推送皆然），供診斷', async () => {
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const node = makePantryNode([], { message: '模擬失敗' });
+    const { owned } = await loadModules(['gin'], node);
+    vi.useFakeTimers();
+
+    signInAs('user-1');
+    await vi.waitFor(() => {
+      expect(warnSpy).toHaveBeenCalledWith(expect.stringMatching(/首次合併失敗/));
+    });
+
+    // 重試成功完成合併後，差異推送失敗同樣要有 warn
+    node.fail.fetchError = null;
+    node.pantryIds = [];
+    await vi.advanceTimersByTimeAsync(PANTRY_SYNC_RETRY_DELAY_MS);
+    await vi.waitFor(() => {
+      expect(node.calls.upserts).toHaveLength(1);
+    });
+
+    node.fail.upsertError = { message: '模擬推送失敗' };
+    owned.toggleOwned('lime');
+    await vi.waitFor(() => {
+      expect(warnSpy).toHaveBeenCalledWith(expect.stringMatching(/推送失敗/));
+    });
+    warnSpy.mockRestore();
   });
 });
 

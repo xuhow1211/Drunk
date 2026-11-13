@@ -38,4 +38,18 @@ describe('getSupabaseClient', () => {
     expect(getSupabaseClient()).toEqual({ mocked: true });
     expect(createClientMock).toHaveBeenCalledWith('https://example.supabase.co', 'anon-key-for-test');
   });
+
+  it('重複呼叫回傳同一實例，不重複建立用戶端', async () => {
+    // 用戶端快取在模組層級，重置模組後從乾淨狀態驗證單例行為
+    vi.resetModules();
+    const module = await import('./supabase');
+    createClientMock.mockReturnValue({ mocked: true });
+    vi.stubEnv('VITE_SUPABASE_URL', 'https://example.supabase.co');
+    vi.stubEnv('VITE_SUPABASE_ANON_KEY', 'anon-key-for-test');
+    const first = module.getSupabaseClient();
+    const second = module.getSupabaseClient();
+    expect(first).toEqual({ mocked: true });
+    expect(second).toBe(first);
+    expect(createClientMock).toHaveBeenCalledTimes(1);
+  });
 });

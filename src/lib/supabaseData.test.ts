@@ -208,6 +208,7 @@ describe('loadSupabaseData 對應規則', () => {
     expect(recipeBuilds[0]?.select).toContain('recipe_ingredients');
     expect(recipeBuilds[0]?.orders).toEqual([
       { column: 'popularity', ascending: false },
+      { column: 'id', ascending: true },
       { column: 'position', referencedTable: 'recipe_ingredients', ascending: true },
     ]);
     // 1001 列：第一頁 0~999，第二頁 1000~1999（回傳 1 列後停止）

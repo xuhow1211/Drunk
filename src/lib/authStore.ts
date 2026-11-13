@@ -26,6 +26,8 @@ export interface AuthState {
   displayName: string | null;
   /** Supabase 會員功能是否已配置可用。 */
   available: boolean;
+  /** 特殊畫面情境標記：'recovery' 代表剛由密碼重設連結登入，畫面應顯示設定新密碼；其餘為 null。 */
+  screen: 'recovery' | null;
 }
 
 /** 註冊結果：是否需要收信完成信箱驗證。 */
@@ -43,6 +45,7 @@ let authState: AuthState = {
   user: null,
   displayName: null,
   available: true,
+  screen: null,
 };
 
 /** 已就緒的 Supabase 用戶端（startAuthLoad 內動態載入後快取）。 */
@@ -177,11 +180,31 @@ async function loadDisplayName(user: User): Promise<void> {
  */
 function handleAuthEvent(event: string, session: Session | null): void {
   if (event === 'SIGNED_OUT' || event === 'USER_DELETED') {
-    setAuthState({ status: 'signedOut', user: null, displayName: null, available: true });
+    setAuthState({
+      status: 'signedOut',
+      user: null,
+      displayName: null,
+      available: true,
+      screen: null,
+    });
     return;
   }
   const user = session?.user ?? null;
   if (!user) return;
+  // 密碼重設連結登入：標記恢復情境，畫面改為設定新密碼。
+  // 同一使用者的其他重複事件（INITIAL_SESSION、TOKEN_REFRESHED 等）才會被
+  // 下面的去重條件略過；恢復事件需即時切換畫面，故放在去重之前。
+  if (event === 'PASSWORD_RECOVERY') {
+    setAuthState({
+      status: 'signedIn',
+      user,
+      displayName: metadataDisplayName(user),
+      available: true,
+      screen: 'recovery',
+    });
+    void loadDisplayName(user);
+    return;
+  }
   // 同一使用者的重複事件（INITIAL_SESSION、TOKEN_REFRESHED 等）不重複處理
   if (authState.status === 'signedIn' && authState.user?.id === user.id) return;
   setAuthState({
@@ -189,6 +212,7 @@ function handleAuthEvent(event: string, session: Session | null): void {
     user,
     displayName: metadataDisplayName(user),
     available: true,
+    screen: null,
   });
   void loadDisplayName(user);
 }
@@ -211,14 +235,26 @@ async function initializeAuth(): Promise<void> {
   const client = getSupabaseClient();
   if (!client) {
     clientRef = null;
-    setAuthState({ status: 'signedOut', user: null, displayName: null, available: false });
+    setAuthState({
+      status: 'signedOut',
+      user: null,
+      displayName: null,
+      available: false,
+      screen: null,
+    });
     return;
   }
   clientRef = client;
   client.auth.onAuthStateChange((event, session) => handleAuthEvent(event, session));
   const { data } = await client.auth.getSession();
   if (!data?.session) {
-    setAuthState({ status: 'signedOut', user: null, displayName: null, available: true });
+    setAuthState({
+      status: 'signedOut',
+      user: null,
+      displayName: null,
+      available: true,
+      screen: null,
+    });
     return;
   }
   handleAuthEvent('SIGNED_IN', data.session);
@@ -266,12 +302,34 @@ export async function signOut(): Promise<void> {
 /**
  * 寄送密碼重設信到指定信箱。
  *
+ * 信中的連結導回 /auth?mode=reset-password，由 supabase-js 從網址
+ * 取得 session 後觸發 PASSWORD_RECOVERY，畫面再切到設定新密碼。
+ *
  * @param email 註冊時使用的信箱
  */
 export async function requestPasswordReset(email: string): Promise<void> {
   const client = requireClient();
-  const { error } = await client.auth.resetPasswordForEmail(email);
+  const { error } = await client.auth.resetPasswordForEmail(email, {
+    redirectTo: `${window.location.origin}/auth?mode=reset-password`,
+  });
   if (error) throw new Error(describeAuthError(error));
+}
+
+/**
+ * 以目前登入的 session 設定新密碼（密碼重設連結登入後呼叫）。
+ *
+ * @param newPassword 使用者輸入的新密碼
+ */
+export async function updatePassword(newPassword: string): Promise<void> {
+  const client = requireClient();
+  const { error } = await client.auth.updateUser({ password: newPassword });
+  if (error) throw new Error(describeAuthError(error));
+}
+
+/** 清除「設定新密碼」畫面的情境標記（設定完成後呼叫，回復一般登入畫面語意）。 */
+export function clearRecoveryScreen(): void {
+  if (authState.screen !== 'recovery') return;
+  setAuthState({ ...authState, screen: null });
 }
 
 /**

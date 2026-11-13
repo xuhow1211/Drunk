@@ -57,6 +57,7 @@ function fakeClient(options: {
   signUpSession?: { user: User } | null;
   signInError?: { code: string; message: string } | null;
   resetError?: { code: string; message: string } | null;
+  updateUserError?: { code: string; message: string } | null;
 }) {
   const profiles = makeProfilesNode(options.profiles?.data ?? null, options.profiles?.error ?? null);
   const client = {
@@ -81,6 +82,10 @@ function fakeClient(options: {
       })),
       signOut: vi.fn(async () => ({ error: null })),
       resetPasswordForEmail: vi.fn(async () => ({ data: {}, error: options.resetError ?? null })),
+      updateUser: vi.fn(async () => ({
+        data: { user: fakeUser() },
+        error: options.updateUserError ?? null,
+      })),
       getSession: vi.fn(async () => ({ data: { session: null }, error: null })),
     },
     profilesNode: profiles,
@@ -115,6 +120,7 @@ beforeEach(() => {
 
 afterEach(() => {
   vi.unstubAllEnvs();
+  vi.unstubAllGlobals();
 });
 
 describe('註冊', () => {
@@ -239,6 +245,7 @@ describe('登出與密碼重設', () => {
   });
 
   it('重設信寄送失敗（寄信頻率上限）時以繁中訊息拋出', async () => {
+    vi.stubGlobal('window', { location: { origin: 'https://test.example' } });
     createClientMock.mockImplementation(() =>
       fakeClient({
         resetError: { code: 'over_email_send_rate_limit', message: 'Email rate limit exceeded' },
@@ -249,6 +256,83 @@ describe('登出與密碼重設', () => {
     await expect(module.requestPasswordReset('a@example.com')).rejects.toThrow(
       '寄信次數已達上限，請稍後再試。',
     );
+  });
+
+  it('重設信寄送時帶 redirectTo 導回 reset-password 頁', async () => {
+    vi.stubGlobal('window', { location: { origin: 'https://test.example' } });
+    const { module } = await loadAuthStore();
+
+    await expect(module.requestPasswordReset('a@example.com')).resolves.toBeUndefined();
+
+    const client = createClientMock.mock.results.at(0)?.value as unknown as {
+      auth: { resetPasswordForEmail: { mock: { calls: unknown[][] } } };
+    };
+    expect(client.auth.resetPasswordForEmail.mock.calls[0]).toEqual([
+      'a@example.com',
+      { redirectTo: 'https://test.example/auth?mode=reset-password' },
+    ]);
+  });
+
+  it('updatePassword 失敗（密碼強度不足）時以繁中訊息拋出', async () => {
+    createClientMock.mockImplementation(() =>
+      fakeClient({
+        updateUserError: { code: 'weak_password', message: 'Password should be at least 6 characters' },
+      }),
+    );
+    const { module } = await loadAuthStore();
+
+    await expect(module.updatePassword('abc')).rejects.toThrow(
+      '密碼強度不足，請設定至少 6 個字元的密碼。',
+    );
+  });
+
+  it('updatePassword 成功時正常回傳，不改變登入狀態', async () => {
+    const { module } = await loadAuthStore();
+
+    await expect(module.updatePassword('newpassword1')).resolves.toBeUndefined();
+    expect(module.getAuthState().available).toBe(true);
+  });
+});
+
+describe('密碼重設連結登入（PASSWORD_RECOVERY）', () => {
+  it('PASSWORD_RECOVERY 事件後狀態為已登入且 screen 標記為 recovery', async () => {
+    const { module, emit } = await loadAuthStore();
+
+    emit('PASSWORD_RECOVERY', fakeSession(fakeUser()));
+
+    await vi.waitFor(() => {
+      const state = module.getAuthState();
+      expect(state.status).toBe('signedIn');
+      expect(state.screen).toBe('recovery');
+    });
+  });
+
+  it('clearRecoveryScreen 後 screen 回復為 null', async () => {
+    const { module, emit } = await loadAuthStore();
+
+    emit('PASSWORD_RECOVERY', fakeSession(fakeUser()));
+    await vi.waitFor(() => {
+      expect(module.getAuthState().screen).toBe('recovery');
+    });
+
+    module.clearRecoveryScreen();
+
+    expect(module.getAuthState().screen).toBeNull();
+    expect(module.getAuthState().status).toBe('signedIn');
+  });
+
+  it('同一使用者已登入時收到 PASSWORD_RECOVERY 仍切換到 recovery 畫面', async () => {
+    const { module, emit } = await loadAuthStore();
+
+    emit('INITIAL_SESSION', fakeSession(fakeUser()));
+    await vi.waitFor(() => {
+      expect(module.getAuthState().status).toBe('signedIn');
+    });
+    expect(module.getAuthState().screen).toBeNull();
+
+    emit('PASSWORD_RECOVERY', fakeSession(fakeUser()));
+
+    expect(module.getAuthState().screen).toBe('recovery');
   });
 });
 
