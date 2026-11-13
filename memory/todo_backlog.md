@@ -4,9 +4,14 @@
 
 ## 進行中
 
-- [雲端部署-階段A] Cloudflare Pages 上架：等使用者授權（儀表板串接 GitHub 或 Pages 權限的 API token）；建置指令 `npm run build`、輸出目錄 `dist`；需設定環境變數 VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY
-- [雲端部署-階段A] Supabase Auth 設定：部署後把 Site URL 改為正式網域、Redirect URLs 加入正式網域（Email 模板連結會跟著走）；Dashboard → Authentication → URL Configuration
-- [安全] Supabase 存取 token（sbp_...）已貼進對話，部署完成後應至 Dashboard → Access Tokens 輪替作廢
+- [安全] Supabase 存取 token（sbp_...）已貼進對話，部署已完成，應至 Dashboard → Account → Access Tokens 產生新的並作廢舊的（使用者動手）
+- [驗證] 使用者以自己的 email 實測註冊→收信→登入→勾材料→跨裝置同步（Supabase 內建 SMTP 有每小時 2 封的寄信上限，測試時留意）
+
+## 已完成（2026-11-13∼14）
+
+- 部署主線全通：GitHub（xuhow1211/Drunk）＋ CI 綠、Supabase（孟買 ap-south-1）schema/RLS/392 杯資料、前端 Supabase 模式＋靜態降級、email 登入、手邊材料同步；程式審查通過並已修正全部[高][中]可修項
+- 正式站：https://drunk.leo537537.workers.dev（Cloudflare Workers 靜態建置；深層連結、/data 快照、Supabase 模式皆驗證通過）
+- Supabase Auth 已指向正式網域：site_url 與 uri_allow_list 設定完成（確認信、密碼重設信連結會指到正式站）
 
 ## 程式審查遺留（中級，未修）
 
