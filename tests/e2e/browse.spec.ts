@@ -28,6 +28,9 @@ test.describe('瀏覽模式', () => {
 
   test('選取分類後結果數量減少，且剩餘卡片的分類皆相符', async ({ page }) => {
     await page.goto('/classic');
+    // 資料載入改為非同步（Supabase 或靜態 JSON）：
+    // count() 不會自動等待，先等第一張卡片出現（資料就緒）再計數，避免與載入畫面競態。
+    await expect(recipeCards(page).first()).toBeVisible();
     await ensureFilterGroupsExpanded(page);
 
     const filterBar = page.getByRole('region', { name: '篩選與排序' });

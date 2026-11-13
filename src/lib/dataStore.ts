@@ -2,10 +2,14 @@
  * 配方與食材資料的共用資料層。
  *
  * 應用啟動時由 main.tsx 呼叫 startDataLoad() 觸發一次載入；
+ * 資料來源順序：已配置 Supabase 環境變數時以 Supabase 為主，
+ * Supabase 失敗（網路、HTTP 錯誤等）則退回靜態 JSON，兩者皆失敗才報錯。
  * 資料就緒後把食材對照表注入 ingredients 模組的同步索引，
  * 並通知訂閱者（useCocktails）重新渲染。載入流程整個應用只跑一次。
+ * Supabase 相關程式（supabase-js）以動態匯入載入，未配置環境變數時
+ * 不會進入主 bundle，靜態模式的主 bundle 保持精簡。
  */
-import { loadStaticData } from './dataLoader';
+import { loadStaticData, type LoadedData } from './dataLoader';
 import { setIngredientCatalog } from './ingredients';
 import type { CocktailDataset, IngredientCatalog } from './types';
 
@@ -54,6 +58,35 @@ function setDataState(next: DataStoreState): void {
 }
 
 /**
+ * 判斷是否已配置 Supabase 環境變數。
+ *
+ * 與 supabase.ts 檢查同一組環境變數；放在本模組是為了在動態匯入
+ * supabase-js 相關程式「之前」先做守門，未配置時完全載不到該 chunk。
+ */
+function isSupabaseConfigured(): boolean {
+  return Boolean(import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY);
+}
+
+/**
+ * 取得應用的資料來源。
+ *
+ * Supabase 可用時優先採用；supabase-js 以動態匯入載入（獨立 chunk，
+ * 不佔主 bundle 大小）；Supabase 讀取過程失敗一律退回靜態 JSON
+ * （降級路徑是真實路徑，不是邊角案例），兩者皆失敗才把例外往外拋。
+ */
+async function loadAppData(): Promise<LoadedData> {
+  if (isSupabaseConfigured()) {
+    const { getSupabaseClient } = await import('./supabase');
+    const client = getSupabaseClient();
+    if (client) {
+      const { loadSupabaseData } = await import('./supabaseData');
+      return loadSupabaseData(client).catch(() => loadStaticData());
+    }
+  }
+  return loadStaticData();
+}
+
+/**
  * 啟動資料載入（整個應用只應呼叫一次；重複呼叫以第一次為準）。
  *
  * 載入成功時：注入食材對照表索引，並把資料集放入狀態；
@@ -64,7 +97,7 @@ export function startDataLoad(): void {
   started = true;
   setDataState({ ...state, loading: true });
 
-  loadStaticData()
+  loadAppData()
     .then((loaded) => {
       setIngredientCatalog(loaded.catalog);
       setDataState({

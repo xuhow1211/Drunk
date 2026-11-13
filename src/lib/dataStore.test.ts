@@ -83,10 +83,15 @@ async function importFreshStore() {
 
 beforeEach(() => {
   vi.unstubAllGlobals();
+  // 資料層測試一律走靜態路徑：清空 Supabase 環境變數，
+  // 避免本機 .env.local 的設定影響測試結果。
+  vi.stubEnv('VITE_SUPABASE_URL', '');
+  vi.stubEnv('VITE_SUPABASE_ANON_KEY', '');
 });
 
 afterEach(() => {
   vi.unstubAllGlobals();
+  vi.unstubAllEnvs();
 });
 
 describe('startDataLoad', () => {
@@ -109,6 +114,7 @@ describe('startDataLoad', () => {
 
     const state = store.getDataState();
     expect(state.dataset?.recipes).toHaveLength(1);
+    expect(state.dataset?.version).toBe('1.0'); // 未配置 Supabase 時走靜態 JSON
     expect(state.error).toBeNull();
     expect(updates).toEqual(['loading', 'ready']);
     // 同步索引已注入：getIngredient 立即查得到
