@@ -8,9 +8,11 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import { startDataLoad } from './lib/dataStore';
+import { startAuthLoad } from './lib/authStore';
 import './index.css';
 
 startDataLoad();
+startAuthLoad();
 
 const container = document.getElementById('root');
 

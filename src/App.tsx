@@ -23,6 +23,7 @@ import { RecipeDrawer } from './components/RecipeDrawer';
 import { useCocktails } from './hooks/useCocktails';
 import { HOME_LOCATION } from './hooks/useRecipeNav';
 import { Classic } from './pages/Classic';
+import { Auth } from './pages/Auth';
 import { Home } from './pages/Home';
 import { Match } from './pages/Match';
 import { Popular } from './pages/Popular';
@@ -160,6 +161,7 @@ function Shell() {
           <Route path="/popular" element={<Popular />} />
           <Route path="/match" element={<Match />} />
           <Route path="/recipe/:id" element={<RecipeBackdrop />} />
+          <Route path="/auth" element={<Auth />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
