@@ -67,7 +67,9 @@ export function Home() {
           <Reveal className="mb-4 flex items-end justify-between gap-4">
             <div>
               <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">精選熱選</h2>
-              <p className="mt-1 text-sm text-ink-muted">依票選熱門度取前 12 杯，可左右滑動瀏覽</p>
+              <p className="mt-1 text-xs text-ink-muted sm:text-sm">
+                依票選熱門度取前 12 杯，可左右滑動瀏覽
+              </p>
             </div>
           </Reveal>
 

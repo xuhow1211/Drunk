@@ -286,3 +286,17 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/**
+ * 手機收斂進場延遲堆疊。
+ *
+ * 卡片網格與精選列的階梯延遲（index * 60/120ms）在手機上只是拖慢內容出現：
+ * 手機畫面小、捲動快，使用者早在延遲走完前就捲過去了。
+ * 統一清為 0ms，內容立即出現；桌機（768px 以上）維持原階梯感。
+ * 以 !important 蓋過 inline 的 animation-delay，不必在每個元件傳遞視窗寬度。
+ */
+@media (max-width: 767px) {
+  .animate-rise {
+    animation-delay: 0ms !important;
+  }
+}

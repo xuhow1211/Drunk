@@ -202,8 +202,11 @@ test.describe('詳情抽屜示意照片', () => {
 
   test('photoSource 為 tcdb 時抽屜顯示照片與 TheCocktailDB 來源字', async ({ page }) => {
     // 直接攔截靜態資料 JSON 並把尼格羅尼改成 tcdb 來源，
-    // 讓「photoSource → 抽屜來源小字」的前端對應在無 Supabase 環境也能驗證
-    // （資料庫欄位 photo_source 的對應另由單元測試 supabaseData.test.ts 涵蓋）。
+    // 讓「photoSource → 抽屜來源小字」的前端對應與實際環境無關；
+    // Supabase 模式（本機帶 env）也要 forceStaticData，否則資料來自真實
+    // 資料庫、注入的 photoSource 不會被使用（資料庫欄位 photo_source 的
+    // 對應另由單元測試 supabaseData.test.ts 涵蓋）。
+    await forceStaticData(page);
     const dataset = cocktailDataset.recipes.map((recipe) =>
       recipe.id === 'negroni' ? { ...recipe, photoSource: 'tcdb' } : recipe,
     );

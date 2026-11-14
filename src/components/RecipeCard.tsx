@@ -90,8 +90,10 @@ export function RecipeCard({ recipe, delay = 0 }: RecipeCardProps) {
         )}
 
         <div className="p-3 sm:p-4">
+          {/* 主資訊：酒名明確醒目 */}
           <h3 className="font-display text-lg font-bold leading-snug text-ink">{recipe.nameZh}</h3>
-          <p className="mt-0.5 truncate text-xs uppercase tracking-wide text-ink-muted">
+          {/* 輔助資訊：英文名降級為更小更淡的一行 */}
+          <p className="mt-0.5 truncate text-[10px] uppercase tracking-wider text-ink-muted/80 sm:text-xs sm:tracking-wide sm:text-ink-muted">
             {recipe.nameEn}
           </p>
 

@@ -70,7 +70,11 @@ export function BrowsePage({ title, subtitle, collections, initialFilters }: Bro
           <h1 className="font-display text-3xl font-black tracking-tight text-ink sm:text-4xl">
             {title}
           </h1>
-          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base">
+          {/* 手機版說明收斂為兩行內（過長時截斷），避免佔掉三行以上的版面 */}
+          <p
+            title={subtitle}
+            className="mt-2 line-clamp-2 text-xs leading-snug text-ink-muted sm:line-clamp-none sm:leading-relaxed sm:text-base"
+          >
             {subtitle}
           </p>
         </header>
