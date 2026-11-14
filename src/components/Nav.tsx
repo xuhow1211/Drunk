@@ -3,6 +3,7 @@
  *
  * 固定在頁面上方，點選路由時以霓虹漸層底線標示目前所在頁面。
  * 右側為會員區：已登入顯示名稱與登出按鈕，未登入顯示登入入口。
+ * 手機版所有可點元素以 min-h-11 拉高到 44px 觸控目標，桌機維持原尺寸。
  */
 import { Link, NavLink } from 'react-router-dom';
 import { signOut, useAuth } from '../lib/authStore';
@@ -38,7 +39,7 @@ function AuthArea() {
               // 登出失敗時交由下一次操作重試，不在導覽列插錯誤訊息
             });
           }}
-          className="rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold text-ink-muted transition hover:bg-white/5 hover:text-ink"
+          className="flex min-h-11 shrink-0 items-center rounded-full border border-white/15 px-4 py-2 text-xs font-semibold text-ink-muted transition hover:bg-white/5 hover:text-ink sm:inline-flex sm:min-h-0 sm:px-3 sm:py-1.5"
         >
           登出
         </button>
@@ -48,7 +49,7 @@ function AuthArea() {
   return (
     <Link
       to="/auth"
-      className="shrink-0 rounded-full border border-neon-purple/60 bg-neon-purple/15 px-3 py-1.5 text-sm font-semibold text-ink transition hover:bg-neon-purple/25 no-underline"
+      className="flex min-h-11 shrink-0 items-center rounded-full border border-neon-purple/60 bg-neon-purple/15 px-4 py-2 text-sm font-semibold text-ink transition hover:bg-neon-purple/25 no-underline sm:inline-flex sm:min-h-0 sm:px-3 sm:py-1.5"
     >
       登入
     </Link>
@@ -80,7 +81,8 @@ export function Nav() {
                 end={link.end}
                 className={({ isActive }) =>
                   [
-                    'relative whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium transition-colors duration-200 sm:px-4',
+                    // 手機版以 flex + min-h-11 撐出 44px 觸控高度；桌機回復原本的內距與顯示
+                    'relative flex min-h-11 items-center whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition-colors duration-200 sm:inline-flex sm:min-h-0 sm:px-4 sm:py-1.5',
                     isActive
                       ? 'bg-neon-purple/18 text-ink shadow-[inset_0_0_0_1px_rgba(168,85,247,0.55)]'
                       : 'text-ink-muted hover:bg-white/5 hover:text-ink',
