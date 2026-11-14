@@ -153,7 +153,8 @@ export function RecipeDrawer({ recipe, onClose, related }: RecipeDrawerProps) {
               <h2 className="mt-1 font-display text-2xl font-black leading-tight text-white sm:text-3xl">
                 {content.nameZh}
               </h2>
-              <p className="mt-1 text-sm text-white/85">{content.nameEn}</p>
+              {/* 輔助資訊：英文名降級為小字低對比，主資訊集中在中文名 */}
+              <p className="mt-1 text-xs text-white/70">{content.nameEn}</p>
               {content.aliases.length > 0 ? (
                 <p className="mt-1 text-xs text-white/70">別名：{content.aliases.join('、')}</p>
               ) : null}
@@ -174,8 +175,8 @@ export function RecipeDrawer({ recipe, onClose, related }: RecipeDrawerProps) {
           {/* 圖片區：示意照片優先，載入失敗或無實照時以杯型插畫替代（以 key 重設失敗狀態） */}
           <RecipePicture key={content.id} recipe={content} />
 
-          {/* 概要資訊 */}
-          <dl className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
+          {/* 概要資訊（輔助層）：杯型、冰塊、酒精度、時間以小字呈現，主資訊留給酒名與步驟 */}
+          <dl className="grid grid-cols-2 gap-3 text-xs sm:grid-cols-4">
             <InfoCell label="杯型" value={GLASS_LABELS[content.glass]} icon={<GlassIcon width={16} height={16} />} />
             <InfoCell label="冰塊" value={ICE_LABELS[content.ice] ?? content.ice} />
             <InfoCell label="酒精濃度" value={content.abv} />
@@ -332,7 +333,8 @@ export function RecipeDrawer({ recipe, onClose, related }: RecipeDrawerProps) {
  * 抽屜內容區最上方的圖片區。
  *
  * 顯示規則：
- *   - 有示意照片（recipe.photoUrl）時以全幅 16:9 顯示實照，下緣附「照片：IBA World」來源小字；
+ *   - 有示意照片（recipe.photoUrl）時以全幅 16:9 顯示實照，下緣附來源小字
+ *     （依 photoSource 顯示「照片：IBA World」或「照片：TheCocktailDB」）；
  *   - 實照載入失敗（onerror）或無實照時改顯示通用杯型插畫（依 glass 對應，插畫下方不附來源字）。
  *
  * 元件內容不影響抽屜的捲動邏輯：圖片區是捲動內容的第一個區塊，
@@ -356,7 +358,9 @@ function RecipePicture({ recipe }: { recipe: Recipe }) {
             onError={() => setPhotoFailed(true)}
             className="aspect-video w-full rounded-xl border border-white/10 bg-night-800/50 object-cover"
           />
-          <figcaption className="mt-1 text-right text-[11px] text-ink-muted">照片：IBA World</figcaption>
+          <figcaption className="mt-1 text-right text-[11px] text-ink-muted">
+            照片：{recipe.photoSource === 'tcdb' ? 'TheCocktailDB' : 'IBA World'}
+          </figcaption>
         </>
       ) : (
         <img
@@ -386,7 +390,8 @@ function InfoCell({
         {icon}
         {label}
       </dt>
-      <dd className="mt-0.5 text-sm font-medium text-ink">{value}</dd>
+      {/* 輔助資訊降級：小字＋較低對比，讓使用者目光先落在酒名與材料 */}
+      <dd className="mt-0.5 text-xs font-medium text-ink/85">{value}</dd>
     </div>
   );
 }

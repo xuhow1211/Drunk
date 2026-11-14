@@ -59,6 +59,15 @@ export function CloseIcon(props: IconProps) {
   );
 }
 
+/** 右尖括號，用於收合與展開方向的圖示。 */
+export function ChevronRightIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="m9 6 6 6-6 6" />
+    </svg>
+  );
+}
+
 /** 打勾，用於已選材料的晶片。 */
 export function CheckIcon(props: IconProps) {
   return (

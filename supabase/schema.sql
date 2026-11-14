@@ -44,14 +44,17 @@ create table if not exists recipes (
   source_url   text,
   source_site  text,
   photo_url    text,
+  photo_source text,
   created_at   timestamptz not null default now(),
   updated_at   timestamptz not null default now()
 );
 
--- 示意照片（IBA World 實照的公開網址，尚未抓取的杯為 null）。
+-- 示意照片（公開網址與來源；尚未抓取的杯為 null）。
+-- source 為 'iba'（IBA World 實照）或 'tcdb'（TheCocktailDB 補抓），null 視為 iba。
 -- 幂等：create table 內的欄位對新資料庫生效；此語句讓既有資料庫補上同一欄位，
 -- 重複執行無副作用，可整份重跑。
 alter table recipes add column if not exists photo_url text;
+alter table recipes add column if not exists photo_source text;
 
 -- 配方材料（含用量與選用旗標）
 create table if not exists recipe_ingredients (

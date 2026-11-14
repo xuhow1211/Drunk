@@ -2,7 +2,8 @@
  * 版面響應式情境測試。
  *
  * 驗證行動版（375px）不破版、比對模式在行動版為上下堆疊、
- * 桌面版（1440px）比對模式為左右分欄。
+ * 平板（768px）無水平溢位且抽屜不蓋滿整屏、
+ * 桌面版（1440px）比對模式為左右分欄，並確認進場動畫的降級行為。
  */
 import { expect, test } from '@playwright/test';
 import { hasHorizontalOverflow, homeTitle, matchPanel, pickerPanel } from './helpers';
@@ -38,10 +39,91 @@ test.describe('行動版 375px', () => {
     await page.waitForTimeout(400);
     expect(await hasHorizontalOverflow(page)).toBe(false);
   });
+
+  test('375px 下卡片的進場延遲堆疊收斂為 0（內容立即出現）', async ({ page }) => {
+    await page.goto('/');
+
+    // 第 5 張精選卡的 inline 延遲原本是 240ms，手機上應被收斂為 0
+    const card = page
+      .getByRole('list', { name: '精選熱選調酒' })
+      .getByRole('listitem')
+      .nth(4)
+      .locator('article');
+    await expect(card).toHaveCSS('animation-delay', '0s');
+  });
+});
+
+test.describe('平板 768px', () => {
+  test.use({ viewport: { width: 768, height: 1024 } });
+
+  test('768px 下首頁與瀏覽頁沒有水平溢位，詳情抽屜不蓋滿整屏', async ({ page }) => {
+    await page.goto('/');
+    expect(await hasHorizontalOverflow(page)).toBe(false);
+
+    await page.goto('/classic');
+    await expect(page.getByRole('heading', { level: 1, name: '經典調酒' })).toBeVisible();
+    // 篩選列的主題 chips 走橫向捲動而非斷行破版
+    expect(await hasHorizontalOverflow(page)).toBe(false);
+
+    // 抽屜維持 max-w 行為：平板寬度不蓋滿整屏
+    await page.goto('/recipe/negroni');
+    const drawer = page.getByRole('dialog');
+    await expect(drawer).toBeVisible();
+    const panelWidth = await drawer.evaluate((dialog) => {
+      const panel = dialog.querySelector<HTMLElement>('[tabindex="-1"]');
+      return panel?.offsetWidth ?? 0;
+    });
+    expect(panelWidth).toBeGreaterThan(0);
+    expect(panelWidth).toBeLessThan(768);
+    expect(await hasHorizontalOverflow(page)).toBe(false);
+  });
 });
 
 test.describe('桌面版 1440px', () => {
   test.use({ viewport: { width: 1440, height: 900 } });
+
+  test('1440px 下詳情抽屜維持 max-w 行為（不蓋滿整屏）', async ({ page }) => {
+    await page.goto('/recipe/negroni');
+    const drawer = page.getByRole('dialog');
+    await expect(drawer).toBeVisible();
+    const panelWidth = await drawer.evaluate((dialog) => {
+      const panel = dialog.querySelector<HTMLElement>('[tabindex="-1"]');
+      return panel?.offsetWidth ?? 0;
+    });
+    expect(panelWidth).toBeGreaterThan(0);
+    expect(panelWidth).toBeLessThanOrEqual(576); // max-w-xl
+    expect(await hasHorizontalOverflow(page)).toBe(false);
+  });
+
+  test('1440px 維持卡片進場的階梯延遲（僅手機收斂）', async ({ page }) => {
+    await page.goto('/');
+    const card = page
+      .getByRole('list', { name: '精選熱選調酒' })
+      .getByRole('listitem')
+      .nth(4)
+      .locator('article');
+    await expect(card).toHaveCSS('animation-delay', '0.24s');
+  });
+
+  test('偏好減少動態時，捲動進場內容直接顯示最終狀態', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/');
+
+    // 「精選熱選」在首屏之下，一般情況要捲動才會進場淡入；
+    // 減少動態時應直接是最終狀態（祖先鏈完全透明度 1）。
+    await expect(page.getByRole('heading', { name: '精選熱選' })).toBeAttached();
+    const allOpaque = await page
+      .getByRole('heading', { name: '精選熱選' })
+      .evaluate((heading) => {
+        let node: HTMLElement | null = heading as HTMLElement;
+        while (node && node !== document.body) {
+          if (Number(getComputedStyle(node).opacity) < 0.99) return false;
+          node = node.parentElement;
+        }
+        return true;
+      });
+    expect(allOpaque).toBe(true);
+  });
 
   test('1440px 下比對模式為左右分欄', async ({ page }) => {
     await page.goto('/match');

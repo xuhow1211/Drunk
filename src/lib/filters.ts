@@ -11,6 +11,49 @@ import type { Collection, Recipe, RecipeCategory } from './types';
 /** 排序方式。 */
 export type SortKey = 'popularity' | 'name' | 'materials' | 'difficulty' | 'abv' | 'time';
 
+/**
+ * 子分類（由配方資料純函式推導的瀏覽面向）。
+ *
+ * 推導規則見 {@link subCategoriesOf}；一個子分類由多欄位組合判定，
+ * 不直接對應任何單一資料欄位。
+ */
+export type SubCategory = 'classic' | 'fruity' | 'strong' | 'fizzy' | 'mocktail';
+
+/** 子分類的繁中標籤（chip 顯示用）。 */
+export const SUB_CATEGORY_LABELS: Record<SubCategory, string> = {
+  classic: '經典款',
+  fruity: '水果款',
+  strong: '重酒感',
+  fizzy: '氣泡清爽',
+  mocktail: '無酒精',
+};
+
+/** 主題標籤（超商調酒等）在篩選列的候選值。 */
+export const CONVENIENCE_STORE_TAG = '便利商店';
+
+/**
+ * 推導配方所屬的子分類。
+ *
+ * 推導規則（任一條件成立即屬於該子分類，一杯可屬於多個）：
+ *   經典款：collections 含 classic
+ *   水果款：flavor 含 fruity 或 citrus
+ *   重酒感：category 為 spirit-forward，或 abv 可解析出 25 以上
+ *   氣泡清爽：flavor 含 fizzy，或 category 為 refreshing
+ *   無酒精：collections 含 mocktail
+ *
+ * @param recipe 待推導的配方
+ */
+export function subCategoriesOf(recipe: Recipe): SubCategory[] {
+  const result: SubCategory[] = [];
+  if (getRecipeCollections(recipe).includes('classic')) result.push('classic');
+  if (recipe.flavor.includes('fruity') || recipe.flavor.includes('citrus')) result.push('fruity');
+  const abv = parseAbv(recipe.abv);
+  if (recipe.category === 'spirit-forward' || (abv !== null && abv >= 25)) result.push('strong');
+  if (recipe.flavor.includes('fizzy') || recipe.category === 'refreshing') result.push('fizzy');
+  if (getRecipeCollections(recipe).includes('mocktail')) result.push('mocktail');
+  return result;
+}
+
 /** 篩選列的完整狀態。 */
 export interface FilterState {
   /** 調酒類型（recipe.category）多選。 */
@@ -25,6 +68,10 @@ export interface FilterState {
   abvMin: number | null;
   /** 酒精濃度上限（百分比）；null 代表不設上限。 */
   abvMax: number | null;
+  /** 純函式推導的子分類多選（經典款、水果款等）。 */
+  subCategories: SubCategory[];
+  /** 標籤（tags，例如「便利商店」）多選。 */
+  tags: string[];
   /** 搜尋關鍵字（中英文名、別名、原料名稱）。 */
   query: string;
   /** 排序方式。 */
@@ -39,6 +86,8 @@ export const DEFAULT_FILTERS: FilterState = {
   difficulties: [],
   abvMin: null,
   abvMax: null,
+  subCategories: [],
+  tags: [],
   query: '',
   sort: 'popularity',
 };
@@ -174,6 +223,15 @@ export function filterRecipes(
       return false;
     }
     if (filters.difficulties.length > 0 && !filters.difficulties.includes(recipe.difficulty)) {
+      return false;
+    }
+    if (
+      filters.subCategories.length > 0 &&
+      !filters.subCategories.some((subCategory) => subCategoriesOf(recipe).includes(subCategory))
+    ) {
+      return false;
+    }
+    if (filters.tags.length > 0 && !filters.tags.some((tag) => recipe.tags.includes(tag))) {
       return false;
     }
     if (hasAbvRange) {

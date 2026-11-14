@@ -3,7 +3,8 @@
  *
  * 邏輯實作在 scripts/photo-map.mjs（建置腳本層，Node 無法直接執行 TS），
  * 測試由此檔引用；驗證重點為缺失容忍（檔案不存在、解析失敗、形狀不符
- * 一律視為整體無照片）與套用規則（僅 https 網址、無條目者不出現欄位）。
+ * 一律視為整體無照片）與套用規則（僅 https 網址、無條目者不出現欄位、
+ * photoSource 隨 photoUrl 成對套用）。
  */
 import fs from 'node:fs';
 import os from 'node:os';
@@ -13,10 +14,11 @@ import { describe, expect, it } from 'vitest';
 // @ts-expect-error 建置腳本層 .mjs 僅供測試引用
 import { applyPhotoMap, readPhotoMap } from '../../scripts/photo-map.mjs';
 
-/** 套用 photoUrl 後的配方形狀（測試端僅使用 photoUrl 欄位）。 */
+/** 套用 photoUrl 後的配方形狀（測試端僅使用 photoUrl 與 photoSource 欄位）。 */
 interface RecipeWithPhoto {
   id: string;
   photoUrl?: string;
+  photoSource?: string;
 }
 
 /** 在暫存目錄寫入指定內容並回傳檔案路徑。 */
@@ -74,6 +76,29 @@ describe('applyPhotoMap 套用規則', () => {
     expect(applyPhotoMap(recipes, photoMap)).toBe(1);
     expect(at(recipes, 0).photoUrl).toBe('https://example.com/n.webp');
     expect('photoUrl' in at(recipes, 1)).toBe(false);
+  });
+
+  it('photoSource 隨 photoUrl 成對套用：tcdb 保留，缺 source 一律視為 iba', () => {
+    const recipes = [recipeWith('a'), recipeWith('b'), recipeWith('c')];
+    const photoMap = {
+      generatedAt: 'x',
+      photos: {
+        a: { url: 'https://example.com/a.webp', source: 'tcdb' },
+        b: { url: 'https://example.com/b.webp', source: 'iba' },
+        c: { url: 'https://example.com/c.webp' },
+      },
+    };
+    expect(applyPhotoMap(recipes, photoMap)).toBe(3);
+    expect(at(recipes, 0).photoSource).toBe('tcdb');
+    expect(at(recipes, 1).photoSource).toBe('iba');
+    expect(at(recipes, 2).photoSource).toBe('iba');
+  });
+
+  it('非 https 網址不套用時也不會出現 photoSource 欄位', () => {
+    const recipes = [recipeWith('suspicious')];
+    const photoMap = { generatedAt: 'x', photos: { suspicious: { url: 'http://example.com/s.webp', source: 'tcdb' } } };
+    applyPhotoMap(recipes, photoMap);
+    expect('photoSource' in at(recipes, 0)).toBe(false);
   });
 
   it('非 https 的網址不套用，並以 onInvalid 回報', () => {

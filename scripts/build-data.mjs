@@ -518,6 +518,27 @@ const CHINESE_NAME_OVERRIDES = {
 };
 
 /**
+ * 正規化配方所屬的系列清單。
+ *
+ * 来源檔可用 `collections` 陣列一次指定多個系列（例如 easy + popular）；
+ * 未提供時退回使用單一 `collection` 欄位。每個值都經 normalizeCollection
+ * 驗證與對應，空值以來源預設系列補上，最後去重。
+ *
+ * @param {object} raw 原始配方紀錄
+ * @param {object} source 來源設定（提供 defaultCollection）
+ * @returns {string[]} 去重後的系列清單（至少一項）
+ */
+function normalizeCollections(raw, source) {
+  const rawValues =
+    Array.isArray(raw.collections) && raw.collections.length > 0
+      ? raw.collections
+      : [raw.collection];
+  const normalized = dedupeStrings(rawValues.map((value) => normalizeCollection(value, source.defaultCollection)));
+  if (normalized.length === 0) normalized.push(source.defaultCollection);
+  return normalized;
+}
+
+/**
  * 正規化單一配方，補上比對引擎所需的 ingredientIds 與 garnishIds。
  */
 function normalizeRecipe(raw, source) {
@@ -527,17 +548,22 @@ function normalizeRecipe(raw, source) {
 
   const garnish = normalizeGarnish(raw.garnish);
 
-  const collection = normalizeCollection(raw.collection, source.defaultCollection);
+  const collections = normalizeCollections(raw, source);
   const id = cleanString(raw.id);
+
+  // 來源檔把 sourceUrl／sourceSite 明確寫成 null 時，表示刻意不留連結
+  // （不回填來源層的預設網址／站名）；未提供時才沿用來源層預設值。
+  const perRecipeUrl = raw.sourceUrl === null ? '' : cleanString(raw.sourceUrl) || source.sourceUrl;
+  const perRecipeSite = raw.sourceSite === null ? '' : cleanString(raw.sourceSite) || source.site;
 
   const recipe = {
     id,
     nameEn: cleanString(raw.nameEn),
     nameZh: CHINESE_NAME_OVERRIDES[id] ?? cleanString(raw.nameZh),
     aliases: dedupeStrings(Array.isArray(raw.aliases) ? raw.aliases : []),
-    collection,
+    collection: collections[0],
     /** 配方所屬的全部系列；單一來源時只有一項，跨來源整併後會有多項。 */
-    collections: [collection],
+    collections,
     category: cleanString(raw.category),
     glass: cleanString(raw.glass),
     ice: cleanString(raw.ice),
@@ -551,8 +577,8 @@ function normalizeRecipe(raw, source) {
     flavor: dedupeStrings(Array.isArray(raw.flavor) ? raw.flavor : []),
     occasion: dedupeStrings(Array.isArray(raw.occasion) ? raw.occasion : []),
     popularity: typeof raw.popularity === 'number' ? raw.popularity : 0,
-    sourceUrl: sanitizeSourceUrl(cleanString(raw.sourceUrl) || source.sourceUrl, `配方 ${id}`),
-    sourceSite: cleanString(raw.sourceSite) || source.site,
+    sourceUrl: sanitizeSourceUrl(perRecipeUrl, `配方 ${id}`),
+    sourceSite: perRecipeSite,
     ingredientIds: ingredients.map((item) => item.id),
     garnishIds: garnish,
   };

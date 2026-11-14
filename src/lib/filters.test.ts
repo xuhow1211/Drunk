@@ -12,10 +12,12 @@ import popularSource from '../../data/popular-modern.json';
 import type { CocktailDataset, Recipe } from './types';
 import {
   DEFAULT_FILTERS,
+  CONVENIENCE_STORE_TAG,
   collectFacets,
   filterRecipes,
   getRecipeCollections,
   sortRecipes,
+  subCategoriesOf,
 } from './filters';
 import type { FilterState } from './filters';
 import { getMaterialCount } from './matching';
@@ -75,7 +77,7 @@ function makeRecipe(overrides: Partial<Recipe> & { id: string }): Recipe {
 }
 
 describe('系列篩選（collections 契約）', () => {
-  it('熱門系列 141 杯、經典系列合計 102 杯', () => {
+  it('熱門系列 145 杯、經典系列合計 102 杯', () => {
     const popular = filterRecipes(recipes, DEFAULT_FILTERS, ingredientNames, {
       collections: ['popular'],
     });
@@ -83,7 +85,7 @@ describe('系列篩選（collections 契約）', () => {
       collections: ['classic', 'new-era'],
     });
 
-    expect(popular).toHaveLength(141);
+    expect(popular).toHaveLength(145);
     expect(classic).toHaveLength(102);
   });
 
@@ -318,6 +320,115 @@ describe('filterRecipes 各條件篩選', () => {
     for (const recipe of filtered) {
       expect(recipe.ingredientIds).toContain('gin');
     }
+  });
+});
+
+describe('子分類推導（subCategoriesOf）', () => {
+  it('經典款：collections 含 classic 者，且與 classic 系列篩選結果一致', () => {
+    const classic = filterRecipes(recipes, DEFAULT_FILTERS, ingredientNames, {
+      collections: ['classic'],
+    });
+    const derived = recipes.filter((recipe) => subCategoriesOf(recipe).includes('classic'));
+
+    expect(new Set(derived.map((item) => item.id))).toEqual(new Set(classic.map((item) => item.id)));
+    expect(subCategoriesOf(recipeById('negroni'))).toContain('classic');
+  });
+
+  it('水果款：flavor 含 fruity 或 citrus 任一即成立', () => {
+    const citrusRecipes = recipes.filter((recipe) => recipe.flavor.includes('citrus'));
+    const fruityRecipes = recipes.filter(
+      (recipe) => recipe.flavor.includes('fruity') || recipe.flavor.includes('citrus'),
+    );
+    expect(fruityRecipes.length).toBeGreaterThan(0);
+    for (const recipe of citrusRecipes) {
+      expect(subCategoriesOf(recipe)).toContain('fruity');
+    }
+    // 構造情境：兩種風味與兩者皆無
+    expect(subCategoriesOf(makeRecipe({ id: 'a', flavor: ['fruity'] }))).toContain('fruity');
+    expect(subCategoriesOf(makeRecipe({ id: 'b', flavor: ['citrus'] }))).toContain('fruity');
+    expect(subCategoriesOf(makeRecipe({ id: 'c', flavor: ['sour'] }))).not.toContain('fruity');
+  });
+
+  it('重酒感：category 為 spirit-forward，或 abv 解析出 25 以上（含「約 25%」格式）', () => {
+    expect(subCategoriesOf(makeRecipe({ id: 'a', category: 'spirit-forward' }))).toContain('strong');
+    expect(subCategoriesOf(makeRecipe({ id: 'b', abv: '約 25%' }))).toContain('strong');
+    expect(subCategoriesOf(makeRecipe({ id: 'c', abv: '約 30%' }))).toContain('strong');
+    expect(subCategoriesOf(makeRecipe({ id: 'd', abv: '約 24%' }))).not.toContain('strong');
+    // 兩條件皆不成立
+    expect(subCategoriesOf(makeRecipe({ id: 'e', category: 'sour', abv: '約 10%' }))).not.toContain('strong');
+  });
+
+  it('氣泡清爽：flavor 含 fizzy，或 category 為 refreshing', () => {
+    expect(subCategoriesOf(makeRecipe({ id: 'a', flavor: ['fizzy'] }))).toContain('fizzy');
+    expect(subCategoriesOf(makeRecipe({ id: 'b', category: 'refreshing', flavor: [] }))).toContain('fizzy');
+    expect(subCategoriesOf(makeRecipe({ id: 'c', flavor: ['sweet'] }))).not.toContain('fizzy');
+  });
+
+  it('無酒精：collections 含 mocktail（舊資料以單一 collection 相容）', () => {
+    expect(subCategoriesOf(makeRecipe({ id: 'a', collections: ['mocktail'] }))).toContain('mocktail');
+    expect(subCategoriesOf(makeRecipe({ id: 'b', collections: ['classic'] }))).not.toContain('mocktail');
+    const legacy = {
+      id: 'legacy',
+      collection: 'mocktail',
+      flavor: [],
+      category: 'non-alcoholic',
+      abv: '0%',
+    } as unknown as Recipe;
+    expect(subCategoriesOf(legacy)).toContain('mocktail');
+  });
+
+  it('一杯可同時屬於多個子分類', () => {
+    const multi = subCategoriesOf(
+      makeRecipe({
+        id: 'multi',
+        collections: ['classic', 'mocktail'],
+        flavor: ['fruity', 'fizzy'],
+        category: 'spirit-forward',
+        abv: '約 30%',
+      }),
+    );
+    expect(multi).toEqual(['classic', 'fruity', 'strong', 'fizzy', 'mocktail']);
+  });
+
+  it('空 flavor 時不會造成水果款或氣泡清爽誤判', () => {
+    const empty = subCategoriesOf(
+      makeRecipe({
+        id: 'a',
+        flavor: [],
+        category: 'sour',
+        collection: 'easy',
+        collections: ['easy'],
+      }),
+    );
+    expect(empty).toEqual([]);
+  });
+});
+
+describe('標籤篩選（tags）', () => {
+  it('便利商店 tag 命中 26 杯，且全部含該標籤', () => {
+    const filtered = filterRecipes(
+      recipes,
+      { ...DEFAULT_FILTERS, tags: [CONVENIENCE_STORE_TAG] },
+      ingredientNames,
+    );
+
+    expect(filtered).toHaveLength(26);
+    for (const recipe of filtered) {
+      expect(recipe.tags).toContain(CONVENIENCE_STORE_TAG);
+    }
+  });
+
+  it('多選 tags 採「或」，與其他條件取交集', () => {
+    const filtered = filterRecipes(
+      recipes,
+      { ...DEFAULT_FILTERS, tags: [CONVENIENCE_STORE_TAG], difficulties: [1] },
+      ingredientNames,
+    );
+    for (const recipe of filtered) {
+      expect(recipe.tags).toContain(CONVENIENCE_STORE_TAG);
+      expect(recipe.difficulty).toBe(1);
+    }
+    expect(filtered.length).toBeLessThanOrEqual(26);
   });
 });
 

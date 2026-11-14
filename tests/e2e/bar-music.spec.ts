@@ -35,6 +35,11 @@ async function waitForOfflinePanel(page: Page) {
   return panel;
 }
 
+/** 是否為手機視窗（單行圖示列的斷點，768px 以下）。 */
+function isMobileViewport(page: Page): boolean {
+  return (page.viewportSize()?.width ?? 0) < 768;
+}
+
 test.describe('酒吧背景音', () => {
   test('首頁右下角出現背景音面板並顯示頻道名稱', async ({ page }) => {
     await blockStreams(page);
@@ -42,7 +47,8 @@ test.describe('酒吧背景音', () => {
 
     const panel = await waitForOfflinePanel(page);
 
-    const channelName = (await panel.locator('p').first().innerText()).trim();
+    // 手機上面板不出現頻道名稱（空間留給圖示），改用 textContent 讀（含 sr-only）
+    const channelName = ((await panel.locator('p').first().textContent()) ?? '').trim();
     expect(channelName.length).toBeGreaterThan(0);
   });
 
@@ -73,7 +79,9 @@ test.describe('酒吧背景音', () => {
     await expect(mute).toHaveAttribute('aria-pressed', 'false');
   });
 
-  test('音量滑桿可以調整並反映在數值上', async ({ page }) => {
+  test('音量滑桿可以調整並反映在數值上（桌機以上限定）', async ({ page }) => {
+    // 手機版面板收合成單行圖示列，不出現音量滑桿（調音量在桌機進行）
+    test.skip(isMobileViewport(page), '手機版沒有音量滑桿');
     await blockStreams(page);
     await page.goto('/');
     await waitForOfflinePanel(page);
@@ -84,17 +92,61 @@ test.describe('酒吧背景音', () => {
     await expect(slider).toHaveValue('80');
   });
 
+  test('手機版面板收合成單行圖示列，寬度不超過 40vw 且不出現音量滑桿', async ({ page }) => {
+    test.skip(!isMobileViewport(page), '單行圖示列為行動版限定');
+
+    await blockStreams(page);
+    await page.goto('/');
+    const panel = await waitForOfflinePanel(page);
+
+    // 五顆圖示按鈕（播放／暫停、靜音、換台、關閉、收合）都在單行內可見
+    for (const testId of ['bar-music-toggle', 'bar-music-mute', 'bar-music-shuffle', 'bar-music-close', 'bar-music-collapse']) {
+      await expect(page.getByTestId(testId)).toBeVisible();
+    }
+    // 音量滑桿在手機完全不出現
+    await expect(page.getByTestId('bar-music-volume')).toBeHidden();
+
+    // 寬度上限 40vw、高度維持約 44px 級的緊湊單行
+    const viewportWidth = page.viewportSize()!.width;
+    const box = await panel.boundingBox();
+    expect(box).not.toBeNull();
+    expect(box!.width).toBeLessThanOrEqual(viewportWidth * 0.4 + 1);
+    expect(box!.height).toBeLessThanOrEqual(64);
+  });
+
   test('可以隨機換一個頻道', async ({ page }) => {
     await blockStreams(page);
     await page.goto('/');
     const panel = await waitForOfflinePanel(page);
 
-    const before = (await panel.locator('p').first().innerText()).trim();
+    // 手機上面板不出現頻道名稱（空間留給圖示），改用 textContent 讀（含 sr-only）
+    const before = ((await panel.locator('p').first().textContent()) ?? '').trim();
 
     await page.getByTestId('bar-music-shuffle').click();
 
     // 頻道名稱必須改變（清單內有 10 個頻道，排除目前這個後不可能抽到同一個）
     await expect(panel.locator('p').first()).not.toHaveText(before);
+  });
+
+  test('收合鈕把面板收成角落小鈕，點擊小鈕可再展開', async ({ page }) => {
+    await blockStreams(page);
+    await page.goto('/');
+    await waitForOfflinePanel(page);
+
+    await page.getByTestId('bar-music-collapse').click();
+    await expect(page.getByTestId('bar-music-panel')).toHaveCount(0);
+    await expect(page.getByTestId('bar-music-expand')).toBeVisible();
+
+    // 小鈕必須真的停靠在畫面內右下角（防止 fixed 被 panel 的 position 蓋掉）
+    const chipBox = await page.getByTestId('bar-music-expand').boundingBox();
+    const viewport = page.viewportSize()!;
+    expect(chipBox).not.toBeNull();
+    expect(chipBox!.x + chipBox!.width).toBeLessThanOrEqual(viewport.width);
+    expect(chipBox!.y + chipBox!.height).toBeLessThanOrEqual(viewport.height);
+
+    await page.getByTestId('bar-music-expand').click();
+    await expect(page.getByTestId('bar-music-panel')).toBeVisible();
+    await expect(page.getByTestId('bar-music-expand')).toHaveCount(0);
   });
 
   test('關閉後面板消失且重新整理不會再出現', async ({ page }) => {

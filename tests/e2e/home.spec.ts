@@ -61,7 +61,7 @@ test.describe('首頁', () => {
     await expect(carousel.getByRole('listitem').first()).toBeVisible();
   });
 
-  test('數據帶顯示的配方數與食材數與資料一致（392 杯、333 項）', async ({ page }) => {
+  test('數據帶顯示的配方數與食材數與資料一致（396 杯、333 項）', async ({ page }) => {
     await page.goto('/');
 
     const stats = page.getByRole('region', { name: '資料統計' });
@@ -69,9 +69,19 @@ test.describe('首頁', () => {
 
     // 數字有進場動畫，等候動畫結束後再讀取
     const recipeStat = stats.getByText('總配方數').locator('..');
-    await expect(recipeStat.getByText('392 杯')).toBeVisible({ timeout: 15_000 });
+    await expect(recipeStat.getByText('396 杯')).toBeVisible({ timeout: 15_000 });
 
     const ingredientStat = stats.getByText('總食材數').locator('..');
     await expect(ingredientStat.getByText('333 項')).toBeVisible({ timeout: 15_000 });
+  });
+
+  test('超商調酒直達連結可見，點擊導向 /easy', async ({ page }) => {
+    await page.goto('/');
+
+    const link = page.getByRole('link', { name: '超商調酒專區' });
+    await expect(link).toBeVisible();
+    await link.click();
+    await expect(page).toHaveURL(/\/easy$/);
+    await expect(page.getByRole('heading', { level: 1, name: '超商調酒' })).toBeVisible();
   });
 });

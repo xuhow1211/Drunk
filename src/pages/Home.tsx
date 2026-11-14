@@ -2,9 +2,12 @@
  * 首頁。
  *
  * 由主視覺、三大入口、精選熱選橫向捲動與數據帶組成。
+ * 手機版收緊各段留白：主視覺之後緊接三大入口（手機上入口卡就是主功能），
+ * 精選熱選與數據帶依序下移。
  */
 import { useMemo, useRef } from 'react';
-import type { PointerEvent as ReactPointerEvent } from 'react';
+import type { PointerEvent as ReactPointerEvent, RefObject } from 'react';
+import { Link } from 'react-router-dom';
 import { useCocktails } from '../hooks/useCocktails';
 import { getRecipeCollections } from '../lib/filters';
 import { CountUp } from '../components/CountUp';
@@ -48,13 +51,25 @@ export function Home() {
 
       <EntryCards classicCount={counts.classic} popularCount={counts.popular} />
 
-      {/* 精選熱選 */}
-      <section className="mt-16 px-4 sm:px-6 lg:px-10" aria-label="精選熱選">
+      {/* 超商調酒直達：批次一的三張入口卡不動，另以小型連結通往 /easy */}
+      <div className="mt-3 flex justify-center px-4 sm:justify-start">
+        <Link
+          to="/easy"
+          className="rounded-full border border-neon-cyan/35 bg-neon-cyan/10 px-4 py-1.5 text-xs font-semibold text-neon-cyan transition hover:bg-neon-cyan/20"
+        >
+          超商調酒專區 →
+        </Link>
+      </div>
+
+      {/* 精選熱選（手機版與上段留白收緊，桌機維持原段距） */}
+      <section className="mt-10 px-4 sm:mt-16 sm:px-6 lg:px-10" aria-label="精選熱選">
         <div className="mx-auto max-w-[1440px]">
           <Reveal className="mb-4 flex items-end justify-between gap-4">
             <div>
               <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">精選熱選</h2>
-              <p className="mt-1 text-sm text-ink-muted">依票選熱門度取前 12 杯，可橫向拖曳瀏覽</p>
+              <p className="mt-1 text-xs text-ink-muted sm:text-sm">
+                依票選熱門度取前 12 杯，可左右滑動瀏覽
+              </p>
             </div>
           </Reveal>
 
@@ -65,7 +80,7 @@ export function Home() {
       </section>
 
       {/* 數據帶 */}
-      <section className="mt-16 px-4 sm:px-6 lg:px-10" aria-label="資料統計">
+      <section className="mt-10 px-4 sm:mt-16 sm:px-6 lg:px-10" aria-label="資料統計">
         <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-4 sm:grid-cols-3">
           <StatCard label="總配方數" value={recipes.length} suffix=" 杯" />
           <StatCard label="總食材數" value={ingredients.length} suffix=" 項" />
@@ -76,10 +91,22 @@ export function Home() {
   );
 }
 
-/** 首頁精選熱選的橫向捲動列（可拖曳）。 */
-function TopCarousel({ recipes }: { recipes: ReturnType<typeof useCocktails>['recipes'] }) {
-  const scrollerRef = useRef<HTMLDivElement>(null);
-  const dragRef = useRef({ active: false, startX: 0, startScroll: 0, moved: false });
+/** 拖曳捲動的暫存狀態。 */
+interface DragState {
+  active: boolean;
+  startX: number;
+  startScroll: number;
+  moved: boolean;
+}
+
+/**
+ * 首頁精選熱選的拖曳行為：按住拖動即橫向捲動，並記錄是否真的有位移。
+ *
+ * @param scrollerRef 捲動容器
+ * @returns 綁到捲動容器的事件處理與拖曳狀態（moved 用來擋掉拖曳後的卡片點擊）
+ */
+function useDragScroll(scrollerRef: RefObject<HTMLDivElement | null>) {
+  const dragRef = useRef<DragState>({ active: false, startX: 0, startScroll: 0, moved: false });
 
   const onPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
     const node = scrollerRef.current;
@@ -104,34 +131,50 @@ function TopCarousel({ recipes }: { recipes: ReturnType<typeof useCocktails>['re
     dragRef.current.active = false;
   };
 
+  return { dragRef, onPointerDown, onPointerMove, endDrag };
+}
+
+/** 首頁精選熱選的橫向捲動列（可拖曳，手機版右緣以漸層提示可滑動）。 */
+function TopCarousel({ recipes }: { recipes: ReturnType<typeof useCocktails>['recipes'] }) {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const { dragRef, onPointerDown, onPointerMove, endDrag } = useDragScroll(scrollerRef);
+
   return (
-    <div
-      ref={scrollerRef}
-      onPointerDown={onPointerDown}
-      onPointerMove={onPointerMove}
-      onPointerUp={endDrag}
-      onPointerLeave={endDrag}
-      onClickCapture={(event) => {
-        // 拖曳後不要誤觸發卡片的點擊
-        if (dragRef.current.moved) {
-          event.preventDefault();
-          event.stopPropagation();
-          dragRef.current.moved = false;
-        }
-      }}
-      className="no-scrollbar drag-scroll flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3"
-      role="list"
-      aria-label="精選熱選調酒"
-    >
-      {recipes.map((recipe, index) => (
-        <div
-          key={recipe.id}
-          role="listitem"
-          className="w-[248px] shrink-0 snap-start sm:w-[272px]"
-        >
-          <RecipeCard recipe={recipe} delay={Math.min(index * 60, 360)} />
-        </div>
-      ))}
+    <div className="relative">
+      <div
+        ref={scrollerRef}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={endDrag}
+        onPointerLeave={endDrag}
+        onClickCapture={(event) => {
+          // 拖曳後不要誤觸發卡片的點擊
+          if (dragRef.current.moved) {
+            event.preventDefault();
+            event.stopPropagation();
+            dragRef.current.moved = false;
+          }
+        }}
+        className="no-scrollbar drag-scroll flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3"
+        role="list"
+        aria-label="精選熱選調酒"
+      >
+        {recipes.map((recipe, index) => (
+          <div
+            key={recipe.id}
+            role="listitem"
+            className="w-[248px] shrink-0 snap-start sm:w-[272px]"
+          >
+            <RecipeCard recipe={recipe} delay={Math.min(index * 60, 360)} />
+          </div>
+        ))}
+      </div>
+
+      {/* 手機版右緣漸層淡出，提示還有下一張卡可以滑動 */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-y-0 right-0 w-9 bg-gradient-to-l from-night-900 to-transparent sm:hidden"
+      />
     </div>
   );
 }

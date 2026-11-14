@@ -1,8 +1,9 @@
 /**
  * join 這麼喝：示意照片索引（photo-map）的讀取與套用。
  *
- * data/photo-map.json 由 scripts/fetch-iba-photos.mjs 產出，形狀：
- *   { generatedAt: ISO 時間戳記, photos: { [配方 id]: { url: 照片公開網址 } } }
+ * data/photo-map.json 由 scripts/fetch-iba-photos.mjs（IBA World）與
+ * scripts/fetch-tcdb-photos.mjs（TheCocktailDB）產出，形狀：
+ *   { generatedAt: ISO 時間戳記, photos: { [配方 id]: { url: 照片公開網址, source?: 'iba' | 'tcdb' } } }
  *
  * 檔案不存在、解析失敗或形狀不符時一律回傳 null（整體視為無照片）：
  * 示意照片是選用強化，缺檔不該阻斷建置，產物只是不出現 photoUrl 欄位，
@@ -43,7 +44,7 @@ export function readPhotoMap(filePath) {
 /**
  * 把 photo-map 的照片網址套到配方上。
  *
- * 規則：僅對「條目存在且 url 為合法 https 網址」的配方加上 photoUrl 欄位；
+ * 規則：僅對「條目存在且 url 為合法 https 網址」的配方加上 photoUrl 與 photoSource 欄位；
  * 其餘配方不動（不會出現值為 undefined 的空欄位，與既有 JSON 形狀慣例一致）。
  *
  * @param {object[]} recipes 正規化後的配方清單（就地修改）
@@ -64,6 +65,8 @@ export function applyPhotoMap(recipes, photoMap, callbacks = {}) {
       continue;
     }
     recipe.photoUrl = url;
+    // 照片來源：無 source 欄位的既有條目一律視為 IBA 回填。
+    recipe.photoSource = entry.source === 'tcdb' ? 'tcdb' : 'iba';
     applied += 1;
   }
   return applied;
