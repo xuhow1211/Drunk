@@ -1,0 +1,311 @@
+{
+  "generatedAt": "2026-11-14T04:47:25.838Z",
+  "photos": {
+    "negroni": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/negroni.webp"
+    },
+    "alexander": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/alexander.webp"
+    },
+    "americano": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/americano.webp"
+    },
+    "angel-face": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/angel-face.webp"
+    },
+    "aviation": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/aviation.webp"
+    },
+    "bees-knees": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/bees-knees.webp"
+    },
+    "bellini": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/bellini.webp"
+    },
+    "between-the-sheets": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/between-the-sheets.webp"
+    },
+    "black-russian": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/black-russian.webp"
+    },
+    "bloody-mary": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/bloody-mary.webp"
+    },
+    "boulevardier": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/boulevardier.webp"
+    },
+    "bramble": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/bramble.webp"
+    },
+    "brandy-crusta": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/brandy-crusta.webp"
+    },
+    "caipirinha": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/caipirinha.webp"
+    },
+    "canchanchara": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/canchanchara.webp"
+    },
+    "cardinale": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/cardinale.webp"
+    },
+    "casino": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/casino.webp"
+    },
+    "champagne-cocktail": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/champagne-cocktail.webp"
+    },
+    "chartreuse-swizzle": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/chartreuse-swizzle.webp"
+    },
+    "clover-club": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/clover-club.webp"
+    },
+    "corpse-reviver-2": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/corpse-reviver-2.webp"
+    },
+    "cosmopolitan": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/cosmopolitan.webp"
+    },
+    "cuba-libre": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/cuba-libre.webp"
+    },
+    "daiquiri": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/daiquiri.webp"
+    },
+    "dark-n-stormy": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/dark-n-stormy.webp"
+    },
+    "dons-special-daiquiri": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/dons-special-daiquiri.webp"
+    },
+    "dry-martini": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/dry-martini.webp"
+    },
+    "espresso-martini": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/espresso-martini.webp"
+    },
+    "fernandito": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/fernandito.webp"
+    },
+    "french-75": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/french-75.webp"
+    },
+    "french-connection": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/french-connection.webp"
+    },
+    "french-martini": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/french-martini.webp"
+    },
+    "garibaldi": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/garibaldi.webp"
+    },
+    "gin-basil-smash": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/gin-basil-smash.webp"
+    },
+    "gin-fizz": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/gin-fizz.webp"
+    },
+    "grand-margarita": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/grand-margarita.webp"
+    },
+    "grasshopper": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/grasshopper.webp"
+    },
+    "hanky-panky": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/hanky-panky.webp"
+    },
+    "hemingway-special": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/hemingway-special.webp"
+    },
+    "horses-neck": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/horses-neck.webp"
+    },
+    "iba-tiki": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/iba-tiki.webp"
+    },
+    "illegal": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/illegal.webp"
+    },
+    "irish-coffee": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/irish-coffee.webp"
+    },
+    "john-collins": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/john-collins.webp"
+    },
+    "jungle-bird": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/jungle-bird.webp"
+    },
+    "kir": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/kir.webp"
+    },
+    "last-word": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/last-word.webp"
+    },
+    "lemon-drop-martini": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/lemon-drop-martini.webp"
+    },
+    "long-island-iced-tea": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/long-island-iced-tea.webp"
+    },
+    "mai-tai": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/mai-tai.webp"
+    },
+    "manhattan": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/manhattan.webp"
+    },
+    "margarita": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/margarita.webp"
+    },
+    "martinez": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/martinez.webp"
+    },
+    "mary-pickford": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/mary-pickford.webp"
+    },
+    "mimosa": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/mimosa.webp"
+    },
+    "mint-julep": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/mint-julep.webp"
+    },
+    "missionarys-downfall": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/missionarys-downfall.webp"
+    },
+    "mojito": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/mojito.webp"
+    },
+    "monkey-gland": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/monkey-gland.webp"
+    },
+    "moscow-mule": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/moscow-mule.webp"
+    },
+    "naked-and-famous": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/naked-and-famous.webp"
+    },
+    "new-york-sour": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/new-york-sour.webp"
+    },
+    "old-cuban": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/old-cuban.webp"
+    },
+    "old-fashioned": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/old-fashioned.webp"
+    },
+    "paloma": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/paloma.webp"
+    },
+    "paper-plane": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/paper-plane.webp"
+    },
+    "paradise": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/paradise.webp"
+    },
+    "penicillin": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/penicillin.webp"
+    },
+    "pina-colada": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/pina-colada.webp"
+    },
+    "pisco-punch": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/pisco-punch.webp"
+    },
+    "pisco-sour": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/pisco-sour.webp"
+    },
+    "planters-punch": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/planters-punch.webp"
+    },
+    "porn-star-martini": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/porn-star-martini.webp"
+    },
+    "porto-flip": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/porto-flip.webp"
+    },
+    "rabo-de-galo": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/rabo-de-galo.webp"
+    },
+    "ramos-fizz": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/ramos-fizz.webp"
+    },
+    "remember-the-maine": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/remember-the-maine.webp"
+    },
+    "russian-spring-punch": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/russian-spring-punch.webp"
+    },
+    "rusty-nail": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/rusty-nail.webp"
+    },
+    "sazerac": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/sazerac.webp"
+    },
+    "sea-breeze": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/sea-breeze.webp"
+    },
+    "sex-on-the-beach": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/sex-on-the-beach.webp"
+    },
+    "sherry-cobbler": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/sherry-cobbler.webp"
+    },
+    "sidecar": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/sidecar.webp"
+    },
+    "singapore-sling": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/singapore-sling.webp"
+    },
+    "south-side": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/south-side.webp"
+    },
+    "spicy-fifty": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/spicy-fifty.webp"
+    },
+    "spritz": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/spritz.webp"
+    },
+    "stinger": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/stinger.webp"
+    },
+    "suffering-bastard": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/suffering-bastard.webp"
+    },
+    "tequila-sunrise": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/tequila-sunrise.webp"
+    },
+    "three-dots-and-a-dash": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/three-dots-and-a-dash.webp"
+    },
+    "tipperary": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/tipperary.webp"
+    },
+    "tommys-margarita": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/tommys-margarita.webp"
+    },
+    "trinidad-sour": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/trinidad-sour.webp"
+    },
+    "tuxedo": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/tuxedo.webp"
+    },
+    "ve-n-to": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/ve-n-to.webp"
+    },
+    "vesper": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/vesper.webp"
+    },
+    "vieux-carre": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/vieux-carre.webp"
+    },
+    "whiskey-sour": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/whiskey-sour.webp"
+    },
+    "white-lady": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/white-lady.webp"
+    },
+    "zombie": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/zombie.webp"
+    }
+  }
+}

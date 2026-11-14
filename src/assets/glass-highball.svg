@@ -1,0 +1,61 @@
+<!--
+  join 這麼喝：通用杯型插畫——高球杯（highball）。
+  適用杯型 highball／collins／flute／shot／mug／wine／other 等高瘦杯與其他杯型，
+  也是未知杯型的回退插畫。
+  視覺語彙比照首頁入口卡插畫：深底、霓虹紫／青描邊、扁平風；
+  由 RecipeDrawer 在無實照時以 <img> 呈現，viewBox 為 16:9（320x180）可縮放。
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="highball-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#12101c"/>
+      <stop offset="100%" stop-color="#08070d"/>
+    </linearGradient>
+    <linearGradient id="highball-drink" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 深底與氛圍光暈 -->
+  <rect width="320" height="180" fill="url(#highball-bg)"/>
+  <circle cx="240" cy="34" r="64" fill="#a855f7" opacity="0.07"/>
+  <circle cx="76" cy="146" r="60" fill="#22d3ee" opacity="0.06"/>
+
+  <!-- 杯中液體 -->
+  <path d="M138 62H182V138H138Z" fill="url(#highball-drink)"/>
+
+  <!-- 杯身 -->
+  <g stroke="#22d3ee" stroke-width="3.6" stroke-linecap="round" fill="none">
+    <path d="M132 34H188M136 34V142H184V34" stroke-linejoin="round"/>
+    <path d="M142 34H178" stroke="#a855f7"/>
+  </g>
+
+  <!-- 氣泡與冰塊 -->
+  <g fill="#22d3ee" opacity="0.6">
+    <circle cx="153" cy="122" r="3"/>
+    <circle cx="167" cy="112" r="2.2"/>
+    <circle cx="153" cy="102" r="2.6"/>
+    <circle cx="169" cy="92" r="2"/>
+    <circle cx="157" cy="80" r="2.4"/>
+  </g>
+  <g fill="#a855f7" opacity="0.3">
+    <rect x="146" y="66" width="12" height="12" rx="3" transform="rotate(-10 152 72)"/>
+    <rect x="163" y="76" width="12" height="12" rx="3" transform="rotate(8 169 82)"/>
+  </g>
+
+  <!-- 檸檬角 -->
+  <path d="M196 56L216 80L206 82Z" fill="#fbbf24" opacity="0.75" stroke="#fbbf24" stroke-width="2" stroke-linejoin="round"/>
+
+  <!-- 吸管 -->
+  <g stroke="#a855f7" stroke-width="3.2" stroke-linecap="round" fill="none">
+    <path d="M172 132L186 24" opacity="0.85"/>
+  </g>
+
+  <!-- 背景細點 -->
+  <g fill="#22d3ee" opacity="0.4">
+    <circle cx="108" cy="44" r="2.2"/>
+    <circle cx="252" cy="120" r="2"/>
+    <circle cx="118" cy="118" r="1.6"/>
+  </g>
+</svg>

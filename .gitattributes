@@ -2,3 +2,7 @@
 # git 誤判工作區檔案已被修改（會讓 data:check 與 git status 產生雜訊）。
 data/*.json text eol=lf
 src/data/*.json text eol=lf
+
+# Node ESM 檔（scripts 與其 .mjs 測試）會被 vitest 的 vite-node 轉換載入，
+# CRLF 在此路徑會造成解析失敗（實測：syntax error），一律以 LF 存放。
+*.mjs text eol=lf

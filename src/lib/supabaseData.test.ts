@@ -76,6 +76,7 @@ const recipeRow = {
   tags: ['iba'],
   source_url: 'https://example.com/gin-fizz',
   source_site: 'IBA',
+  photo_url: 'https://example.com/photo/gin-fizz.webp',
   recipe_ingredients: [
     { ingredient_id: 'soda-water', amount: null, unit: null, optional: false, position: 2 },
     { ingredient_id: 'gin', amount: '45', unit: 'ml', optional: false, position: 1 },
@@ -100,6 +101,7 @@ const baseRecipeRow = {
   tags: null,
   source_url: null,
   source_site: null,
+  photo_url: null,
   recipe_ingredients: null,
 };
 
@@ -129,6 +131,8 @@ describe('loadSupabaseData 對應規則', () => {
     expect(recipe.garnish).toEqual(['lemon-slice']);
     expect(recipe.sourceUrl).toBe('https://example.com/gin-fizz');
     expect(recipe.sourceSite).toBe('IBA');
+    // 示意照片：photo_url 有值時對應成 photoUrl
+    expect(recipe.photoUrl).toBe('https://example.com/photo/gin-fizz.webp');
     expect(recipe.collection).toBe('classic');
     expect(recipe.collections).toEqual(['classic', 'popular']);
     // 可空欄位的補空
@@ -186,6 +190,8 @@ describe('loadSupabaseData 對應規則', () => {
     expect(recipe.ingredientIds).toEqual([]);
     expect(recipe.garnish).toEqual([]);
     expect(recipe.sourceSite).toBeUndefined();
+    // 示意照片為 null（尚未抓圖）時不設 photoUrl 欄位，與建置 JSON 的形狀一致
+    expect('photoUrl' in recipe).toBe(false);
   });
 
   it('查詢語法包含材料嵌入與排序參數，列數超過 1000 時逐頁抓滿', async () => {

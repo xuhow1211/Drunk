@@ -16,6 +16,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { readPhotoMap } from './photo-map.mjs';
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = path.resolve(SCRIPT_DIR, '..');
@@ -150,7 +151,44 @@ values (${q(r.id)}, ${q(ing.id)}, ${qNum(ing.amount ?? null)}, ${qText(ing.unit)
     await runQuery(part, `recipe_ingredients 批次 ${i + 1}`);
   }
 
+  await seedPhotoUrls(cocktails.recipes);
+
   console.log('遷移完成。');
+}
+
+/**
+ * 補灌示意照片欄位（photo_url）。
+ *
+ * 僅在有 photo-map 時執行：data/photo-map.json 由 scripts/fetch-iba-photos.mjs
+ * 產出（尚未抓圖前不存在），此階段為每筆照片下 UPDATE 冪等語句，
+ * 重複執行結果相同；photo-map 中的非法網址已在建置端過濾，此處只採用配方上
+ * 實際套到的網址（與建置產物一致）。
+ *
+ * @param {object[]} recipes 建置產物的配方清單
+ */
+async function seedPhotoUrls(recipes) {
+  const photoMap = readPhotoMap(path.join(ROOT_DIR, 'data', 'photo-map.json'));
+  if (!photoMap) {
+    console.log('未提供 photo-map，略過 photo_url 補灌。');
+    return;
+  }
+  const photoUrls = photoMap.photos ?? {};
+  const photoUrlOf = (recipeId) => {
+    const url = photoUrls[recipeId]?.url;
+    return typeof url === 'string' && url.startsWith('https://') ? url : null;
+  };
+  const seedRows = recipes
+    .map((r) => ({ id: r.id, url: photoUrlOf(r.id) }))
+    .filter((r) => r.url !== null)
+    .map((r) => `update recipes set photo_url = ${q(r.url)} where id = ${q(r.id)};`);
+  if (seedRows.length === 0) {
+    console.log('photo-map 沒有可套用的照片，略過 photo_url 補灌。');
+    return;
+  }
+  for (const [i, part] of chunk(seedRows, 100).entries()) {
+    await runQuery(part, `photo_url 批次 ${i + 1}`);
+  }
+  console.log(`[完成] photo_url 補灌（${seedRows.length} 杯）`);
 }
 
 main();
