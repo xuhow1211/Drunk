@@ -148,9 +148,9 @@ function mapRecipe(row: SupabaseRecipeRow): Recipe {
     popularity: row.popularity,
     sourceUrl: row.source_url,
     sourceSite: row.source_site ?? undefined,
-    // 示意照片：與建置 JSON 形狀一致——DB 為 null（尚未抓圖）時不設欄位，
-    // 前端據此改用杯型插畫。
-    ...(row.photo_url ? { photoUrl: row.photo_url } : null),
+    // 示意照片：與建置端的過濾規則一致——僅採用 https:// 網址；
+    // DB 為 null（尚未抓圖）時不設欄位，前端據此改用杯型插畫。
+    ...(row.photo_url?.startsWith('https://') ? { photoUrl: row.photo_url } : null),
     ingredientIds: ingredients.map((item) => item.id),
     garnishIds,
   };

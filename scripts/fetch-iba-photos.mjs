@@ -178,12 +178,14 @@ function toAbsoluteUrl(candidate, pageUrl) {
  */
 function extractImageUrls(imgTag, pageUrl) {
   const urls = [];
-  const src = imgTag.match(/\bsrc\s*=\s*["']([^"']+)["']/i);
+  // 負向斷言排除 data-src 等以連字號開頭的 lazy-loading 屬性，
+  // 避免把 placeholder 當成候補網址
+  const src = imgTag.match(/(?<![\w-])src\s*=\s*["']([^"']+)["']/i);
   if (src?.[1]) {
     const absolute = toAbsoluteUrl(src[1], pageUrl);
     if (absolute) urls.push(absolute);
   }
-  const srcset = imgTag.match(/\bsrcset\s*=\s*["']([^"']+)["']/i);
+  const srcset = imgTag.match(/(?<![\w-])srcset\s*=\s*["']([^"']+)["']/i);
   if (srcset?.[1]) {
     for (const candidate of srcset[1].split(',')) {
       const url = toAbsoluteUrl(candidate.split(/\s+/)[0] ?? '', pageUrl);
