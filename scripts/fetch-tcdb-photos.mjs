@@ -221,16 +221,21 @@ async function main() {
   for (const recipe of pending) {
     try {
       const result = await processTcdbRecipe(credentials, recipe);
-      if (result.status === 'uploaded') {
-        // 只有真的由本腳本上傳者才寫入條目（查無者不寫，避免指向不存在的物件）
+      if (result.status !== 'failed') {
+        // uploaded 與 skipped 都補條目（與 fetch-iba-photos 一致）：
+        // skipped 代表遠端物件健在（多半是舊 photo-map 遺失條目時的重跑），
+        // 若只回補 uploaded，這批物件會永遠沒有條目可被應用引用。
+        // 查無對應（failed）不寫，避免指向不存在的物件。
         existingPhotos[recipe.id] = {
           url: publicPhotoUrl(credentials.supabaseUrl, recipe.id),
           source: 'tcdb',
         };
-        stats.success.push(recipe.id);
+        if (result.status === 'uploaded') {
+          stats.success.push(recipe.id);
+        } else {
+          stats.skipped.push(recipe.id);
+        }
         if (result.warning) stats.warnings.push(`${recipe.id}：${result.warning}`);
-      } else if (result.status === 'skipped') {
-        stats.skipped.push(recipe.id);
       } else {
         stats.failed.push(`${recipe.id}：${result.failure}`);
       }

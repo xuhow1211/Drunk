@@ -280,7 +280,7 @@ function ChipButton({
       type="button"
       onClick={onClick}
       aria-pressed={active}
-      className={`shrink-0 whitespace-nowrap rounded-full border px-3 py-1 text-xs font-medium transition ${
+      className={`inline-flex min-h-9 items-center shrink-0 whitespace-nowrap rounded-full border px-3 py-1 text-xs font-medium transition ${
         active
           ? 'border-neon-purple/70 bg-neon-purple/20 text-ink shadow-[0_0_14px_-4px_rgba(168,85,247,0.9)]'
           : 'border-white/10 bg-white/5 text-ink-muted hover:border-white/25 hover:text-ink'

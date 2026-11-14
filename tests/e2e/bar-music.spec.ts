@@ -35,9 +35,9 @@ async function waitForOfflinePanel(page: Page) {
   return panel;
 }
 
-/** 是否為手機視窗（單行圖示列的斷點，<640px）。 */
+/** 是否為手機視窗（單行圖示列的斷點，768px 以下）。 */
 function isMobileViewport(page: Page): boolean {
-  return (page.viewportSize()?.width ?? 0) < 640;
+  return (page.viewportSize()?.width ?? 0) < 768;
 }
 
 test.describe('酒吧背景音', () => {

@@ -63,6 +63,10 @@ export function RecipeCard({ recipe, delay = 0 }: RecipeCardProps) {
               <GlassIcon width={15} height={15} />
               {categoryLabel}
             </span>
+            {/* 與無照片卡片一致：熱門標記在照片卡右上角 */}
+            <span className="absolute right-3 top-3">
+              <PopularityMark popularity={recipe.popularity} />
+            </span>
           </div>
         ) : (
           /* 無實照：沿用漸層色塊與分類字樣 */
