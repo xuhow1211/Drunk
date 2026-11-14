@@ -1,0 +1,50 @@
+<!--
+  join 這麼喝：通用杯型插畫——雞尾酒杯（coupe）。
+  適用杯型 coupe／martini／nick-nora 等淺口杯家族。
+  視覺語彙比照首頁入口卡插畫：深底、霓虹紫／青描邊、扁平風；
+  由 RecipeDrawer 在無實照時以 <img> 呈現，viewBox 為 16:9（320x180）可縮放。
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="coupe-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#12101c"/>
+      <stop offset="100%" stop-color="#08070d"/>
+    </linearGradient>
+    <linearGradient id="coupe-drink" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0.25"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 深底與氛圍光暈 -->
+  <rect width="320" height="180" fill="url(#coupe-bg)"/>
+  <circle cx="252" cy="42" r="70" fill="#a855f7" opacity="0.07"/>
+  <circle cx="60" cy="150" r="60" fill="#22d3ee" opacity="0.05"/>
+
+  <!-- 杯中酒液 -->
+  <path d="M112 66C120 84 134 94 160 99C186 94 200 84 208 66Z" fill="url(#coupe-drink)"/>
+
+  <!-- 杯身、杯緣、杯腳與杯底 -->
+  <g stroke="#a855f7" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M100 52C110 80 128 96 160 103C192 96 210 80 220 52"/>
+    <path d="M100 52H220" stroke="#22d3ee"/>
+    <path d="M160 103V134"/>
+  </g>
+  <ellipse cx="160" cy="137" rx="27" ry="6" stroke="#22d3ee" stroke-width="3.2" fill="none" opacity="0.8"/>
+
+  <!-- 杯緣掛飾（櫻桃叉） -->
+  <g stroke="#22d3ee" stroke-width="2.4" stroke-linecap="round" opacity="0.85">
+    <path d="M118 58L142 74"/>
+  </g>
+  <circle cx="146" cy="77" r="6.5" fill="#fb7185" opacity="0.85"/>
+
+  <!-- 杯身高光 -->
+  <path d="M112 62C118 76 126 84 136 90" stroke="#f5f3ff" stroke-width="2" stroke-linecap="round" opacity="0.35"/>
+
+  <!-- 背景細點 -->
+  <g fill="#22d3ee" opacity="0.4">
+    <circle cx="96" cy="36" r="2.4"/>
+    <circle cx="236" cy="112" r="2"/>
+    <circle cx="222" cy="28" r="1.6"/>
+  </g>
+</svg>

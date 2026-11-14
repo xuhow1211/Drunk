@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { getIngredient } from '../lib/ingredients';
+import { glassIllustrationUrl } from '../lib/glassIllustration';
 import {
   FLAVOR_LABELS,
   GLASS_LABELS,
@@ -170,6 +171,9 @@ export function RecipeDrawer({ recipe, onClose, related }: RecipeDrawerProps) {
 
         {/* 內容 */}
         <div className="flex-1 overflow-y-auto px-5 py-5 sm:px-7">
+          {/* 圖片區：示意照片優先，載入失敗或無實照時以杯型插畫替代（以 key 重設失敗狀態） */}
+          <RecipePicture key={content.id} recipe={content} />
+
           {/* 概要資訊 */}
           <dl className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
             <InfoCell label="杯型" value={GLASS_LABELS[content.glass]} icon={<GlassIcon width={16} height={16} />} />
@@ -321,6 +325,48 @@ export function RecipeDrawer({ recipe, onClose, related }: RecipeDrawerProps) {
         </div>
       </div>
     </div>
+  );
+}
+
+/**
+ * 抽屜內容區最上方的圖片區。
+ *
+ * 顯示規則：
+ *   - 有示意照片（recipe.photoUrl）時以全幅 16:9 顯示實照，下緣附「照片：IBA World」來源小字；
+ *   - 實照載入失敗（onerror）或無實照時改顯示通用杯型插畫（依 glass 對應，插畫下方不附來源字）。
+ *
+ * 元件內容不影響抽屜的捲動邏輯：圖片區是捲動內容的第一個區塊，
+ * 高度固定為 aspect-video，不使用任何 sticky／fixed 定位。
+ *
+ * @param props 元件參數（recipe 以 key 綁定配方，切換配方時整體重建以重設失敗狀態）
+ */
+function RecipePicture({ recipe }: { recipe: Recipe }) {
+  // 實照載入失敗的本地狀態：onerror 後退回插畫，切換配方時由 key 重建重設。
+  const [photoFailed, setPhotoFailed] = useState(false);
+  const showPhoto = recipe.photoUrl !== undefined && !photoFailed;
+
+  return (
+    <figure className="m-0">
+      {showPhoto ? (
+        <>
+          <img
+            src={recipe.photoUrl}
+            alt={`${recipe.nameZh} 示意照片`}
+            loading="lazy"
+            onError={() => setPhotoFailed(true)}
+            className="aspect-video w-full rounded-xl border border-white/10 bg-night-800/50 object-cover"
+          />
+          <figcaption className="mt-1 text-right text-[11px] text-ink-muted">照片：IBA World</figcaption>
+        </>
+      ) : (
+        <img
+          src={glassIllustrationUrl(recipe.glass)}
+          alt={`${recipe.nameZh} 示意插畫`}
+          loading="lazy"
+          className="aspect-video w-full rounded-xl border border-white/10"
+        />
+      )}
+    </figure>
   );
 }
 

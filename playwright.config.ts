@@ -70,6 +70,7 @@ export default defineConfig({
         '**/owned.spec.ts',
         '**/bar-music.spec.ts',
         '**/bar-music-gesture.spec.ts',
+        '**/recipe-photo.spec.ts',
       ],
     },
     {
@@ -82,6 +83,7 @@ export default defineConfig({
         '**/owned.spec.ts',
         '**/bar-music.spec.ts',
         '**/bar-music-gesture.spec.ts',
+        '**/recipe-photo.spec.ts',
       ],
     },
     {

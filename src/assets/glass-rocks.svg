@@ -1,0 +1,58 @@
+<!--
+  join 這麼喝：通用杯型插畫——古典杯（rocks）。
+  適用杯型 rocks／tumbler 等矮胖直筒杯家族。
+  視覺語彙比照首頁入口卡插畫：深底、霓虹紫／青描邊、扁平風；
+  由 RecipeDrawer 在無實照時以 <img> 呈現，viewBox 為 16:9（320x180）可縮放。
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="rocks-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#12101c"/>
+      <stop offset="100%" stop-color="#08070d"/>
+    </linearGradient>
+    <linearGradient id="rocks-drink" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0.15"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 深底與氛圍光暈 -->
+  <rect width="320" height="180" fill="url(#rocks-bg)"/>
+  <circle cx="64" cy="40" r="64" fill="#22d3ee" opacity="0.06"/>
+  <circle cx="264" cy="140" r="64" fill="#a855f7" opacity="0.07"/>
+
+  <!-- 杯中液體與冰塊 -->
+  <path d="M122 84H198L190 138H130Z" fill="url(#rocks-drink)"/>
+  <g fill="#a855f7" opacity="0.35">
+    <rect x="133" y="64" width="17" height="17" rx="4" transform="rotate(-12 141.5 72.5)"/>
+    <rect x="163" y="66" width="18" height="18" rx="4" transform="rotate(9 172 75)"/>
+    <rect x="141" y="96" width="15" height="15" rx="3.5" transform="rotate(-5 148.5 103.5)"/>
+  </g>
+
+  <!-- 杯身與液面 -->
+  <g stroke="#22d3ee" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M118 56L128 142H192L202 56"/>
+    <path d="M118 56H202" stroke="#a855f7"/>
+    <path d="M124 84H196" opacity="0.55" stroke-width="2.6"/>
+  </g>
+
+  <!-- 杯口柑橘片 -->
+  <g stroke="#22d3ee" stroke-width="2.6" fill="none">
+    <circle cx="214" cy="58" r="11" opacity="0.9"/>
+    <path d="M214 47V69M203 52.5L225 63.5M225 52.5L203 63.5" opacity="0.55" stroke-width="2"/>
+  </g>
+
+  <!-- 昇起的煙霧 -->
+  <g stroke="#a855f7" stroke-width="2.4" stroke-linecap="round" opacity="0.4" fill="none">
+    <path d="M140 40C136 33 143 29 139 22"/>
+    <path d="M166 36C161 29 170 24 165 17"/>
+    <path d="M188 40C184 33 191 29 187 22"/>
+  </g>
+
+  <!-- 背景細點 -->
+  <g fill="#a855f7" opacity="0.45">
+    <circle cx="92" cy="120" r="2.2"/>
+    <circle cx="244" cy="104" r="2"/>
+    <circle cx="112" cy="30" r="1.6"/>
+  </g>
+</svg>

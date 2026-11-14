@@ -229,6 +229,13 @@ export interface Recipe {
   sourceUrl: string | null;
   /** 來源網站名稱。 */
   sourceSite?: string;
+  /**
+   * 示意照片的公開網址（IBA World 實照，存於 Supabase Storage）。
+   *
+   * 照片來源：有實照的杯才會有此欄位（值或為 undefined），
+   * 無實照者前端以杯型插畫替代，介面上不應出現空值欄位。
+   */
+  photoUrl?: string;
   /** 所有材料（不含裝飾）的食材 id，供比對引擎快速取用。 */
   ingredientIds: string[];
   /** 所有裝飾的食材 id，供比對引擎快速取用。 */
