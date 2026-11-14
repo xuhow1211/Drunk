@@ -316,7 +316,7 @@ async function main() {
       // 上傳與跳過（遠端已存在）都確保 photo-map 條目存在；
       // 上一次條目遺失但遠端物件健在時，重跑也能補齊。
       if (result.status !== 'failed') {
-        existingPhotos[recipe.id] = { url: publicPhotoUrl(credentials.supabaseUrl, recipe.id) };
+        existingPhotos[recipe.id] = { url: publicPhotoUrl(credentials.supabaseUrl, recipe.id), source: 'iba' };
         if (result.status === 'uploaded') stats.success.push(recipe.id);
         if (result.status === 'skipped') stats.skipped.push(recipe.id);
         if (result.warning) stats.warnings.push(`${recipe.id}：${result.warning}`);
@@ -352,6 +352,8 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
 
 export {
   BUCKET_NAME,
+  MAX_IMAGE_BYTES,
+  REQUEST_INTERVAL_MS,
   storageHeaders,
   storageObjectUrl,
   publicPhotoUrl,
@@ -362,5 +364,6 @@ export {
   imageKeywords,
   extractImageUrls,
   findMainImage,
+  downloadImage,
   processRecipe,
 };

@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-11-14T04:48:26.574Z",
+  "generatedAt": "2026-11-14T17:31:04.426Z",
   "recipes": [
     {
       "id": "alexander",
@@ -73,7 +73,8 @@
       "garnishIds": [
         "nutmeg"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/alexander.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/alexander.webp",
+      "photoSource": "iba"
     },
     {
       "id": "americano",
@@ -149,7 +150,8 @@
         "orange-peel",
         "lemon-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/americano.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/americano.webp",
+      "photoSource": "iba"
     },
     {
       "id": "angel-face",
@@ -218,7 +220,8 @@
         "calvados"
       ],
       "garnishIds": [],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/angel-face.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/angel-face.webp",
+      "photoSource": "iba"
     },
     {
       "id": "aviation",
@@ -307,7 +310,8 @@
       "garnishIds": [
         "cherry"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/aviation.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/aviation.webp",
+      "photoSource": "iba"
     },
     {
       "id": "bees-knees",
@@ -388,7 +392,8 @@
       "garnishIds": [
         "orange-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/bees-knees.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/bees-knees.webp",
+      "photoSource": "iba"
     },
     {
       "id": "bellini",
@@ -451,7 +456,8 @@
         "peach-puree"
       ],
       "garnishIds": [],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/bellini.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/bellini.webp",
+      "photoSource": "iba"
     },
     {
       "id": "between-the-sheets",
@@ -526,7 +532,8 @@
         "lemon-juice"
       ],
       "garnishIds": [],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/between-the-sheets.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/between-the-sheets.webp",
+      "photoSource": "iba"
     },
     {
       "id": "black-russian",
@@ -586,7 +593,8 @@
         "coffee-liqueur"
       ],
       "garnishIds": [],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/black-russian.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/black-russian.webp",
+      "photoSource": "iba"
     },
     {
       "id": "bloody-mary",
@@ -712,7 +720,8 @@
         "celery",
         "lemon-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/bloody-mary.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/bloody-mary.webp",
+      "photoSource": "iba"
     },
     {
       "id": "boulevardier",
@@ -787,7 +796,8 @@
         "orange-peel",
         "lemon-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/boulevardier.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/boulevardier.webp",
+      "photoSource": "iba"
     },
     {
       "id": "bramble",
@@ -878,7 +888,8 @@
         "lemon-peel",
         "blackberry"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/bramble.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/bramble.webp",
+      "photoSource": "iba"
     },
     {
       "id": "brandy-crusta",
@@ -973,7 +984,8 @@
         "sugar-rim",
         "orange-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/brandy-crusta.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/brandy-crusta.webp",
+      "photoSource": "iba"
     },
     {
       "id": "caipirinha",
@@ -1061,7 +1073,8 @@
       "garnishIds": [
         "lime"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/caipirinha.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/caipirinha.webp",
+      "photoSource": "iba"
     },
     {
       "id": "canchanchara",
@@ -1140,7 +1153,8 @@
       "garnishIds": [
         "lime-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/canchanchara.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/canchanchara.webp",
+      "photoSource": "iba"
     },
     {
       "id": "cardinale",
@@ -1212,7 +1226,8 @@
       "garnishIds": [
         "lemon-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/cardinale.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/cardinale.webp",
+      "photoSource": "iba"
     },
     {
       "id": "casino",
@@ -1291,7 +1306,8 @@
         "lemon-peel",
         "cherry"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/casino.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/casino.webp",
+      "photoSource": "iba"
     },
     {
       "id": "champagne-cocktail",
@@ -1380,7 +1396,8 @@
         "orange-peel",
         "cherry"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/champagne-cocktail.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/champagne-cocktail.webp",
+      "photoSource": "iba"
     },
     {
       "id": "chartreuse-swizzle",
@@ -1463,7 +1480,8 @@
         "mint",
         "nutmeg"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/chartreuse-swizzle.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/chartreuse-swizzle.webp",
+      "photoSource": "iba"
     },
     {
       "id": "clover-club",
@@ -1558,7 +1576,8 @@
       "garnishIds": [
         "raspberry"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/clover-club.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/clover-club.webp",
+      "photoSource": "iba"
     },
     {
       "id": "corpse-reviver-2",
@@ -1646,7 +1665,8 @@
       "garnishIds": [
         "orange-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/corpse-reviver-2.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/corpse-reviver-2.webp",
+      "photoSource": "iba"
     },
     {
       "id": "cosmopolitan",
@@ -1727,7 +1747,8 @@
       "garnishIds": [
         "lemon-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/cosmopolitan.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/cosmopolitan.webp",
+      "photoSource": "iba"
     },
     {
       "id": "cuba-libre",
@@ -1800,7 +1821,8 @@
       "garnishIds": [
         "lime-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/cuba-libre.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/cuba-libre.webp",
+      "photoSource": "iba"
     },
     {
       "id": "daiquiri",
@@ -1895,7 +1917,8 @@
       "garnishIds": [
         "lime-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/daiquiri.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/daiquiri.webp",
+      "photoSource": "iba"
     },
     {
       "id": "dark-n-stormy",
@@ -1989,7 +2012,8 @@
       "garnishIds": [
         "lime-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/dark-n-stormy.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/dark-n-stormy.webp",
+      "photoSource": "iba"
     },
     {
       "id": "dons-special-daiquiri",
@@ -2075,7 +2099,8 @@
       "garnishIds": [
         "passion-fruit"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/dons-special-daiquiri.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/dons-special-daiquiri.webp",
+      "photoSource": "iba"
     },
     {
       "id": "dry-martini",
@@ -2150,7 +2175,8 @@
         "olive",
         "lemon-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/dry-martini.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/dry-martini.webp",
+      "photoSource": "iba"
     },
     {
       "id": "espresso-martini",
@@ -2252,7 +2278,8 @@
       "garnishIds": [
         "coffee-bean"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/espresso-martini.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/espresso-martini.webp",
+      "photoSource": "iba"
     },
     {
       "id": "fernandito",
@@ -2312,7 +2339,8 @@
         "cola"
       ],
       "garnishIds": [],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/fernandito.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/fernandito.webp",
+      "photoSource": "iba"
     },
     {
       "id": "french-75",
@@ -2401,7 +2429,8 @@
       "garnishIds": [
         "lemon-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/french-75.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/french-75.webp",
+      "photoSource": "iba"
     },
     {
       "id": "french-connection",
@@ -2462,7 +2491,8 @@
         "amaretto"
       ],
       "garnishIds": [],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/french-connection.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/french-connection.webp",
+      "photoSource": "iba"
     },
     {
       "id": "french-martini",
@@ -2542,7 +2572,8 @@
       "garnishIds": [
         "lemon-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/french-martini.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/french-martini.webp",
+      "photoSource": "iba"
     },
     {
       "id": "garibaldi",
@@ -2616,7 +2647,8 @@
       "garnishIds": [
         "orange-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/garibaldi.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/garibaldi.webp",
+      "photoSource": "iba"
     },
     {
       "id": "gin-basil-smash",
@@ -2703,7 +2735,8 @@
       "garnishIds": [
         "basil"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/gin-basil-smash.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/gin-basil-smash.webp",
+      "photoSource": "iba"
     },
     {
       "id": "gin-fizz",
@@ -2791,7 +2824,8 @@
       "garnishIds": [
         "lemon-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/gin-fizz.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/gin-fizz.webp",
+      "photoSource": "iba"
     },
     {
       "id": "grand-margarita",
@@ -2866,7 +2900,8 @@
         "lime-peel",
         "salt"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/grand-margarita.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/grand-margarita.webp",
+      "photoSource": "iba"
     },
     {
       "id": "grasshopper",
@@ -2940,7 +2975,8 @@
       "garnishIds": [
         "mint"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/grasshopper.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/grasshopper.webp",
+      "photoSource": "iba"
     },
     {
       "id": "hanky-panky",
@@ -3021,7 +3057,8 @@
       "garnishIds": [
         "orange-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/hanky-panky.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/hanky-panky.webp",
+      "photoSource": "iba"
     },
     {
       "id": "hemingway-special",
@@ -3097,7 +3134,8 @@
         "lime-juice"
       ],
       "garnishIds": [],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/hemingway-special.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/hemingway-special.webp",
+      "photoSource": "iba"
     },
     {
       "id": "horses-neck",
@@ -3169,7 +3207,8 @@
       "garnishIds": [
         "lemon-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/horses-neck.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/horses-neck.webp",
+      "photoSource": "iba"
     },
     {
       "id": "iba-tiki",
@@ -3289,7 +3328,8 @@
         "dehydrated-orange",
         "pineapple-leaf"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/iba-tiki.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/iba-tiki.webp",
+      "photoSource": "iba"
     },
     {
       "id": "illegal",
@@ -3385,7 +3425,8 @@
         "egg-white"
       ],
       "garnishIds": [],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/illegal.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/illegal.webp",
+      "photoSource": "iba"
     },
     {
       "id": "irish-coffee",
@@ -3476,7 +3517,8 @@
         "nutmeg",
         "coffee-bean"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/irish-coffee.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/irish-coffee.webp",
+      "photoSource": "iba"
     },
     {
       "id": "john-collins",
@@ -3557,7 +3599,8 @@
         "lemon-peel",
         "cherry"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/john-collins.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/john-collins.webp",
+      "photoSource": "iba"
     },
     {
       "id": "jungle-bird",
@@ -3659,7 +3702,8 @@
       "garnishIds": [
         "pineapple"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/jungle-bird.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/jungle-bird.webp",
+      "photoSource": "iba"
     },
     {
       "id": "kir",
@@ -3721,7 +3765,8 @@
         "cassis-liqueur"
       ],
       "garnishIds": [],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/kir.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/kir.webp",
+      "photoSource": "iba"
     },
     {
       "id": "last-word",
@@ -3811,7 +3856,8 @@
         "lime-peel",
         "cherry"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/last-word.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/last-word.webp",
+      "photoSource": "iba"
     },
     {
       "id": "lemon-drop-martini",
@@ -3899,7 +3945,8 @@
       "garnishIds": [
         "lemon-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/lemon-drop-martini.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/lemon-drop-martini.webp",
+      "photoSource": "iba"
     },
     {
       "id": "long-island-iced-tea",
@@ -4023,7 +4070,8 @@
       "garnishIds": [
         "lemon-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/long-island-iced-tea.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/long-island-iced-tea.webp",
+      "photoSource": "iba"
     },
     {
       "id": "mai-tai",
@@ -4143,7 +4191,8 @@
         "mint",
         "lime-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/mai-tai.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/mai-tai.webp",
+      "photoSource": "iba"
     },
     {
       "id": "manhattan",
@@ -4224,7 +4273,8 @@
       "garnishIds": [
         "cherry"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/manhattan.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/manhattan.webp",
+      "photoSource": "iba"
     },
     {
       "id": "margarita",
@@ -4329,7 +4379,8 @@
         "lime-peel",
         "salt"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/margarita.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/margarita.webp",
+      "photoSource": "iba"
     },
     {
       "id": "martinez",
@@ -4438,7 +4489,8 @@
       "garnishIds": [
         "lemon-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/martinez.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/martinez.webp",
+      "photoSource": "iba"
     },
     {
       "id": "mary-pickford",
@@ -4513,7 +4565,8 @@
         "grenadine"
       ],
       "garnishIds": [],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/mary-pickford.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/mary-pickford.webp",
+      "photoSource": "iba"
     },
     {
       "id": "mimosa",
@@ -4579,7 +4632,8 @@
       "garnishIds": [
         "orange-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/mimosa.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/mimosa.webp",
+      "photoSource": "iba"
     },
     {
       "id": "mint-julep",
@@ -4660,7 +4714,8 @@
       "garnishIds": [
         "mint"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/mint-julep.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/mint-julep.webp",
+      "photoSource": "iba"
     },
     {
       "id": "missionarys-downfall",
@@ -4755,7 +4810,8 @@
         "mint",
         "pineapple"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/missionarys-downfall.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/missionarys-downfall.webp",
+      "photoSource": "iba"
     },
     {
       "id": "mojito",
@@ -4846,7 +4902,8 @@
         "mint",
         "lime-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/mojito.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/mojito.webp",
+      "photoSource": "iba"
     },
     {
       "id": "monkey-gland",
@@ -4921,7 +4978,8 @@
         "grenadine"
       ],
       "garnishIds": [],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/monkey-gland.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/monkey-gland.webp",
+      "photoSource": "iba"
     },
     {
       "id": "moscow-mule",
@@ -5001,7 +5059,8 @@
       "garnishIds": [
         "lime-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/moscow-mule.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/moscow-mule.webp",
+      "photoSource": "iba"
     },
     {
       "id": "naked-and-famous",
@@ -5077,7 +5136,8 @@
         "lime-juice"
       ],
       "garnishIds": [],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/naked-and-famous.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/naked-and-famous.webp",
+      "photoSource": "iba"
     },
     {
       "id": "negroni",
@@ -5151,7 +5211,8 @@
       "garnishIds": [
         "orange-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/negroni.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/negroni.webp",
+      "photoSource": "iba"
     },
     {
       "id": "new-york-sour",
@@ -5242,7 +5303,8 @@
         "orange-peel",
         "cherry"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/new-york-sour.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/new-york-sour.webp",
+      "photoSource": "iba"
     },
     {
       "id": "old-cuban",
@@ -5351,7 +5413,8 @@
       "garnishIds": [
         "mint"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/old-cuban.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/old-cuban.webp",
+      "photoSource": "iba"
     },
     {
       "id": "old-fashioned",
@@ -5464,7 +5527,8 @@
         "orange-peel",
         "cherry"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/old-fashioned.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/old-fashioned.webp",
+      "photoSource": "iba"
     },
     {
       "id": "paloma",
@@ -5561,7 +5625,8 @@
         "lime-peel",
         "salt"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/paloma.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/paloma.webp",
+      "photoSource": "iba"
     },
     {
       "id": "paper-plane",
@@ -5642,7 +5707,8 @@
       "garnishIds": [
         "orange-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/paper-plane.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/paper-plane.webp",
+      "photoSource": "iba"
     },
     {
       "id": "paradise",
@@ -5710,7 +5776,8 @@
         "orange-juice"
       ],
       "garnishIds": [],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/paradise.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/paradise.webp",
+      "photoSource": "iba"
     },
     {
       "id": "penicillin",
@@ -5821,7 +5888,8 @@
       "garnishIds": [
         "ginger"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/penicillin.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/penicillin.webp",
+      "photoSource": "iba"
     },
     {
       "id": "pina-colada",
@@ -5947,7 +6015,8 @@
         "pineapple",
         "cherry"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/pina-colada.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/pina-colada.webp",
+      "photoSource": "iba"
     },
     {
       "id": "pisco-punch",
@@ -6037,7 +6106,8 @@
         "cloves"
       ],
       "garnishIds": [],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/pisco-punch.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/pisco-punch.webp",
+      "photoSource": "iba"
     },
     {
       "id": "pisco-sour",
@@ -6146,7 +6216,8 @@
       "garnishIds": [
         "amargo-bitters"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/pisco-sour.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/pisco-sour.webp",
+      "photoSource": "iba"
     },
     {
       "id": "planters-punch",
@@ -6220,7 +6291,8 @@
       "garnishIds": [
         "orange-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/planters-punch.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/planters-punch.webp",
+      "photoSource": "iba"
     },
     {
       "id": "porn-star-martini",
@@ -6333,7 +6405,8 @@
         "passion-fruit",
         "sugar-rim"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/porn-star-martini.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/porn-star-martini.webp",
+      "photoSource": "iba"
     },
     {
       "id": "porto-flip",
@@ -6407,7 +6480,8 @@
       "garnishIds": [
         "nutmeg"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/porto-flip.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/porto-flip.webp",
+      "photoSource": "iba"
     },
     {
       "id": "rabo-de-galo",
@@ -6485,7 +6559,8 @@
       "garnishIds": [
         "orange-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/rabo-de-galo.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/rabo-de-galo.webp",
+      "photoSource": "iba"
     },
     {
       "id": "ramos-fizz",
@@ -6597,7 +6672,8 @@
         "soda-water"
       ],
       "garnishIds": [],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/ramos-fizz.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/ramos-fizz.webp",
+      "photoSource": "iba"
     },
     {
       "id": "remember-the-maine",
@@ -6677,7 +6753,8 @@
       "garnishIds": [
         "lemon-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/remember-the-maine.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/remember-the-maine.webp",
+      "photoSource": "iba"
     },
     {
       "id": "russian-spring-punch",
@@ -6768,7 +6845,8 @@
         "blackberry",
         "lemon-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/russian-spring-punch.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/russian-spring-punch.webp",
+      "photoSource": "iba"
     },
     {
       "id": "rusty-nail",
@@ -6832,7 +6910,8 @@
       "garnishIds": [
         "lemon-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/rusty-nail.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/rusty-nail.webp",
+      "photoSource": "iba"
     },
     {
       "id": "sazerac",
@@ -6949,7 +7028,8 @@
       "garnishIds": [
         "lemon-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/sazerac.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/sazerac.webp",
+      "photoSource": "iba"
     },
     {
       "id": "sea-breeze",
@@ -7024,7 +7104,8 @@
         "orange-peel",
         "cherry"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/sea-breeze.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/sea-breeze.webp",
+      "photoSource": "iba"
     },
     {
       "id": "sex-on-the-beach",
@@ -7118,7 +7199,8 @@
       "garnishIds": [
         "orange-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/sex-on-the-beach.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/sex-on-the-beach.webp",
+      "photoSource": "iba"
     },
     {
       "id": "sherry-cobbler",
@@ -7208,7 +7290,8 @@
         "orange-peel",
         "lemon-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/sherry-cobbler.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/sherry-cobbler.webp",
+      "photoSource": "iba"
     },
     {
       "id": "sidecar",
@@ -7303,7 +7386,8 @@
       "garnishIds": [
         "lemon-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/sidecar.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/sidecar.webp",
+      "photoSource": "iba"
     },
     {
       "id": "singapore-sling",
@@ -7421,7 +7505,8 @@
         "pineapple",
         "cherry"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/singapore-sling.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/singapore-sling.webp",
+      "photoSource": "iba"
     },
     {
       "id": "south-side",
@@ -7508,7 +7593,8 @@
       "garnishIds": [
         "mint"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/south-side.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/south-side.webp",
+      "photoSource": "iba"
     },
     {
       "id": "spicy-fifty",
@@ -7595,7 +7681,8 @@
       "garnishIds": [
         "chili"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/spicy-fifty.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/spicy-fifty.webp",
+      "photoSource": "iba"
     },
     {
       "id": "spritz",
@@ -7670,7 +7757,8 @@
       "garnishIds": [
         "orange-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/spritz.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/spritz.webp",
+      "photoSource": "iba"
     },
     {
       "id": "stinger",
@@ -7734,7 +7822,8 @@
       "garnishIds": [
         "mint"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/stinger.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/stinger.webp",
+      "photoSource": "iba"
     },
     {
       "id": "suffering-bastard",
@@ -7823,7 +7912,8 @@
         "mint",
         "orange-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/suffering-bastard.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/suffering-bastard.webp",
+      "photoSource": "iba"
     },
     {
       "id": "tequila-sunrise",
@@ -7895,7 +7985,8 @@
       "garnishIds": [
         "orange-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/tequila-sunrise.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/tequila-sunrise.webp",
+      "photoSource": "iba"
     },
     {
       "id": "three-dots-and-a-dash",
@@ -8006,7 +8097,8 @@
         "cherry",
         "pineapple"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/three-dots-and-a-dash.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/three-dots-and-a-dash.webp",
+      "photoSource": "iba"
     },
     {
       "id": "tipperary",
@@ -8085,7 +8177,8 @@
       "garnishIds": [
         "orange-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/tipperary.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/tipperary.webp",
+      "photoSource": "iba"
     },
     {
       "id": "tommys-margarita",
@@ -8173,7 +8266,8 @@
       "garnishIds": [
         "lime-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/tommys-margarita.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/tommys-margarita.webp",
+      "photoSource": "iba"
     },
     {
       "id": "trinidad-sour",
@@ -8250,7 +8344,8 @@
         "whiskey-rye"
       ],
       "garnishIds": [],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/trinidad-sour.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/trinidad-sour.webp",
+      "photoSource": "iba"
     },
     {
       "id": "tuxedo",
@@ -8338,7 +8433,8 @@
         "cherry",
         "lemon-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/tuxedo.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/tuxedo.webp",
+      "photoSource": "iba"
     },
     {
       "id": "ve-n-to",
@@ -8429,7 +8525,8 @@
         "lemon-peel",
         "white-grape"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/ve-n-to.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/ve-n-to.webp",
+      "photoSource": "iba"
     },
     {
       "id": "vesper",
@@ -8502,7 +8599,8 @@
       "garnishIds": [
         "lemon-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/vesper.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/vesper.webp",
+      "photoSource": "iba"
     },
     {
       "id": "vieux-carre",
@@ -8599,7 +8697,8 @@
         "orange-peel",
         "cherry"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/vieux-carre.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/vieux-carre.webp",
+      "photoSource": "iba"
     },
     {
       "id": "whiskey-sour",
@@ -8704,7 +8803,8 @@
         "orange-peel",
         "cherry"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/whiskey-sour.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/whiskey-sour.webp",
+      "photoSource": "iba"
     },
     {
       "id": "white-lady",
@@ -8806,7 +8906,8 @@
       "garnishIds": [
         "lemon-peel"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/white-lady.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/white-lady.webp",
+      "photoSource": "iba"
     },
     {
       "id": "zombie",
@@ -8993,7 +9094,8 @@
       "garnishIds": [
         "mint"
       ],
-      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/zombie.webp"
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/zombie.webp",
+      "photoSource": "iba"
     },
     {
       "id": "london-calling",
@@ -9348,7 +9450,9 @@
       "garnishIds": [
         "orange-peel",
         "mint"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/ramos-gin-fizz.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "slow-comfortable-screw",
@@ -9537,7 +9641,9 @@
       ],
       "garnishIds": [
         "lemon-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/tokyo-iced-tea.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "tom-collins",
@@ -9616,7 +9722,9 @@
       "garnishIds": [
         "orange-peel",
         "cherry"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/tom-collins.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "vodka-sour",
@@ -9708,7 +9816,9 @@
       "garnishIds": [
         "lemon-peel",
         "cherry"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/vodka-sour.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "white-russian",
@@ -9778,7 +9888,9 @@
       ],
       "garnishIds": [
         "nutmeg"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/white-russian.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "black-rose",
@@ -9862,7 +9974,9 @@
       ],
       "garnishIds": [
         "lemon-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/black-rose.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "final-ward",
@@ -10276,7 +10390,9 @@
       ],
       "garnishIds": [
         "lime-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/mezcal-margarita.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "vesper-dry-martini",
@@ -10346,7 +10462,9 @@
       ],
       "garnishIds": [
         "lemon-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/vesper-dry-martini.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "nuclear-daiquiri",
@@ -10430,7 +10548,9 @@
       ],
       "garnishIds": [
         "lime-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/nuclear-daiquiri.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "screaming-orgasm",
@@ -10521,7 +10641,9 @@
       ],
       "garnishIds": [
         "cocoa-powder"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/screaming-orgasm.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "air-mail",
@@ -10841,7 +10963,9 @@
       ],
       "garnishIds": [
         "nutmeg"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/brandy-alexander.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "pistachio-martini",
@@ -10918,7 +11042,9 @@
       ],
       "garnishIds": [
         "pistachio-liqueur"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/pistachio-martini.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "breakfast-martini",
@@ -10995,7 +11121,9 @@
       ],
       "garnishIds": [
         "orange-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/breakfast-martini.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "bijou-cocktail",
@@ -11076,7 +11204,9 @@
       "garnishIds": [
         "orange-peel",
         "cherry"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/bijou-cocktail.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "white-negroni",
@@ -11153,7 +11283,9 @@
       ],
       "garnishIds": [
         "grapefruit-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/white-negroni.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "milano-torino",
@@ -11637,7 +11769,9 @@
       ],
       "garnishIds": [
         "cherry"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/black-manhattan.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "picante-de-la-casa",
@@ -12053,7 +12187,9 @@
       "garnishIds": [
         "lime-peel",
         "mint"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/hugo-spritz.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "amaretto-sour",
@@ -12132,7 +12268,9 @@
       "garnishIds": [
         "lemon-peel",
         "cherry"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/amaretto-sour.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "batanga",
@@ -12702,7 +12840,9 @@
       ],
       "garnishIds": [
         "olive"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/dirty-martini.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "el-presidente",
@@ -12954,7 +13094,9 @@
       ],
       "garnishIds": [
         "lime-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/gimlet.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "godfather",
@@ -13024,7 +13166,9 @@
       ],
       "garnishIds": [
         "orange-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/godfather.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "hemingway-special-daiquiri",
@@ -13374,7 +13518,9 @@
       "garnishIds": [
         "grapefruit-peel",
         "raspberry"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/blinker-cocktail.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "california-cooler-cocktail",
@@ -13609,7 +13755,9 @@
       ],
       "garnishIds": [
         "lemon-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/chrysanthemum-cocktail.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "classic-champs-elysees-cocktail",
@@ -14136,7 +14284,9 @@
       "garnishIds": [
         "grapefruit-peel",
         "lime-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/guava-coconut-paloma.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "hoodwinked",
@@ -14695,7 +14845,9 @@
       "garnishIds": [
         "lime-peel",
         "pineapple"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/islay-daiquiri.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "agave-gracias",
@@ -14843,7 +14995,9 @@
       ],
       "garnishIds": [
         "lemon-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/amaro-highball.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "archie",
@@ -15582,7 +15736,9 @@
       ],
       "garnishIds": [
         "basil"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/basil-gimlet.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "batida-de-coco",
@@ -15930,7 +16086,9 @@
       "garnishIds": [
         "lime-peel",
         "salt"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/bitter-margarita.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "bobby-heugels-rusty-nail",
@@ -16087,7 +16245,9 @@
       ],
       "garnishIds": [
         "orange-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/bridgetown-negroni.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "bywater",
@@ -16257,7 +16417,9 @@
       ],
       "garnishIds": [
         "lime-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/cadillac-margarita.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "cat-bite-clubs-alaska",
@@ -16732,7 +16894,9 @@
       ],
       "garnishIds": [
         "lime-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/coconut-margarita.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "virgin-mojito",
@@ -16822,7 +16986,9 @@
       "garnishIds": [
         "mint",
         "lime"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/virgin-mojito.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "shirley-temple",
@@ -17255,7 +17421,9 @@
       "garnishIds": [
         "celery",
         "lime"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/virgin-mary.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "pussyfoot",
@@ -17431,7 +17599,9 @@
       ],
       "garnishIds": [
         "passion-fruit"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/virgin-passion.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "roasted-mule-mocktail",
@@ -17690,7 +17860,9 @@
       ],
       "garnishIds": [
         "orange-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/afterglow.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "strawberry-lemonade",
@@ -17772,7 +17944,9 @@
       "garnishIds": [
         "strawberry",
         "lemon-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/strawberry-lemonade.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "aloha-fruit-punch",
@@ -17868,7 +18042,9 @@
       "garnishIds": [
         "pineapple",
         "lemon-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/aloha-fruit-punch.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "spiced-peach-punch",
@@ -17964,7 +18140,9 @@
       "garnishIds": [
         "cinnamon",
         "orange-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/spiced-peach-punch.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "cranberry-punch",
@@ -18051,7 +18229,9 @@
       ],
       "garnishIds": [
         "berries"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/cranberry-punch.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "thai-iced-tea",
@@ -18138,7 +18318,9 @@
       ],
       "garnishIds": [
         "mint"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/thai-iced-tea.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "masala-chai",
@@ -18255,7 +18437,9 @@
       "garnishIds": [
         "cardamom",
         "cinnamon"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/masala-chai.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "limeade",
@@ -18335,7 +18519,9 @@
       ],
       "garnishIds": [
         "lime"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/limeade.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "mint-limeade",
@@ -18430,7 +18616,9 @@
       "garnishIds": [
         "mint",
         "lime"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/mint-limeade.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "real-lemonade",
@@ -18510,7 +18698,9 @@
       ],
       "garnishIds": [
         "lemon-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/real-lemonade.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "thai-lemonade",
@@ -18599,7 +18789,9 @@
       "garnishIds": [
         "cilantro",
         "lime"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/thai-lemonade.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "lemon-drop-shot",
@@ -18952,7 +19144,9 @@
       ],
       "garnishIds": [
         "olive"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/bijou-shot.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "f-16-shot",
@@ -19092,7 +19286,9 @@
       ],
       "garnishIds": [
         "cream"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/bubblegum-shot.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "fifth-avenue-shot",
@@ -19225,7 +19421,9 @@
       ],
       "garnishIds": [
         "blackberry"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/pavlova-shot.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "peanut-butter-jelly-shot",
@@ -19621,7 +19819,9 @@
         "cacao-liqueur-white",
         "southern-comfort"
       ],
-      "garnishIds": []
+      "garnishIds": [],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/avalanche-shot.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "stars-and-stripes-shot",
@@ -19909,7 +20109,9 @@
         "sambuca",
         "cassis-liqueur"
       ],
-      "garnishIds": []
+      "garnishIds": [],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/liquorice-shot.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "opening-shot",
@@ -19978,7 +20180,9 @@
         "vermouth-red",
         "grenadine"
       ],
-      "garnishIds": []
+      "garnishIds": [],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/opening-shot.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "espresso-rumtini",
@@ -20066,7 +20270,9 @@
       "garnishIds": [
         "cocoa-powder",
         "coffee-bean"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/espresso-rumtini.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "kamikaze-body-shot",
@@ -20207,7 +20413,9 @@
         "cola",
         "soda-water"
       ],
-      "garnishIds": []
+      "garnishIds": [],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/fernet-shot.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "gin-and-tonic",
@@ -20282,7 +20490,9 @@
       ],
       "garnishIds": [
         "lime"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/gin-and-tonic.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "diffords-daiquiri",
@@ -20354,7 +20564,9 @@
       ],
       "garnishIds": [
         "lime"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/diffords-daiquiri.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "diffords-gimlet",
@@ -20448,7 +20660,9 @@
       ],
       "garnishIds": [
         "lime"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/diffords-gimlet.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "diffords-basil-gimlet",
@@ -20537,7 +20751,9 @@
       "garnishIds": [
         "basil",
         "lime"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/diffords-basil-gimlet.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "eastside-gimlet",
@@ -20633,7 +20849,9 @@
       "garnishIds": [
         "mint",
         "cucumber"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/eastside-gimlet.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "ginger-mojito",
@@ -20729,7 +20947,9 @@
       "garnishIds": [
         "mint",
         "lime"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/ginger-mojito.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "ginger-punch",
@@ -20825,7 +21045,9 @@
       "garnishIds": [
         "lime",
         "ginger"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/ginger-punch.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "caipiginger",
@@ -21076,7 +21298,9 @@
       ],
       "garnishIds": [
         "lemon-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/bohemian-iced-tea.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "loch-almond-highball",
@@ -21485,7 +21709,9 @@
       ],
       "garnishIds": [
         "lemon-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/hard-lemonade.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "icy-pink-lemonade",
@@ -21645,7 +21871,9 @@
       ],
       "garnishIds": [
         "lime"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/frisky-lemonade.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "coffee-and-vanilla-daiquiri",
@@ -21808,7 +22036,9 @@
         "coffee-espresso",
         "rich-syrup"
       ],
-      "garnishIds": []
+      "garnishIds": [],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/brazilian-coffee.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "coffee-batida",
@@ -21954,7 +22184,9 @@
       ],
       "garnishIds": [
         "orange-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/screwdriver.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "rum-screwdriver",
@@ -22026,7 +22258,9 @@
       ],
       "garnishIds": [
         "orange-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/rum-screwdriver.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "english-iced-tea",
@@ -22126,7 +22360,9 @@
       ],
       "garnishIds": [
         "lime"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/english-iced-tea.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "almond-joy",
@@ -22195,7 +22431,9 @@
         "cacao-liqueur-white",
         "cream"
       ],
-      "garnishIds": []
+      "garnishIds": [],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/almond-joy.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "kaoliang-cola",
@@ -23485,7 +23723,9 @@
       "garnishIds": [
         "mint",
         "lime"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/taiwanese-mojito.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "sea-breeze-kaoliang",
@@ -26073,7 +26313,9 @@
         "paolyta-b",
         "red-wine"
       ],
-      "garnishIds": []
+      "garnishIds": [],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/red-rose-paolyta.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "tribal-tiramisu",
@@ -26718,7 +26960,9 @@
         "taiwan-beer",
         "soju"
       ],
-      "garnishIds": []
+      "garnishIds": [],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/soju-beer.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "beer-calpis",
@@ -27196,7 +27440,9 @@
       ],
       "garnishIds": [
         "pineapple"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/rainbow-cocktail.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "sake-lime",
@@ -27545,7 +27791,9 @@
       ],
       "garnishIds": [
         "pineapple"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/yuchun-pink-lady.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "orchid-punch",
@@ -27763,7 +28011,9 @@
       ],
       "garnishIds": [
         "cherry"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/golden-lady.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "phoenix-cocktail",
@@ -28257,7 +28507,7 @@
         }
       ],
       "steps": [
-        "將小米酒與養樂多混合均勻。",
+        "將小米酒與養樂多混合均勻（小米酒部分門市才有售，買不到時可改用米酒頭兌）。",
         "加入冰塊。",
         "也可以做成打成冰的版本。"
       ],
@@ -28497,7 +28747,9 @@
       "garnishIds": [
         "lemon-peel",
         "cherry"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/ttl-tom-collins.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "ttl-gin-tonic",
@@ -28571,7 +28823,9 @@
       ],
       "garnishIds": [
         "lemon-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/ttl-gin-tonic.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "ttl-gimlet",
@@ -28651,7 +28905,9 @@
       ],
       "garnishIds": [
         "lemon-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/ttl-gimlet.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "puli-beauty",
@@ -28964,7 +29220,9 @@
       "garnishIds": [
         "mint",
         "lime"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/umeshu-mojito.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "umeshu-fizz",
@@ -29046,7 +29304,9 @@
       ],
       "garnishIds": [
         "lemon-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/umeshu-fizz.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "umeshu-iced-tea",
@@ -29109,7 +29369,9 @@
         "plum-wine",
         "black-tea"
       ],
-      "garnishIds": []
+      "garnishIds": [],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/umeshu-iced-tea.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "umeshu-beer",
@@ -29173,7 +29435,9 @@
         "plum-wine",
         "taiwan-beer"
       ],
-      "garnishIds": []
+      "garnishIds": [],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/umeshu-beer.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "umeshu-soda",
@@ -29236,7 +29500,9 @@
         "plum-wine",
         "soda-water"
       ],
-      "garnishIds": []
+      "garnishIds": [],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/umeshu-soda.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "umeshu-milk",
@@ -29481,7 +29747,9 @@
         "orange-peel",
         "lemon-peel",
         "mint"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/diffords-sangaree.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "diffords-sangria",
@@ -29568,7 +29836,9 @@
       ],
       "garnishIds": [
         "orange-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/diffords-sangria.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "diffords-white-sangria",
@@ -29649,7 +29919,9 @@
       ],
       "garnishIds": [
         "lemon-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/diffords-white-sangria.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "diffords-mojito",
@@ -29741,7 +30013,9 @@
       "garnishIds": [
         "mint",
         "lime"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/diffords-mojito.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "diffords-paloma",
@@ -29830,7 +30104,9 @@
       ],
       "garnishIds": [
         "grapefruit-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/diffords-paloma.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "diffords-paloma-simple",
@@ -29980,7 +30256,9 @@
       ],
       "garnishIds": [
         "orange-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/diffords-aperol-spritz.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "diffords-summer-breeze",
@@ -30061,7 +30339,9 @@
       ],
       "garnishIds": [
         "apple"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/diffords-summer-breeze.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "diffords-summer-rose",
@@ -30138,7 +30418,9 @@
         "lychee-liqueur",
         "grenadine"
       ],
-      "garnishIds": []
+      "garnishIds": [],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/diffords-summer-rose.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "diffords-summertime",
@@ -30218,7 +30500,9 @@
       ],
       "garnishIds": [
         "kumquat-juice"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/diffords-summertime.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "diffords-summer-americano",
@@ -30307,7 +30591,9 @@
       ],
       "garnishIds": [
         "lemon-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/diffords-summer-americano.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "diffords-summer-sour",
@@ -30403,7 +30689,9 @@
       ],
       "garnishIds": [
         "lemon-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/diffords-summer-sour.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "diffords-hot-toddy-scotch-lemon",
@@ -30799,7 +31087,9 @@
         "orange-peel",
         "cinnamon",
         "cloves"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/diffords-mulled-wine.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "diffords-mulled-white-wine",
@@ -31142,7 +31432,9 @@
       "garnishIds": [
         "cherry",
         "lemon-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/diffords-winter-punch.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "diffords-maxims-coffee",
@@ -31309,7 +31601,9 @@
       "garnishIds": [
         "nutmeg",
         "coffee-bean"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/diffords-irish-coffee.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "diffords-eggnog-hot",
@@ -31486,7 +31780,9 @@
       ],
       "garnishIds": [
         "lime"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/diffords-swedish-rum-punch.webp",
+      "photoSource": "tcdb"
     },
     {
       "id": "diffords-swedish-ale-punch",
@@ -31569,6 +31865,270 @@
       "garnishIds": [
         "lemon-peel"
       ]
+    },
+    {
+      "id": "kaoliang-oolong-tea",
+      "nameEn": "Kaoliang Oolong Tea",
+      "nameZh": "高粱烏龍茶",
+      "aliases": [
+        "高粱烏龍茶",
+        "Kaoliang Oolong Tea",
+        "茶香高粱兌茶"
+      ],
+      "collection": "easy",
+      "collections": [
+        "easy",
+        "popular"
+      ],
+      "category": "highball",
+      "glass": "highball",
+      "ice": "none",
+      "difficulty": 1,
+      "abv": "約 7%",
+      "time": "2 分鐘",
+      "ingredients": [
+        {
+          "id": "kaoliang",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "oolong-tea",
+          "amount": 250,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "高球杯裝滿冰塊（冰塊滿杯）。",
+        "倒入 60ml 高粱。",
+        "無糖烏龍茶 250ml（一瓶裝）沿杯壁補滿。",
+        "輕攪均勻即可，茶香會把高粱的酒感壓得很低。"
+      ],
+      "garnish": [],
+      "tags": [
+        "高粱",
+        "烏龍茶",
+        "便利商店",
+        "新手"
+      ],
+      "flavor": [
+        "herbal",
+        "bitter"
+      ],
+      "occasion": [
+        "獨飲",
+        "夏日"
+      ],
+      "popularity": 4,
+      "sourceUrl": null,
+      "sourceSite": "",
+      "ingredientIds": [
+        "kaoliang",
+        "oolong-tea"
+      ],
+      "garnishIds": []
+    },
+    {
+      "id": "kaoliang-smoked-plum",
+      "nameEn": "Kaoliang Smoked Plum",
+      "nameZh": "高粱烏梅汁",
+      "aliases": [
+        "高粱烏梅汁",
+        "Kaoliang Smoked Plum",
+        "高粱梅汁兌飲"
+      ],
+      "collection": "easy",
+      "collections": [
+        "easy",
+        "popular"
+      ],
+      "category": "sweet",
+      "glass": "highball",
+      "ice": "none",
+      "difficulty": 1,
+      "abv": "約 8%",
+      "time": "2 分鐘",
+      "ingredients": [
+        {
+          "id": "kaoliang",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "smoked-plum-juice",
+          "amount": 250,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "高球杯裝滿冰塊。",
+        "倒入 60ml 高粱。",
+        "補入冰鎮烏梅汁 250ml，輕攪均勻。",
+        "梅香酸甜，是超商烏梅汁最對味的兌法。"
+      ],
+      "garnish": [],
+      "tags": [
+        "高粱",
+        "烏梅汁",
+        "便利商店",
+        "新手"
+      ],
+      "flavor": [
+        "fruity",
+        "sour",
+        "sweet"
+      ],
+      "occasion": [
+        "夏日",
+        "獨飲"
+      ],
+      "popularity": 4,
+      "sourceUrl": null,
+      "sourceSite": "",
+      "ingredientIds": [
+        "kaoliang",
+        "smoked-plum-juice"
+      ],
+      "garnishIds": []
+    },
+    {
+      "id": "paolyta-yakult",
+      "nameEn": "Paolyta Yakult",
+      "nameZh": "保力達多多",
+      "aliases": [
+        "保力達多多",
+        "Paolyta Yakult",
+        "台版螺絲起子"
+      ],
+      "collection": "easy",
+      "collections": [
+        "easy",
+        "popular"
+      ],
+      "category": "sweet",
+      "glass": "highball",
+      "ice": "none",
+      "difficulty": 1,
+      "abv": "約 5%",
+      "time": "2 分鐘",
+      "ingredients": [
+        {
+          "id": "paolyta-b",
+          "amount": 30,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "yakult",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "杯中放入冰塊。",
+        "倒入 30ml 保力達B，再補入 60ml 養樂多。",
+        "輕攪均勻即可。",
+        "是台版的螺絲起子；保力達B 本身約 10% 酒精，混合後仍請保守估計濃度、慢慢喝。"
+      ],
+      "garnish": [],
+      "tags": [
+        "保力達B",
+        "養樂多",
+        "便利商店",
+        "新手"
+      ],
+      "flavor": [
+        "sweet",
+        "herbal"
+      ],
+      "occasion": [
+        "夏日",
+        "派對"
+      ],
+      "popularity": 4,
+      "sourceUrl": null,
+      "sourceSite": "",
+      "ingredientIds": [
+        "paolyta-b",
+        "yakult"
+      ],
+      "garnishIds": []
+    },
+    {
+      "id": "rice-wine-yakult-fizz",
+      "nameEn": "Rice Wine Yakult Fizz",
+      "nameZh": "米酒多多氣泡",
+      "aliases": [
+        "米酒多多氣泡",
+        "Rice Wine Yakult Fizz",
+        "米酒多多"
+      ],
+      "collection": "easy",
+      "collections": [
+        "easy",
+        "popular"
+      ],
+      "category": "fizz",
+      "glass": "highball",
+      "ice": "none",
+      "difficulty": 1,
+      "abv": "約 10%",
+      "time": "3 分鐘",
+      "ingredients": [
+        {
+          "id": "rice-wine",
+          "amount": 45,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "yakult",
+          "amount": 60,
+          "unit": "ml",
+          "optional": false
+        },
+        {
+          "id": "soda-water",
+          "amount": 90,
+          "unit": "ml",
+          "optional": false
+        }
+      ],
+      "steps": [
+        "高球杯裝滿冰塊。",
+        "倒入 45ml 米酒頭與 60ml 養樂多，攪拌均勻。",
+        "補入 90ml 氣泡水沿杯壁慢慢倒，保留氣泡。",
+        "想更清爽可以把米酒頭減到 30ml。"
+      ],
+      "garnish": [],
+      "tags": [
+        "米酒頭",
+        "養樂多",
+        "氣泡",
+        "便利商店"
+      ],
+      "flavor": [
+        "fizzy",
+        "sweet"
+      ],
+      "occasion": [
+        "夏日",
+        "派對"
+      ],
+      "popularity": 3,
+      "sourceUrl": null,
+      "sourceSite": "",
+      "ingredientIds": [
+        "rice-wine",
+        "yakult",
+        "soda-water"
+      ],
+      "garnishIds": []
     }
   ]
 }

@@ -157,12 +157,13 @@ values (${q(r.id)}, ${q(ing.id)}, ${qNum(ing.amount ?? null)}, ${qText(ing.unit)
 }
 
 /**
- * 補灌示意照片欄位（photo_url）。
+ * 補灌示意照片欄位（photo_url 與 photo_source）。
  *
  * 僅在有 photo-map 時執行：data/photo-map.json 由 scripts/fetch-iba-photos.mjs
- * 產出（尚未抓圖前不存在），此階段為每筆照片下 UPDATE 冪等語句，
- * 重複執行結果相同；photo-map 中的非法網址已在建置端過濾，此處只採用配方上
- * 實際套到的網址（與建置產物一致）。
+ * 與 scripts/fetch-tcdb-photos.mjs 產出（尚未抓圖前不存在），
+ * 此階段為每筆照片下 UPDATE 冪等語句，重複執行結果相同；
+ * photo-map 中的非法網址已在建置端過濾，此處只採用配方上實際套到的網址
+ * （與建置產物一致）。source 缺值的既有條目一律寫 'iba'。
  *
  * @param {object[]} recipes 建置產物的配方清單
  */
@@ -172,15 +173,19 @@ async function seedPhotoUrls(recipes) {
     console.log('未提供 photo-map，略過 photo_url 補灌。');
     return;
   }
-  const photoUrls = photoMap.photos ?? {};
-  const photoUrlOf = (recipeId) => {
-    const url = photoUrls[recipeId]?.url;
-    return typeof url === 'string' && url.startsWith('https://') ? url : null;
+  const photoEntries = photoMap.photos ?? {};
+  const photoOf = (recipeId) => {
+    const entry = photoEntries[recipeId];
+    if (!entry || typeof entry.url !== 'string' || !entry.url.startsWith('https://')) return null;
+    return { url: entry.url, source: entry.source === 'tcdb' ? 'tcdb' : 'iba' };
   };
   const seedRows = recipes
-    .map((r) => ({ id: r.id, url: photoUrlOf(r.id) }))
-    .filter((r) => r.url !== null)
-    .map((r) => `update recipes set photo_url = ${q(r.url)} where id = ${q(r.id)};`);
+    .map((r) => ({ id: r.id, photo: photoOf(r.id) }))
+    .filter((r) => r.photo !== null)
+    .map(
+      (r) =>
+        `update recipes set photo_url = ${q(r.photo.url)}, photo_source = ${q(r.photo.source)} where id = ${q(r.id)};`,
+    );
   if (seedRows.length === 0) {
     console.log('photo-map 沒有可套用的照片，略過 photo_url 補灌。');
     return;

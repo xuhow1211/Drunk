@@ -2,14 +2,30 @@
  * 瀏覽模式（經典調酒／熱門推薦）情境測試。
  *
  * 涵蓋：頁面載入、篩選、搜尋、空狀態、詳情抽屜、深層連結與 404。
+ *
+ * 卡片的示意照片存於 Supabase Storage：一律攔截 Storage 網址並回最小 PNG，
+ * 讓情境測試不依賴雲端網路的可用性與延遲。
  */
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Page, type Route } from '@playwright/test';
 import { ensureFilterGroupsExpanded } from './helpers';
 
 /** 配方卡片（RecipeCard 以按鈕呈現，帶 data-recipe-id）。 */
 function recipeCards(page: Page) {
   return page.locator('button[data-recipe-id]');
 }
+
+test.beforeEach(async ({ page }) => {
+  await page.route('**/storage/v1/object/public/**', (route) =>
+    route.fulfill({
+      status: 200,
+      contentType: 'image/png',
+      body: Buffer.from(
+        'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==',
+        'base64',
+      ),
+    }),
+  );
+});
 
 test.describe('瀏覽模式', () => {
   test('/classic 與 /popular 載入成功，卡片數大於零', async ({ page }) => {
@@ -23,7 +39,7 @@ test.describe('瀏覽模式', () => {
     await expect(page.getByRole('heading', { level: 1, name: '熱門推薦' })).toBeVisible();
     await expect(recipeCards(page).first()).toBeVisible();
     expect(await recipeCards(page).count()).toBeGreaterThan(0);
-    await expect(page.getByText('141 杯', { exact: true })).toBeVisible();
+    await expect(page.getByText('145 杯', { exact: true })).toBeVisible();
   });
 
   test('選取分類後結果數量減少，且剩餘卡片的分類皆相符', async ({ page }) => {
@@ -133,5 +149,71 @@ test.describe('瀏覽模式', () => {
     await expect(page.getByText('這個頁面不存在，或配方編號有誤。')).toBeVisible();
     await expect(page.getByRole('link', { name: '回到首頁' })).toBeVisible();
     await expect(page.getByRole('dialog')).toHaveCount(0);
+  });
+
+  test('主題 chip：/popular 點「經典款」後結果數量減少', async ({ page }) => {
+    await page.goto('/popular');
+    await expect(recipeCards(page).first()).toBeVisible();
+
+    const themeBar = page.getByLabel('主題');
+    // 行動版主題列為橫向捲動，先確保目標 chip 進入可點擊範圍
+    const classicChip = themeBar.getByRole('button', { name: '經典款' });
+    await classicChip.scrollIntoViewIfNeeded();
+    const before = await recipeCards(page).count();
+    expect(before).toBeGreaterThan(0);
+
+    await classicChip.click();
+
+    const after = await recipeCards(page).count();
+    expect(after).toBeGreaterThan(0);
+    expect(after).toBeLessThan(before);
+  });
+
+  test('有實照的配方卡顯示照片（Storage 請求由攔截滿足）', async ({ page }) => {
+    const captured: string[] = [];
+    // 攔 Storage 圖片並回 1x1 PNG；不寫死雲端網址，以攔截特徵驗證請求真的送出
+    await page.route('**/storage/v1/object/public/**', async (route: Route) => {
+      captured.push(route.request().url());
+      await route.fulfill({
+        status: 200,
+        contentType: 'image/png',
+        body: Buffer.from(
+          'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==',
+          'base64',
+        ),
+      });
+    });
+
+    await page.goto('/classic');
+    // 尼格羅尼可能不在首屏：懶載入的 img 要捲到附近才會發請求
+    const negroniImage = page
+      .locator('button[data-recipe-id="negroni"]')
+      .getByRole('img', { name: '尼格羅尼 示意照片' });
+    await negroniImage.scrollIntoViewIfNeeded();
+    await expect(negroniImage).toBeVisible();
+    await expect.poll(() => captured.length).toBeGreaterThan(0);
+  });
+
+  test('無實照的配方卡顯示漸層色塊（無照片 img、無 Storage 請求）', async ({ page }) => {
+    const captured: string[] = [];
+    await page.route('**/storage/v1/object/public/**', async (route: Route) => {
+      captured.push(route.request().url());
+      await route.fulfill({ status: 200, contentType: 'image/png', body: '' });
+    });
+
+    await page.goto('/easy');
+    const firstCard = recipeCards(page).first();
+    await expect(firstCard).toBeVisible();
+
+    // /easy 的卡片全是標籤命中、無 photoUrl 的配方：卡片內不應有示意照片 img
+    const cardIds = await page.locator('[data-recipe-id]').evaluateAll((nodes) =>
+      nodes.map((node) => node.getAttribute('data-recipe-id')),
+    );
+    const photosInCards = await page
+      .locator('button[data-recipe-id] img')
+      .count();
+    expect(photosInCards).toBe(0);
+    expect(cardIds.length).toBeGreaterThan(0);
+    expect(captured).toEqual([]);
   });
 });

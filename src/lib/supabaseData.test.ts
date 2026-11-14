@@ -2,8 +2,9 @@
  * Supabase 資料對應的單元測試。
  *
  * 驗證 DB（snake_case）→ 前端型別（camelCase）的對應規則，包括：
- * 欄位更名、可空欄位的補空、嵌入材料的對應、替代規則的逐列聚合，
- * 以及分頁讀滿整表的迴圈行為。全部以假 client 模擬，不做真實網路請求。
+ * 欄位更名、可空欄位的補空、嵌入材料的對應、照片來源（photo_source）的映射、
+ * 替代規則的逐列聚合，以及分頁讀滿整表的迴圈行為。
+ * 全部以假 client 模擬，不做真實網路請求。
  */
 import { describe, expect, it } from 'vitest';
 import type { SupabaseClient } from '@supabase/supabase-js';
@@ -77,6 +78,7 @@ const recipeRow = {
   source_url: 'https://example.com/gin-fizz',
   source_site: 'IBA',
   photo_url: 'https://example.com/photo/gin-fizz.webp',
+  photo_source: 'iba',
   recipe_ingredients: [
     { ingredient_id: 'soda-water', amount: null, unit: null, optional: false, position: 2 },
     { ingredient_id: 'gin', amount: '45', unit: 'ml', optional: false, position: 1 },
@@ -102,6 +104,7 @@ const baseRecipeRow = {
   source_url: null,
   source_site: null,
   photo_url: null,
+  photo_source: null,
   recipe_ingredients: null,
 };
 
@@ -131,8 +134,9 @@ describe('loadSupabaseData 對應規則', () => {
     expect(recipe.garnish).toEqual(['lemon-slice']);
     expect(recipe.sourceUrl).toBe('https://example.com/gin-fizz');
     expect(recipe.sourceSite).toBe('IBA');
-    // 示意照片：photo_url 有值時對應成 photoUrl
+    // 示意照片：photo_url 有值時對應成 photoUrl，並附上 photoSource
     expect(recipe.photoUrl).toBe('https://example.com/photo/gin-fizz.webp');
+    expect(recipe.photoSource).toBe('iba');
     expect(recipe.collection).toBe('classic');
     expect(recipe.collections).toEqual(['classic', 'popular']);
     // 可空欄位的補空
@@ -192,6 +196,23 @@ describe('loadSupabaseData 對應規則', () => {
     expect(recipe.sourceSite).toBeUndefined();
     // 示意照片為 null（尚未抓圖）時不設 photoUrl 欄位，與建置 JSON 的形狀一致
     expect('photoUrl' in recipe).toBe(false);
+    expect('photoSource' in recipe).toBe(false);
+  });
+
+  it('photo_url 有值時 photo_source 依 DB 欄位映射：tcdb 與 null（既有列→iba）', async () => {
+    const { client } = createFakeClient({
+      recipes: [
+        { ...baseRecipeRow, id: 't1', name_en: 'T1', name_zh: '譯1', photo_url: 'https://example.com/a.webp', photo_source: 'tcdb' },
+        { ...baseRecipeRow, id: 't2', name_en: 'T2', name_zh: '譯2', photo_url: 'https://example.com/b.webp', photo_source: null },
+      ],
+      ingredients: [],
+      substitutions: [],
+    });
+
+    const { dataset } = await loadSupabaseData(client);
+    expect(dataset.recipes[0]?.photoSource).toBe('tcdb');
+    // photo_source 為 null 的既有列（IBA 回填前的資料）一律視為 iba
+    expect(dataset.recipes[1]?.photoSource).toBe('iba');
   });
 
   it('查詢語法包含材料嵌入與排序參數，列數超過 1000 時逐頁抓滿', async () => {

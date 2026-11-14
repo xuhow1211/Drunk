@@ -18,8 +18,10 @@ export interface BrowsePageProps {
   title: string;
   /** 頁面副標。 */
   subtitle: string;
-  /** 本頁要呈現的配方系列。 */
-  collections: readonly Collection[];
+  /** 本頁要呈現的配方系列；未指定時呈現全部配方。 */
+  collections?: readonly Collection[];
+  /** 頁面開啟時預先套用的篩選條件（例如超商調酒頁預設開啟「便利商店」標籤）。 */
+  initialFilters?: Partial<FilterState>;
 }
 
 /**
@@ -27,17 +29,23 @@ export interface BrowsePageProps {
  *
  * @param props 元件參數
  */
-export function BrowsePage({ title, subtitle, collections }: BrowsePageProps) {
+export function BrowsePage({ title, subtitle, collections, initialFilters }: BrowsePageProps) {
   const { recipes, ingredients } = useCocktails();
-  const [filters, setFilters] = useState<FilterState>(DEFAULT_FILTERS);
+  const [filters, setFilters] = useState<FilterState>({
+    ...DEFAULT_FILTERS,
+    ...initialFilters,
+  });
 
   // 一杯酒可能同時屬於多個系列（例如既是 IBA 經典也是票選熱門），
   // 因此系列範圍以 collections 陣列判斷，不能只看單一 collection。
+  // 未指定系列時呈現全部配方，由篩選條件決定可見範圍（超商調酒頁即為此用法）。
   const scoped = useMemo(
     () =>
-      recipes.filter((recipe) =>
-        getRecipeCollections(recipe).some((collection) => collections.includes(collection)),
-      ),
+      collections
+        ? recipes.filter((recipe) =>
+            getRecipeCollections(recipe).some((collection) => collections.includes(collection)),
+          )
+        : recipes,
     [recipes, collections],
   );
 

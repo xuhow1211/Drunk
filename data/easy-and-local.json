@@ -9867,7 +9867,7 @@
     }
    ],
    "steps": [
-    "將小米酒與養樂多混合均勻。",
+    "將小米酒與養樂多混合均勻（小米酒部分門市才有售，買不到時可改用米酒頭兌）。",
     "加入冰塊。",
     "也可以做成打成冰的版本。"
    ],
@@ -12688,6 +12688,245 @@
    "popularity": 3,
    "sourceUrl": "https://www.diffordsguide.com/cocktails/recipe/2950/swedish-ale-punch",
    "sourceSite": "Difford’s Guide"
+  },
+  {
+   "id": "kaoliang-oolong-tea",
+   "nameEn": "Kaoliang Oolong Tea",
+   "nameZh": "高粱烏龍茶",
+   "aliases": [
+    "高粱烏龍茶",
+    "Kaoliang Oolong Tea",
+    "茶香高粱兌茶"
+   ],
+   "collections": [
+    "easy",
+    "popular"
+   ],
+   "category": "highball",
+   "glass": "highball",
+   "ice": "none",
+   "difficulty": 1,
+   "abv": "約 7%",
+   "time": "2 分鐘",
+   "ingredients": [
+    {
+     "id": "kaoliang",
+     "amount": 60,
+     "unit": "ml",
+     "optional": false
+    },
+    {
+     "id": "oolong-tea",
+     "amount": 250,
+     "unit": "ml",
+     "optional": false
+    }
+   ],
+   "steps": [
+    "高球杯裝滿冰塊（冰塊滿杯）。",
+    "倒入 60ml 高粱。",
+    "無糖烏龍茶 250ml（一瓶裝）沿杯壁補滿。",
+    "輕攪均勻即可，茶香會把高粱的酒感壓得很低。"
+   ],
+   "garnish": [],
+   "tags": [
+    "高粱",
+    "烏龍茶",
+    "便利商店",
+    "新手"
+   ],
+   "flavor": [
+    "herbal",
+    "bitter"
+   ],
+   "occasion": [
+    "獨飲",
+    "夏日"
+   ],
+   "popularity": 4,
+   "sourceUrl": null,
+   "sourceSite": null
+  },
+  {
+   "id": "kaoliang-smoked-plum",
+   "nameEn": "Kaoliang Smoked Plum",
+   "nameZh": "高粱烏梅汁",
+   "aliases": [
+    "高粱烏梅汁",
+    "Kaoliang Smoked Plum",
+    "高粱梅汁兌飲"
+   ],
+   "collections": [
+    "easy",
+    "popular"
+   ],
+   "category": "sweet",
+   "glass": "highball",
+   "ice": "none",
+   "difficulty": 1,
+   "abv": "約 8%",
+   "time": "2 分鐘",
+   "ingredients": [
+    {
+     "id": "kaoliang",
+     "amount": 60,
+     "unit": "ml",
+     "optional": false
+    },
+    {
+     "id": "smoked-plum-juice",
+     "amount": 250,
+     "unit": "ml",
+     "optional": false
+    }
+   ],
+   "steps": [
+    "高球杯裝滿冰塊。",
+    "倒入 60ml 高粱。",
+    "補入冰鎮烏梅汁 250ml，輕攪均勻。",
+    "梅香酸甜，是超商烏梅汁最對味的兌法。"
+   ],
+   "garnish": [],
+   "tags": [
+    "高粱",
+    "烏梅汁",
+    "便利商店",
+    "新手"
+   ],
+   "flavor": [
+    "fruity",
+    "sour",
+    "sweet"
+   ],
+   "occasion": [
+    "夏日",
+    "獨飲"
+   ],
+   "popularity": 4,
+   "sourceUrl": null,
+   "sourceSite": null
+  },
+  {
+   "id": "paolyta-yakult",
+   "nameEn": "Paolyta Yakult",
+   "nameZh": "保力達多多",
+   "aliases": [
+    "保力達多多",
+    "Paolyta Yakult",
+    "台版螺絲起子"
+   ],
+   "collections": [
+    "easy",
+    "popular"
+   ],
+   "category": "sweet",
+   "glass": "highball",
+   "ice": "none",
+   "difficulty": 1,
+   "abv": "約 5%",
+   "time": "2 分鐘",
+   "ingredients": [
+    {
+     "id": "paolyta-b",
+     "amount": 30,
+     "unit": "ml",
+     "optional": false
+    },
+    {
+     "id": "yakult",
+     "amount": 60,
+     "unit": "ml",
+     "optional": false
+    }
+   ],
+   "steps": [
+    "杯中放入冰塊。",
+    "倒入 30ml 保力達B，再補入 60ml 養樂多。",
+    "輕攪均勻即可。",
+    "是台版的螺絲起子；保力達B 本身約 10% 酒精，混合後仍請保守估計濃度、慢慢喝。"
+   ],
+   "garnish": [],
+   "tags": [
+    "保力達B",
+    "養樂多",
+    "便利商店",
+    "新手"
+   ],
+   "flavor": [
+    "sweet",
+    "herbal"
+   ],
+   "occasion": [
+    "夏日",
+    "派對"
+   ],
+   "popularity": 4,
+   "sourceUrl": null,
+   "sourceSite": null
+  },
+  {
+   "id": "rice-wine-yakult-fizz",
+   "nameEn": "Rice Wine Yakult Fizz",
+   "nameZh": "米酒多多氣泡",
+   "aliases": [
+    "米酒多多氣泡",
+    "Rice Wine Yakult Fizz",
+    "米酒多多"
+   ],
+   "collections": [
+    "easy",
+    "popular"
+   ],
+   "category": "fizz",
+   "glass": "highball",
+   "ice": "none",
+   "difficulty": 1,
+   "abv": "約 10%",
+   "time": "3 分鐘",
+   "ingredients": [
+    {
+     "id": "rice-wine",
+     "amount": 45,
+     "unit": "ml",
+     "optional": false
+    },
+    {
+     "id": "yakult",
+     "amount": 60,
+     "unit": "ml",
+     "optional": false
+    },
+    {
+     "id": "soda-water",
+     "amount": 90,
+     "unit": "ml",
+     "optional": false
+    }
+   ],
+   "steps": [
+    "高球杯裝滿冰塊。",
+    "倒入 45ml 米酒頭與 60ml 養樂多，攪拌均勻。",
+    "補入 90ml 氣泡水沿杯壁慢慢倒，保留氣泡。",
+    "想更清爽可以把米酒頭減到 30ml。"
+   ],
+   "garnish": [],
+   "tags": [
+    "米酒頭",
+    "養樂多",
+    "氣泡",
+    "便利商店"
+   ],
+   "flavor": [
+    "fizzy",
+    "sweet"
+   ],
+   "occasion": [
+    "夏日",
+    "派對"
+   ],
+   "popularity": 3,
+   "sourceUrl": null,
+   "sourceSite": null
   }
  ],
  "extraIngredients": [
@@ -12709,6 +12948,16 @@
    "category": "liqueur",
    "aliases": [
     "保力達"
+   ]
+  },
+  {
+   "id": "rice-wine",
+   "zh": "米酒（料理用）",
+   "en": "Rice Wine",
+   "category": "fortified-wine",
+   "common": true,
+   "aliases": [
+    "米酒頭"
    ]
   },
   {

@@ -332,7 +332,8 @@ export function RecipeDrawer({ recipe, onClose, related }: RecipeDrawerProps) {
  * 抽屜內容區最上方的圖片區。
  *
  * 顯示規則：
- *   - 有示意照片（recipe.photoUrl）時以全幅 16:9 顯示實照，下緣附「照片：IBA World」來源小字；
+ *   - 有示意照片（recipe.photoUrl）時以全幅 16:9 顯示實照，下緣附來源小字
+ *     （依 photoSource 顯示「照片：IBA World」或「照片：TheCocktailDB」）；
  *   - 實照載入失敗（onerror）或無實照時改顯示通用杯型插畫（依 glass 對應，插畫下方不附來源字）。
  *
  * 元件內容不影響抽屜的捲動邏輯：圖片區是捲動內容的第一個區塊，
@@ -356,7 +357,9 @@ function RecipePicture({ recipe }: { recipe: Recipe }) {
             onError={() => setPhotoFailed(true)}
             className="aspect-video w-full rounded-xl border border-white/10 bg-night-800/50 object-cover"
           />
-          <figcaption className="mt-1 text-right text-[11px] text-ink-muted">照片：IBA World</figcaption>
+          <figcaption className="mt-1 text-right text-[11px] text-ink-muted">
+            照片：{recipe.photoSource === 'tcdb' ? 'TheCocktailDB' : 'IBA World'}
+          </figcaption>
         </>
       ) : (
         <img

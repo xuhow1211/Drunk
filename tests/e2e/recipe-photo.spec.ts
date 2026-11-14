@@ -8,7 +8,20 @@
  * 圖片一律以 route 攔截滿足，不送真實網路請求；
  * Storage 網址不寫死，從畫面元素取得後比對攔截紀錄。
  */
+import fs from 'node:fs';
 import { expect, test, type Page, type Route } from '@playwright/test';
+
+/** 讀取建置產物的配方 JSON（Node ESM 不能直接 import JSON，改以 fs 讀檔）。 */
+function readCocktailDataset(): { recipes: Record<string, unknown>[]; [key: string]: unknown } {
+  const raw = fs.readFileSync(
+    new URL('../../src/data/cocktails.json', import.meta.url),
+    'utf8',
+  );
+  return JSON.parse(raw);
+}
+
+/** 建置產物的配方資料（photoSource 的靜態注入用）。 */
+const cocktailDataset = readCocktailDataset();
 
 /** 1x1 透明 PNG 的 base64（攔截圖片請求時回應用的最小合法圖檔）。 */
 const ONE_PIXEL_PNG_BASE64 =
@@ -68,9 +81,10 @@ async function fulfillSupabaseRest(
 }
 
 /**
- * Supabase 模式下 recipes 表的最小列（含 photo_url）。
+ * Supabase 模式下 recipes 表的最小列（含 photo_url 與 photo_source）。
  *
  * 僅需抽屜與對應邏輯用到的欄位；材料嵌入沿用嵌入清單形狀。
+ * photo_source 欄位的 tcdb／null 對應另由單元測試 supabaseData.test.ts 涵蓋。
  */
 const SUPABASE_RECIPE_ROWS: Record<string, unknown>[] = [
   {
@@ -95,6 +109,7 @@ const SUPABASE_RECIPE_ROWS: Record<string, unknown>[] = [
     source_url: 'https://www.iba-world.com/iba-cocktail/negroni/',
     source_site: 'IBA World',
     photo_url: 'https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/negroni.webp',
+    photo_source: 'iba',
     recipe_ingredients: [
       { ingredient_id: 'gin', amount: 30, unit: 'ml', optional: false, position: 1 },
     ],
@@ -183,5 +198,35 @@ test.describe('詳情抽屜示意照片', () => {
     expect(src).toContain('/storage/v1/object/public/');
     expect(intercepted).toContain(src);
     await expect(drawer(page).getByText('照片：IBA World')).toBeVisible();
+  });
+
+  test('photoSource 為 tcdb 時抽屜顯示照片與 TheCocktailDB 來源字', async ({ page }) => {
+    // 直接攔截靜態資料 JSON 並把尼格羅尼改成 tcdb 來源，
+    // 讓「photoSource → 抽屜來源小字」的前端對應在無 Supabase 環境也能驗證
+    // （資料庫欄位 photo_source 的對應另由單元測試 supabaseData.test.ts 涵蓋）。
+    const dataset = cocktailDataset.recipes.map((recipe) =>
+      recipe.id === 'negroni' ? { ...recipe, photoSource: 'tcdb' } : recipe,
+    );
+    await page.route('**/data/cocktails.json', (route) =>
+      route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ ...cocktailDataset, recipes: dataset }),
+      }),
+    );
+
+    const intercepted: string[] = [];
+    await mockStoragePhotos(page, intercepted);
+    const photoRequest = page.waitForRequest(STORAGE_URL_PATTERN);
+
+    await openRecipe(page, 'negroni');
+    await photoRequest;
+
+    const photo = drawer(page).getByRole('img', { name: '尼格羅尼 示意照片' });
+    await expect(photo).toBeVisible();
+    const src = await photo.getAttribute('src');
+    expect(src).toContain('/storage/v1/object/public/');
+    expect(intercepted).toContain(src);
+    await expect(drawer(page).getByText('照片：TheCocktailDB')).toBeVisible();
   });
 });

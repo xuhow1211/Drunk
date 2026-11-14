@@ -7,8 +7,8 @@
 import type { ReactNode } from 'react';
 import { useState } from 'react';
 import { FLAVOR_LABELS, RECIPE_CATEGORY_LABELS, difficultyLabel } from '../lib/format';
-import { SORT_OPTIONS } from '../lib/filters';
-import type { FilterFacets, FilterState, SortKey } from '../lib/filters';
+import { CONVENIENCE_STORE_TAG, SORT_OPTIONS, SUB_CATEGORY_LABELS } from '../lib/filters';
+import type { FilterFacets, FilterState, SortKey, SubCategory } from '../lib/filters';
 import { SearchIcon } from './Icons';
 
 /** FilterBar 的參數。 */
@@ -43,6 +43,8 @@ export function FilterBar({ filters, onChange, facets, resultCount }: FilterBarP
     filters.flavors.length > 0 ||
     filters.occasions.length > 0 ||
     filters.difficulties.length > 0 ||
+    filters.subCategories.length > 0 ||
+    filters.tags.length > 0 ||
     filters.abvMin !== null ||
     filters.abvMax !== null ||
     filters.query.trim() !== '';
@@ -85,6 +87,36 @@ export function FilterBar({ filters, onChange, facets, resultCount }: FilterBarP
             {resultCount} 杯
           </span>
         </div>
+      </div>
+
+      {/* 主題：超商調酒與推導子分類；放在可收合區外，行動版永遠可見並走橫向捲動 */}
+      <div
+        aria-label="主題"
+        className="mt-3 flex items-center gap-2 overflow-x-auto pb-1"
+      >
+        <span className="shrink-0 text-xs font-semibold tracking-wide text-ink-muted">主題</span>
+        <ChipButton
+          active={filters.tags.includes(CONVENIENCE_STORE_TAG)}
+          onClick={() =>
+            onChange({ ...filters, tags: toggle(filters.tags, CONVENIENCE_STORE_TAG) })
+          }
+        >
+          超商調酒
+        </ChipButton>
+        {(Object.keys(SUB_CATEGORY_LABELS) as SubCategory[]).map((subCategory) => (
+          <ChipButton
+            key={subCategory}
+            active={filters.subCategories.includes(subCategory)}
+            onClick={() =>
+              onChange({
+                ...filters,
+                subCategories: toggle(filters.subCategories, subCategory),
+              })
+            }
+          >
+            {SUB_CATEGORY_LABELS[subCategory]}
+          </ChipButton>
+        ))}
       </div>
 
       {/* 篩選面向：行動版預設收合，避免篩選列佔滿整個畫面 */}
@@ -206,6 +238,8 @@ export function FilterBar({ filters, onChange, facets, resultCount }: FilterBarP
                 flavors: [],
                 occasions: [],
                 difficulties: [],
+                subCategories: [],
+                tags: [],
                 abvMin: null,
                 abvMax: null,
                 query: '',
@@ -246,7 +280,7 @@ function ChipButton({
       type="button"
       onClick={onClick}
       aria-pressed={active}
-      className={`rounded-full border px-3 py-1 text-xs font-medium transition ${
+      className={`shrink-0 whitespace-nowrap rounded-full border px-3 py-1 text-xs font-medium transition ${
         active
           ? 'border-neon-purple/70 bg-neon-purple/20 text-ink shadow-[0_0_14px_-4px_rgba(168,85,247,0.9)]'
           : 'border-white/10 bg-white/5 text-ink-muted hover:border-white/25 hover:text-ink'

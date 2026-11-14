@@ -7,6 +7,7 @@
  */
 import { useMemo, useRef } from 'react';
 import type { PointerEvent as ReactPointerEvent, RefObject } from 'react';
+import { Link } from 'react-router-dom';
 import { useCocktails } from '../hooks/useCocktails';
 import { getRecipeCollections } from '../lib/filters';
 import { CountUp } from '../components/CountUp';
@@ -49,6 +50,16 @@ export function Home() {
       <Hero />
 
       <EntryCards classicCount={counts.classic} popularCount={counts.popular} />
+
+      {/* 超商調酒直達：批次一的三張入口卡不動，另以小型連結通往 /easy */}
+      <div className="mt-3 flex justify-center px-4 sm:justify-start">
+        <Link
+          to="/easy"
+          className="rounded-full border border-neon-cyan/35 bg-neon-cyan/10 px-4 py-1.5 text-xs font-semibold text-neon-cyan transition hover:bg-neon-cyan/20"
+        >
+          超商調酒專區 →
+        </Link>
+      </div>
 
       {/* 精選熱選（手機版與上段留白收緊，桌機維持原段距） */}
       <section className="mt-10 px-4 sm:mt-16 sm:px-6 lg:px-10" aria-label="精選熱選">
