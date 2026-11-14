@@ -87,7 +87,9 @@ function publicPhotoUrl(supabaseUrl, recipeId) {
 /**
  * 確認 Storage 桶存在；不存在時以 REST API 建立（公開讀取）。
  *
- * 冪等：GET 回 200 視為已存在；GET 回 404 時 POST 建桶，
+ * 冪等：GET 回 200 視為已存在；「不存在」回 404，或 Storage 的
+ * 變體（HTTP 400 ＋ body 含 NoSuchBucket「Bucket not found」），
+ * 兩者皆視為桶不存在並 POST 建桶；
  * 建桶回 409（並行下已被他人建立）視同成功，其餘非 2xx 拋錯。
  * 既有桶的公開設定由建立時決定，腳本不改動既有桶。
  */
@@ -96,7 +98,14 @@ async function ensureBucket({ supabaseUrl, serviceKey }) {
     headers: storageHeaders(serviceKey),
   });
   if (getResponse.ok) return;
-  if (getResponse.status !== 404) {
+  if (getResponse.status === 400) {
+    // Storage 對「桶不存在」的回應固定為 HTTP 400，錯誤碼在 body 內；
+    // 視為不存在，落到下方建立流程
+    const body = (await getResponse.text()).toUpperCase();
+    if (!body.includes('NOSUCHBUCKET')) {
+      throw new Error(`查詢 Storage 桶「${BUCKET_NAME}」失敗：HTTP ${getResponse.status}`);
+    }
+  } else if (getResponse.status !== 404) {
     throw new Error(`查詢 Storage 桶「${BUCKET_NAME}」失敗：HTTP ${getResponse.status}`);
   }
   const createResponse = await fetch(`${supabaseUrl}/storage/v1/bucket`, {
