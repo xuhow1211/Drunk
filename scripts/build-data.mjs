@@ -17,6 +17,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { applyPhotoMap, readPhotoMap } from './photo-map.mjs';
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = path.resolve(SCRIPT_DIR, '..');
@@ -213,6 +214,8 @@ const stats = {
   sourceUrlViolations: [],
   /** 中文名等同英文名（疑似未翻譯）的配方。 */
   nameZhEnglish: [],
+  /** photo-map 中非 https 而未套用的照片網址（配方 id：url）。 */
+  invalidPhotoUrls: [],
   warnings: [],
 };
 
@@ -785,6 +788,15 @@ function main() {
   }
 
   // 5. 產出
+
+  // 套上示意照片：data/photo-map.json 不存在或損壞時整體視為無照片（見 photo-map.mjs）。
+  // 套用在驗證關卡之後：photo-map 是本專案腳本產出的附屬資料，不屬於來源驗證範圍，
+  // 非法網址只略過並列入警告，不阻斷建置。
+  const photoMap = readPhotoMap(path.join(DATA_DIR, 'photo-map.json'));
+  const photoCount = applyPhotoMap(recipes, photoMap, {
+    onInvalid: (recipeId, url) => stats.invalidPhotoUrls.push(`${recipeId}：${url}`),
+  });
+
   stats.recipesTotal = recipes.length;
   for (const recipe of recipes) {
     // 同一杯可同屬多個系列，因此各系列的杯數會大於配方總數
@@ -820,6 +832,10 @@ function main() {
     console.log(`  - ${collection}：${count} 杯`);
   }
   console.log(`/popular 頁面：${popularCount} 杯`);
+  console.log(
+    `示意照片：照片映射檔${photoMap ? '已載入' : '未提供（整體視為無照片）'}，` +
+      `套用 ${photoCount} 杯的 photoUrl`,
+  );
   console.log(`/classic + /new-era 頁面：${classicCount} 杯`);
   console.log(
     `統一食材總數：${ingredients.length} 筆（主對照表 ${baseIngredientCount} 筆 +` +
@@ -871,6 +887,10 @@ function main() {
   if (stats.unknownCollectionValues.length > 0) {
     console.log(`\n無法對應的 collection 值（共 ${stats.unknownCollectionValues.length} 筆）：`);
     for (const item of stats.unknownCollectionValues) console.log('  - ' + item);
+  }
+  if (stats.invalidPhotoUrls.length > 0) {
+    console.log(`\n[警告] photo-map 中非 https 的照片網址已略過（共 ${stats.invalidPhotoUrls.length} 筆）：`);
+    for (const item of stats.invalidPhotoUrls) console.log('  - ' + item);
   }
   if (stats.warnings.length > 0) {
     console.log('\n警告：');

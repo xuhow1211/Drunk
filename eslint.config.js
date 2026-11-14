@@ -36,12 +36,13 @@ export default tseslint.config(
     },
   },
   {
-    files: ['scripts/**/*.mjs'],
+    // scripts 腳本與其單元測試（tests/unit/*.test.mjs）皆為 Node 環境的 ESM。
+    // 腳本本身跑在 Node，但 page.evaluate 的回呼是在瀏覽器執行，
+    // 因此一併掛上瀏覽器全域變數（Image、document、window 等）。
+    files: ['scripts/**/*.mjs', 'tests/unit/**/*.test.mjs'],
     extends: [js.configs.recommended],
     languageOptions: {
       ecmaVersion: 2022,
-      // 腳本本身跑在 Node，但 page.evaluate 的回呼是在瀏覽器執行，
-      // 因此一併掛上瀏覽器全域變數（Image、document、window 等）。
       globals: { ...globals.node, ...globals.browser },
       sourceType: 'module',
     },

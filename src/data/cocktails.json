@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-10-31T21:18:02.504Z",
+  "generatedAt": "2026-11-14T03:13:59.602Z",
   "recipes": [
     {
       "id": "alexander",
@@ -5090,7 +5090,8 @@
       ],
       "garnishIds": [
         "orange-peel"
-      ]
+      ],
+      "photoUrl": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/negroni.webp"
     },
     {
       "id": "new-york-sour",

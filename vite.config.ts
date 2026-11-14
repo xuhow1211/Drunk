@@ -18,7 +18,8 @@ export default defineConfig({
     environment: 'node',
     // 注入食材對照表索引：ingredients 模組為注入式，同步查詢 API 需先初始化
     setupFiles: ['src/test/setupCatalog.ts'],
-    include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],
+    // scripts/*.mjs 為 ESM，其測試也以 .mjs 撰寫（放在 tests/unit/），與 src 測試一起跑。
+    include: ['src/**/*.test.ts', 'src/**/*.test.tsx', 'tests/unit/**/*.test.mjs'],
     coverage: {
       // 只統計「可獨立以 node 環境測試」的邏輯層。
       // React 元件需要 DOM 環境，目前改以 Playwright 端對端測試涵蓋，

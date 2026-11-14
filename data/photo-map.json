@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-11-14T00:00:00.000Z",
+  "note": "種子檔：目前僅含 negroni 佔位條目，供前端顯示與 e2e 在抓圖前有可測資料。正式 102 杯由主控執行 scripts/fetch-iba-photos.mjs（需 SUPABASE_URL 與 SUPABASE_SERVICE_ROLE_KEY）後整檔重建，本檔的 generatedAt 與 photos 會被正式產出覆蓋。",
+  "photos": {
+    "negroni": {
+      "url": "https://lqxpimdzkomeiimglugu.supabase.co/storage/v1/object/public/recipe-photos/negroni.webp"
+    }
+  }
+}
