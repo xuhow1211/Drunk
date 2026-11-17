@@ -15,6 +15,7 @@ import {
   getTopMatches,
   matchRecipe,
   matchRecipes,
+  partitionByMatchRatio,
 } from './matching';
 
 const dataset = cocktailData as unknown as CocktailDataset;
@@ -442,5 +443,38 @@ describe('材料計數與加入清單用的必備材料', () => {
     expect(plain).toBeDefined();
 
     expect(getRequiredIngredientIds(plain!)).toEqual(plain!.ingredientIds);
+  });
+});
+
+describe('依符合度分組（配對去噪）', () => {
+  it('符合度 0 的杯分到 unmatched，其餘分到 matched，順序保留', () => {
+    // 威士忌酸酒與尼格羅尼各自比對：手邊只有琴酒 → 尼格羅尼部分符合、威士忌酸 0 符合
+    const gin = new Set(['gin']);
+    const negroni = matchRecipe(recipeById('negroni'), gin);
+    const whiskeySour = matchRecipe(recipeById('whiskey-sour'), gin);
+    expect(negroni.matchedRatio).toBeGreaterThan(0);
+    expect(whiskeySour.matchedRatio).toBe(0);
+
+    const { matched, unmatched } = partitionByMatchRatio([negroni, whiskeySour]);
+    expect(matched.map((result) => result.recipe.id)).toEqual(['negroni']);
+    expect(unmatched.map((result) => result.recipe.id)).toEqual(['whiskey-sour']);
+  });
+
+  it('經 matchRecipes 排序後分組：有交集的進 matched、莫吉托進 unmatched', () => {
+    const owned = new Set(['gin', 'campari', 'vermouth-red']);
+    // 手邊含琴酒、金巴利與紅甜香姆酒 → 尼格羅尼有交集；莫吉托與這三家完全沾不上邊
+    expect(matchRecipe(recipeById('mojito'), owned).matchedRatio).toBe(0);
+
+    const { matched, unmatched } = partitionByMatchRatio(
+      matchRecipes([recipeById('negroni'), recipeById('mojito')], owned),
+    );
+    expect(matched.map((result) => result.recipe.id)).toEqual(['negroni']);
+    expect(unmatched.map((result) => result.recipe.id)).toEqual(['mojito']);
+  });
+
+  it('無交集時 matched 為空、unmatched 為全部', () => {
+    const none = partitionByMatchRatio(matchRecipes(recipes, new Set(['not-in-any-recipe'])));
+    expect(none.matched).toHaveLength(0);
+    expect(none.unmatched.length).toBeGreaterThan(0);
   });
 });

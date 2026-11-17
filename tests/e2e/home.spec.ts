@@ -17,7 +17,7 @@ test.describe('首頁', () => {
 
     await expect(homeTitle(page)).toBeVisible();
     await expect(homeTitle(page)).toHaveText('join 這麼喝');
-    await expect(page.getByRole('navigation', { name: '主導覽' })).toBeVisible();
+    await expect(page.getByRole('navigation', { name: '上導覽' })).toBeVisible();
     await expect(
       page.getByRole('main').getByText('勾選手邊材料，即刻算出只差最少的那一杯'),
     ).toBeVisible();

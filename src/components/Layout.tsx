@@ -3,16 +3,21 @@
  *
  * 背景層以三個 radial-gradient 光暈加上網格與噪點紋理構成，
  * 以 position: fixed 固定，不隨捲動移動，避免重排。
+ *
+ * 手機（768px 以下）最外層預留固定導覽（TabBar，56px）與右下角
+ * 背景音浮層（約 44px）的底部空間：tab 56px + 面板 44px + 兩者間距 8px
+ * = 7rem，加上 iOS 安全區距；768px 以上不預留，維持原有留白。
  */
 import { Outlet } from 'react-router-dom';
 import { Nav } from './Nav';
+import { TabBar } from './TabBar';
 
 /**
  * 全站版面框架。
  */
 export function Layout() {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen pb-[calc(7rem+env(safe-area-inset-bottom))] md:pb-0">
       {/* 背景裝飾層：流動光暈 + 網格 + 噪點 */}
       <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
         <div className="absolute -left-[12%] -top-[18%] h-[46rem] w-[46rem] animate-aurora-a rounded-full bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.32),transparent_62%)] blur-2xl" />
@@ -41,6 +46,9 @@ export function Layout() {
           </p>
         </div>
       </footer>
+
+      {/* 手機版下緣固定導覽（768px 以下），蓋在任何內容之上但低於抽屜與背景音 */}
+      <TabBar />
     </div>
   );
 }

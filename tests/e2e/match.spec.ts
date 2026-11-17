@@ -161,4 +161,25 @@ test.describe('比對模式', () => {
       matchPanel(page).getByText('可用 伏特加 代替 琴酒（金酒）').first(),
     ).toBeVisible();
   });
+
+  test('符合度 0 的杯預設收合，點「顯示其他」才展開', async ({ page }) => {
+    await page.goto('/match');
+
+    // 只勾柳橙汁：有交集的杯（25 杯）會列出，毫無交集的收合
+    await selectIngredient(page, '柳橙汁');
+    const cards = resultCards(page);
+    await expect(cards.first()).toBeVisible();
+    // 預設不出現 0% 的卡
+    await expect(matchPanel(page).getByText('0%', { exact: true })).toHaveCount(0);
+
+    const show = matchPanel(page).getByTestId('match-show-unmatched');
+    await expect(show).toHaveText(/顯示其他 \d+ 杯/);
+    const before = await resultIds(page);
+
+    await show.click();
+    const after = await resultIds(page);
+    // 展開後清單變長，且 0 符合度的杯確實出現
+    expect(after.length).toBeGreaterThan(before.length);
+    await expect(matchPanel(page).getByText('0%', { exact: true }).first()).toBeVisible();
+  });
 });

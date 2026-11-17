@@ -99,7 +99,7 @@ test.describe('瀏覽模式', () => {
     expect(await recipeCards(page).count()).toBeGreaterThan(0);
   });
 
-  test('點配方卡開啟詳情抽屜，抽屜含材料表、步驟與來源連結', async ({ page }) => {
+  test('點配方卡開啟詳情抽屜，抽屜含材料表與步驟（來源不顯示）', async ({ page }) => {
     await page.goto('/classic');
 
     await recipeCards(page).first().click();
@@ -108,8 +108,9 @@ test.describe('瀏覽模式', () => {
     await expect(drawer).toBeVisible();
     await expect(drawer.getByRole('heading', { name: '材料' })).toBeVisible();
     await expect(drawer.getByRole('heading', { name: '步驟' })).toBeVisible();
-    await expect(drawer.getByRole('heading', { name: '來源' })).toBeVisible();
-    await expect(drawer.locator('a[href^="http"]').first()).toBeVisible();
+    // 來源出處依需求不在抽屜顯示
+    await expect(drawer.getByRole('heading', { name: '來源' })).toHaveCount(0);
+    await expect(drawer.locator('a[href^="http"]').first()).toHaveCount(0);
     // 網址同步為深層連結
     await expect(page).toHaveURL(/\/recipe\//);
   });
@@ -139,7 +140,7 @@ test.describe('瀏覽模式', () => {
     await expect(drawer.getByRole('heading', { name: '尼格羅尼' })).toBeVisible();
     await expect(page).toHaveURL(/\/recipe\/negroni$/);
     // 背景路由未被破壞：主框架與導覽列仍在
-    await expect(page.getByRole('navigation', { name: '主導覽' })).toBeVisible();
+    await expect(page.getByRole('navigation', { name: '上導覽' })).toBeVisible();
   });
 
   test('不存在的配方路徑顯示 404 頁', async ({ page }) => {

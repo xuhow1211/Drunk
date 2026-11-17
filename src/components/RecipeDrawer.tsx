@@ -2,7 +2,7 @@
  * 配方詳情抽屜。
  *
  * 從右側滑入、含半透明遮罩，支援 Esc 關閉、點遮罩關閉與焦點鎖定。
- * 內容包含材料表、步驟、裝飾、來源與相關推薦。
+ * 內容包含材料表、步驟、裝飾與相關推薦（配方來源出處不在畫面顯示）。
  */
 import { useEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
@@ -162,7 +162,7 @@ export function RecipeDrawer({ recipe, onClose, related }: RecipeDrawerProps) {
             <button
               type="button"
               onClick={onClose}
-              className="shrink-0 rounded-full border border-white/30 bg-black/30 p-2 text-white transition hover:bg-black/50"
+              className="flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-full border border-white/30 bg-black/30 p-2 text-white transition hover:bg-black/50"
               aria-label="關閉"
             >
               <CloseIcon />
@@ -273,25 +273,7 @@ export function RecipeDrawer({ recipe, onClose, related }: RecipeDrawerProps) {
             </Section>
           ) : null}
 
-          {/* 來源 */}
-          <Section title="來源">
-            <div className="rounded-xl border border-white/10 bg-night-800/70 p-3 text-sm">
-              <p className="text-ink-muted">
-                出處：
-                <span className="text-ink">{content.sourceSite ?? '整理自調酒資料集'}</span>
-              </p>
-              {content.sourceUrl ? (
-                <a
-                  href={content.sourceUrl}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="mt-1 inline-block break-all text-neon-cyan underline decoration-dotted underline-offset-4 hover:text-ink"
-                >
-                  {content.sourceUrl}
-                </a>
-              ) : null}
-            </div>
-          </Section>
+          {/* 來源出處依需求不在畫面顯示（資料欄位保留，僅抽屜不呈現） */}
 
           {/* 相關推薦 */}
           {related.length > 0 ? (
@@ -356,11 +338,10 @@ function RecipePicture({ recipe }: { recipe: Recipe }) {
             alt={`${recipe.nameZh} 示意照片`}
             loading="lazy"
             onError={() => setPhotoFailed(true)}
-            className="aspect-video w-full rounded-xl border border-white/10 bg-night-800/50 object-cover"
+            /* 載入中顯示低對比 placeholder 底（微光漸層），img 載入後蓋過 */
+            className="aspect-video w-full rounded-xl border border-white/10 bg-night-800 bg-[linear-gradient(105deg,rgba(255,255,255,0.04)_30%,rgba(255,255,255,0.1)_50%,rgba(255,255,255,0.04)_70%)] object-cover"
           />
-          <figcaption className="mt-1 text-right text-[11px] text-ink-muted">
-            照片：{recipe.photoSource === 'tcdb' ? 'TheCocktailDB' : 'IBA World'}
-          </figcaption>
+          {/* 照片來源（IBA World／TheCocktailDB）依需求不在畫面顯示，資料欄位保留 */}
         </>
       ) : (
         <img

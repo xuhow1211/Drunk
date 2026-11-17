@@ -6,7 +6,8 @@
  *   2. 串流連不上（離線、網路被擋）時，降級為 ambientSynth 的合成環境音。
  *
  * 瀏覽器規定未經使用者互動不得自動播放有聲音的媒體，因此進站時會先
- * 嘗試 play()；被政策擋下時切到 needs-gesture 狀態，等使用者點擊。
+ * 嘗試 play()；被政策擋下時切到 needs-gesture 狀態，等使用者主動點擊
+ * 介面上的播放按鈕（不再監聽頁面全域的點擊）。
  */
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
@@ -95,9 +96,16 @@ function resolveInitialChannel(): BarMusicChannel {
   return pickRandomChannel();
 }
 
-/** 使用者是否已經表示不想聽背景音。 */
+/**
+ * 使用者是否已經表示不想聽背景音。
+ *
+ * 「不要背景音」為跨訊息的長期偏好，讀寫以 localStorage 為準；
+ * 舊版本曾寫在 sessionStorage，因此 localStorage 沒有紀錄時再檢查
+ * sessionStorage（同分頁的舊決定仍要尊重）。
+ */
 function isDismissed(): boolean {
   try {
+    if (window.localStorage.getItem(BAR_MUSIC_DISMISSED_STORAGE_KEY) === '1') return true;
     return window.sessionStorage.getItem(BAR_MUSIC_DISMISSED_STORAGE_KEY) === '1';
   } catch {
     return false;
@@ -140,8 +148,6 @@ export function useBarMusic(): BarMusicController {
   const synthRef = useRef<AmbientSynth | null>(null);
   const fallbackTimerRef = useRef<number | null>(null);
   const disposedRef = useRef(false);
-  /** 使用者已表示不想聽背景音，用來擋掉「第一次互動就播放」的行為。 */
-  const dismissedRef = useRef(false);
   /** 目前實際使用的音源：串流或合成環境音。 */
   const synthModeRef = useRef(false);
   /** 合成環境音是否真的在運作（供 toggle 判斷要啟動還是暫停）。 */
@@ -369,50 +375,10 @@ export function useBarMusic(): BarMusicController {
     start();
   }, [pause, start]);
 
-  /**
-   * 被自動播放政策擋下時，監聽頁面上的第一次點擊或按鍵就開始播放。
-   *
-   * 只把提示放在右下角的小卡片，使用者很可能完全沒注意到，
-   * 結果就是「進了首頁卻沒有音樂」。
-   * 瀏覽器把任何一次點擊或按鍵都視為使用者意圖，
-   * 因此只要使用者對頁面有任何操作，音樂就能立刻響起。
-   *
-   * 離線模式（合成環境音）也要一併處理：
-   * AudioContext 在沒有使用者互動前會停在 suspended 而完全靜音，
-   * 此時同樣需要一次互動才能 resume。
-   *
-   * 監聽器刻意使用 bubble 階段而非 capture：
-   * capture 會比 React 的事件處理更早觸發，導致「不要背景音」按鈕
-   * 在 click 之前就被換掉，按鈕的 onClick 永遠不會執行。
-   * bubble 階段則由 React 先處理完按鈕行為，再落到這裡。
-   */
-  useEffect(() => {
-    const needsGesture = status === 'needs-gesture';
-    const needsSynthResume = status === 'offline' && !synthRunning;
-    if (!needsGesture && !needsSynthResume) return;
-
-    const handleFirstInteraction = () => {
-      if (dismissedRef.current) return;
-
-      if (needsGesture) {
-        start();
-        return;
-      }
-
-      // 合成音因缺少互動而停在 suspended，在這次互動中 resume 它
-      void synthRef.current?.start().then(() => {
-        if (!disposedRef.current) setSynthRunning(synthRef.current?.isRunning() ?? false);
-      });
-    };
-
-    document.addEventListener('click', handleFirstInteraction);
-    document.addEventListener('keydown', handleFirstInteraction);
-
-    return () => {
-      document.removeEventListener('click', handleFirstInteraction);
-      document.removeEventListener('keydown', handleFirstInteraction);
-    };
-  }, [status, synthRunning, start]);
+  // 不再監聽頁面全域的 click／keydown 來啟動播放：
+  // 原本的「點擊任何地方就開始播放」會誤把使用者的瀏覽操作當成播放意圖，
+  // 改為僅由介面按鈕（右下小喇叭鈕 → 提示卡 → 開始播放，或面板的播放鈕）啟動；
+  // 離線模式的合成環境音停在 suspended 時，同樣由播放鈕（toggle → start）resume。
 
   const changeVolume = useCallback((next: number) => {
     setVolumeState(clampVolume(next));
@@ -428,11 +394,11 @@ export function useBarMusic(): BarMusicController {
   }, []);
 
   const dismiss = useCallback(() => {
-    dismissedRef.current = true;
     stopStream();
     synthRef.current?.stop();
     try {
-      window.sessionStorage.setItem(BAR_MUSIC_DISMISSED_STORAGE_KEY, '1');
+      // 持久化：寫入 localStorage，之後進站也不再彈出
+      window.localStorage.setItem(BAR_MUSIC_DISMISSED_STORAGE_KEY, '1');
     } catch {
       // 無法記錄時不影響本次關閉
     }

@@ -63,7 +63,8 @@ export function AddToOwnedButton({ materialIds, className = '' }: AddToOwnedButt
       aria-pressed={allOwned}
       data-add-to-owned="true"
       className={[
-        'inline-flex items-center gap-1 rounded-full border px-3 py-1.5 text-xs font-semibold transition',
+        // 14px（text-sm）為手機可讀下限；按鈕高度由 使用端 min-h-[44px] 撐到觸控目標
+        'inline-flex items-center gap-1 rounded-full border px-3 py-1.5 text-sm font-semibold transition',
         'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-cyan',
         allOwned
           ? 'border-neon-green/60 bg-neon-green/15 text-neon-green'

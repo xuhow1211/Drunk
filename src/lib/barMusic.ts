@@ -94,7 +94,7 @@ export const BAR_MUSIC_VOLUME_STORAGE_KEY = 'join-bar-music-volume';
 /** sessionStorage 鍵名，讓同一分頁內回到首頁時接續同一個頻道。 */
 export const BAR_MUSIC_CHANNEL_STORAGE_KEY = 'join-bar-music-channel';
 
-/** sessionStorage 鍵名，記住使用者已表示不想聽背景音。 */
+/** localStorage 鍵名，記住使用者已表示不想聽背景音（跨訊息持久，之後進站不再彈出）。 */
 export const BAR_MUSIC_DISMISSED_STORAGE_KEY = 'join-bar-music-dismissed';
 
 /**

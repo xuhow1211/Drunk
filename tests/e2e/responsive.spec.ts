@@ -27,6 +27,14 @@ test.describe('行動版 375px', () => {
     expect(await hasHorizontalOverflow(page)).toBe(false);
   });
 
+  test('375px 下比對模式的勾選提示為「在上方」（面板在結果之上）', async ({ page }) => {
+    await page.goto('/match');
+
+    await expect(matchPanel(page).getByText('在上方勾選')).toBeVisible();
+    // 「在左側」的字樣仍存在 DOM（切換斷點顯示），行動版上不得顯示
+    await expect(matchPanel(page).getByText('在左側勾選')).toBeHidden();
+  });
+
   test('375px 下首頁沒有水平溢位', async ({ page }) => {
     await page.goto('/');
 
@@ -127,6 +135,9 @@ test.describe('桌面版 1440px', () => {
 
   test('1440px 下比對模式為左右分欄', async ({ page }) => {
     await page.goto('/match');
+
+    // 桌機材料面板在左欄，提示文案維持「在左側勾選」
+    await expect(matchPanel(page).getByText('在左側勾選')).toBeVisible();
 
     const pickerBox = await pickerPanel(page).boundingBox();
     const resultsBox = await matchPanel(page).boundingBox();

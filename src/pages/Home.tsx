@@ -5,7 +5,7 @@
  * 手機版收緊各段留白：主視覺之後緊接三大入口（手機上入口卡就是主功能），
  * 精選熱選與數據帶依序下移。
  */
-import { useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { PointerEvent as ReactPointerEvent, RefObject } from 'react';
 import { Link } from 'react-router-dom';
 import { useCocktails } from '../hooks/useCocktails';
@@ -53,9 +53,10 @@ export function Home() {
 
       {/* 超商調酒直達：批次一的三張入口卡不動，另以小型連結通往 /easy */}
       <div className="mt-3 flex justify-center px-4 sm:justify-start">
+        {/* 44px 觸控目標＋14px 字級：手機上這顆連結是主要入口之一 */}
         <Link
           to="/easy"
-          className="rounded-full border border-neon-cyan/35 bg-neon-cyan/10 px-4 py-1.5 text-xs font-semibold text-neon-cyan transition hover:bg-neon-cyan/20"
+          className="inline-flex min-h-[44px] items-center rounded-full border border-neon-cyan/35 bg-neon-cyan/10 px-4 py-2 text-sm font-semibold text-neon-cyan transition hover:bg-neon-cyan/20"
         >
           超商調酒專區 →
         </Link>
@@ -134,10 +135,66 @@ function useDragScroll(scrollerRef: RefObject<HTMLDivElement | null>) {
   return { dragRef, onPointerDown, onPointerMove, endDrag };
 }
 
-/** 首頁精選熱選的橫向捲動列（可拖曳，手機版右緣以漸層提示可滑動）。 */
+/** 精選熱選卡片之間的間距（與 gap-4 同步）。 */
+const CAROUSEL_GAP_PX = 16;
+
+/**
+ * 依捲動位置計算輪播的頁點。
+ *
+ * 點數以「可捲動寬度除以卡片步距（卡寬＋間距）」無條件進位再加一，
+ * 高亮的頁點代表目前最靠近視窗左緣的那組卡片，
+ * 讓使用者一眼看出橫向捲動列還有東西沒看。
+ * scroll 事件以 requestAnimationFrame 節流，每次捲動最多重算一次。
+ *
+ * @param scrollerRef 捲動容器
+ * @param itemCount 卡片數量（資料變更時重新計量）
+ * @returns 頁點總數與目前高亮的頁點索引
+ */
+function useCarouselDots(scrollerRef: RefObject<HTMLDivElement | null>, itemCount: number) {
+  const [pageCount, setPageCount] = useState(0);
+  const [activePage, setActivePage] = useState(0);
+
+  useEffect(() => {
+    const node = scrollerRef.current;
+    if (!node) return undefined;
+
+    let frame = 0;
+    const update = () => {
+      const first = node.firstElementChild as HTMLElement | null;
+      const step = first ? first.offsetWidth + CAROUSEL_GAP_PX : 1;
+      const maxScroll = node.scrollWidth - node.clientWidth;
+      if (maxScroll <= 0 || step <= 0) {
+        setPageCount(0);
+        return;
+      }
+      const count = Math.ceil(maxScroll / step) + 1;
+      setPageCount(count);
+      setActivePage(Math.min(count - 1, Math.round(node.scrollLeft / step)));
+    };
+    // scroll 事件以 rAF 節流（防抖）：連續捲動時每幀最多重算一次
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener('resize', onScroll);
+    node.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('resize', onScroll);
+      node.removeEventListener('scroll', onScroll);
+    };
+  }, [scrollerRef, itemCount]);
+
+  return { pageCount, activePage };
+}
+
+/** 首頁精選熱選的橫向捲動列（可拖曳，手機版右緣以漸層與頁點提示可滑動）。 */
 function TopCarousel({ recipes }: { recipes: ReturnType<typeof useCocktails>['recipes'] }) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const { dragRef, onPointerDown, onPointerMove, endDrag } = useDragScroll(scrollerRef);
+  const { pageCount, activePage } = useCarouselDots(scrollerRef, recipes.length);
 
   return (
     <div className="relative">
@@ -170,11 +227,27 @@ function TopCarousel({ recipes }: { recipes: ReturnType<typeof useCocktails>['re
         ))}
       </div>
 
-      {/* 手機版右緣漸層淡出，提示還有下一張卡可以滑動 */}
+      {/* 手機版右緣漸層淡出（加寬加強），提示還有下一張卡可以滑動 */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-y-0 right-0 w-9 bg-gradient-to-l from-night-900 to-transparent sm:hidden"
+        className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-night-900 via-night-900/60 to-transparent sm:hidden"
       />
+
+      {/* 頁點：高亮位置依捲動進度變化，補強「可以滑」的暗示 */}
+      {pageCount > 1 ? (
+        <div className="mt-1 flex items-center justify-center gap-1.5" aria-hidden="true">
+          {Array.from({ length: pageCount }, (_, page) => (
+            <span
+              key={page}
+              className={
+                page === activePage
+                  ? 'h-1.5 w-4 rounded-full bg-neon-purple transition-colors duration-300'
+                  : 'h-1.5 w-1.5 rounded-full bg-white/20 transition-colors duration-300'
+              }
+            />
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 }
