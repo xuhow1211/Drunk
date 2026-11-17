@@ -43,6 +43,8 @@ const FOCUSABLE =
  */
 export function RecipeDrawer({ recipe, onClose, related }: RecipeDrawerProps) {
   const panelRef = useRef<HTMLDivElement>(null);
+  /** 詳情內容的捲動容器（點相關推薦切換配方時要滑回頂部）。 */
+  const contentRef = useRef<HTMLDivElement>(null);
   const [content, setContent] = useState<Recipe | null>(recipe);
   const [visible, setVisible] = useState(false);
   const openRecipe = useRecipeNav();
@@ -57,6 +59,12 @@ export function RecipeDrawer({ recipe, onClose, related }: RecipeDrawerProps) {
     setVisible(false);
     return undefined;
   }, [recipe]);
+
+  // 切換配方（含點相關推薦）時把捲動容器滑回頂部：新配方的標題與照片在頂端，
+  // 留在舊捲動位置使用者會先看到新配方的中段內容
+  useEffect(() => {
+    if (contentRef.current) contentRef.current.scrollTop = 0;
+  }, [content?.id]);
 
   // 開啟時鎖住背景捲動
   useEffect(() => {
@@ -171,7 +179,7 @@ export function RecipeDrawer({ recipe, onClose, related }: RecipeDrawerProps) {
         </div>
 
         {/* 內容 */}
-        <div className="flex-1 overflow-y-auto px-5 py-5 sm:px-7">
+        <div ref={contentRef} className="flex-1 overflow-y-auto px-5 py-5 sm:px-7">
           {/* 圖片區：示意照片優先，載入失敗或無實照時以杯型插畫替代（以 key 重設失敗狀態） */}
           <RecipePicture key={content.id} recipe={content} />
 
