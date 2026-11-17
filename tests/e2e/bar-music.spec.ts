@@ -138,29 +138,15 @@ test.describe('酒吧背景音', () => {
     await expect(page.getByTestId('bar-music-expand')).toBeVisible();
 
     // 小鈕必須真的停靠在畫面內右下角（防止 fixed 被 panel 的 position 蓋掉）。
-    // 以頁面的 getBoundingClientRect 判定，避免 boundingBox 座標基準的環境差異。
+    // 以頁面的 getBoundingClientRect 判定；量測前停用動畫與過場，
+    // 避免落在 animate-rise 進場變形途中，rect 含 translateY 殘值。
+    await page.addStyleTag({
+      content: '*, *::before, *::after { animation: none !important; transition: none !important; }',
+    });
     const chipRect = await page
       .getByTestId('bar-music-expand')
       .evaluate((element) => {
         const rect = element.getBoundingClientRect();
-        // 診斷資訊：computed 定位與祖先鏈中的濾鏡／變形（這些會改變 fixed 的基準）
-        const style = getComputedStyle(element);
-        const chain: string[] = [];
-        let node: HTMLElement | null = element.parentElement;
-        while (node && chain.length < 12) {
-          const ancestorStyle = getComputedStyle(node);
-          chain.push(
-            `${node.tagName}.${[...node.classList].join('.') || '(無)'}` +
-              ` pos=${ancestorStyle.position}` +
-              ` tf=${ancestorStyle.transform}` +
-              ` fl=${ancestorStyle.filter}/${ancestorStyle.backdropFilter}` +
-              ` ct=${ancestorStyle.contain}`,
-          );
-          node = node.parentElement;
-        }
-        console.log(`[diag] pos=${style.position} bottom=${style.bottom} right=${style.right}`);
-        console.log(`[diag] chain=\n${chain.join('\n')}`);
-        console.log(`[diag] rect=${JSON.stringify({ top: rect.top, bottom: rect.bottom, scaleY: window.scrollY, innerHeight: window.innerHeight, docH: document.documentElement.scrollHeight })}`);
         return { right: rect.right, bottom: rect.bottom, innerWidth: window.innerWidth, innerHeight: window.innerHeight };
       });
     expect(chipRect.right).toBeLessThanOrEqual(chipRect.innerWidth + 1);
