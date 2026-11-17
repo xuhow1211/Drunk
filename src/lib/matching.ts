@@ -301,3 +301,23 @@ export function getTopMatches(
 ): MatchResult[] {
   return matchRecipes(recipes, ownedIds, options).slice(0, Math.max(0, limit));
 }
+
+/**
+ * 依材料符合度把比對結果分兩組：有部分符合（>0）與完全不符合（=0）。
+ *
+ * 符合度 0 代表缺料數與手邊材料數相同（任何一項材料都沒對上），
+ * 這些杯對使用者沒有參考價值，介面預設收合、由「顯示其他」按鈕展開。
+ * 兩組皆保留呼叫端傳入的順序，供分頁與排序直接使用。
+ *
+ * @param results 已排序的比對結果（順序會原樣保留）
+ */
+export function partitionByMatchRatio(results: readonly MatchResult[]): {
+  /** 符合度大於 0 的結果。 */
+  matched: MatchResult[];
+  /** 符合度為 0 的結果。 */
+  unmatched: MatchResult[];
+} {
+  const matched = results.filter((result) => result.matchedRatio > 0);
+  const unmatched = results.filter((result) => result.matchedRatio === 0);
+  return { matched, unmatched };
+}

@@ -4,6 +4,9 @@
  * 固定在頁面上方，點選路由時以霓虹漸層底線標示目前所在頁面。
  * 右側為會員區：已登入顯示名稱與登出按鈕，未登入顯示登入入口。
  * 手機版所有可點元素以 min-h-11 拉高到 44px 觸控目標，桌機維持原尺寸。
+ *
+ * 768px 以下連結列隱藏（入口改由 TabBar 的下方導覽承接），
+ * 本列只留下品牌與會員區；768px 以上維持完整連結列。
  */
 import { Link, NavLink } from 'react-router-dom';
 import { signOut, useAuth } from '../lib/authStore';
@@ -28,7 +31,7 @@ function AuthArea() {
   }
   if (status === 'signedIn') {
     return (
-      <div className="flex shrink-0 items-center gap-2">
+      <div className="ml-auto flex shrink-0 items-center gap-2 md:ml-0">
         <span className="max-w-[8rem] truncate text-sm font-medium text-ink" title={displayName ?? ''}>
           {displayName ?? '會員'}
         </span>
@@ -49,7 +52,7 @@ function AuthArea() {
   return (
     <Link
       to="/auth"
-      className="flex min-h-11 shrink-0 items-center rounded-full border border-neon-purple/60 bg-neon-purple/15 px-4 py-2 text-sm font-semibold text-ink transition hover:bg-neon-purple/25 no-underline sm:inline-flex sm:min-h-0 sm:px-3 sm:py-1.5"
+      className="ml-auto flex min-h-11 shrink-0 items-center rounded-full border border-neon-purple/60 bg-neon-purple/15 px-4 py-2 text-sm font-semibold text-ink transition hover:bg-neon-purple/25 no-underline sm:inline-flex sm:min-h-0 sm:px-3 sm:py-1.5 md:ml-0"
     >
       登入
     </Link>
@@ -63,7 +66,7 @@ export function Nav() {
   return (
     <header className="sticky top-0 z-40 border-b border-white/5 bg-night-900/75 backdrop-blur-xl">
       <nav
-        aria-label="主導覽"
+        aria-label="上導覽"
         className="mx-auto flex max-w-[1440px] items-center gap-3 px-4 py-3 sm:px-6 lg:px-10"
       >
         <NavLink
@@ -73,7 +76,7 @@ export function Nav() {
           join 這麼喝
         </NavLink>
 
-        <ul className="no-scrollbar ml-auto flex min-w-0 items-center gap-1 overflow-x-auto">
+        <ul className="no-scrollbar ml-auto hidden min-w-0 items-center gap-1 overflow-x-auto md:flex">
           {LINKS.map((link) => (
             <li key={link.to}>
               <NavLink

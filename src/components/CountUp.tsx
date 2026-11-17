@@ -28,9 +28,12 @@ function easeOutCubic(t: number): number {
 /**
  * 數字翻牌遞增計數。
  *
+ * 預設 600ms：原本 1400ms 在手機快速滑過時，使用者往往只看到起點的 0
+ * 就已滑出視窗；縮短之後即使一掃而過也能看到接近最終值的數字。
+ *
  * @param props 元件參數
  */
-export function CountUp({ value, duration = 1400, suffix = '', prefix = '', className = '' }: CountUpProps) {
+export function CountUp({ value, duration = 600, suffix = '', prefix = '', className = '' }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const [display, setDisplay] = useState(0);
   const startedRef = useRef(false);
@@ -87,7 +90,8 @@ export function CountUp({ value, duration = 1400, suffix = '', prefix = '', clas
           frame = requestAnimationFrame(step);
         }
       },
-      { threshold: 0.4 },
+      // 0.1：元素剛露出一角就開始播，手機快速滑過也能看到計數而非停留在 0
+      { threshold: 0.1 },
     );
 
     observer.observe(node);

@@ -51,8 +51,9 @@ export function RecipeCard({ recipe, delay = 0 }: RecipeCardProps) {
       >
         {recipe.photoUrl ? (
           /* 有實照：4:3 照片為卡片視覺，懶載入降低列表的流量壓力；
+             容器先鋪低對比 placeholder 底（微光漸層），img 載入後蓋過；
              左下角疊放分類小徽章，讓照片卡與色塊卡的資訊一致 */
-          <div className="relative overflow-hidden">
+          <div className="relative overflow-hidden bg-night-800 bg-[linear-gradient(105deg,rgba(255,255,255,0.04)_30%,rgba(255,255,255,0.1)_50%,rgba(255,255,255,0.04)_70%)]">
             <img
               src={recipe.photoUrl}
               alt={`${recipe.nameZh} 示意照片`}
@@ -100,6 +101,8 @@ export function RecipeCard({ recipe, delay = 0 }: RecipeCardProps) {
           <p className="mt-0.5 truncate text-[10px] uppercase tracking-wider text-ink-muted/80 sm:text-xs sm:tracking-wide sm:text-ink-muted">
             {recipe.nameEn}
           </p>
+          {/* 來源小標：同名配方（如不同整理來源的同名雞尾酒）靠它區分 */}
+          <p className="truncate text-[10px] text-ink-muted/70">{recipe.sourceSite ?? '社群配方'}</p>
 
           <div className="mt-2.5 flex flex-wrap items-center gap-1.5">
             <DifficultyDots level={recipe.difficulty} showLabel />
@@ -119,7 +122,7 @@ export function RecipeCard({ recipe, delay = 0 }: RecipeCardProps) {
 
       <div className="px-3 pb-3 sm:px-4 sm:pb-4">
         <AddToOwnedButton
-          className="min-h-[44px] w-full justify-center text-sm"
+          className="min-h-[44px] w-full justify-center"
           materialIds={getRequiredIngredientIds(recipe)}
         />
       </div>

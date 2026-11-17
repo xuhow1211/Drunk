@@ -2,11 +2,15 @@
  * 酒吧背景音控制面板。
  *
  * 固定在右下角，三種呈現：
- *   1. 等待互動：瀏覽器擋下自動播放時，顯示一張醒目的卡片請使用者點一下。
+ *   1. 等待互動：瀏覽器擋下自動播放時，先收成右下小喇叭鈕（含微亮角標），
+ *      點擊後才展開播放提示卡；不再佔住整片畫面。
  *   2. 播放中（手機，<768px 以下）：收合成單行圖示列——頻道短名加上
  *      播放／暫停、靜音、換台、關閉、收合五顆圖示，寬度上限 40vw，
  *      不遮擋主要操作區；音量滑桿與說明文字只在平板以上出現。
  *   3. 播放中（768px 以上）：兩列面板，含播放暫停、音量、換台與關閉。
+ *
+ * 手機（<768px）上所有浮層的根定位上移到 TabBar 之上：
+ * bottom = tab 高度 56px + 安全區距 + 8px 間距；768px 以上維持原值。
  */
 import { useState, type ReactNode } from 'react';
 import { useBarMusic } from '../hooks/useBarMusic';
@@ -21,6 +25,9 @@ import {
   VolumeIcon,
   VolumeMuteIcon,
 } from './Icons';
+
+/** 手機版浮層根定位：TabBar 高度（3.5rem）+ 8px 間距 + 安全區距。 */
+const FLOAT_BOTTOM_MOBILE = 'bottom-[calc(4rem+env(safe-area-inset-bottom))] md:bottom-4';
 
 /** 狀態對應的說明文字。 */
 function statusLabel(
@@ -45,14 +52,43 @@ function statusLabel(
 }
 
 /**
+ * 等待使用者互動的右下小喇叭鈕。
+ *
+ * 首次進站的初始型態：只是一顆帶微亮角標的小鈕，不遮擋任何內容；
+ * 使用者主動點擊後才展開提示卡，不會把瀏覽行為誤判成播放意圖。
+ */
+function NeedsGestureChip({ onExpand }: { onExpand: () => void }) {
+  return (
+    <div className={`fixed right-3 z-50 md:right-4 ${FLOAT_BOTTOM_MOBILE}`}>
+      <button
+        type="button"
+        onClick={onExpand}
+        aria-label="開啟酒吧背景音提示"
+        data-testid="bar-music-gesture-chip"
+        className="panel relative flex h-11 w-11 animate-rise items-center justify-center rounded-full border border-neon-cyan/50 bg-neon-cyan/10 text-neon-cyan shadow-[0_0_28px_-8px_rgba(34,211,238,0.7)] transition hover:bg-neon-cyan/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-cyan"
+      >
+        <MusicNoteIcon width={18} height={18} />
+        {/* 微亮角標：暗示這顆鈕在等使用者點 */}
+        <span
+          aria-hidden="true"
+          className="animate-pulse-neon absolute right-0.5 top-0.5 h-2.5 w-2.5 rounded-full bg-neon-cyan/90"
+        />
+      </button>
+    </div>
+  );
+}
+
+/**
  * 等待使用者互動的提示卡。
  *
- * 手機版收緊：文案精短、兩顆按鈕併列一行，降低對內容的遮擋；
- * 行為語意（開始播放／不要背景音，關閉後本次分頁不再出現）與桌機一致。
+ * 由小喇叭鈕點開後呈現：文案只有「開始播放／不要背景音」兩種選擇，
+ * 桌機與行動版同一份文案（不再提「點擊任何地方也可以」——該行為已移除）。
  */
 function NeedsGestureCard({ music }: { music: BarMusicController }) {
   return (
-    <div className="fixed bottom-4 right-4 z-50 w-[min(18rem,calc(100vw-2rem))]">
+    <div
+      className={`fixed right-3 z-50 w-[min(18rem,calc(100vw-2rem))] md:right-4 ${FLOAT_BOTTOM_MOBILE}`}
+    >
       <div className="panel animate-rise border-neon-cyan/50 p-3 shadow-[0_0_44px_-10px_rgba(34,211,238,0.8)] md:p-4">
         <div className="flex items-center gap-2.5">
           <span
@@ -67,14 +103,10 @@ function NeedsGestureCard({ music }: { music: BarMusicController }) {
           </div>
         </div>
 
-        {/* 手機版說明壓成一句話，完整說明只出現在桌機 */}
         <p className="mt-2 text-xs leading-snug text-ink md:text-sm md:leading-relaxed">
-          <span className="md:hidden">點一下開始播放，點擊任何地方也可以。</span>
-          <span className="hidden md:inline">點一下就開始播放「{music.channel.nameZh}」</span>
+          點一下就開始播放「{music.channel.nameZh}」
         </p>
-        <p className="mt-1 hidden text-xs text-ink-muted md:block">
-          {music.channel.mood}。點擊頁面任何地方也會開始。
-        </p>
+        <p className="mt-1 text-[11px] text-ink-muted">{music.channel.mood}</p>
 
         <div className="mt-2.5 flex items-center gap-2 md:mt-3">
           <button
@@ -184,7 +216,7 @@ function ChannelInfo({ music, isPlaying }: { music: BarMusicController; isPlayin
  */
 function CollapsedChip({ onExpand }: { onExpand: () => void }) {
   return (
-    <div className="fixed bottom-3 right-3 z-50 md:bottom-4 md:right-4">
+    <div className={`fixed right-3 z-50 md:right-4 ${FLOAT_BOTTOM_MOBILE}`}>
       <button
         type="button"
         onClick={onExpand}
@@ -216,7 +248,9 @@ function MusicPanel({
   music: BarMusicController;
   onCollapse: () => void;
 }) {
-  const isPlaying = music.status === 'playing' || music.status === 'offline';
+  /** 音源實際有在出聲（離線模式下合成音未啟動時視同未播放，鈕面顯示播放） */
+  const audible =
+    music.status === 'playing' || (music.status === 'offline' && music.synthReady);
   const slider = (
     <div className="hidden min-w-0 md:order-7 md:block md:flex-1">
       <label className="sr-only" htmlFor="bar-music-volume">
@@ -237,14 +271,14 @@ function MusicPanel({
   );
 
   return (
-    <div className="fixed bottom-3 right-3 z-50 md:bottom-4 md:right-4">
+    <div className={`fixed right-3 z-50 md:right-4 ${FLOAT_BOTTOM_MOBILE}`}>
       <div
         className="panel animate-rise flex w-max max-w-[40vw] flex-wrap items-center gap-x-0.5 gap-y-1 px-1.5 py-1.5 md:w-[19rem] md:max-w-none md:gap-x-2.5 md:px-3 md:py-2.5"
         role="region"
         aria-label="酒吧背景音"
         data-testid="bar-music-panel"
       >
-        <ChannelInfo music={music} isPlaying={isPlaying} />
+        <ChannelInfo music={music} isPlaying={audible} />
 
         <IconButton
           label="隨機換一個頻道"
@@ -277,13 +311,13 @@ function MusicPanel({
         <span aria-hidden="true" className="order-4 hidden h-px w-full bg-white/10 md:block" />
 
         <IconButton
-          label={isPlaying ? '暫停背景音' : '播放背景音'}
+          label={audible ? '暫停背景音' : '播放背景音'}
           testId="bar-music-toggle"
           onClick={music.toggle}
-          pressed={isPlaying}
+          pressed={audible}
           className="order-2 border border-neon-cyan/45 bg-neon-cyan/10 text-neon-cyan hover:bg-neon-cyan/20 md:order-5"
         >
-          {isPlaying ? <PauseIcon width={15} height={15} /> : <PlayIcon width={15} height={15} />}
+          {audible ? <PauseIcon width={15} height={15} /> : <PlayIcon width={15} height={15} />}
         </IconButton>
 
         <IconButton
@@ -313,13 +347,19 @@ export function BarMusicPlayer() {
   const music = useBarMusic();
   /** 面板是否已收合為角落小鈕（收合時音源持續播放）。 */
   const [collapsed, setCollapsed] = useState(false);
+  /** 等待互動的小喇叭鈕是否已被點開成提示卡。 */
+  const [gestureOpen, setGestureOpen] = useState(false);
 
-  // 使用者已表示不想聽背景音，就完全不出現
+  // 使用者已表示不想聽背景音（含跨訊息的 localStorage 紀錄），就完全不出現
   if (music.status === 'dismissed') return null;
 
-  // 瀏覽器擋下自動播放時，用較醒目的卡片請使用者主動點一次
+  // 瀏覽器擋下自動播放時，先收成右下小喇叭鈕；使用者點開後才出現提示卡
   if (music.status === 'needs-gesture') {
-    return <NeedsGestureCard music={music} />;
+    return gestureOpen ? (
+      <NeedsGestureCard music={music} />
+    ) : (
+      <NeedsGestureChip onExpand={() => setGestureOpen(true)} />
+    );
   }
 
   if (collapsed) return <CollapsedChip onExpand={() => setCollapsed(false)} />;

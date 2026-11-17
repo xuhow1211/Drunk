@@ -5,7 +5,11 @@
  * 以及手邊材料可以替代的建議。
  */
 import { useMemo, useState } from 'react';
-import { compareMatchResults, getRequiredIngredientIds } from '../lib/matching';
+import {
+  compareMatchResults,
+  getRequiredIngredientIds,
+  partitionByMatchRatio,
+} from '../lib/matching';
 import { parseMinutes } from '../lib/format';
 import { useFlipList } from '../hooks/useFlipList';
 import { useRecipeNav } from '../hooks/useRecipeNav';
@@ -90,8 +94,13 @@ export function MatchPanel({
   onSortChange,
 }: MatchPanelProps) {
   const [limit, setLimit] = useState(PAGE_SIZE);
+  /** 是否已展開符合度 0 的杯（預設收合，避免列表被毫無交集的結果灌爆）。 */
+  const [showUnmatched, setShowUnmatched] = useState(false);
   const sorted = useMemo(() => sortResults(results, sort), [results, sort]);
-  const visible = useMemo(() => sorted.slice(0, limit), [sorted, limit]);
+  const { matched, unmatched } = useMemo(() => partitionByMatchRatio(sorted), [sorted]);
+  /** 實際用來分頁的清單：預設只列符合度 > 0 的杯，展開後為全部結果。 */
+  const pool = showUnmatched ? sorted : matched;
+  const visible = useMemo(() => pool.slice(0, limit), [pool, limit]);
   const register = useFlipList(visible.map((item) => item.recipe.id));
   const openRecipe = useRecipeNav();
 
@@ -105,8 +114,13 @@ export function MatchPanel({
             <p className="mt-1 text-sm text-ink-muted">
               依你手邊的 <span className="font-semibold text-neon-cyan">{ownedCount}</span> 種材料，
               符合的調酒有{' '}
-              <span className="font-semibold text-neon-purple">{results.length}</span> 杯
-              <span className="text-ink-muted/70">（共 {totalCount} 杯配方）</span>
+              <span className="font-semibold text-neon-purple">{matched.length}</span> 杯
+              {unmatched.length > 0 ? (
+                <span className="text-ink-muted/70">
+                  （另有 {unmatched.length} 杯毫無交集，收合中）
+                </span>
+              ) : null}
+              <span className="text-ink-muted/70">／共 {totalCount} 杯配方</span>
             </p>
           </div>
 
@@ -136,7 +150,10 @@ export function MatchPanel({
           <div className="panel flex flex-col items-center gap-3 px-6 py-14 text-center">
             <p className="font-display text-lg font-semibold text-ink">先選幾樣手邊的材料</p>
             <p className="max-w-md text-sm leading-relaxed text-ink-muted">
-              在左側勾選你有的材料（基酒、飲料、糖漿都算），
+              {/* 768px 以下材料面板在結果上方（在上方），桌機在左欄（在左側） */}
+              <span className="md:hidden">在上方勾選</span>
+              <span className="hidden md:inline">在左側勾選</span>
+              你有的材料（基酒、飲料、糖漿都算），
               系統會立刻算出哪幾杯調酒只差最少材料就能調出來。
             </p>
           </div>
@@ -155,13 +172,29 @@ export function MatchPanel({
           ))
         )}
 
-        {sorted.length > visible.length ? (
+        {/* 「顯示更多」仍走既有 PAGE_SIZE 分頁；「顯示其他」展開後直接顯示全部 */}
+        {pool.length > visible.length ? (
           <button
             type="button"
             onClick={() => setLimit((value) => value + PAGE_SIZE)}
             className="w-full rounded-full border border-neon-purple/45 bg-neon-purple/10 px-4 py-2.5 text-sm font-semibold text-neon-purple transition hover:bg-neon-purple/20"
           >
-            顯示更多（還有 {sorted.length - visible.length} 杯）
+            顯示更多（還有 {pool.length - visible.length} 杯）
+          </button>
+        ) : null}
+
+        {/* 符合度 0 的杯收合：點擊後展開並直接顯示全部結果 */}
+        {!showUnmatched && unmatched.length > 0 ? (
+          <button
+            type="button"
+            onClick={() => {
+              setShowUnmatched(true);
+              setLimit(sorted.length);
+            }}
+            data-testid="match-show-unmatched"
+            className="w-full rounded-full border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-semibold text-ink-muted transition hover:bg-white/10 hover:text-ink"
+          >
+            顯示其他 {unmatched.length} 杯
           </button>
         ) : null}
       </div>
@@ -203,6 +236,10 @@ function MatchCard({
             </h3>
             <p className="mt-0.5 truncate text-xs uppercase tracking-wide text-ink-muted">
               {recipe.nameEn}
+            </p>
+            {/* 來源小標：同名配方（如不同整理來源的同名雞尾酒）靠它區分 */}
+            <p className="truncate text-[10px] text-ink-muted/70">
+              {recipe.sourceSite ?? '社群配方'}
             </p>
           </button>
 

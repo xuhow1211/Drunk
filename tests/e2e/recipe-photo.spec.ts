@@ -128,7 +128,7 @@ async function openRecipe(page: Page, recipeId: string) {
 }
 
 test.describe('詳情抽屜示意照片', () => {
-  test('有實照的配方顯示照片與「照片：IBA World」來源字', async ({ page }) => {
+  test('有實照的配方顯示照片（來源小字不再顯示）', async ({ page }) => {
     // 強制走靜態 JSON 降級（測試環境無 supabase env 時本就是此路徑），
     // 讓 negroni 的 photoUrl 一定來自建置 JSON 的 photo-map 對應。
     await forceStaticData(page);
@@ -146,7 +146,8 @@ test.describe('詳情抽屜示意照片', () => {
     const src = await photo.getAttribute('src');
     expect(src).toContain('/storage/v1/object/public/');
     expect(intercepted).toContain(src);
-    await expect(drawer(page).getByText('照片：IBA World')).toBeVisible();
+    // 照片來源小字依需求不顯示
+    await expect(drawer(page).getByText(/照片：/)).toHaveCount(0);
     // 材料表仍在圖片區之後，抽屜捲動內容完整
     await expect(drawer(page).getByRole('heading', { name: '材料' })).toBeVisible();
   });
@@ -197,7 +198,8 @@ test.describe('詳情抽屜示意照片', () => {
     const src = await photo.getAttribute('src');
     expect(src).toContain('/storage/v1/object/public/');
     expect(intercepted).toContain(src);
-    await expect(drawer(page).getByText('照片：IBA World')).toBeVisible();
+    // 照片來源小字依需求不顯示
+    await expect(drawer(page).getByText(/照片：/)).toHaveCount(0);
   });
 
   test('photoSource 為 tcdb 時抽屜顯示照片與 TheCocktailDB 來源字', async ({ page }) => {
@@ -230,6 +232,6 @@ test.describe('詳情抽屜示意照片', () => {
     const src = await photo.getAttribute('src');
     expect(src).toContain('/storage/v1/object/public/');
     expect(intercepted).toContain(src);
-    await expect(drawer(page).getByText('照片：TheCocktailDB')).toBeVisible();
+    await expect(drawer(page).getByText(/照片：/)).toHaveCount(0);
   });
 });
