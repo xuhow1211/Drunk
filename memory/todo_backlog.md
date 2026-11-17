@@ -6,6 +6,7 @@
 
 - [安全] Supabase 存取 token（sbp_...）已貼進對話，部署已完成，應至 Dashboard → Account → Access Tokens 產生新的並作廢舊的（使用者動手）
 - [驗證] 使用者以自己的 email 實測註冊→收信→登入→勾材料→跨裝置同步（Supabase 內建 SMTP 有每小時 2 封的寄信上限，測試時留意）
+- [網址] 使用者擬將 workers.dev 帳號子網域 leo537537 改為 howspace（暫緩）。實作方式：Dashboard → Workers & Pages → Account details / Subdomain（dash.cloudflare.com/5f6abbea1cbf227185e7c8812f3311df/workers/subdomain）；改完後需同步更新 Supabase Auth 的 site_url 與 uri_allow_list（網址會變 https://drunk.howspace.workers.dev，舊連結全失效），並重新實測全站
 
 ## 已完成（2026-11-13∼17）
 
