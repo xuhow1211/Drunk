@@ -137,12 +137,16 @@ test.describe('酒吧背景音', () => {
     await expect(page.getByTestId('bar-music-panel')).toHaveCount(0);
     await expect(page.getByTestId('bar-music-expand')).toBeVisible();
 
-    // 小鈕必須真的停靠在畫面內右下角（防止 fixed 被 panel 的 position 蓋掉）
-    const chipBox = await page.getByTestId('bar-music-expand').boundingBox();
-    const viewport = page.viewportSize()!;
-    expect(chipBox).not.toBeNull();
-    expect(chipBox!.x + chipBox!.width).toBeLessThanOrEqual(viewport.width);
-    expect(chipBox!.y + chipBox!.height).toBeLessThanOrEqual(viewport.height);
+    // 小鈕必須真的停靠在畫面內右下角（防止 fixed 被 panel 的 position 蓋掉）。
+    // 以頁面的 getBoundingClientRect 判定，避免 boundingBox 座標基準的環境差異。
+    const chipRect = await page
+      .getByTestId('bar-music-expand')
+      .evaluate((element) => {
+        const rect = element.getBoundingClientRect();
+        return { right: rect.right, bottom: rect.bottom, innerWidth: window.innerWidth, innerHeight: window.innerHeight };
+      });
+    expect(chipRect.right).toBeLessThanOrEqual(chipRect.innerWidth + 1);
+    expect(chipRect.bottom).toBeLessThanOrEqual(chipRect.innerHeight + 1);
 
     await page.getByTestId('bar-music-expand').click();
     await expect(page.getByTestId('bar-music-panel')).toBeVisible();
