@@ -300,3 +300,33 @@ body {
     animation-delay: 0ms !important;
   }
 }
+
+/**
+ * 背景音浮層（小喇叭鈕、提示卡、迷你面板、收合小鈕）的
+ * 手機版根定位：TabBar（56px）+ 間距 8px + 安全區距。
+ * 以自訂工具類別避開 Tailwind 任意值 calc 的撰寫陷阱
+ * （運算子前後無空格會成為非法宣告遭丟棄，定位整個失效）；
+ * 768px 以上回到原本的 bottom 1rem。
+ */
+.music-float-bottom {
+  bottom: calc(4rem + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 48rem) {
+  .music-float-bottom {
+    bottom: 1rem;
+  }
+}
+
+/**
+ * 頁面內容的手機版底部預留：容納 TabBar 與其上方的背景音浮層。
+ */
+.layout-bottom-space {
+  padding-bottom: calc(7rem + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 48rem) {
+  .layout-bottom-space {
+    padding-bottom: 0;
+  }
+}

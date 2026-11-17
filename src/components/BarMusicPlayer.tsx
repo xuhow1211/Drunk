@@ -26,8 +26,8 @@ import {
   VolumeMuteIcon,
 } from './Icons';
 
-/** 手機版浮層根定位：TabBar 高度（3.5rem）+ 8px 間距 + 安全區距。 */
-const FLOAT_BOTTOM_MOBILE = 'bottom-[calc(4rem+env(safe-area-inset-bottom))] md:bottom-4';
+/** 手機版浮層根定位（見 index.css 的 .music-float-bottom）。 */
+const FLOAT_BOTTOM_MOBILE = 'music-float-bottom';
 
 /** 狀態對應的說明文字。 */
 function statusLabel(
