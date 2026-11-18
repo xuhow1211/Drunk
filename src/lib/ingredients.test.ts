@@ -123,6 +123,22 @@ describe('searchIngredients', () => {
   it('搜尋不到時回傳空陣列', () => {
     expect(searchIngredients('這個食材一定不存在zzz')).toEqual([]);
   });
+
+  it('關鍵字連續輸入（like 搜尋）可命中各個出現的材料名', () => {
+    // 「啤酒琴酒」應同時列出含啤酒與琴酒的材料（材料名出現在查詢字串內）
+    const results = searchIngredients('啤酒琴酒');
+    const ids = results.map((item) => item.id);
+    expect(ids).toContain('taiwan-beer');
+    expect(ids).toContain('gin');
+    // 不會把單一字元別名拿來亂命中：無關材料不應一次全部出現
+    expect(results.length).toBeLessThan(20);
+  });
+
+  it('反向比對不因別名過短誤觸', () => {
+    // 「可」是可樂的別名之一嗎？若使用單字元別名會全面誤命中；以長度下限守住
+    const results = searchIngredients('柳橙汁');
+    expect(results.some((item) => item.id === 'orange-juice')).toBe(true);
+  });
 });
 
 describe('getSubstitutionMap', () => {

@@ -62,8 +62,16 @@ export function getIngredient(id: string): Ingredient | undefined {
   return ingredientIndex.get(id);
 }
 
+/** 進入「查詢字串包含材料名」比對的別名長度下限，避免「酒」之類的單字元造成全面命中。 */
+const CONTAINS_ALIAS_MIN_LENGTH = 2;
+
 /**
  * 依關鍵字搜尋食材，比對中文名稱、英文名稱、別名與 id。
+ *
+ * 除了「材料名包含關鍵字」外，也支援關鍵字本身連在一起打：
+ * 例如輸入「啤酒琴酒」，只要材料（或別名）的中文名以一段連續文字
+ * 出現在查詢字串裡（至少兩個字），該材料就會被列出——
+ * 讓使用者不必先輸入空格也能一次找到多項材料。
  *
  * 命中開頭的結果排在前面，其餘依中文名稱排序，供材料選擇器的搜尋框使用。
  */
@@ -75,7 +83,14 @@ export function searchIngredients(query: string): Ingredient[] {
     if (ingredient.id.toLowerCase().includes(keyword)) return true;
     if (ingredient.zh.toLowerCase().includes(keyword)) return true;
     if (ingredient.en.toLowerCase().includes(keyword)) return true;
-    return ingredient.aliases.some((alias) => alias.toLowerCase().includes(keyword));
+    if (ingredient.aliases.some((alias) => alias.toLowerCase().includes(keyword))) return true;
+    // 反向比對：查詢字串包含材料的完整名稱或別名（連續輸入多個材料名）。
+    // zh 主名常含括號補名（如「琴酒（金酒）」），去括號後的主要名稱也納入候選，
+    // 讓「琴酒」能從「啤酒琴酒」中被命中。
+    const zhMain = ingredient.zh.replace(/[（(][^）)]*[）)]/g, '').trim();
+    return [ingredient.zh, zhMain, ...ingredient.aliases, ingredient.en]
+      .filter((name) => name.length >= CONTAINS_ALIAS_MIN_LENGTH)
+      .some((name) => keyword.includes(name.toLowerCase()));
   });
 
   return matched.sort((a, b) => {
