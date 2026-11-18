@@ -16,7 +16,7 @@ import {
   searchIngredients,
 } from '../lib/ingredients';
 import { useOwnedIngredients } from '../hooks/useOwnedIngredients';
-import { CheckIcon, SearchIcon } from './Icons';
+import { CheckIcon, CloseIcon, SearchIcon } from './Icons';
 import type { Ingredient, IngredientCategory } from '../lib/types';
 
 /** 隨機挑選時使用的材料數量。 */
@@ -88,8 +88,20 @@ export function IngredientPicker() {
           onChange={(event) => setQuery(event.target.value)}
           placeholder="搜尋材料（中英文、別名）"
           aria-label="搜尋材料"
-          className="w-full rounded-full border border-white/10 bg-night-800/80 py-2.5 pl-10 pr-4 text-sm text-ink placeholder:text-ink-muted/60 focus:border-neon-purple/60 focus:outline-none"
+          className="w-full rounded-full border border-white/10 bg-night-800/80 py-2.5 pl-10 pr-10 text-sm text-ink placeholder:text-ink-muted/60 focus:border-neon-purple/60 focus:outline-none"
         />
+        {/* 清空搜尋字詞：僅在輸入非空時出現，直接還原為「未搜尋」狀態 */}
+        {query.trim() !== '' ? (
+          <button
+            type="button"
+            onClick={() => setQuery('')}
+            aria-label="清空搜尋字詞"
+            data-testid="ingredient-search-clear"
+            className="absolute right-2.5 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-white/5 text-xs text-ink-muted transition hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-purple"
+          >
+            <CloseIcon width={14} height={14} />
+          </button>
+        ) : null}
       </div>
 
       {/* 分類分頁 */}
