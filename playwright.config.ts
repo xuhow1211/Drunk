@@ -74,6 +74,7 @@ export default defineConfig({
         '**/easy.spec.ts',
         '**/tab-bar.spec.ts',
         '**/games.spec.ts',
+        '**/games-play.spec.ts',
       ],
     },
     {

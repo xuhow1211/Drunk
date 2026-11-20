@@ -14,6 +14,7 @@ import {
   updateGameRoomSettings,
   useRoomState,
 } from '../../lib/games/roomClient';
+import { fetchLatestSessionId, startGame } from '../../lib/games/gameClient';
 import type { RoomPlayer } from '../../lib/games/types';
 import {
   clampInRange,
@@ -296,6 +297,10 @@ interface RoomActionsProps {
   isHost: boolean;
   /** 目前人數是否足以開始（≥2）。 */
   enoughPlayers: boolean;
+  /** 開局中旗標（按鈕禁用）。 */
+  starting: boolean;
+  /** 按下開始遊戲時的回呼。 */
+  onStart: () => void;
   /** 是否為房主（離開時顯示移交提示）。 */
   hostLeavingHint: string;
   /** 離開中的旗標（按鈕禁用）。 */
@@ -305,7 +310,7 @@ interface RoomActionsProps {
 }
 
 /**
- * 開始遊戲（本階段佔位不可用）與離開房間。
+ * 開始遊戲（房主專屬；開局後全員導向 play 頁）與離開房間。
  *
  * @param props 操作列參數
  */
@@ -316,13 +321,24 @@ function RoomActions(props: RoomActionsProps) {
         <div className="text-center">
           <button
             type="button"
-            disabled
-            title="遊戲核心將在下一階段開放"
-            className="w-full rounded-full border border-neon-purple/60 bg-neon-purple/25 px-5 py-3 text-sm font-semibold text-ink opacity-45"
+            disabled={!props.enoughPlayers || props.starting}
+            onClick={props.onStart}
+            data-testid="start-game"
+            className={
+              'w-full rounded-full border border-neon-purple/60 bg-neon-purple/25 px-5 py-3 ' +
+              'text-sm font-semibold text-ink transition hover:bg-neon-purple/40 ' +
+              'disabled:cursor-not-allowed disabled:opacity-45'
+            }
           >
-            {props.enoughPlayers ? '開始遊戲' : '開始遊戲（需至少 2 名玩家）'}
+            {props.starting
+              ? '開局中……'
+              : props.enoughPlayers
+                ? '開始遊戲'
+                : '開始遊戲（需至少 2 名玩家）'}
           </button>
-          <p className="mt-1.5 text-xs text-ink-muted">遊戲核心將在下一階段開放</p>
+          <p className="mt-1.5 text-xs text-ink-muted">
+            {props.enoughPlayers ? '開局後全員進入主畫面，每人只看得到自己的骰子' : '需至少 2 名玩家才能開始'}
+          </p>
         </div>
       ) : (
         <p className="text-center text-sm text-ink-muted">等待房主開始遊戲……</p>
@@ -354,7 +370,22 @@ function RoomDetail() {
   const { user } = useAuth();
   const { room, players, onlineIds, loading, error } = useRoomState(roomId);
   const [leaving, setLeaving] = useState(false);
+  const [starting, setStarting] = useState(false);
   const [actionError, setActionError] = useState<string | null>(null);
+
+  /** 開始遊戲：成功後導向本局主畫面（其餘成員由訂閱同步自行導向）。 */
+  const handleStart = async () => {
+    if (starting) return;
+    setStarting(true);
+    setActionError(null);
+    try {
+      const sessionId = await startGame(roomId);
+      navigate(`/games/play/${sessionId}`);
+    } catch (cause) {
+      setActionError(cause instanceof Error ? cause.message : '開始遊戲失敗，請再試一次。');
+      setStarting(false);
+    }
+  };
 
   /** 離開房間：成功後回遊戲首頁（房主離開由 SQL 移交房主或關房）。 */
   const handleLeave = async () => {
@@ -380,6 +411,21 @@ function RoomDetail() {
       setActionError(cause instanceof Error ? cause.message : '移除玩家失敗。');
     }
   };
+
+  // 遊戲已開局（房主按鈕或他人視角的訂閱同步）：全員導向本局主畫面
+  const roomStatus = room?.status ?? null;
+  useEffect(() => {
+    if (roomStatus !== 'playing') return;
+    let cancelled = false;
+    void fetchLatestSessionId(roomId).then((sessionId) => {
+      if (!cancelled && sessionId) {
+        navigate(`/games/play/${sessionId}`, { replace: true });
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [roomStatus, roomId, navigate]);
 
   if (loading) {
     return (
@@ -416,6 +462,7 @@ function RoomDetail() {
 
   const isHost = room.hostId === user?.id;
   const waiting = room.status === 'waiting';
+
   return (
     <div className="pb-36 pt-8 sm:pb-24">
       <div className="mx-auto flex max-w-[480px] flex-col gap-5 px-4 sm:px-6">
@@ -461,6 +508,8 @@ function RoomDetail() {
         <RoomActions
           isHost={isHost}
           enoughPlayers={players.length >= 2}
+          starting={starting}
+          onStart={() => void handleStart()}
           hostLeavingHint={
             isHost ? '離開後房主將移交給席位最早的成員；房內無人時房間自動關閉。' : ''
           }

@@ -196,8 +196,8 @@ test.describe('吹牛骰子房間系統', () => {
     await expect(page).toHaveURL('/games');
     await expect(rowB.getByText('房主')).toBeVisible({ timeout: 20_000 });
     await expect(pageB.getByRole('listitem').filter({ hasText: '骰王A' })).toHaveCount(0);
-    // B 的開始遊戲列已切換為房主視角（佔位按鈕的提示文字出現）
-    await expect(pageB.getByText('遊戲核心將在下一階段開放')).toBeVisible();
+    // B 的開始遊戲列已切換為房主視角（人數不足 2 的房主視角按鈕出現）
+    await expect(pageB.getByRole('button', { name: /開始遊戲/ })).toBeVisible();
 
     // B 離開房間：房內無人，房間自動關閉
     await pageB.getByRole('button', { name: '離開房間' }).click();
