@@ -12,7 +12,7 @@
  *
  * supabase-js 依專案慣例以動態匯入載入，不進入主 bundle。
  */
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { SupabaseClient, RealtimePostgresChangesPayload } from '@supabase/supabase-js';
 import { useAuth } from '../authStore';
 import { fetchRoomPlayers } from './roomClient';
@@ -24,7 +24,14 @@ import type {
   PlayerState,
   PlayerStateRow,
   PlayerView,
+  PlayerStatsRow,
+  PlayerStats,
+  GameEvent,
+  GameEventRow,
 } from './gameTypes';
+
+/** 事件紀錄的顯示上限（最新在上；超量截斷）。 */
+export const GAME_LOG_LIMIT = 30;
 
 /** 取得 Supabase 用戶端（未配置時拋出可顯示的錯誤）。 */
 async function loadClient(): Promise<SupabaseClient> {
@@ -94,6 +101,12 @@ export async function syncTimeout(sessionId: number): Promise<void> {
   await callRpc(client, 'sync_timeout', { p_session_id: sessionId });
 }
 
+/** 房主重開房間（clear 既有局況、狀態轉回 waiting、成員保留；冪等）。 */
+export async function replayGameRoom(roomId: string): Promise<void> {
+  const client = await loadClient();
+  await callRpc(client, 'replay_room', { p_room_id: roomId });
+}
+
 /** 讀取單一局況快照（不存在時為 null）。 */
 export async function fetchGameSession(sessionId: number): Promise<GameSession | null> {
   const client = await loadClient();
@@ -155,6 +168,130 @@ export async function fetchLatestSessionId(roomId: string): Promise<number | nul
     .maybeSingle();
   return data ? (data as { id: number }).id : null;
 }
+
+/** 讀取某局的操作事件（game_actions；最新在前），供事件紀錄區顯示。 */
+export async function fetchGameEvents(
+  sessionId: number,
+  limit: number = GAME_LOG_LIMIT,
+): Promise<GameEvent[]> {
+  const client = await loadClient();
+  const { data } = await client
+    .from('game_actions')
+    .select('*')
+    .eq('session_id', sessionId)
+    .order('seq', { ascending: false })
+    .limit(limit);
+  return ((data ?? []) as GameEventRow[]).map((row) => ({
+    seq: row.seq,
+    roundNo: row.round_no,
+    userId: row.user_id,
+    action: row.action,
+    count: row.count,
+    face: row.face,
+    createdAt: row.created_at,
+  }));
+}
+
+/** 讀取玩家的個人戰績（player_statistics；尚無紀錄時為 null）。 */
+export async function fetchPlayerStats(userId: string): Promise<PlayerStats | null> {
+  const client = await loadClient();
+  const { data } = await client
+    .from('player_statistics')
+    .select('*')
+    .eq('user_id', userId)
+    .maybeSingle();
+  if (!data) return null;
+  const row = data as PlayerStatsRow;
+  return {
+    games: row.games,
+    wins: row.wins,
+    currentStreak: row.current_streak,
+    bestStreak: row.best_streak,
+  };
+}
+
+/** 事件紀錄的顯示條目（已組好繁中描述與時間）。 */
+export interface GameLogEntry {
+  /** 穩定的 React key。 */
+  key: string;
+  /** 繁中描述（喊牌／質疑／逾時代打／淘汰）。 */
+  text: string;
+  /** 事件時間（ISO 字串或本機補上的當下時間）。 */
+  at: string;
+}
+
+/**
+ * 遊戲事件紀錄 hook（規劃書 §9.2 第六區的資料來源，自擇最簡者）：
+ * 操作事件直接讀 game_actions（公開表；在回合推進時重抓一次），
+ * 淘汰事件由玩家狀態訂閱累計（首次載入時已淘汰者不重複記錄，
+ * 比同一 player_id 只記一次）。最新在前、上限 GAME_LOG_LIMIT 筆。
+ *
+ * @param sessionId 局 ID
+ * @param players 玩家列（含顯示名稱；僅供描述使用，值不觸發重抓）
+ * @param roundNo 目前回合編號（回合推進時重抓操作事件）
+ * @param bidSeq 本回合手數（新的一手也重抓，逾時代打才看得到）
+ * @returns 顯示條目列表（最新在前，最多 GAME_LOG_LIMIT 筆）
+ */
+export function useGameLog(
+  sessionId: number,
+  players: PlayerView[],
+  roundNo: number | undefined,
+  bidSeq: number | undefined,
+): GameLogEntry[] {
+  const [rows, setRows] = useState<GameEvent[]>([]);
+  const [eliminated, setEliminated] = useState<Array<{ userId: string; at: string }>>([]);
+  const knownEliminatedRef = useRef<Set<string>>(new Set());
+
+  // 回合或手數推進時重抓操作事件（失敗靜默：紀錄區非關鍵路徑）
+  useEffect(() => {
+    if (!(sessionId > 0)) return;
+    let cancelled = false;
+    void fetchGameEvents(sessionId, GAME_LOG_LIMIT)
+      .then((events) => {
+        if (!cancelled) setRows(events);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [sessionId, roundNo, bidSeq]);
+
+  // 淘汰累計：新出現的淘汰玩家記一筆（含首次載入時即已淘汰者）
+  useEffect(() => {
+    const fresh = players.filter(
+      (p) => p.eliminated && !knownEliminatedRef.current.has(p.userId),
+    );
+    if (fresh.length === 0) return;
+    for (const p of fresh) knownEliminatedRef.current.add(p.userId);
+    const now = new Date().toISOString();
+    setEliminated((prev) => [...prev, ...fresh.map((p) => ({ userId: p.userId, at: now }))]);
+  }, [players]);
+
+  // 顯示條目：操作事件＋淘汰事件合併、依時間最新在前、截至上限
+  return useMemo(() => {
+    const nameOf = (userId: string) =>
+      players.find((p) => p.userId === userId)?.displayName ?? '玩家';
+    const entries: GameLogEntry[] = rows.map((row) => ({
+      key: `a${row.seq}`,
+      at: row.createdAt,
+      text:
+        row.action === 'bid'
+          ? `${nameOf(row.userId)} 喊了 ${row.count} 個 ${row.face} 點`
+          : row.action === 'challenge'
+            ? `${nameOf(row.userId)} 質疑，進行開盅`
+            : row.action === 'timeout_bid'
+              ? `${nameOf(row.userId)} 逾時，系統代喊 1 個 1 點`
+              : `${nameOf(row.userId)} 逾時，系統代為質疑`,
+    }));
+    for (const item of eliminated) {
+      entries.push({ key: `e${item.userId}`, at: item.at, text: `${nameOf(item.userId)} 已被淘汰` });
+    }
+    entries.sort((a, b) => Date.parse(b.at) - Date.parse(a.at));
+    return entries.slice(0, GAME_LOG_LIMIT);
+  }, [rows, eliminated, players]);
+}
+
+/** 把 game_sessions 列對應成前端局況快照。 */
 
 /** 局況 hook 的回傳（session／round／players／dice 全部由訂閱維護）。 */
 export interface GameState {

@@ -14,7 +14,7 @@ import {
   updateGameRoomSettings,
   useRoomState,
 } from '../../lib/games/roomClient';
-import { fetchLatestSessionId, startGame } from '../../lib/games/gameClient';
+import { fetchLatestSessionId, replayGameRoom, startGame } from '../../lib/games/gameClient';
 import type { RoomPlayer } from '../../lib/games/types';
 import {
   clampInRange,
@@ -110,6 +110,65 @@ function SettingControl(props: SettingControlProps) {
         </button>
       </div>
     </div>
+  );
+}
+
+/** 房間結案面板的參數。 */
+interface EndedRoomPanelProps {
+  /** 房間 ID。 */
+  roomId: string;
+  /** 是否為房主。 */
+  isHost: boolean;
+}
+
+/**
+ * 房間結案面板（審查第 2 項）：狀態列說明「待房主重開」；
+ * 房主可按下重開（replay_room），成功後訂閱會把狀態送回 waiting，
+ * 既有開局區隨即恢復可開始遊戲。
+ *
+ * @param props 面板參數
+ */
+function EndedRoomPanel(props: EndedRoomPanelProps) {
+  const [replaying, setReplaying] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  /** 房主重開房間：成功後不需導頁，狀態由訂閱同步為 waiting。 */
+  const handleReplay = async () => {
+    if (replaying) return;
+    setReplaying(true);
+    setError(null);
+    try {
+      await replayGameRoom(props.roomId);
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : '重開房間失敗，請再試一次。');
+    } finally {
+      setReplaying(false);
+    }
+  };
+
+  return (
+    <section className="panel p-4 text-center" aria-label="房間已結案" data-testid="ended-panel">
+      <p className="text-sm text-ink">這局遊戲已結束，房間等待重開。</p>
+      {props.isHost ? (
+        <>
+          <button
+            type="button"
+            onClick={() => void handleReplay()}
+            disabled={replaying}
+            data-testid="replay-room"
+            className="mt-3 min-h-[44px] w-full rounded-full border border-neon-purple/60 bg-neon-purple/25 px-5 text-sm font-semibold text-ink transition hover:bg-neon-purple/40 disabled:opacity-50"
+          >
+            {replaying ? '重開房間中……' : '重開房間（再玩一局）'}
+          </button>
+          <p className="mt-1.5 text-xs text-ink-muted">
+            重開後保留成員，遊戲局況清空，可重新設定並開始。
+          </p>
+        </>
+      ) : (
+        <p className="mt-3 text-xs text-ink-muted">待房主重開，成員保留、不用重新加入。</p>
+      )}
+      {error ? <p className="mt-2 text-xs text-neon-pink" role="alert">{error}</p> : null}
+    </section>
   );
 }
 
@@ -467,13 +526,13 @@ function RoomDetail() {
     <div className="pb-36 pt-8 sm:pb-24">
       <div className="mx-auto flex max-w-[480px] flex-col gap-5 px-4 sm:px-6">
         <RoomIdHeader roomId={room.roomId} />
-        {room.status !== 'waiting' ? (
+        {room.status === 'ended' ? (
+          <EndedRoomPanel roomId={room.roomId} isHost={isHost} />
+        ) : room.status !== 'waiting' ? (
           <p className="panel p-3 text-center text-sm text-ink-muted">
             {room.status === 'closed'
               ? '房間已關閉，成員無法再進入。'
-              : room.status === 'playing'
-                ? '遊戲進行中。'
-                : '這局遊戲已結束。'}
+              : '遊戲進行中。'}
           </p>
         ) : null}
 

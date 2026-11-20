@@ -1,7 +1,9 @@
 -- ============================================================
--- 吹牛骰子遊戲：遊戲核心（Phase 3）
+-- 吹牛骰子遊戲：遊戲核心（Phase 3＋Phase 4 增修）
 -- 資料表：game_sessions、game_rounds、game_player_state、
 --         game_player_dice、game_actions、player_statistics
+-- RPC：start_game／submit_bid／challenge_bid／sync_timeout（Phase 3）、
+--      replay_room（Phase 4：房主重開回到等待中）
 -- 寫入一律走 RPC（security definer）；RLS 僅開放 select，
 -- game_player_dice 私有列僅本人可讀（realtime 依 RLS 過濾）。
 -- 冪等：可重複執行（資料表 if not exists、publication 先查再加、
@@ -601,14 +603,69 @@ begin
   perform _open_pot(p_session_id, uid, 'challenge');
 end $$;
 
--- 逾時同步：deadline 已過的回合由任何成員呼叫即可推進（冪等）。
+-- 逾時同步：deadline 已過的回合由本局成員呼叫即可推進（冪等）。
 -- 首喊逾時＝代喊 (1,1)；續喊逾時＝代質疑。未逾時或非喊牌階段時無操作。
 create or replace function sync_timeout(p_session_id bigint) returns void
 language plpgsql security definer set search_path = public as $$
+declare
+  uid uuid := auth.uid();
 begin
+  if uid is null then
+    raise exception '請先登入';
+  end if;
   perform pg_advisory_xact_lock(p_session_id);
   if not exists (select 1 from game_sessions where id = p_session_id) then
     raise exception '遊戲局不存在';
   end if;
+  -- 成員檢查：非本局玩家不得觸發逾時代打（避免旁人干預對局）
+  if not exists (
+    select 1 from game_player_state p
+    join game_sessions s on s.id = p.session_id
+    where s.id = p_session_id and p.user_id = uid
+  ) then
+    raise exception '只有本局玩家可以同步逾時';
+  end if;
   perform _apply_timeout(p_session_id);
+end $$;
+
+-- ============ Phase 4：房主重開（再玩一局） ============
+
+-- 房主重開房間：遊戲結束（或對局仍在進行）後，由房主把該房清回「等待中」，
+-- 成員保留（game_room_players 不動），再由一般的 start_game 重新開局。
+--   冪等：已 waiting 時直接返回；closed 房間不得重開。
+--   清局：刪除房內全部 game_sessions（其回合／骰子／操作紀錄隨 FK 串聯刪除）。
+create or replace function replay_room(p_room_id text) returns void
+language plpgsql security definer set search_path = public as $$
+declare
+  uid uuid := auth.uid();
+  target text := upper(trim(p_room_id));
+  room game_rooms%rowtype;
+begin
+  if uid is null then
+    raise exception '請先登入';
+  end if;
+  -- 與 start_game 同一把房間層級鎖：與開局互斥，避免重開與開局並行
+  perform pg_advisory_xact_lock(hashtextextended('liars-room:' || target, 0));
+
+  select * into room from game_rooms where room_id = target;
+  if not found then
+    raise exception '房間不存在';
+  end if;
+  if room.host_id <> uid then
+    raise exception '只有房主可以重開房間';
+  end if;
+  if room.status = 'waiting' then
+    -- 冪等：已在等待中（可能重複點擊或他人已重開）則無操作
+    return;
+  end if;
+  if room.status = 'closed' then
+    raise exception '房間已關閉，無法重開';
+  end if;
+  if room.status = 'playing' then
+    raise exception '遊戲進行中，無法重開';
+  end if;
+
+  delete from game_sessions where room_id = target;
+  update game_rooms set status = 'waiting', last_activity_at = now()
+    where room_id = target;
 end $$;

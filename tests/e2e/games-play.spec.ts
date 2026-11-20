@@ -1,5 +1,6 @@
 /**
- * 吹牛骰子遊戲核心（Phase 3）的情境測試：RPC 對局、UI 對局與逾時代理。
+ * 吹牛骰子遊戲核心（Phase 3＋Phase 4）的情境測試：RPC 對局、UI 對局、
+ * 逾時代理、房主重開（replay_room）、開盅可關閉與結算卡。
  *
  * 需要本機憑證：SUPABASE_URL 與 SUPABASE_SERVICE_ROLE_KEY（缺一即跳過，
  * CI 上不具備這兩個環境變數）。前置以 service key 經 Auth Admin REST
@@ -10,9 +11,11 @@
  *   1. RPC 直接驅動完整對局（起局 → 依 current_seat 輪流 submit_bid →
  *      challenge → reveal／淘汰／dice_left → 二人局結束 → 統計更新）。
  *   2. UI：兩個 context 的 play 頁（雙方看到倒數與自己的骰子、私有隔離、
- *      喊牌 5 秒內同步、質疑後 reveal 與新回合）。
+ *      喊牌 5 秒內同步、質疑後 reveal 與新回合、開盅可關閉並留下摘要）。
  *   3. 逾時：deadline 過後 sync_timeout 自動代喊（bid_seq=0 → (1,1)），
  *      冪等不重複處理。
+ *   4. 房主重開：結案房間以 replay_room 轉回 waiting（成員保留、冪等），
+ *      大廳可再次開局；UI 結算卡顯示戰績並可由房主按鈕重開。
  */
 import { expect, test, type Page } from '@playwright/test';
 
@@ -28,8 +31,22 @@ const USER_B = { email: 'e2e-p3-b@example.test', name: '核心B' };
 /** 測試帳號共用的密碼（與主控啟動時的設定一致）。 */
 const TEST_PASSWORD = process.env.E2E_GAME_PASSWORD ?? 'dice-e2e-pass';
 
-/** 開盅覆蓋的自動關閉上限（SQL 端停留 6 秒，此處放寬到 15 秒等它隱藏）。 */
+/** 開盅覆蓋的自動關閉上限（SQL 端停留上限 6 秒，此處放寬到 15 秒等它隱藏）。 */
 const REVEAL_HIDE_TIMEOUT = 15_000;
+
+/**
+ * 以 UI 完成登入，成功後回到首頁。
+ *
+ * @param page 目標頁面
+ * @param email 測試帳號信箱
+ */
+async function uiSignIn(page: Page, email: string): Promise<void> {
+  await page.goto('/auth');
+  await page.getByLabel('Email').fill(email);
+  await page.getByLabel('密碼').fill(TEST_PASSWORD);
+  await page.getByRole('button', { name: '登入', exact: true }).click();
+  await expect(page).toHaveURL('/');
+}
 
 /** 從大廳頁面的網址抽出 6 碼房間 ID。 */
 function roomIdFromUrl(url: string): string {
@@ -289,6 +306,47 @@ test.describe('吹牛骰子遊戲核心', () => {
     };
   }
 
+  /** 讀房間狀態（公開表；game_rooms RLS 允許成員讀取）。 */
+  async function roomStatusOf(roomId: string): Promise<string> {
+    const rows = await fetchRows(
+      tokenA,
+      'game_rooms',
+      `room_id=eq.${roomId}&select=status&limit=1`,
+    );
+    expect(rows).toHaveLength(1);
+    return (rows[0] as { status: string }).status;
+  }
+
+  /** 從大廳 RPC 取得房內成員數（room_member_list security definer）。 */
+  async function memberCountOf(roomId: string): Promise<number> {
+    const members = await callRpc<Array<{ user_id: string }>>(
+      tokenA,
+      'room_member_list',
+      { p_room_id: roomId },
+    );
+    return members.length;
+  }
+
+  /** 以最小加碼序列續打直到分出勝負（winner 落定、房間結案）。 */
+  async function driveToWinner(sessionId: number): Promise<void> {
+    for (let guard = 0; guard < 15; guard += 1) {
+      const state = await sessionOf(sessionId);
+      if (state.winner) break;
+      const roundNow = await latestRound(sessionId);
+      expect(roundNow.status).toBe('bidding');
+      const aliveRows = await fetchRows(
+        tokenA,
+        'game_player_state',
+        `session_id=eq.${sessionId}&eliminated=eq.false&select=dice_left`,
+      );
+      const aliveTotal = aliveRows.reduce((sum, row) => sum + (row.dice_left as number), 0);
+      await driveToChallenge(sessionId, aliveTotal);
+    }
+    const state = await sessionOf(sessionId);
+    expect(state.winner).toBeTruthy();
+    expect(state.settled_at).not.toBeNull();
+  }
+
   /**
    * 把「目前回合」喊到數量＝p_total 上限後由當前玩家質疑（最小加碼序列）。
    *
@@ -480,22 +538,13 @@ test.describe('吹牛骰子遊戲核心', () => {
     expect(loserStats?.current_streak).toBe(0);
   });
 
-  test('UI 對局：雙方倒數與私有骰子、喊牌同步、質疑開盅與新回合', async ({ page, browser }) => {
+  test('UI 對局：雙方倒數與私有骰子、喊牌同步、質疑開盅（可關閉、留摘要）與新回合', async ({ page, browser }) => {
     test.setTimeout(180_000);
     const consoleErrors: string[] = [];
     page.on('pageerror', (error) => consoleErrors.push(error.message));
 
-    /** 以 UI 完成登入，成功後回到首頁。 */
-    const signIn = async (target: Page, email: string) => {
-      await target.goto('/auth');
-      await target.getByLabel('Email').fill(email);
-      await target.getByLabel('密碼').fill(TEST_PASSWORD);
-      await target.getByRole('button', { name: '登入', exact: true }).click();
-      await expect(target).toHaveURL('/');
-    };
-
     // A 登入並建立房間（骰子 2 顆縮短對局；思考 15 秒確保倒數可見）
-    await signIn(page, USER_A.email);
+    await uiSignIn(page, USER_A.email);
     await page.goto('/games');
     await page.getByRole('button', { name: '建立新房間' }).click();
     await expect(page).toHaveURL(/\/games\/room\/[A-HJKMNP-Z2-9]{6}/);
@@ -517,7 +566,7 @@ test.describe('吹牛骰子遊戲核心', () => {
     });
     const pageB = await contextB.newPage();
     pageB.on('pageerror', (error) => consoleErrors.push(`B: ${error.message}`));
-    await signIn(pageB, USER_B.email);
+    await uiSignIn(pageB, USER_B.email);
     await pageB.goto('/games');
     await pageB.getByLabel('房間 ID').fill(roomId);
     await pageB.getByRole('button', { name: '加入', exact: true }).click();
@@ -553,9 +602,15 @@ test.describe('吹牛骰子遊戲核心', () => {
       await expect(target.getByTestId('reveal-panel')).toBeVisible({ timeout: 10_000 });
       await expect(target.getByTestId('resolve-note')).toContainText('質疑');
     }
-    // 開盅顯示數秒後自動關閉，並進入第 2 輪
+    // A 提前關閉開盅（思考時間短於覆蓋停留上限時不被吃掉回合）：立即隱藏，
+    // 並在畫面內留下可收合的開盅摘要（不遮擋操作區）
+    await page.getByTestId('reveal-close').click();
+    await expect(page.getByTestId('reveal-panel')).toBeHidden();
+    await expect(page.getByTestId('reveal-summary')).toBeVisible();
+    // B 視角不動，等覆蓋停留後自動關閉
+    await expect(pageB.getByTestId('reveal-panel')).toBeHidden({ timeout: REVEAL_HIDE_TIMEOUT });
+    // 雙方進入第 2 輪
     for (const target of [page, pageB]) {
-      await expect(target.getByTestId('reveal-panel')).toBeHidden({ timeout: REVEAL_HIDE_TIMEOUT });
       await expect(target.getByText('第 2 輪')).toBeVisible();
     }
 
@@ -598,5 +653,78 @@ test.describe('吹牛骰子遊戲核心', () => {
       `session_id=eq.${sessionId}&action=eq.timeout_bid&select=action`,
     );
     expect(actionsAgain).toHaveLength(1);
+  });
+
+  test('房主重開（replay_room）：結案房間轉回 waiting、成員保留、冪等、可再開局', async () => {
+    test.setTimeout(240_000);
+    const { roomId, sessionId } = await setupSession({ diceCount: 2, turnSeconds: 5 });
+
+    // 打到分勝負：房間結案（game_sessions winner 落定後 game_rooms 轉 ended）
+    await driveToWinner(sessionId);
+    expect(await roomStatusOf(roomId)).toBe('ended');
+
+    // 非房主不得重開：tokenB 呼叫應被拒（房主專屬），狀態維持 ended
+    let rejected = false;
+    try {
+      await callRpc(tokenB, 'replay_room', { p_room_id: roomId });
+    } catch (cause) {
+      rejected = true;
+      expect(String(cause instanceof Error ? cause.message : cause)).toContain('房主');
+    }
+    expect(rejected).toBe(true);
+
+    // 房主重開：狀態轉回 waiting、成員保留、局況清空
+    expect(await memberCountOf(roomId)).toBe(2);
+    await callRpc(tokenA, 'replay_room', { p_room_id: roomId });
+    expect(await roomStatusOf(roomId)).toBe('waiting');
+    expect(await memberCountOf(roomId)).toBe(2);
+    const sessionsLeft = await fetchRows(
+      tokenA,
+      'game_sessions',
+      `room_id=eq.${roomId}&select=id&limit=5`,
+    );
+    expect(sessionsLeft).toHaveLength(0);
+
+    // 冪等：已在 waiting 時重複呼叫為無操作（不成失敗、狀態維持）
+    await callRpc(tokenA, 'replay_room', { p_room_id: roomId });
+    expect(await roomStatusOf(roomId)).toBe('waiting');
+
+    // 重開後可再次開局：新 session id 與舊局不同、房間轉 playing
+    const newSessionId = await callRpc<number>(tokenA, 'start_game', { p_room_id: roomId });
+    expect(newSessionId).toBeGreaterThan(0);
+    expect(newSessionId).not.toBe(sessionId);
+    expect(await roomStatusOf(roomId)).toBe('playing');
+  });
+
+  test('UI 結算卡：勝者／排名／個人戰績，房主重開後大廳回到可開局', async ({ page }) => {
+    test.setTimeout(240_000);
+    const consoleErrors: string[] = [];
+    page.on('pageerror', (error) => consoleErrors.push(error.message));
+
+    // RPC 打完整局到結束（房間結案），再以 UI 檢視結算卡
+    const { roomId, sessionId } = await setupSession({ diceCount: 2, turnSeconds: 15 });
+    await driveToWinner(sessionId);
+    expect(await roomStatusOf(roomId)).toBe('ended');
+
+    await uiSignIn(page, USER_A.email);
+    await page.goto(`/games/play/${sessionId}`);
+    await expect(page.getByTestId('game-over')).toBeVisible({ timeout: 15_000 });
+    await expect(page.getByTestId('game-over')).toContainText('獲勝');
+    // 排名列表：排名 1 與 2 列都在（二人局）
+    await expect(page.getByTestId('game-over-ranking').locator('li')).toHaveCount(2);
+    // 個人戰績（本人列）：顯示戰績文字（games／wins／勝率／連勝）
+    await expect(page.getByTestId('self-stats-text')).toContainText('勝率');
+    // 返回大廳連結與房主重開按鈕並存
+    await expect(page.getByTestId('back-to-lobby')).toBeVisible();
+
+    // 房主按「再玩一局（房主重開）」：呼叫 replay_room 後導回大廳，
+    // 該房已轉 waiting、開始遊戲按鈕恢復可用
+    await page.getByTestId('replay-room').click();
+    await expect(page).toHaveURL(new RegExp(`/games/room/${roomId}`), { timeout: 15_000 });
+    await expect(page.getByRole('button', { name: /開始遊戲/ })).toBeVisible({ timeout: 15_000 });
+    // 大廳不再顯示結案面板
+    await expect(page.getByTestId('ended-panel')).toHaveCount(0);
+
+    expect(consoleErrors).toEqual([]);
   });
 });

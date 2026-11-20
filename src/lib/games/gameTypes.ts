@@ -102,6 +102,75 @@ export interface GameRound {
   resolveNote: string | null;
 }
 
+/** game_actions 允許的動作類型（與 SQL 的 check 一致）。 */
+export type GameActionType = 'bid' | 'challenge' | 'timeout_bid' | 'timeout_challenge';
+
+/** game_actions 的單列（原始形狀）。 */
+export interface GameEventRow {
+  /** 局 ID。 */
+  session_id: number;
+  /** 流水號（session 內遞增）。 */
+  seq: number;
+  /** 回合編號。 */
+  round_no: number;
+  /** 操作者 user_id（系統代打時為被代理的玩家）。 */
+  user_id: string;
+  /** 動作類型。 */
+  action: GameActionType;
+  /** 喊牌數量（僅 bid／timeout_bid 有值）。 */
+  count: number | null;
+  /** 喊牌點數（僅 bid／timeout_bid 有值）。 */
+  face: number | null;
+  /** 操作時間（ISO 字串）。 */
+  created_at: string;
+}
+
+/** 前端使用的操作事件（camelCase）。 */
+export interface GameEvent {
+  /** 流水號。 */
+  seq: number;
+  /** 回合編號。 */
+  roundNo: number;
+  /** 操作者 user_id。 */
+  userId: string;
+  /** 動作類型。 */
+  action: GameActionType;
+  /** 喊牌數量。 */
+  count: number | null;
+  /** 喊牌點數。 */
+  face: number | null;
+  /** 操作時間（ISO 字串）。 */
+  createdAt: string;
+}
+
+/** player_statistics 的單列（原始形狀；公開可讀）。 */
+export interface PlayerStatsRow {
+  /** 玩家 user_id。 */
+  user_id: string;
+  /** 累積遊戲數。 */
+  games: number;
+  /** 累積勝場。 */
+  wins: number;
+  /** 目前連勝。 */
+  current_streak: number;
+  /** 最佳連勝。 */
+  best_streak: number;
+  /** 最後遊玩時間。 */
+  last_played_at: string | null;
+}
+
+/** 前端使用的個人戰績（camelCase）。 */
+export interface PlayerStats {
+  /** 累積遊戲數。 */
+  games: number;
+  /** 累積勝場。 */
+  wins: number;
+  /** 目前連勝。 */
+  currentStreak: number;
+  /** 最佳連勝。 */
+  bestStreak: number;
+}
+
 /** game_player_state 的單列（原始形狀）。 */
 export interface PlayerStateRow {
   /** 局 ID。 */

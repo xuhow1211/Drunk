@@ -128,6 +128,50 @@
   }
 }
 
+/**
+ * 骰子搖動（吹牛骰子）：回合開始、自己的骰子載入時的短暫動效。
+ * 只動 transform，總長 ≤900ms；期間骰面值照常顯示，
+ * prefers-reduced-motion 由下方的全域媒體查詢收斂成瞬間完成。
+ */
+@keyframes dice-shake {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  18% {
+    transform: translate3d(-4px, -5px, 0) rotate(-10deg);
+  }
+  36% {
+    transform: translate3d(4px, -3px, 0) rotate(8deg);
+  }
+  54% {
+    transform: translate3d(-3px, 3px, 0) rotate(-7deg);
+  }
+  72% {
+    transform: translate3d(2px, -2px, 0) rotate(5deg);
+  }
+}
+
+/* 開盅逐張翻牌：骰面由半透明微旋入場（依序延遲） */
+@keyframes dice-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) rotate(-10deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.dice-shake {
+  animation: dice-shake 0.7s ease-in-out both;
+}
+
+.dice-reveal {
+  animation: dice-reveal 0.32s ease-out both;
+}
+
 /* 全域底色與文字配色 */
 body {
   margin: 0;
