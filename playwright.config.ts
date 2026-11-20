@@ -73,6 +73,8 @@ export default defineConfig({
         '**/recipe-photo.spec.ts',
         '**/easy.spec.ts',
         '**/tab-bar.spec.ts',
+        '**/games.spec.ts',
+        '**/games-play.spec.ts',
       ],
     },
     {
@@ -88,6 +90,7 @@ export default defineConfig({
         '**/recipe-photo.spec.ts',
         '**/easy.spec.ts',
         '**/tab-bar.spec.ts',
+        '**/games.spec.ts',
       ],
     },
     {

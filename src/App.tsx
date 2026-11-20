@@ -29,6 +29,9 @@ import { Easy } from './pages/Easy';
 import { Home } from './pages/Home';
 import { Match } from './pages/Match';
 import { Popular } from './pages/Popular';
+import { GamesHome } from './pages/games/GamesHome';
+import { GameRoomPage } from './pages/games/GameRoomPage';
+import { GamePlayPage } from './pages/games/GamePlayPage';
 
 /**
  * 待資料就緒的顯示。
@@ -165,6 +168,9 @@ function Shell() {
           <Route path="/match" element={<Match />} />
           <Route path="/recipe/:id" element={<RecipeBackdrop />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/games" element={<GamesHome />} />
+          <Route path="/games/room/:roomId" element={<GameRoomPage />} />
+          <Route path="/games/play/:sessionId" element={<GamePlayPage />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
