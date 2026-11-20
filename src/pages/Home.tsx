@@ -51,14 +51,21 @@ export function Home() {
 
       <EntryCards classicCount={counts.classic} popularCount={counts.popular} />
 
-      {/* 超商調酒直達：批次一的三張入口卡不動，另以小型連結通往 /easy */}
-      <div className="mt-3 flex justify-center px-4 sm:justify-start">
+      {/* 超商調酒直達與吹牛骰子入口：三張入口卡不動，另以小型連結直達 */}
+      <div className="mt-3 flex flex-wrap items-center justify-center gap-3 px-4 sm:justify-start">
         {/* 44px 觸控目標＋14px 字級：手機上這顆連結是主要入口之一 */}
         <Link
           to="/easy"
           className="inline-flex min-h-[44px] items-center rounded-full border border-neon-cyan/35 bg-neon-cyan/10 px-4 py-2 text-sm font-semibold text-neon-cyan transition hover:bg-neon-cyan/20"
         >
           超商調酒專區 →
+        </Link>
+        {/* 吹牛骰子：線上多人遊戲，遊戲頁自帶登入守門 */}
+        <Link
+          to="/games"
+          className="inline-flex min-h-[44px] items-center rounded-full border border-neon-gold/35 bg-neon-gold/10 px-4 py-2 text-sm font-semibold text-neon-gold transition hover:bg-neon-gold/20"
+        >
+          吹牛骰子 →
         </Link>
       </div>
 
