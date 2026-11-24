@@ -3,7 +3,8 @@
 -- 資料表：game_sessions、game_rounds、game_player_state、
 --         game_player_dice、game_actions、player_statistics
 -- RPC：start_game／submit_bid／challenge_bid／sync_timeout（Phase 3）、
---      replay_room（Phase 4：房主重開回到等待中）
+--      replay_room（Phase 4：房主重開回到等待中）、
+--      ack_reveal（開盅全員確認後才起跳下一回合倒數）
 -- 寫入一律走 RPC（security definer）；RLS 僅開放 select，
 -- game_player_dice 私有列僅本人可讀（realtime 依 RLS 過濾）。
 -- 冪等：可重複執行（資料表 if not exists、publication 先查再加、
@@ -27,6 +28,9 @@ create table if not exists game_sessions (
 
 -- 回合：bid_* 為目前喊牌（bid_seq 為本回合第幾手，0 表示尚未喊牌）。
 -- reveal 僅在開盅時寫入（resolving／round_end），屬刻意公開的全員骰子。
+-- await_ack 為開盅後「待全員確認結果」：deadline_at 此時為確認逾時上限，
+-- 全員確認（ack_reveal）或逾時（_apply_timeout 代為確認）後才轉 bidding
+-- 並重設真正的倒數起點。
 create table if not exists game_rounds (
   session_id   bigint not null references game_sessions(id) on delete cascade,
   round_no     int    not null check (round_no >= 1),
@@ -37,21 +41,46 @@ create table if not exists game_rounds (
   bid_seq      int    not null default 0,
   deadline_at  timestamptz not null,
   status       text   not null
-                   check (status in ('bidding','resolving','round_end','ended')),
+                   check (status in ('bidding','resolving','round_end','await_ack','ended')),
   reveal       jsonb  null,
   resolve_note text   null,
   primary key (session_id, round_no)
 );
 
+-- 既有資料庫的 round status check 不含 await_ack：重建約束（冪等——
+-- 已含 await_ack 或無約束時為無操作；既有列皆為合法狀態，不違反擴增後檢查）。
+do $$
+declare
+  v_conname text;
+begin
+  select conname into v_conname
+    from pg_constraint
+    where conrelid = 'game_rounds'::regclass
+      and contype = 'c'
+      and pg_get_constraintdef(oid) like '%bidding%'
+      and pg_get_constraintdef(oid) not like '%await_ack%';
+  if found and v_conname is not null then
+    execute format('alter table game_rounds drop constraint %I', v_conname);
+    execute 'alter table game_rounds add constraint game_rounds_status_check
+             check (status in (''bidding'',''resolving'',''round_end'',''await_ack'',''ended''))';
+  end if;
+end $$;
+
 -- 玩家局內狀態：seat 為開局時的座位快照，dice_left 歸零即淘汰。
+-- ack_round_no 為「已確認過開盅結果」的最新回合編號（0＝尚未確認過任何回合；
+-- 全員 ack_round_no ≥ await_ack 回合編號時倒數才開始，逾時由 _apply_timeout 代為確認）。
 create table if not exists game_player_state (
-  session_id bigint not null references game_sessions(id) on delete cascade,
-  user_id    uuid   not null references auth.users(id) on delete cascade,
-  seat       int    not null check (seat between 1 and 8),
-  dice_left  int    not null default 0 check (dice_left >= 0),
-  eliminated boolean not null default false,
+  session_id   bigint not null references game_sessions(id) on delete cascade,
+  user_id      uuid   not null references auth.users(id) on delete cascade,
+  seat         int    not null check (seat between 1 and 8),
+  dice_left    int    not null default 0 check (dice_left >= 0),
+  eliminated   boolean not null default false,
+  ack_round_no int    not null default 0,
   primary key (session_id, user_id)
 );
+
+-- 既有資料庫補欄位：冪等（已存在時為無操作）。
+alter table game_player_state add column if not exists ack_round_no int not null default 0;
 
 -- 每回合的私有骰子：RLS 僅本人可讀，寫入只經 RPC。
 create table if not exists game_player_dice (
@@ -209,7 +238,10 @@ begin
 end $$;
 
 -- 建立下一回合：重新擲骰（每位存活玩家 dice_left 顆）、座位接在
--- p_after_seat 之後、deadline 重設、bid_seq 歸 0。
+-- p_after_seat 之後、bid_seq 歸 0。
+-- 新回合落在 await_ack（待全員確認開盅結果），deadline_at 此時為「確認
+-- 逾時上限」而非倒數起點；全員確認或逾時被代為確認後，才由
+-- ack_reveal／_apply_timeout 轉入 bidding 並重設真正的倒數 deadline。
 create or replace function _start_next_round(
   p_session_id bigint,
   p_next_round_no int,
@@ -230,14 +262,15 @@ begin
       values (p_session_id, p_next_round_no, rec.user_id, _roll_many(rec.dice_left));
   end loop;
   insert into game_rounds (session_id, round_no, current_seat, status, deadline_at)
-    values (p_session_id, p_next_round_no, next_seat, 'bidding',
+    values (p_session_id, p_next_round_no, next_seat, 'await_ack',
             now() + make_interval(secs => s.turn_seconds));
 end $$;
 
 -- 開盅與後續流轉：呼叫者須已驗「本回合 bidding 且 bid_seq > 0」並鎖定 session。
 --   本回合 → status='resolving'（廣播過場）→ 計算 → round_end（公開 reveal）
 --   存活 ≤ 1 → 勝者、ended_at、冪等結算、房間轉 'ended'
---   否則 → 直接生成下一回合（bidding），本回合留 round_end 供顯示。
+--   否則 → 生成下一回合（await_ack：待全員確認開盅後才開始倒數），
+--          本回合留 round_end 供顯示。
 --   事件順序：round_end＋reveal 先於下一回合的 INSERT 送出，
 --   否則客戶端（以 round_no 保留最新）會丟棄 reveal 事件。
 create or replace function _open_pot(
@@ -343,7 +376,9 @@ begin
 end $$;
 
 -- 逾時代理：deadline 已過時處理當前回合（首喊代喊 (1,1)、續喊代質疑）。
--- 呼叫者須已鎖定 session；回合不在 bidding 或尚未逾時時為無操作（冪等）。
+-- await_ack 逾時（確認逾時上限已過）：全員代為確認（force ack）並轉入
+-- bidding、重設倒數 deadline，全員開始喊牌（冪等）。
+-- 呼叫者須已鎖定 session；回合不在 bidding／await_ack，或在期限前時為無操作。
 create or replace function _apply_timeout(p_session_id bigint) returns void
 language plpgsql security definer set search_path = public as $$
 declare
@@ -354,11 +389,25 @@ begin
   select * into r from game_rounds
     where session_id = p_session_id
     order by round_no desc limit 1;
-  -- 回合不在喊牌階段：無操作（遊戲結束、開盅中、逾時已處理過）
-  if not found or r.status <> 'bidding' then
+  -- 回合不在喊牌／待確認階段：無操作（遊戲結束、開盅中、逾時已處理過）
+  if not found or r.status not in ('await_ack', 'bidding') then
     return;
   end if;
   if now() < r.deadline_at then
+    return;
+  end if;
+
+  if r.status = 'await_ack' then
+    -- 確認逾時：未確認的存活者也代為 ack（全員 ack 必然成立），轉入喊牌
+    update game_player_state
+      set ack_round_no = greatest(ack_round_no, r.round_no)
+      where session_id = p_session_id and eliminated = false;
+    update game_rounds
+      set status = 'bidding',
+          deadline_at = now() + make_interval(secs => (
+            select turn_seconds from game_sessions where id = p_session_id))
+      where session_id = p_session_id and round_no = r.round_no
+        and status = 'await_ack';
     return;
   end if;
 
@@ -488,7 +537,17 @@ begin
   if r.status = 'ended' then
     raise exception '遊戲已結束';
   end if;
+  if r.status = 'await_ack' then
+    -- 確認逾時上限已過時先代為確認（轉入 bidding），再以新狀態驗證這一手
+    perform _apply_timeout(p_session_id);
+    select * into r from game_rounds
+      where session_id = p_session_id
+      order by round_no desc limit 1;
+  end if;
   if r.status <> 'bidding' then
+    if r.status = 'await_ack' then
+      raise exception '開盅結果待全員確認，尚不能喊牌';
+    end if;
     raise exception '開盅進行中，請稍候';
   end if;
 
@@ -574,7 +633,17 @@ begin
   if r_ref.status = 'ended' then
     raise exception '遊戲已結束';
   end if;
+  if r_ref.status = 'await_ack' then
+    -- 確認逾時上限已過時先代為確認（轉入 bidding），再以新狀態驗證
+    perform _apply_timeout(p_session_id);
+    select * into r_ref from game_rounds
+      where session_id = p_session_id
+      order by round_no desc limit 1;
+  end if;
   if r_ref.status <> 'bidding' then
+    if r_ref.status = 'await_ack' then
+      raise exception '開盅結果待全員確認，尚不能質疑';
+    end if;
     raise exception '開盅進行中，請稍候';
   end if;
   if r_ref.bid_seq = 0 then
@@ -604,7 +673,8 @@ begin
 end $$;
 
 -- 逾時同步：deadline 已過的回合由本局成員呼叫即可推進（冪等）。
--- 首喊逾時＝代喊 (1,1)；續喊逾時＝代質疑。未逾時或非喊牌階段時無操作。
+-- 首喊逾時＝代喊 (1,1)；續喊逾時＝代質疑；await_ack 逾時＝全員代為確認
+-- 並轉入喊牌。未逾時或非喊牌／待確認階段時無操作。
 create or replace function sync_timeout(p_session_id bigint) returns void
 language plpgsql security definer set search_path = public as $$
 declare
@@ -626,6 +696,63 @@ begin
     raise exception '只有本局玩家可以同步逾時';
   end if;
   perform _apply_timeout(p_session_id);
+end $$;
+
+-- 開盅結果確認（本局成員專屬，冪等）：
+--   1. 把自己的 ack_round_no 設為最新回合編號（await_ack 階段才有效，
+--      過往回合與其他狀態時為無操作，重複呼叫不報錯）。
+--   2. 所有存活玩家的 ack_round_no ≥ 最新回合編號時，回合由 await_ack
+--      轉入 bidding，並以 now() + turn_seconds 重設「真正的倒數起點」。
+--   3. 回合已是 bidding（他人先完成最後一筆確認）時冪等返回。
+-- 非本局成員呼叫會被拒絕（避免旁人替玩家點頭）。
+create or replace function ack_reveal(p_session_id bigint) returns void
+language plpgsql security definer set search_path = public as $$
+declare
+  uid uuid := auth.uid();
+  r game_rounds%rowtype;
+  pending int;
+begin
+  if uid is null then
+    raise exception '請先登入';
+  end if;
+  perform pg_advisory_xact_lock(p_session_id);
+  if not exists (select 1 from game_sessions where id = p_session_id) then
+    raise exception '遊戲局不存在';
+  end if;
+  -- 成員檢查：非本局玩家不得代為點頭（含旁人與旁觀者）
+  if not exists (
+    select 1 from game_player_state where session_id = p_session_id and user_id = uid
+  ) then
+    raise exception '只有本局玩家可以確認開盅結果';
+  end if;
+
+  select * into r from game_rounds
+    where session_id = p_session_id
+    order by round_no desc limit 1;
+  -- 回合不存在或已不在待確認階段（含遊戲結束）：冪等返回
+  if not found or r.status <> 'await_ack' then
+    return;
+  end if;
+
+  -- 記下自己的確認（冪等：重複呼叫時 greatest 不會倒退）
+  update game_player_state
+    set ack_round_no = greatest(ack_round_no, r.round_no)
+    where session_id = p_session_id and user_id = uid;
+
+  -- 全員（存活）確認過本回合：轉入喊牌並重設倒數起點
+  select count(*) into pending
+    from game_player_state
+    where session_id = p_session_id
+      and eliminated = false
+      and ack_round_no < r.round_no;
+  if pending = 0 then
+    update game_rounds
+      set status = 'bidding',
+          deadline_at = now() + make_interval(secs => (
+            select turn_seconds from game_sessions where id = p_session_id))
+      where session_id = p_session_id and round_no = r.round_no
+        and status = 'await_ack';
+  end if;
 end $$;
 
 -- ============ Phase 4：房主重開（再玩一局） ============

@@ -4,7 +4,12 @@
  */
 
 /** 遊戲回合的狀態（與 SQL 的 check 一致）。 */
-export type GameRoundStatus = 'bidding' | 'resolving' | 'round_end' | 'ended';
+export type GameRoundStatus =
+  | 'await_ack'
+  | 'bidding'
+  | 'resolving'
+  | 'round_end'
+  | 'ended';
 
 /** game_sessions 的單列（原始形狀）。 */
 export interface GameSessionRow {
@@ -68,7 +73,7 @@ export interface GameRoundRow {
   bid_user: string | null;
   /** 本回合第幾手（0 表示尚未喊牌）。 */
   bid_seq: number;
-  /** 本手截止時間（逾時判定與倒數的依據）。 */
+  /** 回合截止時間（bidding 為倒數起點；await_ack 為全員確認的逾時上限）。 */
   deadline_at: string;
   /** 回合狀態。 */
   status: GameRoundStatus;
@@ -92,7 +97,7 @@ export interface GameRound {
   bidUser: string | null;
   /** 本回合第幾手（0 表示尚未喊牌）。 */
   bidSeq: number;
-  /** 本手截止時間（ISO 字串）。 */
+  /** 回合截止時間（bidding 為倒數起點；await_ack 為全員確認的逾時上限）。 */
   deadlineAt: string;
   /** 回合狀態。 */
   status: GameRoundStatus;
@@ -183,6 +188,8 @@ export interface PlayerStateRow {
   dice_left: number;
   /** 是否已淘汰（dice_left 歸零）。 */
   eliminated: boolean;
+  /** 已確認過開盅結果的最新回合編號（0＝尚未確認過；await_ack 用）。 */
+  ack_round_no: number;
 }
 
 /** 前端使用的玩家局內狀態（camelCase）。 */
@@ -195,6 +202,8 @@ export interface PlayerState {
   diceLeft: number;
   /** 是否已淘汰。 */
   eliminated: boolean;
+  /** 已確認過開盅結果的最新回合編號（0＝尚未確認過；await_ack 用）。 */
+  ackRoundNo: number;
 }
 
 /** 前端玩家列：局內狀態加上顯示名稱。 */

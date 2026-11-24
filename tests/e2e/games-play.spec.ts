@@ -1,6 +1,7 @@
 /**
- * 吹牛骰子遊戲核心（Phase 3＋Phase 4）的情境測試：RPC 對局、UI 對局、
- * 逾時代理、房主重開（replay_room）、開盅可關閉與結算卡。
+ * 吹牛骰子遊戲核心（Phase 3＋Phase 4＋開盅確認）的情境測試：RPC 對局、
+ * UI 對局、逾時代理、開盅確認（await_ack）、房主重開（replay_room）、
+ * 開盅可關閉與結算卡。
  *
  * 需要本機憑證：SUPABASE_URL 與 SUPABASE_SERVICE_ROLE_KEY（缺一即跳過，
  * CI 上不具備這兩個環境變數）。前置以 service key 經 Auth Admin REST
@@ -9,11 +10,13 @@
  *
  * 情境：
  *   1. RPC 直接驅動完整對局（起局 → 依 current_seat 輪流 submit_bid →
- *      challenge → reveal／淘汰／dice_left → 二人局結束 → 統計更新）。
+ *      challenge → reveal／淘汰／dice_left → 開盅確認（新回合 await_ack，
+ *      全員 ack_reveal 後才轉 bidding）→ 二人局結束 → 統計更新）。
  *   2. UI：兩個 context 的 play 頁（雙方看到倒數與自己的骰子、私有隔離、
- *      喊牌 5 秒內同步、質疑後 reveal 與新回合、開盅可關閉並留下摘要）。
+ *      喊牌 5 秒內同步、質疑後 reveal 與新回合、開盅可關閉並留下摘要、
+ *      確認面板的進度 0／2 → 1／2 → 全員確認後回到操作區）。
  *   3. 逾時：deadline 過後 sync_timeout 自動代喊（bid_seq=0 → (1,1)），
- *      冪等不重複處理。
+ *      冪等不重複處理；await_ack 逾期代全員確認並轉入喊牌。
  *   4. 房主重開：結案房間以 replay_room 轉回 waiting（成員保留、冪等），
  *      大廳可再次開局；UI 結算卡顯示戰績並可由房主按鈕重開。
  */
@@ -333,7 +336,11 @@ test.describe('吹牛骰子遊戲核心', () => {
       const state = await sessionOf(sessionId);
       if (state.winner) break;
       const roundNow = await latestRound(sessionId);
-      expect(roundNow.status).toBe('bidding');
+      // 挑戰後的新回合落在 await_ack：先全員確認再續打
+      if (roundNow.status === 'await_ack') {
+        await ackAll(sessionId);
+      }
+      expect((await latestRound(sessionId)).status).toBe('bidding');
       const aliveRows = await fetchRows(
         tokenA,
         'game_player_state',
@@ -345,6 +352,23 @@ test.describe('吹牛骰子遊戲核心', () => {
     const state = await sessionOf(sessionId);
     expect(state.winner).toBeTruthy();
     expect(state.settled_at).not.toBeNull();
+  }
+
+  /**
+   * 全員確認最新回合的開盅結果（await_ack → bidding；冪等）。
+   *
+   * A 連按兩次驗證冪等；B 一確認即全員完成，回合轉入 bidding。
+   *
+   * @param sessionId 局 ID
+   */
+  async function ackAll(sessionId: number): Promise<void> {
+    const round = await latestRound(sessionId);
+    if (round.status !== 'await_ack') return;
+    await callRpc(tokenA, 'ack_reveal', { p_session_id: sessionId });
+    // 冪等：同一玩家重複呼叫為無操作，不會讓進度倒退也不報錯
+    await callRpc(tokenA, 'ack_reveal', { p_session_id: sessionId });
+    await callRpc(tokenB, 'ack_reveal', { p_session_id: sessionId });
+    expect((await latestRound(sessionId)).status).toBe('bidding');
   }
 
   /**
@@ -363,6 +387,11 @@ test.describe('吹牛骰子遊戲核心', () => {
     totalDice: number,
   ): Promise<{ nextRound: RoundRow | null; endedRound: RoundRow }> {
     let round = await latestRound(sessionId);
+    // 前一手留下的開盅確認尚未完成時先補齊（await_ack → bidding）
+    if (round.status === 'await_ack') {
+      await ackAll(sessionId);
+      round = await latestRound(sessionId);
+    }
     const roundNoBefore = round.round_no;
     while (round.status === 'bidding' && (round.bid_count ?? 0) < totalDice) {
       const prevCount = round.bid_count ?? 0;
@@ -466,10 +495,11 @@ test.describe('吹牛骰子遊戲核心', () => {
     expect(loser).toBeTruthy();
     expect(loser!.eliminated).toBe(loser!.dice_left === 0);
 
-    // 新回合：round_no+1、bid_seq 歸 0、bid 欄位清空、bidding、deadline 已設
+    // 新回合：round_no+1、bid_seq 歸 0、bid 欄位清空、await_ack（待全員
+    // 確認開盅結果）、deadline 為確認逾時上限（已設）
     expect(nextRound).toBeTruthy();
     expect(nextRound!.round_no).toBe(firstRoundNo + 1);
-    expect(nextRound!.status).toBe('bidding');
+    expect(nextRound!.status).toBe('await_ack');
     expect(nextRound!.bid_seq).toBe(0);
     expect(nextRound!.bid_count).toBeNull();
     expect(nextRound!.bid_face).toBeNull();
@@ -483,6 +513,28 @@ test.describe('吹牛骰子遊戲核心', () => {
     const expectedSeat = afterLoser.length > 0 ? afterLoser[0] : aliveSeats[0];
     expect(nextRound!.current_seat).toBe(expectedSeat);
 
+    // 確認未完成前不得喊牌（await_ack 中 submit_bid 被拒）
+    let rejectedWhileAck = false;
+    try {
+      await callRpc(tokenA, 'submit_bid', {
+        p_session_id: sessionId,
+        p_count: 1,
+        p_face: 1,
+      });
+    } catch (cause) {
+      rejectedWhileAck = true;
+      expect(String(cause instanceof Error ? cause.message : cause)).toContain('確認');
+    }
+    expect(rejectedWhileAck).toBe(true);
+
+    // 全員確認（A 連按兩次驗證冪等）：轉入 bidding、倒數起點重設
+    const ackDeadline = Date.parse(nextRound!.deadline_at);
+    await ackAll(sessionId);
+    const roundAfterAck = await latestRound(sessionId);
+    expect(roundAfterAck.status).toBe('bidding');
+    expect(roundAfterAck.round_no).toBe(nextRound!.round_no);
+    expect(Date.parse(roundAfterAck.deadline_at)).toBeGreaterThan(ackDeadline);
+
     // 新回合已重擲骰子（本人的骰子列長度＝本人剩餘骰數）
     const myState = loserRows.find((row) => row.user_id === userAId);
     const nextDiceA = await fetchRows(
@@ -494,19 +546,8 @@ test.describe('吹牛骰子遊戲核心', () => {
     expect(nextDiceA[0]?.dice as unknown[]).toHaveLength(myState!.dice_left as number);
 
     // 續打到分勝負：二人局每輪必有人失去 1 顆骰子，數輪內必然結束
-    for (let guard = 0; guard < 12; guard += 1) {
-      const state = await sessionOf(sessionId);
-      if (state.winner) break;
-      const roundNow = await latestRound(sessionId);
-      expect(roundNow.status).toBe('bidding');
-      const aliveRows = await fetchRows(
-        tokenA,
-        'game_player_state',
-        `session_id=eq.${sessionId}&eliminated=eq.false&select=dice_left`,
-      );
-      const aliveTotal = aliveRows.reduce((sum, row) => sum + (row.dice_left as number), 0);
-      await driveToChallenge(sessionId, aliveTotal);
-    }
+    //（中間每一輪的新回合都落在 await_ack，由 driveToWinner 先全員確認）
+    await driveToWinner(sessionId);
 
     // 局終：勝者確定、settled、輸家 dice_left 0 且非勝者
     const finalState = await sessionOf(sessionId);
@@ -609,9 +650,26 @@ test.describe('吹牛骰子遊戲核心', () => {
     await expect(page.getByTestId('reveal-summary')).toBeVisible();
     // B 視角不動，等覆蓋停留後自動關閉
     await expect(pageB.getByTestId('reveal-panel')).toBeHidden({ timeout: REVEAL_HIDE_TIMEOUT });
-    // 雙方進入第 2 輪
+
+    // 開盅確認：新回合落在 await_ack，雙方（存活玩家）都看到確認面板，
+    // 進度為 0／2；開盅結果的顯示不受「第 2 輪」頂列影響（回合已先建立）
     for (const target of [page, pageB]) {
+      await expect(target.getByTestId('ack-panel')).toBeVisible();
+      await expect(target.getByTestId('ack-progress')).toContainText('待全員確認（0／2）');
       await expect(target.getByText('第 2 輪')).toBeVisible();
+    }
+
+    // A 確認：雙方進度更新為 1／2，A 的按鈕消失改為等待提示
+    await page.getByTestId('ack-reveal').click();
+    await expect(page.getByTestId('ack-progress')).toContainText('1／2', { timeout: 10_000 });
+    await expect(pageB.getByTestId('ack-progress')).toContainText('1／2', { timeout: 10_000 });
+    await expect(page.getByTestId('ack-reveal')).toHaveCount(0);
+    await expect(page.getByTestId('ack-panel')).toContainText('已確認，等待其他玩家');
+
+    // B 確認：全員確認完成，回合轉入 bidding（確認面板由操作區取代）
+    await pageB.getByTestId('ack-reveal').click();
+    for (const target of [page, pageB]) {
+      await expect(target.getByTestId('ack-panel')).toBeHidden({ timeout: 10_000 });
     }
 
     expect(consoleErrors).toEqual([]);
@@ -653,6 +711,48 @@ test.describe('吹牛骰子遊戲核心', () => {
       `session_id=eq.${sessionId}&action=eq.timeout_bid&select=action`,
     );
     expect(actionsAgain).toHaveLength(1);
+  });
+
+  test('開盅確認逾時：await_ack 到期後 sync_timeout 全員代為確認並轉入喊牌', async () => {
+    test.setTimeout(120_000);
+    const { sessionId } = await setupSession({ diceCount: 2, turnSeconds: 5 });
+
+    // 打到開盅：新回合落在 await_ack（deadline 為確認逾時上限）
+    const { nextRound } = await driveToChallenge(sessionId, 4);
+    expect(nextRound).toBeTruthy();
+    expect(nextRound!.status).toBe('await_ack');
+
+    // 等確認逾時上限過期（3 秒思考時間）
+    await expect
+      .poll(async () => {
+        const round = await latestRound(sessionId);
+        return round.status === 'await_ack' && Date.parse(round.deadline_at) < Date.now();
+      }, { timeout: 20_000 })
+      .toBe(true);
+
+    // 任一成員呼叫 sync_timeout：全員（含未按下者）被代為確認並轉入 bidding
+    await callRpc(tokenA, 'sync_timeout', { p_session_id: sessionId });
+    const roundAfter = await latestRound(sessionId);
+    expect(roundAfter.status).toBe('bidding');
+    expect(roundAfter.round_no).toBe(nextRound!.round_no);
+
+    // 冪等：逾時已處理過時再呼叫 sync_timeout 為無操作（狀態維持 bidding）
+    await callRpc(tokenA, 'sync_timeout', { p_session_id: sessionId });
+    expect((await latestRound(sessionId)).status).toBe('bidding');
+
+    // 轉入喊牌後（deadline 已重設為 3 秒後）當前玩家可正常喊牌
+    const round = await latestRound(sessionId);
+    if (Date.parse(round.deadline_at) < Date.now()) {
+      await callRpc(tokenB, 'sync_timeout', { p_session_id: sessionId });
+    }
+    const roundToBid = await latestRound(sessionId);
+    const token = roundToBid.current_seat === 1 ? tokenA : tokenB;
+    await callRpc(token, 'submit_bid', {
+      p_session_id: sessionId,
+      p_count: 1,
+      p_face: 1,
+    });
+    expect((await latestRound(sessionId)).bid_seq).toBe(1);
   });
 
   test('房主重開（replay_room）：結案房間轉回 waiting、成員保留、冪等、可再開局', async () => {

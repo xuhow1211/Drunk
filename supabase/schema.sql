@@ -113,13 +113,28 @@ drop trigger if exists recipes_touch_updated_at on recipes;
 create trigger recipes_touch_updated_at before update on recipes
   for each row execute function touch_updated_at();
 
--- 新註冊使用者自動建立 profiles
+-- 新註冊使用者自動建立 profiles，並把註冊時留下的顯示名稱
+-- （auth.users.raw_user_meta_data 的 display_name）一併寫入。
+-- 舊版僅建空列、profiles.display_name 恆為 null，遊戲大廳與遊戲頁
+-- 依 room_member_list 對映名稱時全員 fallback 成「玩家」。
 create or replace function handle_new_user() returns trigger
 language plpgsql security definer set search_path = public as $$
 begin
-  insert into profiles (id) values (new.id) on conflict (id) do nothing;
+  insert into profiles (id, display_name)
+    values (new.id, nullif(trim(new.raw_user_meta_data->>'display_name'), ''))
+    on conflict (id) do nothing;
   return new;
 end $$;
+
+-- 一次性冪等回填：profiles.display_name 為 null（或空字串）且 auth.users
+-- 帶有 display_name metadata 的舊帳號補上名稱；已設名稱者不受影響，
+-- 重複執行無副作用。
+update profiles pr
+  set display_name = nullif(trim(u.raw_user_meta_data->>'display_name'), '')
+  from auth.users u
+  where pr.id = u.id
+    and coalesce(pr.display_name, '') = ''
+    and coalesce(u.raw_user_meta_data->>'display_name', '') <> '';
 
 drop trigger if exists on_auth_user_created on auth.users;
 create trigger on_auth_user_created after insert on auth.users

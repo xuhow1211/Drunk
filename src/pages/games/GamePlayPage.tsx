@@ -2,19 +2,24 @@
  * /games/play/:sessionId 遊戲主畫面（六大區、手機優先單欄）。
  *
  * 頂列（房 ID／第 N 輪／離開）→ 玩家狀態列 → 目前喊牌＋倒數 →
- * 我的骰子（大型 SVG 骰面，回合開始短暫搖骰）→ 操作區（加碼與質疑）→
+ * 我的骰子（大型 SVG 骰面，回合開始短暫搖骰）→ 操作區（加碼與質疑；
+ * 開盅後的回合在 await_ack 時改為全員確認面板）→
  * 開盅顯示（可關閉的覆蓋，關閉後留可收合摘要）→ 遊戲事件紀錄
  * （可展開，最新在上）→ 遊戲結束的結算卡（勝者、排名、個人戰績）。
  *
  * 局況全部由 useGameState（postgres_changes 訂閱）維護；倒數以後端
  * deadline_at 與本機時間差計算（回到前景即重算），歸零時呼叫一次
- * sync_timeout（以回合＋手數為鍵節流，防重複呼叫）。
+ * sync_timeout（以回合＋手數＋狀態為鍵節流，防重複呼叫）。
+ * 開盅後的新回合落在 await_ack（待全員確認開盅結果），deadline 此時為
+ * 「確認逾時上限」：全員按下確認（ack_reveal）或逾時由系統代為確認後，
+ * 才轉入 bidding 並以 now() 重設真正的喊牌倒數起點。
  * 桌機（≥1024px）改雙欄：左玩家列／右主操作與紀錄，手機維持單欄基準。
  */
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../../lib/authStore';
 import {
+  ackReveal,
   challengeBid,
   fetchGameEvents,
   fetchPlayerStats,
@@ -254,6 +259,8 @@ interface BidStatusRowProps {
  * 目前喊牌行：bid_seq=0 顯示「尚未喊牌」；大字倒數（本機時間差）。
  * 倒數警示分兩級：≤5 秒轉警示色並加「時間不多了」文字；
  * ≤3 秒再加強——字級放大、警示框與「即將逾時」標籤。
+ * await_ack（待全員確認開盅結果）時改顯示確認進度，倒數此時為
+ * 「確認逾時上限」（逾時由系統代為確認），不套用喊牌警示階梯。
  * 一律以文字與框線同步提示，不以顏色為唯一手段，且不閃爍。
  *
  * @param props 行參數
@@ -262,6 +269,9 @@ function BidStatusRow(props: BidStatusRowProps) {
   const { round, players } = props;
   const secondsLeft = Math.max(0, Math.ceil((Date.parse(round.deadlineAt) - props.nowMs) / 1000));
   const bidding = round.status === 'bidding';
+  const awaitingAck = round.status === 'await_ack';
+  const alivePlayers = players.filter((p) => !p.eliminated);
+  const ackedCount = alivePlayers.filter((p) => p.ackRoundNo >= round.roundNo).length;
   const warn = secondsLeft <= COUNTDOWN_WARN_SECONDS && bidding;
   const alert = secondsLeft <= COUNTDOWN_ALERT_SECONDS && bidding;
   const bidder = players.find((p) => p.userId === round.bidUser);
@@ -273,7 +283,13 @@ function BidStatusRow(props: BidStatusRowProps) {
     <section className="panel p-4" aria-label="目前喊牌">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          {round.bidSeq > 0 ? (
+          {awaitingAck ? (
+            <p className="text-sm font-semibold text-ink">
+              開盅結果待全員確認（
+              <span className="text-neon-gold">{ackedCount}／{alivePlayers.length} 已確認</span>），
+              全員確認後才開始喊牌倒數。
+            </p>
+          ) : round.bidSeq > 0 ? (
             <p className="text-sm font-semibold text-ink">
               目前喊牌：<span className="text-neon-gold">{round.bidCount} 個 {round.bidFace} 點</span>
               （{bidderName}）
@@ -307,6 +323,8 @@ function BidStatusRow(props: BidStatusRowProps) {
             <p className="flex items-center gap-1 text-xs font-semibold text-neon-pink">
               <span aria-hidden="true">[!]</span> 時間不多了
             </p>
+          ) : awaitingAck ? (
+            <p className="text-xs font-semibold text-ink-muted">確認逾時上限</p>
           ) : null}
         </div>
       </div>
@@ -482,6 +500,67 @@ function BidControls(props: BidControlsProps) {
   );
 }
 
+/** 開盅確認面板的參數。 */
+interface AckConfirmPanelProps {
+  /** 目前回合（await_ack 中；deadline 為確認逾時上限）。 */
+  round: GameRound;
+  /** 玩家列（確認進度與自己是否已確認）。 */
+  players: PlayerView[];
+  /** 自己的 user_id。 */
+  selfId: string | null;
+  /** 現在時刻（毫秒；顯示確認逾時倒數）。 */
+  nowMs: number;
+  /** 送出中旗標（按鈕禁用）。 */
+  busy: boolean;
+  /** 按下確認時的回呼。 */
+  onAck: () => void;
+}
+
+/**
+ * 開盅確認面板：新回合落在 await_ack 時取代操作區。
+ * 顯示已確認人數（含自己確認後的等待提示）與逾時剩餘秒數；
+ * 全員確認（或逾時由系統代為確認）後 SQL 端轉入 bidding、重設倒數，
+ * 本面板即由操作區取代。自己的確認為冪等 RPC，重複按下不會出錯。
+ *
+ * @param props 面板參數
+ */
+function AckConfirmPanel(props: AckConfirmPanelProps) {
+  const alive = props.players.filter((p) => !p.eliminated);
+  const ackedCount = alive.filter((p) => p.ackRoundNo >= props.round.roundNo).length;
+  const iAcked = props.players.some(
+    (p) => p.userId === props.selfId && p.ackRoundNo >= props.round.roundNo,
+  );
+  const secondsLeft = Math.max(
+    0,
+    Math.ceil((Date.parse(props.round.deadlineAt) - props.nowMs) / 1000),
+  );
+  return (
+    <section className="panel p-4" aria-label="開盅確認" data-testid="ack-panel">
+      <p className="text-center text-sm font-semibold text-ink" data-testid="ack-progress">
+        上一手已開盅，待全員確認（{ackedCount}／{alive.length}）
+      </p>
+      <p className="mt-1 text-center text-xs text-ink-muted">
+        全員確認後才開始下一輪倒數；逾時由系統代為確認（剩 {secondsLeft} 秒）
+      </p>
+      {iAcked ? (
+        <p className="mt-3 text-center text-sm font-semibold text-neon-cyan">
+          已確認，等待其他玩家……
+        </p>
+      ) : (
+        <button
+          type="button"
+          onClick={props.onAck}
+          disabled={props.busy}
+          data-testid="ack-reveal"
+          className="mt-3 min-h-[48px] w-full rounded-full border border-neon-cyan/60 bg-neon-cyan/25 px-5 text-sm font-semibold text-ink transition hover:bg-neon-cyan/40 disabled:opacity-50"
+        >
+          {props.busy ? '送出中……' : '看過結果，開始下一輪'}
+        </button>
+      )}
+    </section>
+  );
+}
+
 /** 開盅覆蓋面板的參數。 */
 interface RevealPanelProps {
   /** 開盅的回合編號。 */
@@ -539,7 +618,7 @@ function RevealPanel(props: RevealPanelProps) {
           </p>
         ) : null}
         <p className="mt-3 text-center text-xs text-ink-muted">
-          稍後自動進入下一輪，或立即關閉。
+          稍後自動收起，可提前關閉。
         </p>
         <button
           type="button"
@@ -547,7 +626,7 @@ function RevealPanel(props: RevealPanelProps) {
           data-testid="reveal-close"
           className="mt-2 min-h-[44px] w-full rounded-full border border-white/20 bg-white/10 px-5 text-sm font-semibold text-ink transition hover:bg-white/20"
         >
-          關閉（進入下一輪）
+          關閉（留下摘要）
         </button>
       </div>
     </div>
@@ -859,15 +938,18 @@ function PlayDetail() {
   const lastShakenRoundRef = useRef<number>(0);
   const [shaking, setShaking] = useState(false);
 
-  // 倒數歸零：呼叫一次 sync_timeout（逾時代理；SQL 端冪等），前端節流防重複
+  // 倒數歸零：呼叫一次 sync_timeout（逾時代理；SQL 端冪等），前端節流防重複。
+  // await_ack 的到期意義為「確認逾時上限」：SQL 端代全員確認後轉入 bidding。
+  // 鍵含狀態：同一回合由 await_ack 轉入 bidding 時（deadline 重設前後）
+  // 不會被同一鍵擋下，兩階段各自只送一次。
   useEffect(() => {
-    if (!round || round.status !== 'bidding') return;
+    if (!round || (round.status !== 'bidding' && round.status !== 'await_ack')) return;
     if (Date.parse(round.deadlineAt) > nowMs) return;
-    const key = `${round.roundNo}:${round.bidSeq}`;
+    const key = `${round.roundNo}:${round.bidSeq}:${round.status}`;
     if (lastTimeoutKeyRef.current === key) return;
     lastTimeoutKeyRef.current = key;
     void syncTimeout(sessionId).catch(() => {
-      // 逾時同步失敗靜默：下一手或他人的呼叫會再補（SQL 冪等）
+      // 逾時同步失敗靜默：下次到期或他人的呼叫會再補（SQL 冪等）
     });
   }, [round, nowMs, sessionId]);
 
@@ -1043,6 +1125,20 @@ function PlayDetail() {
     }
   };
 
+  /** 確認看過開盅結果（冪等）：全員確認完 SQL 端自動轉入喊牌並重設倒數。 */
+  const handleAck = async () => {
+    if (busy) return;
+    setBusy(true);
+    setActionError(null);
+    try {
+      await ackReveal(sessionId);
+    } catch (cause) {
+      setActionError(cause instanceof Error ? cause.message : '確認失敗，請再試一次。');
+    } finally {
+      setBusy(false);
+    }
+  };
+
   // 等待提示中，「○○」換成實際的當前玩家名（非自己回合才有意義）
   const currentActor = players.find(
     (p) => !p.eliminated && p.seat === round?.currentSeat,
@@ -1107,15 +1203,26 @@ function PlayDetail() {
           </div>
         ) : round && me && !me.eliminated ? (
           <div className="lg:col-start-2">
-            <BidControls
-              round={round}
-              totalDice={totalDice}
-              myTurn={myTurn}
-              waitingName={currentActor?.displayName ?? '玩家'}
-              busy={busy}
-              onBid={(count, face) => void handleBid(count, face)}
-              onChallenge={() => void handleChallenge()}
-            />
+            {round.status === 'await_ack' ? (
+              <AckConfirmPanel
+                round={round}
+                players={players}
+                selfId={user?.id ?? null}
+                nowMs={nowMs}
+                busy={busy}
+                onAck={() => void handleAck()}
+              />
+            ) : (
+              <BidControls
+                round={round}
+                totalDice={totalDice}
+                myTurn={myTurn}
+                waitingName={currentActor?.displayName ?? '玩家'}
+                busy={busy}
+                onBid={(count, face) => void handleBid(count, face)}
+                onChallenge={() => void handleChallenge()}
+              />
+            )}
           </div>
         ) : null}
 

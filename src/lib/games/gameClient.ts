@@ -95,10 +95,18 @@ export async function challengeBid(sessionId: number): Promise<void> {
   await callRpc(client, 'challenge_bid', { p_session_id: sessionId });
 }
 
-/** 逾時同步：倒數歸零後由任一成員呼叫，SQL 端冪等處裡（代喊或代質疑）。 */
+/** 逾時同步：倒數歸零後由任一成員呼叫，SQL 端冪等處裡（代喊或代質疑；
+ *  await_ack 逾時上限已過時全員代為確認並轉入喊牌）。 */
 export async function syncTimeout(sessionId: number): Promise<void> {
   const client = await loadClient();
   await callRpc(client, 'sync_timeout', { p_session_id: sessionId });
+}
+
+/** 確認看過開盅結果（本局成員；全員確認後 SQL 端自動轉入喊牌並開始倒數，
+ *  冪等：重複呼叫或回合已轉入喊牌時為無操作）。 */
+export async function ackReveal(sessionId: number): Promise<void> {
+  const client = await loadClient();
+  await callRpc(client, 'ack_reveal', { p_session_id: sessionId });
 }
 
 /** 房主重開房間（clear 既有局況、狀態轉回 waiting、成員保留；冪等）。 */
@@ -297,7 +305,7 @@ export function useGameLog(
 export interface GameState {
   /** 當前局況快照（含勝者欄位）。 */
   session: GameSession | null;
-  /** 當前最新回合（bidding／round_end／ended）。 */
+  /** 當前最新回合（bidding／await_ack／round_end／ended）。 */
   round: GameRound | null;
   /** 玩家局內狀態＋顯示名稱（依 seat 排序）。 */
   players: PlayerView[];
@@ -540,5 +548,6 @@ export function toPlayerState(row: PlayerStateRow): PlayerState {
     seat: row.seat,
     diceLeft: row.dice_left,
     eliminated: row.eliminated,
+    ackRoundNo: row.ack_round_no,
   };
 }
