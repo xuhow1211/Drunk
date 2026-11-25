@@ -191,3 +191,17 @@ export function ShuffleIcon(props: IconProps) {
     </svg>
   );
 }
+
+/** 骰子：五點骰面，用於喝酒遊戲入口與對局。 */
+export function DiceIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="3.5" y="3.5" width="17" height="17" rx="3.5" />
+      <circle cx="8.5" cy="8.5" r="1.4" fill="currentColor" stroke="none" />
+      <circle cx="15.5" cy="15.5" r="1.4" fill="currentColor" stroke="none" />
+      <circle cx="15.5" cy="8.5" r="1.4" fill="currentColor" stroke="none" />
+      <circle cx="8.5" cy="15.5" r="1.4" fill="currentColor" stroke="none" />
+      <circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
