@@ -6,7 +6,7 @@
  * 同時把原本頁面的 Location 存進路由 state，
  * 因此抽屜開啟時底下的頁面不會被卸載，關閉後也能回到原處。
  */
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import type { ReactNode } from 'react';
 import {
   BrowserRouter,
@@ -187,11 +187,26 @@ function Shell() {
 }
 
 /**
+ * 路由變換時把捲動位置回到頂端；抽屜式背景路由（開配方抽屜）除外，
+ * 避免底頁為了配合抽屜捲回頂端而跳動。
+ */
+function ScrollToTop() {
+  const location = useLocation();
+  useEffect(() => {
+    const state = location.state as { background?: unknown } | null;
+    if (state?.background) return;
+    window.scrollTo(0, 0);
+  }, [location]);
+  return null;
+}
+
+/**
  * 應用程式根元件。
  */
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <DataGate>
         <Shell />
       </DataGate>
