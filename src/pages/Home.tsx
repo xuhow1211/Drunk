@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { useCocktails } from '../hooks/useCocktails';
 import { getRecipeCollections } from '../lib/filters';
 import { CountUp } from '../components/CountUp';
+import { DiceIcon, PuzzleIcon } from '../components/Icons';
 import { EntryCards } from '../components/EntryCards';
 import { Hero } from '../components/Hero';
 import { RecipeCard } from '../components/RecipeCard';
@@ -51,7 +52,7 @@ export function Home() {
 
       <EntryCards classicCount={counts.classic} popularCount={counts.popular} />
 
-      {/* 超商調酒直達與吹牛骰子入口：三張入口卡不動，另以小型連結直達 */}
+      {/* 超商調酒直達入口：三張入口卡不動，另以小型連結直達 */}
       <div className="mt-3 flex flex-wrap items-center justify-center gap-3 px-4 sm:justify-start">
         {/* 44px 觸控目標＋14px 字級：手機上這顆連結是主要入口之一 */}
         <Link
@@ -60,14 +61,9 @@ export function Home() {
         >
           超商調酒專區 →
         </Link>
-        {/* 吹牛骰子：線上多人遊戲，遊戲頁自帶登入守門 */}
-        <Link
-          to="/games"
-          className="inline-flex min-h-[44px] items-center rounded-full border border-neon-gold/35 bg-neon-gold/10 px-4 py-2 text-sm font-semibold text-neon-gold transition hover:bg-neon-gold/20"
-        >
-          吹牛骰子 →
-        </Link>
       </div>
+
+      <DrinkingGameSection />
 
       {/* 精選熱選（手機版與上段留白收緊，桌機維持原段距） */}
       <section className="mt-10 px-4 sm:mt-16 sm:px-6 lg:px-10" aria-label="精選熱選">
@@ -256,6 +252,110 @@ function TopCarousel({ recipes }: { recipes: ReturnType<typeof useCocktails>['re
         </div>
       ) : null}
     </div>
+  );
+}
+
+/** 喝酒遊戲的入口磚。 */
+interface GameTile {
+  /** 標題。 */
+  title: string;
+  /** 一句話說明。 */
+  note: string;
+  /** 目前狀態：可點擊或開發中。 */
+  ready: boolean;
+  /** 狀態標籤文字。 */
+  label: string;
+}
+
+/** 預設的喝酒遊戲磚。 */
+const GAME_TILES: GameTile[] = [
+  { title: '吹牛骰子', note: '線上多人對戰，每人擲骰、喊牌比膽量', ready: true, label: '可玩' },
+  { title: '真心話大冒險', note: '旋轉酒瓶指到你，就輪到你', ready: false, label: '開發中' },
+  { title: '國王遊戲', note: '抽牌當國王，指定喝法與懲罰', ready: false, label: '開發中' },
+  { title: '酒後猜拳王', note: '猜拳連勝者指定下一攤喝什麼', ready: false, label: '開發中' },
+];
+
+/**
+ * 喝酒遊戲區：以磚格呈現喝酒小遊戲入口。
+ *
+ * 未展開時最多顯示兩列（4 格），其餘收進「展開更多」，
+ * 避免區塊隨磚格數量拉長首頁；已上線者可點擊進入，
+ * 「開發中」磚以灰階呈現且不可點擊。
+ */
+function DrinkingGameSection() {
+  /** 未展開時顯示的磚格數（手機兩列＝2 欄 × 2 列）。 */
+  const COLLAPSED_COUNT = 4;
+  const [expanded, setExpanded] = useState(false);
+  const hiddenCount = GAME_TILES.length - COLLAPSED_COUNT;
+
+  return (
+    <section className="mt-10 px-4 sm:mt-16 sm:px-6 lg:px-10" aria-label="喝酒遊戲">
+      <div className="mx-auto max-w-[1440px]">
+        <Reveal className="mb-4">
+          <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">喝酒遊戲</h2>
+          <p className="mt-1 text-xs text-ink-muted sm:text-sm">
+            飯後一杯配小遊戲，人多更有趣
+          </p>
+        </Reveal>
+
+        {/* 手機 2 欄、平板 3 欄、桌機 4 欄：磚格一律整塊可點（開發中除外）；最多兩列，其餘收合 */}
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
+          {(expanded ? GAME_TILES : GAME_TILES.slice(0, COLLAPSED_COUNT)).map((tile) =>
+            tile.ready ? (
+              <Link
+                key={tile.title}
+                to="/games"
+                className="panel panel-hover flex flex-col gap-2 p-4 text-left sm:p-5"
+              >
+                <span className="flex h-10 w-10 items-center justify-center rounded-full border border-neon-gold/50 bg-neon-gold/10 text-neon-gold">
+                  <DiceIcon width={22} height={22} />
+                </span>
+                <span className="mt-1 flex items-center gap-2">
+                  <span className="font-display text-base font-bold text-ink">{tile.title}</span>
+                  <span className="rounded-full border border-neon-cyan/40 bg-neon-cyan/10 px-2 py-0.5 text-[10px] font-semibold text-neon-cyan">
+                    {tile.label}
+                  </span>
+                </span>
+                <span className="text-xs leading-relaxed text-ink-muted">{tile.note}</span>
+              </Link>
+            ) : (
+              <span
+                key={tile.title}
+                aria-label={`${tile.title}（${tile.label}）`}
+                className="flex flex-col gap-2 rounded-2xl border border-white/5 bg-white/[0.02] p-4 opacity-60 sm:p-5"
+              >
+                <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-ink-muted">
+                  <PuzzleIcon width={22} height={22} />
+                </span>
+                <span className="mt-1 flex items-center gap-2">
+                  <span className="font-display text-base font-bold text-ink-muted">
+                    {tile.title}
+                  </span>
+                  <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-ink-muted">
+                    {tile.label}
+                  </span>
+                </span>
+                <span className="text-xs leading-relaxed text-ink-muted/70">{tile.note}</span>
+              </span>
+            ),
+          )}
+        </div>
+
+        {/* 展開／收合：磚格超過兩列時才出現 */}
+        {hiddenCount > 0 ? (
+          <div className="mt-3 flex justify-center">
+            <button
+              type="button"
+              onClick={() => setExpanded((value) => !value)}
+              aria-expanded={expanded}
+              className="inline-flex min-h-[44px] items-center rounded-full border border-white/10 bg-white/5 px-5 text-sm font-semibold text-ink-muted transition hover:text-ink"
+            >
+              {expanded ? '收合遊戲列表' : `展開更多（還有 ${hiddenCount} 款）`}
+            </button>
+          </div>
+        ) : null}
+      </div>
+    </section>
   );
 }
 
