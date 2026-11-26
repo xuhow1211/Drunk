@@ -35,13 +35,14 @@ const TABS: readonly TabItem[] = [
 ];
 
 /**
- * 手機版下緣固定導覽列。
+ * 手機版下緣固定導覽列（sticky：跟著內容捲動，iOS 工具列收合時
+ * 不會與底部脫離露出內容；fixed 在行動 Safari 會錨在排版視窗）。
  */
 export function TabBar() {
   return (
     <nav
       aria-label="下方導覽"
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-night-900/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl md:hidden"
+      className="sticky bottom-0 z-40 border-t border-white/10 bg-night-900/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl md:hidden"
     >
       <ul className="flex items-stretch">
         {TABS.map((tab) => {
