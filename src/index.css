@@ -361,16 +361,3 @@ body {
     bottom: 1rem;
   }
 }
-
-/**
- * 頁面內容的手機版底部預留：容納 TabBar 與其上方的背景音浮層。
- */
-.layout-bottom-space {
-  padding-bottom: calc(7rem + env(safe-area-inset-bottom));
-}
-
-@media (min-width: 48rem) {
-  .layout-bottom-space {
-    padding-bottom: 0;
-  }
-}
