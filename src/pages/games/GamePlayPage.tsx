@@ -291,7 +291,7 @@ function BidStatusRow(props: BidStatusRowProps) {
             </p>
           ) : round.bidSeq > 0 ? (
             <p className="text-sm font-semibold text-ink">
-              目前喊牌：<span className="text-neon-gold">{round.bidCount} 個 {round.bidFace} 點</span>
+              目前喊牌：<span className="text-xl font-bold text-neon-gold">{round.bidCount} 個 {round.bidFace} 點</span>
               （{bidderName}）
             </p>
           ) : (
@@ -408,7 +408,7 @@ function BidControls(props: BidControlsProps) {
     <section className="panel p-4" aria-label="操作區">
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <p className="text-xs font-semibold text-ink-muted">數量</p>
+          <p className="text-lg font-semibold text-ink-muted">數量</p>
           <div className="mt-1 flex items-center gap-2">
             <button
               type="button"
@@ -434,7 +434,7 @@ function BidControls(props: BidControlsProps) {
           </div>
         </div>
         <div>
-          <p className="text-xs font-semibold text-ink-muted">點數</p>
+          <p className="text-lg font-semibold text-ink-muted">點數</p>
           <div className="mt-1 flex items-center gap-2">
             <button
               type="button"

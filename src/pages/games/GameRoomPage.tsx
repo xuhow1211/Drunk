@@ -180,6 +180,8 @@ interface HostSettingsPanelProps {
   diceCount: number;
   /** 目前思考秒數。 */
   turnSeconds: number;
+  /** 設定 RPC 成功後立即重抓房間快照（不等 Realtime 事件）。 */
+  refreshRoom: () => Promise<void>;
 }
 
 /**
@@ -196,6 +198,8 @@ function HostSettingsPanel(props: HostSettingsPanelProps) {
     setError(null);
     try {
       await updateGameRoomSettings(props.roomId, dice, seconds);
+      // 房主端立即反映自身設定（Realtime 偶有延遲，本地先回聲）
+      await props.refreshRoom();
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : '設定失敗，請再試一次。');
     }
@@ -427,7 +431,7 @@ function RoomDetail() {
   const roomId = (rawRoomId ?? '').toUpperCase();
   const navigate = useNavigate();
   const { user } = useAuth();
-  const { room, players, onlineIds, loading, error } = useRoomState(roomId);
+  const { room, players, onlineIds, loading, error, refreshRoom } = useRoomState(roomId);
   const [leaving, setLeaving] = useState(false);
   const [starting, setStarting] = useState(false);
   const [actionError, setActionError] = useState<string | null>(null);
@@ -560,6 +564,7 @@ function RoomDetail() {
             roomId={room.roomId}
             diceCount={room.diceCount}
             turnSeconds={room.turnSeconds}
+            refreshRoom={refreshRoom}
           />
         ) : null}
 
@@ -590,3 +595,4 @@ export function GameRoomPage() {
     </GamesAuthGate>
   );
 }
+

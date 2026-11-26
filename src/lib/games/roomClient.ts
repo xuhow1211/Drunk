@@ -9,7 +9,7 @@
  *
  * supabase-js 依專案慣例以動態匯入載入，不進入主 bundle。
  */
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { SupabaseClient, RealtimePostgresChangesPayload } from '@supabase/supabase-js';
 import { toGameRoom, toRoomPlayer } from './types';
 import type { GameRoom, GameRoomRow, RoomPlayer, RoomMemberRow } from './types';
@@ -27,6 +27,8 @@ export interface RoomState {
   loading: boolean;
   /** 載入或訂閱錯誤（可直接顯示的繁中訊息）。 */
   error: string | null;
+  /** 立即重抓房間快照（RPC 成功後的本地回聲，不等 Realtime 事件）。 */
+  refreshRoom: () => Promise<void>;
 }
 
 /** 訂閱回呼共用介面：狀態更新一律回寫到 hook 的 state。 */
@@ -275,5 +277,10 @@ export function useRoomState(roomId: string): RoomState {
     };
   }, [roomId, userId]);
 
-  return { room, players, onlineIds, loading, error };
+  const refreshRoom = useCallback(async (): Promise<void> => {
+    setRoom(await fetchRoom(roomId));
+  }, [roomId]);
+
+  return { room, players, onlineIds, loading, error, refreshRoom };
 }
+
